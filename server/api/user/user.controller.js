@@ -11,7 +11,7 @@ exports.login = function (req, res) {
   }, function (error, authData) {
     if (error) {
       console.log("Login Failed!", error);
-      res.json(error);
+      return handleError(res, error);
     } else {
       console.log("Authenticated successfully with payload:", authData);
       res.json("Authenticated successfully with payload:", authData);
@@ -32,4 +32,8 @@ exports.createUser = function (req, res) {
       res.json("Successfully created user account with uid:", userData.uid);
     }
   });
+}
+
+function handleError(res, err) {
+  return res.send(500, err);
 }

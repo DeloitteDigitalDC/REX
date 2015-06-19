@@ -14,15 +14,17 @@
     .module('rex')
     .controller('LoginCtrl', LoginCtrl);
 
-  function LoginCtrl($http) {
+  function LoginCtrl($http, userService, $log) {
     var vm = this;
 
     vm.login = function () {
-      console.log(vm.username, vm.password);
-      $http.post('/user/login', {username: vm.username, password: vm.password}).success(function (resp) {
-        console.log(resp);
+
+      userService.login({username: vm.username, password: vm.password}).success(function (resp) {
+        $log.log('success', resp);
+      }).error(function (err) {
+        $log.log('error', err);
       });
-    }
+    };
   }
 
 }());
