@@ -3,7 +3,7 @@
 describe('factory:drugs', function () {
 
   // load the factory's module
-  beforeEach(module('mediq'));
+  beforeEach(module('rex'));
 
   var drugs;
 

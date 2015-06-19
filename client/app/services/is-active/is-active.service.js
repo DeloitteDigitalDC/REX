@@ -6,12 +6,12 @@
  * @name isActive
  *
  * @description
- * Service for mediq
+ * Service for rex
  */
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .factory('isActive', isActive);
 
   function isActive($location) {

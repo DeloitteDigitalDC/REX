@@ -11,7 +11,7 @@
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .factory('api', api);
 
   function api() {

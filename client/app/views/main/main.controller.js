@@ -6,12 +6,12 @@
  * @name MainCtrl
  *
  * @description
- * Controller for mediq
+ * Controller for rex
  */
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .controller('MainCtrl', MainCtrl);
 
   function MainCtrl(isActive) {

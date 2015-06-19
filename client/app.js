@@ -1,13 +1,13 @@
 'use strict';
 
 /**
- * @module mediq
+ * @module rex
  *
  * @description
  * Main module of the application.
  */
 angular
-  .module('mediq', [
+  .module('rex', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

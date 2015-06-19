@@ -3,7 +3,7 @@
 describe('Controller: HomeCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('mediq'));
+  beforeEach(module('rex'));
 
   var HomeCtrl;
 

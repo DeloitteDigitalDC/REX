@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('mediq'));
+  beforeEach(module('rex'));
 
   var MainCtrl;
 

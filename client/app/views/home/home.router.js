@@ -3,7 +3,7 @@
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.home', {

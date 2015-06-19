@@ -3,7 +3,7 @@
 describe('Service: isActive', function () {
 
   // load the service's module
-  beforeEach(module('mediq'));
+  beforeEach(module('rex'));
 
   // instantiate service
   var isActive, $location;

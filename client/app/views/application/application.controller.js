@@ -6,12 +6,12 @@
  * @name AppCtrl
  *
  * @description
- * The main application Controller for mediq
+ * The main application Controller for rex
  */
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .controller('AppCtrl', AppCtrl);
 
   function AppCtrl($rootScope) {

@@ -6,12 +6,12 @@
  * @name HomeCtrl
  *
  * @description
- * Controller for mediq
+ * Controller for rex
  */
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl(drug) {

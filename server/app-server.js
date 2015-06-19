@@ -2,7 +2,7 @@
  * @module app-server
  *
  * @description
- * node app server using the mediq app module
+ * node app server using the rex app module
  *
  * @type {app|exports|module.exports}
  */

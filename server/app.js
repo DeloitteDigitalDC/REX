@@ -1,8 +1,8 @@
 /**
- * @module mediq
+ * @module rex
  *
  * @description
- * The main app module for mediq. Use this app to create your server. Exposes the application for use.
+ * The main app module for rex. Use this app to create your server. Exposes the application for use.
  *
  * @example
  * var server = require('http').createServer(require('./app'));

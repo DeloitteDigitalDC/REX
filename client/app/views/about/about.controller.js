@@ -6,12 +6,12 @@
  * @name AboutCtrl
  *
  * @description
- * Controller for mediq
+ * Controller for rex
  */
 (function() {
 
   angular
-    .module('mediq')
+    .module('rex')
     .controller('AboutCtrl', AboutCtrl);
 
   function AboutCtrl() {
