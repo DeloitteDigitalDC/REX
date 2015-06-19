@@ -1,6 +1,6 @@
 // add path to unit tests here
 var tests = [
-  '../api/fda/spec'
+  '../api/fda/fda.spec'
 ];
 
 tests.forEach(function(val) {

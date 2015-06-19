@@ -48,6 +48,7 @@
     "test": "npm run test-client && npm run test-server && npm run report",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
     "test-server": "node node_modules/mocha/bin/mocha server/tests/unit",
+    "build":
     "report": "node node_modules/istanbul/lib/cli.js cover server/app.js",
     "start": "node node_modules/grunt-cli/bin/grunt",
     "controller": "yo angular-blueprint:controller",
@@ -61,6 +62,7 @@
     "chalk": "^1.0.0",
     "express": "^4.12.4",
     "istanbul": "^0.3.15",
+    "nock": "^2.6.0",
     "request": "^2.58.0"
   }
 }
