@@ -7,6 +7,7 @@
 var chalk = require('chalk');
 
 var config = {
+
   // url for the fda data
   fdaUrl: 'https://api.fda.gov/',
 
