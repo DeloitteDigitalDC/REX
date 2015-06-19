@@ -6,3 +6,4 @@ bower_components
 .idea
 .DS_Store
 ._.DS_Store
+coverage

@@ -12,13 +12,15 @@
 
   angular
     .module('rex')
-    .factory('userService', userService);
+    .factory('user', user);
 
-  function userService($http) {
+  function user($http) {
     return {
       login: login,
       createUser: createUser
     };
+
+    /* istanbul ignore next: Not testing functions that simply wrap http calls. Testing in controllers. */
 
     /**
      * @memberof userService
@@ -39,7 +41,7 @@
     function createUser(body){
       return $http.post('/user/createUser', body);
     }
-    
+
   }
 
 })();
