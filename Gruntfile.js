@@ -208,7 +208,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp',
+      server: ['.tmp', '<%= appSettings.dist %>'],
       visual: 'client/test/visual/results'
     },
 
