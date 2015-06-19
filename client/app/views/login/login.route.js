@@ -1,6 +1,7 @@
 'use strict';
 
-(function () {
+(function() {
+
   angular
     .module('rex')
     .config(function ($stateProvider) {
@@ -14,4 +15,4 @@
         });
     });
 
-}());
+})();
