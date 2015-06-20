@@ -1,9 +1,12 @@
 /* ------ Imports -----*/
 @import "../../bower_components/bootstrap/dist/css/bootstrap.css";
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,700,400);
+@import 'mediaQueries';
 @import 'colors';
 @import 'inputs';
 @import 'sprites';
+@import 'mixins';
+@import 'shared/access-shared';
 
 /** Text Styles **/
 
@@ -13,9 +16,24 @@ body{
   font-size: 16px;
 }
 
+h1{
+  color: $teal;
+}
 
+h3{
+  font-weight: 300;
+}
+
+/**  layout stuff **/
+
+.container-fluid{
+  padding: 0;
+  margin: 0;
+}
 
 // injector
+@import '../app/components/app-footer/app-footer.directive.scss';
+@import '../app/components/app-header/app-header.directive.scss';
 @import '../app/components/header/header.directive.scss';
 @import '../app/views/about/about.view.scss';
 @import '../app/views/home/home.view.scss';

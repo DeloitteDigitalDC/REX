@@ -55,7 +55,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: [
-          '<%= appSettings.app %>/styles/*.scss',
+          '<%= appSettings.app %>/styles/**/*.scss',
           '<%= appSettings.app %>/app/views/**/*.scss',
           '<%= appSettings.app %>/app/components/**/*.scss'
         ],
@@ -498,7 +498,7 @@ module.exports = function (grunt) {
       'injector:sass',
       'injector:scripts',
       'concurrent:server',
-      'autoprefixer',
+     // 'autoprefixer',
       'connect:livereload',
       'watch'
     ];
