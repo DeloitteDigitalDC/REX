@@ -14,7 +14,7 @@ var user = {};
  */
 user.login = function (req, res) {
   var opts = {
-    email: req.body.username,
+    email   : req.body.username,
     password: req.body.password
   };
 
@@ -36,7 +36,7 @@ user.login = function (req, res) {
  */
 user.createUser = function (req, res) {
   var opts = {
-    email: req.body.username,
+    email   : req.body.username,
     password: req.body.password
   };
 

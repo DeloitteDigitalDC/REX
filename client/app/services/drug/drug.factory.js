@@ -8,7 +8,7 @@
  * @description
  * Factory for vmc
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -16,8 +16,8 @@
 
   function drug($http, CONST) {
     return {
-      events: events,
-      labels: labels,
+      events      : events,
+      labels      : labels,
       enforcements: enforcements
     };
 
@@ -29,7 +29,7 @@
      * @param {Object} qs
      */
     function events(qs) {
-      return $http.get(CONST.drug.event, { params: qs });
+      return $http.get(CONST.drug.event, {params: qs});
     }
 
     /**
@@ -40,7 +40,7 @@
      * @param {Object} qs
      */
     function labels(qs) {
-      return $http.get(CONST.drug.drugLabel, { params: qs });
+      return $http.get(CONST.drug.drugLabel, {params: qs});
     }
 
     /**
@@ -51,7 +51,7 @@
      * @param {Object} qs
      */
     function enforcements(qs) {
-      return $http.get(CONST.drug.drugEnforcement, { params: qs });
+      return $http.get(CONST.drug.drugEnforcement, {params: qs});
     }
   }
 

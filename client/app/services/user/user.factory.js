@@ -8,7 +8,7 @@
  * @description
  * Factory for user things -- create user, login/authentication
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -18,9 +18,9 @@
     var userObj = {};
 
     return {
-      login: login,
+      login     : login,
       createUser: createUser,
-      getUser: getUser
+      getUser   : getUser
     };
 
     /* istanbul ignore next: Not testing functions that simply wrap http calls. Testing in controllers. */
@@ -36,13 +36,13 @@
      * @param {String} password - the password
      */
     function login(username, password) {
-      var promise = $http.post('/user/login', { username: username, password: password });
+      var promise = $http.post('/user/login', {username: username, password: password});
 
-      promise.success(function(data) {
+      promise.success(function (data) {
         userObj = data;
       });
 
-      promise.error(function(err) {
+      promise.error(function (err) {
         $log.error(err);
       });
 
@@ -58,7 +58,7 @@
      *
      * @param {Object} body
      */
-    function createUser(body){
+    function createUser(body) {
       return $http.post('/user/createUser', body);
     }
 
