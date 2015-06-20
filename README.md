@@ -1,11 +1,13 @@
 REX
 =================
 
-Prerequisites
+### Prerequisites
 
-```
-npm install -g bower
-```
+Install [NodeJs](https://nodejs.org/)
+
+Install Bower ```npm install -g bower```
+
+### Installation
 
 Clone the repo
 
@@ -21,10 +23,12 @@ Optionally, to remove git commit history
 rm -rf .git
 ```
 
+### Commands
+
 To start the development server
 
 ```
-npm run serve
+npm run server
 ```
 
 To run unit tests
@@ -42,5 +46,5 @@ npm run build
 Generate documentation
 
 ```
-npm run jsdoc
+npm run docs
 ```
