@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @namespace config
  *
@@ -12,10 +14,10 @@ var config = {
   fdaUrl: 'https://api.fda.gov/',
 
   // api key for fda data
-  fdaKey: (function() {
+  fdaKey: (function () {
     var key = process.env.FDA_KEY;
 
-    if(!key) {
+    if (!key) {
       console.log(chalk.magenta('### No API key has been attached. For production please provide and FDA API key. (FDA_KEY=thisisthekeyigotfromfda)'));
     }
 
