@@ -59,7 +59,8 @@
     "service": "yo angular-blueprint:service",
     "route": "yo angular-blueprint:route",
     "blueprint": "yo angular-blueprint:blueprint",
-    "filter": "yo angular-blueprint:filter"
+    "filter": "yo angular-blueprint:filter",
+    "directive": "yo angular-blueprint:directive"
   },
   "dependencies": {
     "body-parser": "^1.13.1",
