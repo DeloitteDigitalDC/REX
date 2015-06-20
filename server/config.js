@@ -23,6 +23,9 @@ var config = {
 
   })(),
 
+  // the firebase instance to use
+  firebase: process.env.FIREBASE,
+
   // the location of the front end application
   appDir: __dirname + '/../client'
 };

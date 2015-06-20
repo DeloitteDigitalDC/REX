@@ -1,11 +1,11 @@
+'use strict';
+
 // Karma configuration
 // http://karma-runner.github.io/0.12/config/configuration-file.html
 // Generated on 2014-12-18 using
 // generator-karma 0.8.3
 
 module.exports = function(config) {
-  'use strict';
-
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -37,14 +37,6 @@ module.exports = function(config) {
     // web server port
     port: 8080,
 
-    // Start these browsers, currently available:
-    // - Chrome
-    // - ChromeCanary
-    // - Firefox
-    // - Opera
-    // - Safari (only Mac)
-    // - PhantomJS
-    // - IE (only Windows)
     browsers: ['PhantomJS'],
 
     // Which plugins to enable
