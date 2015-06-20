@@ -6,8 +6,6 @@
  *
  * @example
  * var server = require('http').createServer(require('./app'));
- *
- * @type {*|exports|module.exports}
  */
 var express    = require('express'),
     config     = require('./config'),

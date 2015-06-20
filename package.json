@@ -45,7 +45,7 @@
   },
   "scripts": {
     "serve": "node node_modules/grunt-cli/bin/grunt serve",
-    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server && npm run report",
+    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
 
     "test": "npm run test-client && npm run test-server && npm run report",
