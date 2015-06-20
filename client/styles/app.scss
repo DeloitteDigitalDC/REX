@@ -1,9 +1,10 @@
 /* ------ Imports -----*/
-@import "../../bower_components/bootstrap/dist/css/bootstrap.css";
+@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,700,400);
 @import 'colors';
 @import 'inputs';
 @import 'sprites';
+@import 'cards';
 
 /** Text Styles **/
 
@@ -13,9 +14,9 @@ body{
   font-size: 16px;
 }
 
-
-
 // injector
+@import '../app/components/card-fade/card-fade.directive.scss';
+@import '../app/components/card/card.directive.scss';
 @import '../app/components/header/header.directive.scss';
 @import '../app/views/about/about.view.scss';
 @import '../app/views/home/home.view.scss';

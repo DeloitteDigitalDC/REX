@@ -16,10 +16,10 @@
 
   function <%= cameledName %>() {
     return {
-        restrict: 'EA',
-        // templateUrl: 'app/components/<%= cameledName %>/<%= cameledName %>.directive.html',
-        scope: {},
-        link: link
+      restrict: 'EA',
+      // templateUrl: 'app/components/<%= dashedName %>/<%= dashedName %>.directive.html',
+      scope: {},
+      link: link
     };
 
     function link() {

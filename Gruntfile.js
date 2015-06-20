@@ -56,8 +56,7 @@ module.exports = function (grunt) {
       sass: {
         files: [
           '<%= appSettings.app %>/styles/*.scss',
-          '<%= appSettings.app %>/app/views/**/*.scss',
-          '<%= appSettings.app %>/app/components/**/*.scss'
+          '<%= appSettings.app %>/app/{views,components}/**/*.scss'
         ],
         tasks: ['autoprefixer', 'injector:sass', 'sass']
       },
@@ -200,6 +199,7 @@ module.exports = function (grunt) {
      */
     autoprefixer: {
       options: {
+        map: true,
         browsers: ['last 1 version']
       },
       dist: {
@@ -280,24 +280,8 @@ module.exports = function (grunt) {
     sass: {
       options: {
         imagePath: '<%= appSettings.app %>/images',
-        outputStyle: (function() {
-          var outputStyle = grunt.option('output-style');
-          if(outputStyle !== undefined) {
-            return outputStyle;
-          }
-          else {
-            return 'nested';
-          }
-        }()),
-        sourceMap: (function() {
-          var sourcemap = grunt.option('sourcemap');
-          if(sourcemap !== undefined) {
-            return sourcemap;
-          }
-          else {
-            return true;
-          }
-        }())
+        outputStyle: 'expanded',
+        sourceMap: true
       },
       dist: {
         files: {
