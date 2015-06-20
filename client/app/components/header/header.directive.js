@@ -16,9 +16,8 @@
 
   function header() {
     return {
-        restrict: 'EA',
-        // templateUrl: 'app/components/header/header.html'
-        scope: {},
+        restrict: 'E',
+        templateUrl: 'app/components/header/header.directive.html',
         link: link
     };
 
