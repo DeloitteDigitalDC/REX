@@ -4,9 +4,5 @@ dist
 .sass-cache
 bower_components
 .idea
-coverage
-doc/client
-doc/server
 .DS_Store
 ._.DS_Store
-coverage

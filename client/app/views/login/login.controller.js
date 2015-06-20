@@ -2,7 +2,9 @@
 
 /**
  * @ngdoc controller
- * @name rex.controller:Login
+ *
+ * @name LoginCtrl
+ *
  * @description
  * Controller for rex
  */
@@ -12,7 +14,7 @@
     .module('rex')
     .controller('LoginCtrl', LoginCtrl);
 
-  function LoginCtrl(user, $log) {
+  function LoginCtrl(user) {
     var vm = this;
 
     vm.login = login;
@@ -21,12 +23,8 @@
      * login function that calls our api which then authenticates using firebase
      */
     function login() {
-      user.login({username: vm.username, password: vm.password}).success(function (resp) {
-        $log.log('success', resp);
-      }).error(function (err) {
-        $log.log('error', err);
-      });
-    };
+      user.login(vm.username, vm.password);
+    }
   }
 
 })();

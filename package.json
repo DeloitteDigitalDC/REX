@@ -16,7 +16,6 @@
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-cssmin": "^0.12.2",
     "grunt-contrib-htmlmin": "^0.4.0",
-    "grunt-contrib-imagemin": "^0.9.4",
     "grunt-contrib-jshint": "^0.11.1",
     "grunt-contrib-uglify": "^0.8.1",
     "grunt-contrib-watch": "^0.6.1",
@@ -27,7 +26,6 @@
     "grunt-newer": "^1.1.0",
     "grunt-ng-annotate": "^0.10.0",
     "grunt-sass": "^0.18.1",
-    "grunt-svgmin": "^2.0.1",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
     "jasmine-core": "^2.2.0",
@@ -46,11 +44,15 @@
     "node": ">=0.12.2"
   },
   "scripts": {
+    "serve": "node node_modules/grunt-cli/bin/grunt serve",
+    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server && npm run report",
+    "jsdoc": "node node_modules/grunt-cli/bin/grunt jsdoc",
+
     "test": "npm run test-client && npm run test-server && npm run report",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
     "test-server": "node node_modules/mocha/bin/mocha server/tests/unit",
     "report": "node node_modules/istanbul/lib/cli.js cover server/app.js",
-    "start": "node node_modules/grunt-cli/bin/grunt",
+
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",

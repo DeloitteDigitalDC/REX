@@ -14,7 +14,7 @@
     .module('rex')
     .factory('drug', drug);
 
-  function drug($http, api) {
+  function drug($http, CONST) {
     return {
       events: events,
       labels: labels,
@@ -27,11 +27,9 @@
      * @memberof drugs
      *
      * @param {Object} qs
-     *
-     * @return {HttpPromise}
      */
     function events(qs) {
-      return $http.get(api.drug.event, { params: qs });
+      return $http.get(CONST.drug.event, { params: qs });
     }
 
     /**
@@ -40,11 +38,9 @@
      * @memberof drugs
      *
      * @param {Object} qs
-     *
-     * @return {HttpPromise}
      */
     function labels(qs) {
-      return $http.get(api.url.drugLabel, { params: qs });
+      return $http.get(CONST.drug.drugLabel, { params: qs });
     }
 
     /**
@@ -53,11 +49,9 @@
      * @memberof drugs
      *
      * @param {Object} qs
-     *
-     * @return {HttpPromise}
      */
     function enforcements(qs) {
-      return $http.get(api.url.drugEnforcement, { params: qs });
+      return $http.get(CONST.drug.drugEnforcement, { params: qs });
     }
   }
 

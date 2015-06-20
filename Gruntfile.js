@@ -45,31 +45,21 @@ module.exports = function (grunt) {
       },
       js: {
         files: [
-          '<%= appSettings.app %>/app/*.js',
-          '<%= appSettings.app %>/app/components/**/{,*/}*.js',
-          '<%= appSettings.app %>/app/views/**/*.js',
-          '<%= appSettings.app %>/app/services/{,*/}*.js'
+          '<%= appSettings.app %>/**/**/**/*.js',
+          '!<%= appSettings.app %>/**/**/**/*.spec.js'
         ],
         tasks: ['newer:jshint:all', 'injector:scripts'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      jsTest: {
-        files: ['<%= appSettings.app %>/test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
-      },
       sass: {
         files: [
           '<%= appSettings.app %>/styles/*.scss',
           '<%= appSettings.app %>/app/views/**/*.scss',
-          '<%= appSettings.app %>/app/components/**/*.scss',
-          '<%= appSettings.app %>/sass-includes/*.scss'
+          '<%= appSettings.app %>/app/components/**/*.scss'
         ],
-        tasks: ['autoprefixer', 'injector:sass','sass']
-      },
-      gruntfile: {
-        files: ['Gruntfile.js']
+        tasks: ['autoprefixer', 'injector:sass', 'sass']
       },
       livereload: {
         options: {
@@ -91,7 +81,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
         port: 9000,
-        hostname: 'localhost',
+        hostname: '*',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
@@ -103,7 +93,7 @@ module.exports = function (grunt) {
               connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(appConfig.app),
-              connect().use(require('./server/app.js')) // custom middleware for potential use
+              connect().use(require('./server/app.js')) // custom middleware
             ];
 
             if(appConfig.proxy) {
@@ -124,12 +114,6 @@ module.exports = function (grunt) {
             ];
           }
         }
-      },
-      dist: {
-        options: {
-          open: true,
-          base: '<%= appSettings.dist %>'
-        }
       }
     },
 
@@ -146,9 +130,7 @@ module.exports = function (grunt) {
         src: [
           'Gruntfile.js',
           '<%= appSettings.app %>/{,*/}*.js',
-          '<%= appSettings.app %>/app/components**/{,*/}*.js',
-          '<%= appSettings.app %>/app/services/{,*/}*.js',
-          '<%= appSettings.app %>/app/views/**/{,*/}*.js',
+          '<%= appSettings.app %>/app/{services,views,components}/**/*.js',
           '!<%= appSettings.app %>/app/{services,views,components}/**/*.spec.js'
         ]
       },
@@ -173,8 +155,7 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/{,*/}*.js',
           '<%= appSettings.app %>/app/components**/{,*/}*.js',
           '<%= appSettings.app %>/app/services/{,*/}*.js',
-          '<%= appSettings.app %>/app/views/**/{,*/}*.js',
-          '<%= appSettings.app %>/test/**/{,*/}*.js'
+          '<%= appSettings.app %>/app/views/**/{,*/}*.js'
         ],
         options: {
           destination: 'doc/client',
@@ -208,8 +189,7 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: ['.tmp', '<%= appSettings.dist %>'],
-      visual: 'client/test/visual/results'
+      server: '.tmp'
     },
 
     /**
@@ -333,7 +313,7 @@ module.exports = function (grunt) {
         src: [
           '<%= appSettings.dist %>/scripts/{,*/}*.js',
           '<%= appSettings.dist %>/styles/{,*/}*.css',
-          //'<%= appSettings.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= appSettings.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= appSettings.dist %>/styles/fonts/*'
         ]
       }
@@ -370,28 +350,6 @@ module.exports = function (grunt) {
       css: ['<%= appSettings.dist %>/styles/{,*/}*.css'],
       options: {
         assetsDirs: ['<%= appSettings.dist %>','<%= appSettings.dist %>/images']
-      }
-    },
-
-    imagemin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= appSettings.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= appSettings.dist %>/images'
-        }]
-      }
-    },
-
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '<%= appSettings.app %>/images',
-          src: '{,*/}*.svg',
-          dest: '<%= appSettings.dist %>/images'
-        }]
       }
     },
 
@@ -475,7 +433,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
-            'images/{,*/}*.{webp}',
+            'images/{,*/}*.{png,jpg,svg,webp}',
             'fonts/{,*/}*.*',
             '.tmp/concat/scripts/templates.js'
           ]
@@ -515,9 +473,7 @@ module.exports = function (grunt) {
         'sass'
       ],
       dist: [
-        'sass',
-        'imagemin',
-        'svgmin'
+        'sass'
       ]
     },
 
@@ -527,13 +483,13 @@ module.exports = function (grunt) {
      */
     karma: {
       unit: {
-        configFile: '<%= appSettings.app %>/karma.conf.js',
+        configFile: 'karma.conf.js',
         singleRun: true
       }
     }
   });
 
-  grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
+  grunt.registerTask('serve', 'Compile then start a connect web server', function () {
     var tasks = [
       'clean:server',
       'wiredep',
@@ -545,20 +501,11 @@ module.exports = function (grunt) {
       'watch'
     ];
 
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
-    }
-
     if(appConfig.proxy) {
       tasks.unshift('configureProxies:server');
     }
 
     grunt.task.run(tasks);
-  });
-
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [
