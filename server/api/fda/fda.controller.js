@@ -1,9 +1,3 @@
-/**
- * @namespace fda
- *
- * @example require('./fda')
- */
-
 var request = require('request'),
     config  = require('../../config'),
     fdaUrl  = config.fdaUrl,
@@ -12,7 +6,7 @@ var request = require('request'),
 /**
  * @name getFDA
  *
- * @memberof fda
+ * @memberof router.fda
  *
  * @param {Object} req - the request object
  * @param {Object} res - the response object

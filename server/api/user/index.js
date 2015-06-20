@@ -1,17 +1,18 @@
 'use strict';
 
+/**
+ * @name router.user
+ *
+ * @memberof router
+ *
+ * @description
+ * Exposes user endpoints such as logging in and creating
+ */
+var router = require('express').Router(),
+    ctrl   = require('./user.controller');
 
-//var router  = require('express').Router();
-//var controller = require('./user.controller');
-
-
-var express = require('express');
-var controller = require('./user.controller');
-
-var router = express.Router();
-
-router.post('/login', controller.login);
-router.post('/create', controller.createUser);
+router.post('/login', ctrl.login);
+router.post('/create', ctrl.createUser);
 
 module.exports = router;
 

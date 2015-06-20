@@ -1,5 +1,5 @@
 /**
- * @module router
+ * @namespace router
  *
  * @description
  * The main router. Include all routes here

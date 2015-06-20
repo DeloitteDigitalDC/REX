@@ -1,39 +1,46 @@
 'use strict';
 
-var _ = require('lodash');
 var firebaseRef = require('../../firebase');
 
-exports.login = function (req, res) {
-  console.log("Request", req, req.body);
-  firebaseRef.authWithPassword({
+/**
+ * @name router.user.login
+ *
+ * @memberof router.user
+ *
+ * @description
+ * login through firebase
+ */
+module.exports.login = function (req, res) {
+  var opts = {
     email: req.body.username,
     password: req.body.password
-  }, function (error, authData) {
-    if (error) {
-      console.log("Login Failed!", error);
-      return handleError(res, error);
-    } else {
-      console.log("Authenticated successfully with payload:", authData);
-      res.json("Authenticated successfully with payload:", authData);
-    }
+  };
+
+  firebaseRef.authWithPassword(opts, function (error, authData) {
+    if (error) { return res.send(500, error) }
+
+    res.json('Authenticated successfully with payload:', authData);
   });
+  
 };
 
-exports.createUser = function (req, res) {
-  firebaseRef.createUser({
+/**
+ * @name router.user.createUser
+ *
+ * @memberof router.user
+ *
+ * @description
+ * create a new user
+ */
+module.exports.createUser = function (req, res) {
+  var opts = {
     email: req.body.username,
     password: req.body.password
-  }, function (error, userData) {
-    if (error) {
-      console.log("Error creating user:", error);
-      res.json(error);
-    } else {
-      console.log("Successfully created user account with uid:", userData.uid);
-      res.json("Successfully created user account with uid:", userData.uid);
-    }
-  });
-}
+  };
 
-function handleError(res, err) {
-  return res.send(500, err);
-}
+  firebaseRef.createUser(opts, function (error, userData) {
+    if (error) { return res.send(500, error) }
+
+    res.json('Successfully created user account with uid:', userData.uid);
+  });
+};

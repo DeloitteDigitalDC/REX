@@ -1,5 +1,5 @@
 /**
- * @module config
+ * @namespace config
  *
  * @description
  * constants to be used all over the application
