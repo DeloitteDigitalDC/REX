@@ -2,6 +2,8 @@
 
 var firebaseRef = require('../../firebase');
 
+var user = {};
+
 /**
  * @name router.user.login
  *
@@ -10,9 +12,9 @@ var firebaseRef = require('../../firebase');
  * @description
  * login through firebase
  */
-module.exports.login = function (req, res) {
+user.login = function (req, res) {
   var opts = {
-    email: req.body.username,
+    email   : req.body.username,
     password: req.body.password
   };
 
@@ -32,9 +34,9 @@ module.exports.login = function (req, res) {
  * @description
  * create a new user
  */
-module.exports.createUser = function (req, res) {
+user.createUser = function (req, res) {
   var opts = {
-    email: req.body.username,
+    email   : req.body.username,
     password: req.body.password
   };
 
@@ -44,3 +46,5 @@ module.exports.createUser = function (req, res) {
     res.json('Successfully created user account with uid:', userData.uid);
   });
 };
+
+module.exports = user;

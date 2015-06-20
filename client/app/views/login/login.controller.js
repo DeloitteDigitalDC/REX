@@ -17,13 +17,12 @@
   function LoginCtrl(user) {
     var vm = this;
 
+    vm.userInfo = {};
+
     vm.login = login;
 
-    /**
-     * login function that calls our api which then authenticates using firebase
-     */
     function login() {
-      user.login(vm.username, vm.password);
+      user.login(vm.userInfo.username, vm.userInfo.password);
     }
   }
 

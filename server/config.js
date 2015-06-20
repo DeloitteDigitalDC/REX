@@ -27,7 +27,9 @@ var config = {
   firebase: process.env.FIREBASE,
 
   // the location of the front end application
-  appDir: __dirname + '/../client'
+  appDir: __dirname + '/../client',
+
+  port: process.env.PORT || 3000
 };
 
 module.exports = config;

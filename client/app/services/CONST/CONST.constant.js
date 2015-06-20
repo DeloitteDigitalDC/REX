@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @ngdoc factory
+ * @ngdoc constant
  *
  * @name CONST
  *
@@ -11,16 +11,16 @@
 
 (function () {
 
-  var base = '/fda',
-      drug = base + '/drug',
-      drugEvents = drug + '/event.json/',
-      drugLabel = drug + '/label.json/',
+  var base            = '/fda',
+      drug            = base + '/drug',
+      drugEvents      = drug + '/event.json/',
+      drugLabel       = drug + '/label.json/',
       drugEnforcement = drug + '/enforcement.json/';
 
   angular.module('rex').constant('CONST', {
     drug: {
-      event: drugEvents,
-      label: drugLabel,
+      event      : drugEvents,
+      label      : drugLabel,
       enforcement: drugEnforcement
     }
   });
