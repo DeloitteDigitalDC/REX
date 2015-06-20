@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @namespace app-server
  *
@@ -8,6 +10,6 @@ var app    = require('./app'),
     port   = require('./config').port,
     server = require('http').createServer(app);
 
-server.listen(port, function() {
+server.listen(port, function () {
   console.log('listen on port ' + port);
 });

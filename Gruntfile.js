@@ -129,14 +129,16 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
+          'server/**/**/*.js',
           '<%= appSettings.app %>/{,*/}*.js',
+          '<%= appSettings.app %>/app/{services,views,components}/**/*.js',
           '<%= appSettings.app %>/app/{services,views,components}/**/*.js',
           '!<%= appSettings.app %>/app/{services,views,components}/**/*.spec.js'
         ]
       },
       test: {
         options: {
-          jshintrc: '<%= appSettings.app %>/test/.jshintrc'
+          jshintrc: '.jshintrc'
         },
         src: ['<%= appSettings.app %>/test/spec/{,*/}*.js']
       }
@@ -165,7 +167,7 @@ module.exports = function (grunt) {
       },
       server : {
         src: [
-          'server/**/*.js'
+          'server/**/**/*.js'
         ],
         options: {
           destination: 'doc/server',

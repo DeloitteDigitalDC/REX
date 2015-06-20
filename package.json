@@ -44,9 +44,10 @@
     "node": ">=0.12.2"
   },
   "scripts": {
-    "serve": "node node_modules/grunt-cli/bin/grunt serve",
+    "server": "node node_modules/grunt-cli/bin/grunt serve",
     "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server && npm run report",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
+    "linter": "node node_modules/grunt-cli/bin/grunt jshint",
 
     "test": "npm run test-client && npm run test-server && npm run report",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",

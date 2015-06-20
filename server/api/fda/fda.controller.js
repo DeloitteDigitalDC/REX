@@ -1,3 +1,5 @@
+'use strict';
+
 var request = require('request'),
     config  = require('../../config'),
     fdaUrl  = config.fdaUrl,
@@ -17,13 +19,13 @@ var fda = {};
  * A simple proxy for the FDA api data that also attaches the FDA api key
  */
 fda.getFDA = function getFDA(req, res) {
-  var qs = req.query,
+  var qs     = req.query,
       params = req.params;
 
   qs.api_key = qs.api_key || apiKey;
 
   var opts = {
-    qs: qs,
+    qs       : qs,
     keepAlive: true
   };
 
