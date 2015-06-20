@@ -3,8 +3,6 @@
  *
  * @description
  * node app server using the rex app module
- *
- * @type {app|exports|module.exports}
  */
 var app    = require('./app'),
     server = require('http').createServer(app);

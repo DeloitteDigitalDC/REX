@@ -10,7 +10,7 @@
           url: '/login',
           templateUrl: 'app/views/login/login.view.html',
           controller: 'LoginCtrl',
-          controllerAs: 'login',
+          controllerAs: 'LoginCtrl',
           title: 'Login'
         });
     });

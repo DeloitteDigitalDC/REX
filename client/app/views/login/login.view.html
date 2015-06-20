@@ -1,21 +1,25 @@
 <div class="container">
 
-  <form class="form-horizontal">
+  <form class="form-horizontal" ng-submit="LoginCtrl.login()">
     <div class="form-group">
       <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
       <div class="col-sm-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="login.username">
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
       </div>
     </div>
+
     <div class="form-group">
       <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+
       <div class="col-sm-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="login.password">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
       </div>
     </div>
+
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default" ng-click="login.login()">Sign in</button>
+        <button type="submit" class="btn btn-default">Sign in</button>
       </div>
     </div>
   </form>

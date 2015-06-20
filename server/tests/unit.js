@@ -1,9 +1,15 @@
-// add path to unit tests here
-var tests = [
-  '../api/fda/fda.spec'
-];
+var fs = require('fs');
 
-tests.forEach(function(val) {
-  require(val);
+var tests = fs.readdirSync(__dirname + '/../api');
+
+var createPath = function (name) {
+  return '../api/' + name + '/' + name + '.spec'
+};
+
+tests.forEach(function(test) {
+  require(createPath(test));
 });
+
+
+
 
