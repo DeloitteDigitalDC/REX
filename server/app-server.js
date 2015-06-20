@@ -5,8 +5,9 @@
  * node app server using the rex app module
  */
 var app    = require('./app'),
+    port   = require('./config').port,
     server = require('http').createServer(app);
 
-server.listen(3000, function() {
-  console.log('listen on port 3000');
+server.listen(port, function() {
+  console.log('listen on port ' + port);
 });

@@ -8,8 +8,8 @@
  * var server = require('http').createServer(require('./app'));
  */
 var express    = require('express'),
-    config     = require('./config'),
-    bodyparser = require('body-parser');
+    bodyparser = require('body-parser'),
+    config     = require('./config');
 
 var app = express(); // create the express app
 
