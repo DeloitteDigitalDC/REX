@@ -1,11 +1,11 @@
 'use strict';
 
-describe('directive:header', function () {
+describe('directive:app-header', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
   // Uncomment if template used
-  // beforeEach(module('components/header/header.html'));
+  // beforeEach(module('components/app-header/app-header.html'));
 
   var element, scope;
 
@@ -16,7 +16,7 @@ describe('directive:header', function () {
 
   // compile the element to be tested
   it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<header></header>');
+    // element = angular.element('<app-header></app-header>');
     // element = $compile(element)(scope);
 
     // scope.$apply();

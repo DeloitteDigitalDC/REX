@@ -3,7 +3,7 @@
 /**
  * @ngdoc directive
  *
- * @name header
+ * @name appFooter
  *
  * @description
  * directive for rex
@@ -12,12 +12,13 @@
 
   angular
     .module('rex')
-    .directive('header', header);
+    .directive('appFooter', appFooter);
 
-  function header() {
+  function appFooter() {
     return {
-        restrict: 'E',
-        templateUrl: 'app/components/header/header.directive.html',
+        restrict: 'EA',
+      templateUrl: 'app/components/app-footer/app-footer.directive.html',
+        scope: {},
         link: link
     };
 
