@@ -25,9 +25,9 @@ module.exports = function (config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'client/*.html',
       'client/*.js',
-      'client/app/components/**/*.html',
-      'client/app/components/**/*.js',
+      'client/app/components/**/*.{js,html}',
       'client/app/views/**/*.html',
       'client/app/views/**/*.js',
       'client/app/services/**/*.js'
@@ -45,14 +45,18 @@ module.exports = function (config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-ng-html2js-preprocessor'
     ],
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'client/'
+    },
+
     preprocessors: {
-      'app/**/**/**/*.html'                   : 'html2js',
-      'app/components/**/!(*spec).js': ['coverage'],
-      'app/services/**/!(*spec).js'  : ['coverage'],
-      'app/views/**/!(*spec).js'     : ['coverage']
+      'client/*.html': 'ng-html2js',
+      'client/app/components/**/*.html': 'ng-html2js',
+      'client/app/{components,services,views}/**/!(*spec).js': ['coverage']
     },
 
     reporters: ['coverage', 'progress'],

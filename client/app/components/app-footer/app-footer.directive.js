@@ -16,10 +16,10 @@
 
   function appFooter() {
     return {
-        restrict: 'EA',
+      restrict: 'EA',
       templateUrl: 'app/components/app-footer/app-footer.directive.html',
-        scope: {},
-        link: link
+      scope: {},
+      link: link
     };
 
     function link() {

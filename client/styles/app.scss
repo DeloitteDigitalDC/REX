@@ -11,23 +11,28 @@
 
 /** Text Styles **/
 
-body{
+body {
+  background: $lightGray;
   font-family: 'Roboto', sans-serif;
   color: $fontGray;
   font-size: 16px;
 }
 
-h1{
+section {
+  background: #fff;
+}
+
+h1 {
   color: $teal;
 }
 
-h3{
+h3 {
   font-weight: 300;
 }
 
 /**  layout stuff **/
 
-.container-fluid{
+.container-fluid {
   padding: 0;
   margin: 0;
 }
