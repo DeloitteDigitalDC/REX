@@ -1,33 +1,35 @@
 .card-fade {
   border-radius: $card-border-radius;
-  margin-top: $card-border-width;
   padding: $card-border-width;
   position: relative;
+  overflow: hidden;
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
 
   &::before, &::after {
     content: "";
     position: absolute;
+    display: block;
   }
 
   &::before {
     top: 0;
     left: 0;
-    bottom: #{$card-border-width};
+    bottom: 0;
     right: 0;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($card-border-color), to(transparent));
-    background-image: -webkit-linear-gradient($card-border-color, transparent);
-    background-image: -moz-linear-gradient($card-border-color, transparent);
-    background-image: -o-linear-gradient($card-border-color, transparent);
-    background-image: linear-gradient($card-border-color, transparent);
-    z-index: -2;
+    background: linear-gradient($card-border-color, transparent);
+    z-index: 0;
   }
 
   &::after {
-    z-index: -1;
     top: #{$card-border-width};
     left: #{$card-border-width};
-    bottom: #{$card-border-width};
+    bottom: 0;
     right: #{$card-border-width};
-    background: white;
+    background: inherit;
+    z-index: 0;
   }
 }
