@@ -4,8 +4,7 @@ describe('directive:card', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
-  // beforeEach(module('components/card/card.html'));
+  beforeEach(module('app/components/card/card.directive.html'));
 
   var element, scope;
 
@@ -15,10 +14,15 @@ describe('directive:card', function () {
   }));
 
   // compile the element to be tested
-  it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<card></card>');
-    // element = $compile(element)(scope);
+  it('should render a card with the text transcluded in', inject(function ($compile) {
+    element = angular.element('<card>Hello World</card>');
+    element = $compile(element)(scope);
+    scope.$apply();
 
-    // scope.$apply();
+    var text = element.find('ng-transclude').find('span').text();
+
+    console.log(element.isolateScope().foo);
+
+    expect(text).toBe('Hello World');
   }));
 });

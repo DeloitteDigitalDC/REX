@@ -1,13 +1,14 @@
 /* ------ Imports -----*/
 @import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import url(http://fonts.googleapis.com/css?family=Roboto:300,700,400);
+
 @import 'mediaQueries';
 @import 'colors';
 @import 'inputs';
 @import 'sprites';
-@import 'cards';
 @import 'mixins';
 @import 'shared/access-shared';
+@import 'shared/cards-shared';
 
 /** Text Styles **/
 

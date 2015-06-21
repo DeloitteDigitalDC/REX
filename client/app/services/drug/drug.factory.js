@@ -6,7 +6,7 @@
  * @name drugs
  *
  * @description
- * Factory for vmc
+ * Factory for querying the fda api for information about drugs.
  */
 (function () {
 
@@ -15,10 +15,12 @@
     .factory('drug', drug);
 
   function drug($http, CONST) {
+    var path = CONST.drug;
+
     return {
-      events      : events,
-      labels      : labels,
-      enforcements: enforcements
+      events : events,
+      labels : labels,
+      enforce: enforce
     };
 
     /**
@@ -29,7 +31,7 @@
      * @param {Object} qs
      */
     function events(qs) {
-      return $http.get(CONST.drug.event, {params: qs});
+      return $http.get(path.event, {params: qs});
     }
 
     /**
@@ -40,7 +42,7 @@
      * @param {Object} qs
      */
     function labels(qs) {
-      return $http.get(CONST.drug.drugLabel, {params: qs});
+      return $http.get(path.drugLabel, {params: qs});
     }
 
     /**
@@ -50,8 +52,8 @@
      *
      * @param {Object} qs
      */
-    function enforcements(qs) {
-      return $http.get(CONST.drug.drugEnforcement, {params: qs});
+    function enforce(qs) {
+      return $http.get(path.drugEnforcement, {params: qs});
     }
   }
 

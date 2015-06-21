@@ -6,7 +6,7 @@
  * @name user
  *
  * @description
- * Factory for user things -- create user, login/authentication
+ * Factory for managing users.
  */
 (function () {
 
