@@ -5,7 +5,7 @@
 // Generated on 2014-12-18 using
 // generator-karma 0.8.3
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -26,7 +26,9 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'client/*.js',
+      'client/app/components/**/*.html',
       'client/app/components/**/*.js',
+      'client/app/views/**/*.html',
       'client/app/views/**/*.js',
       'client/app/services/**/*.js'
     ],
@@ -47,17 +49,17 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'app/*.html': 'html2js',
+      'app/**/**/**/*.html'                   : 'html2js',
       'app/components/**/!(*spec).js': ['coverage'],
-      'app/services/**/!(*spec).js': ['coverage'],
-      'app/views/**/!(*spec).js': ['coverage']
+      'app/services/**/!(*spec).js'  : ['coverage'],
+      'app/views/**/!(*spec).js'     : ['coverage']
     },
 
     reporters: ['coverage', 'progress'],
 
     coverageReporter: {
-      type : 'html',
-      dir : '../coverage/'
+      type: 'html',
+      dir : 'coverage/'
     },
 
     // Continuous Integration mode

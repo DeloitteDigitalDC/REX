@@ -1,0 +1,33 @@
+.card-fade {
+  border-radius: $card-border-radius;
+  margin-top: $card-border-width;
+  padding: $card-border-width;
+  position: relative;
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    bottom: #{$card-border-width};
+    right: 0;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from($card-border-color), to(transparent));
+    background-image: -webkit-linear-gradient($card-border-color, transparent);
+    background-image: -moz-linear-gradient($card-border-color, transparent);
+    background-image: -o-linear-gradient($card-border-color, transparent);
+    background-image: linear-gradient($card-border-color, transparent);
+    z-index: -2;
+  }
+
+  &::after {
+    z-index: -1;
+    top: #{$card-border-width};
+    left: #{$card-border-width};
+    bottom: #{$card-border-width};
+    right: #{$card-border-width};
+    background: white;
+  }
+}
