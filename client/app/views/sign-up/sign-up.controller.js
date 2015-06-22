@@ -29,7 +29,7 @@
         vm.showError = true;
 
       }else{
-        //user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
+        user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
         //TODO need to determine how exactly we are handling form validation
 
       }
