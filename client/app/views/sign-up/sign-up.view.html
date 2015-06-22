@@ -7,7 +7,7 @@
   </app-section>
 
   <app-section class="bg-lighter-gray">
-    <form class="form" ng-submit="signUp.signUp()">
+    <form class="form" name="signUp.signUpForm" ng-submit="signUp.signUp()">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <input type="text"
@@ -17,17 +17,19 @@
                  ng-model="signUp.userInfo.firstName"
                  required
                  ng-minlength="2"
+                 name="firstName"
             />
         </div>
       </div>
-
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <input type="email"
                  class="form-control rex-input"
-                 id="username" placeholder="Email"
+                 id="username"
+                 placeholder="Email"
                  ng-model="signUp.userInfo.username"
                  required
+                 name="email"
                  ng-minlength="2">
         </div>
       </div>
@@ -40,7 +42,21 @@
                  placeholder="Password"
                  ng-model="signUp.userInfo.password"
                  required
-                 ng-minlength="2">
+                 name="password"
+                 ng-minlength="6">
+        </div>
+      </div>
+      <div class="row error-container" ng-show="signUp.showError">
+        <div class="col-sm-offset-3 col-sm-6">
+          <div class="error" ng-show="signUp.signUpForm.firstName.$invalid">
+            First name must be all letters and at least 2 characters long.
+          </div>
+          <div class="error" ng-show="signUp.signUpForm.email.$invalid">
+            Email is required.
+          </div>
+          <div class="error" ng-show="signUp.signUpForm.password.$invalid">
+            Password must be at least 6 characters.
+          </div>
         </div>
       </div>
 
