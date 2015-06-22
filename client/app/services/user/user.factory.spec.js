@@ -4,6 +4,7 @@ describe('factory:user', function () {
 
   // load the factory's module
   beforeEach(module('rex'));
+  beforeEach(module('templates'));
 
   var user, $httpBackend;
 
