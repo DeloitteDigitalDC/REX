@@ -21,10 +21,10 @@
 
     vm.signUp = signUp;
 
+
     function signUp() {
       user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
     }
-
   }
 
 })();

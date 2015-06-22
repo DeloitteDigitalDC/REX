@@ -20,10 +20,9 @@ user.login = function (req, res) {
 
   firebaseRef.authWithPassword(opts, function (error, authData) {
     if (error) {
-      return res.send(500, error);
+      return res.sendStatus(500).send(error);
     }
-
-    res.json('Authenticated successfully with payload:', authData);
+    res.send(authData);
   });
 
 };
@@ -47,10 +46,9 @@ user.createUser = function (req, res) {
 
   firebaseRef.createUser(opts, function (error, userData) {
     if (error) {
-      return res.send(500, error);
+      return res.send(error);
     }
-
-    res.json('Successfully created user account with uid:', userData.uid);
+    res.send(userData);
   });
 };
 

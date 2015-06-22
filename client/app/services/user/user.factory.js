@@ -43,9 +43,8 @@
         $state.go('main.cabinet');
       });
 
-      promise.error(function (err) {
+      promise.error(function () {
         notify.showAlert(CONST.string.loginError, 'danger');
-        $log.error(CONST.string.loginError);
       });
 
       return promise;
@@ -61,17 +60,18 @@
      * @param {Object} body
      */
     function createUser(username, password, firstName) {
-      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
+      var foo = new Date();
+      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName, foo: foo});
 
       promise.success(function (data) {
         userObj = data;
-        notify.showAlert(CONST.string.signUpSuccess, 'danger');
+        $log.log(data);
         $state.go('main.cabinet');
+
       });
 
-      promise.error(function (err) {
+      promise.error(function () {
         notify.showAlert(CONST.string.signUpError, 'danger');
-        $log.error(CONST.string.signUpError);
       });
     }
 
