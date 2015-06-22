@@ -60,12 +60,10 @@
      * @param {Object} body
      */
     function createUser(username, password, firstName) {
-      var foo = new Date();
-      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName, foo: foo});
+      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
         userObj = data;
-        $log.log(data);
         $state.go('main.cabinet');
 
       });
