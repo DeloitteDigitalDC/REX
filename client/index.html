@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 
 <html class="no-js" ng-app="rex" ng-controller="AppCtrl as AppCtrl">
-  <head>
-    <meta charset="utf-8">
+<head>
+  <meta charset="utf-8">
 
-    <base href="/">
+  <base href="/">
 
-    <title ng-bind="AppCtrl.title">My App</title>
+  <title ng-bind="AppCtrl.title">My App</title>
 
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/app.css">
-    <!-- endbuild -->
-  </head>
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/app.css">
+  <!-- endbuild -->
+</head>
 
-  <body>
-    <div ui-view>
+<body>
 
-    </div>
+<div
+  class="alert"
+  ng-class="'alert-' + alert.type"
+  ng-cloak
+  ng-if="alert.visible"
+  role="alert"
+  ng-bind-html="alert.msg"
+  ng-click="hideAlert()"
+  ></div>
+<div ui-view>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="bower_components/fastclick/lib/fastclick.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+</div>
 
-    <!-- build:js({.tmp,client}) scripts/scripts.js -->
-    <script src="app.js"></script>
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-    <!-- injector:js -->
-    <script src="app/components/app-footer/app-footer.directive.js"></script>
-    <script src="app/components/app-header/app-header.directive.js"></script>
-    <script src="app/components/app-section/app-section.directive.js"></script>
-    <script src="app/components/card-fade/card-fade.directive.js"></script>
-    <script src="app/components/card/card.directive.js"></script>
-    <script src="app/services/CONST/CONST.constant.js"></script>
-    <script src="app/services/drug/drug.factory.js"></script>
-    <script src="app/services/is-active/is-active.service.js"></script>
-    <script src="app/services/user/user.factory.js"></script>
-    <script src="app/views/about/about.controller.js"></script>
-    <script src="app/views/about/about.router.js"></script>
-    <script src="app/views/app/app.controller.js"></script>
-    <script src="app/views/home/home.controller.js"></script>
-    <script src="app/views/home/home.router.js"></script>
-    <script src="app/views/login/login.controller.js"></script>
-    <script src="app/views/login/login.route.js"></script>
-    <script src="app/views/main/main.controller.js"></script>
-    <script src="app/views/main/main.router.js"></script>
-    <!-- endinjector -->
-    <!-- endbuild -->
-  </body>
+<!-- build:js({.tmp,client}) scripts/scripts.js -->
+<script src="app.js"></script>
+
+<!-- injector:js -->
+<script src="app/components/app-footer/app-footer.directive.js"></script>
+<script src="app/components/app-header/app-header.directive.js"></script>
+<script src="app/components/app-section/app-section.directive.js"></script>
+<script src="app/components/card-fade/card-fade.directive.js"></script>
+<script src="app/components/card/card.directive.js"></script>
+<script src="app/services/CONST/CONST.constant.js"></script>
+<script src="app/services/drug/drug.factory.js"></script>
+<script src="app/services/is-active/is-active.service.js"></script>
+<script src="app/services/notify/notify.factory.js"></script>
+<script src="app/services/user/user.factory.js"></script>
+<script src="app/views/about/about.controller.js"></script>
+<script src="app/views/about/about.router.js"></script>
+<script src="app/views/app/app.controller.js"></script>
+<script src="app/views/cabinet/cabinet.controller.js"></script>
+<script src="app/views/cabinet/cabinet.route.js"></script>
+<script src="app/views/home/home.controller.js"></script>
+<script src="app/views/home/home.router.js"></script>
+<script src="app/views/login/login.controller.js"></script>
+<script src="app/views/login/login.route.js"></script>
+<script src="app/views/main/main.controller.js"></script>
+<script src="app/views/main/main.router.js"></script>
+<script src="app/views/sign-up/sign-up.controller.js"></script>
+<script src="app/views/sign-up/sign-up.route.js"></script>
+<!-- endinjector -->
+<!-- endbuild -->
+</body>
 </html>
