@@ -1,7 +1,6 @@
 /* ------ Imports -----*/
 @import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
-
 @import 'mediaQueries';
 @import 'colors';
 @import 'inputs';
@@ -69,6 +68,10 @@ hr {
   color: $teal;
 }
 
+.text-gray {
+  color: $gray;
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 1200px;
@@ -85,4 +88,5 @@ hr {
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
+@import '../app/views/sign-up/sign-up.style.scss';
 // endinjector

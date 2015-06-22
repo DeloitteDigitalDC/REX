@@ -6,7 +6,8 @@ $placeholderColor: $gray;
 }
 
 .rex-input {
-  padding: 30px;
+  padding: 18px 30px;
+  height: auto;
 
   &::-webkit-input-placeholder {
     color: $placeholderColor;

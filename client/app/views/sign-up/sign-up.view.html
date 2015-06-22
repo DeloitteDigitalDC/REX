@@ -1,4 +1,4 @@
-<div class="login access-shared">
+<div class="sign-up access-shared">
   <app-section class="text-center bg-white">
     <h3>What's in your medicine cabinet?</h3>
     <h2 class="boldest text-teal">Ask Rex.</h2>
@@ -7,6 +7,12 @@
 
   <app-section class="bg-lighter-gray">
     <form class="form" ng-submit="LoginCtrl.login()">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <input type="text" class="form-control rex-input" id="firstName" placeholder="First Name" ng-model="LoginCtrl.userInfo.firstName">
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <input type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
@@ -21,17 +27,15 @@
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
-          <button type="submit" class="btn rex-button">SIGN IN</button>
+          <button type="submit" class="btn rex-button">SIGN UP</button>
         </div>
 
         <div class="col-sm-3 text-right">
-          <a href="#" class="text-teal forgot">Forgot Password</a>
+          <div class="text-gray">Already have an account?</div>
+          <a ui-sref="main.login" class="text-teal">Sign in</a>
         </div>
       </div>
 
-      <div class="row text-right sign-up">
-        <div class="col-sm-offset-3 col-sm-6">Don't have an account yet? <a ui-sref="main.signUp" class="text-teal bolder">Sign up</a></div>
-      </div>
     </form>
   </app-section>
 </div>
