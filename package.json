@@ -46,13 +46,14 @@
   },
   "scripts": {
     "server": "node node_modules/grunt-cli/bin/grunt serve",
-    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server && npm run report",
+    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
     "linter": "node node_modules/grunt-cli/bin/grunt jshint",
-    "test": "npm run test-client && npm run test-server && npm run report",
+
+    "test": "npm run test-client && npm run test-server",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
-    "test-server": "node node_modules/mocha/bin/_mocha server/tests/unit",
-    "report": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha server/app.js",
+    "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js -R spec",
+
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",
