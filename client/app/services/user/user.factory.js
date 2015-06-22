@@ -14,7 +14,7 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $log) {
+  function user($http, $log, $state, notify) {
     var userObj = {};
 
     return {
@@ -40,9 +40,11 @@
 
       promise.success(function (data) {
         userObj = data;
+        $state.go('main.cabinet');
       });
 
       promise.error(function (err) {
+        notify.showAlert('error', 'danger');
         $log.error(err);
       });
 

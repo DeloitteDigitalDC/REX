@@ -8,7 +8,7 @@
  * @description
  * Controller for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')

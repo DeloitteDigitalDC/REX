@@ -1,6 +1,7 @@
 <div class="sign-up access-shared">
   <app-section class="text-center bg-white">
     <h3>What's in your medicine cabinet?</h3>
+
     <h2 class="boldest text-teal">Ask Rex.</h2>
     <hr class="thickest">
   </app-section>
@@ -9,19 +10,22 @@
     <form class="form" ng-submit="LoginCtrl.login()">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <input type="text" class="form-control rex-input" id="firstName" placeholder="First Name" ng-model="LoginCtrl.userInfo.firstName">
+          <input type="text" class="form-control rex-input" id="firstName" placeholder="First Name"
+                 ng-model="LoginCtrl.userInfo.firstName">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <input type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
+          <input type="text" class="form-control rex-input" id="username" placeholder="Email"
+                 ng-model="LoginCtrl.userInfo.username">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
+          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password"
+                 ng-model="LoginCtrl.userInfo.password">
         </div>
       </div>
 
