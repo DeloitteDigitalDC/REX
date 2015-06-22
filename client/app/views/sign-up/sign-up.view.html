@@ -11,21 +11,21 @@
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <input type="text" class="form-control rex-input" id="firstName" placeholder="First Name"
-                 ng-model="signUp.userInfo.firstName">
+                 ng-model="signUp.userInfo.firstName" required ng-minlength="2">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
-          <input type="text" class="form-control rex-input" id="username" placeholder="Email"
-                 ng-model="signUp.userInfo.username">
+          <input type="email" class="form-control rex-input" id="username" placeholder="Email"
+                 ng-model="signUp.userInfo.username" required ng-minlength="2">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password"
-                 ng-model="signUp.userInfo.password">
+                 ng-model="signUp.userInfo.password" required ng-minlength="2">
         </div>
       </div>
 
@@ -39,7 +39,6 @@
           <a ui-sref="main.login" class="text-teal">Sign in</a>
         </div>
       </div>
-
     </form>
   </app-section>
 </div>
