@@ -1,174 +1,18 @@
 /* ------ Imports -----*/
 @import '../../bower_components/bootstrap/dist/css/bootstrap.css';
 @import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
+
 @import 'mediaQueries';
 @import 'colors';
 @import 'inputs';
 @import 'backgrounds';
 @import 'sprites';
 @import 'mixins';
+@import 'alerts';
+@import 'layouts';
+@import 'text';
 @import 'shared/access-shared';
 @import 'shared/cards-shared';
-
-/** Text Styles **/
-
-body {
-  background: $lightGray;
-  font-family: 'Roboto', sans-serif;
-  color: $fontGray;
-  font-size: 16px;
-}
-
-h1 {
-  font-size: 3em;
-  font-weight: 300;
-  color: $teal;
-}
-
-h2 {
-  font-size: 2.75em;
-  font-weight: 300;
-}
-
-h3 {
-  font-size: 2em;
-  font-weight: 300;
-  margin-bottom: 15px;
-}
-
-.bold {
-  font-weight: 500;
-}
-
-.bolder {
-  font-weight: 600;
-}
-
-.boldest {
-  font-weight: 700;
-}
-
-/** hr shenanigans **/
-hr {
-  &.standard {
-    margin: 0;
-    border: solid 3px $lightGray;
-  }
-
-  &.thickest {
-    border: solid 6px $lightGray;
-    margin-top: 0;
-  }
-
-  &.small {
-    width: 148px;
-  }
-
-  &.extra-margin-top {
-    margin-top: 40px;
-  }
-}
-
-/** layout stuff **/
-.container-fluid {
-  padding: 0;
-  margin: 0;
-}
-
-.container {
-  position: relative;
-}
-
-.page-top {
-  padding-bottom: 50px;
-}
-
-/** text colors **/
-.text-teal {
-  color: $teal;
-}
-
-.text-gray {
-  color: $gray;
-}
-
-.text-font-gray {
-  color: $fontGray;
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 1200px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-
-/**
-* Alert
-*/
-.alert {
-  position: fixed;
-  width: 100%;
-  text-align: center;
-  z-index: 1025;
-  margin: 0 auto;
-  padding-bottom: 10px;
-  -webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.25);
-  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.25);
-
-  &.alert-danger {
-    color: $scarlet;
-    background: rgb(236,202,202);
-    border-color: lighten($scarlet, 40%);
-  }
-
-  &.alert-success {
-    color: #036A20; //persimmon complementary color!
-  }
-
-  &.alert-warning {
-    color: $scarlet;
-    background-color: rgb(252,238,201);
-  }
-
-  &.alert-info {
-    color: #115884;
-    background: lighten(#115884, 65%);
-    border-color: lighten(#115884, 55%);
-  }
-  &.ng-enter,
-  &.ng-leave {
-    -webkit-transition: all .5s linear;
-    -moz-transition: all .5s linear;
-    -o-transition: all .5s linear;
-    transition: all .5s linear;
-  }
-
-  &.ng-enter,
-  &.ng-leave.ng-leave-active {
-    opacity: 0;
-    top: -10px;
-  }
-
-  &.ng-leave,
-  &.ng-enter.ng-enter-active  {
-    opacity: 1;
-    top: 55px;
-  }
-}
-
-/** errors **/
-
-.error-container{
-  color: $scarlet;
-  text-align: center;
-}
 
 // injector
 @import '../app/components/app-footer/app-footer.directive.scss';

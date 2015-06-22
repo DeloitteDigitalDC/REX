@@ -33,6 +33,8 @@
       vm.title = newState.title;
 
       vm.headerState = newState.headerState;
+
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
   }
 
