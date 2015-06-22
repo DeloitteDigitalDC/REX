@@ -1,35 +1,39 @@
-.card-fade {
-  border-radius: $card-border-radius;
-  padding: $card-border-width;
-  position: relative;
-  overflow: hidden;
+card-fade {
+  display: block;
 
-  .card-content {
+  .card-fade {
+    border-radius: $card-border-radius;
+    padding: $card-border-width;
     position: relative;
-    z-index: 1;
-  }
+    overflow: hidden;
 
-  &::before, &::after {
-    content: "";
-    position: absolute;
-    display: block;
-  }
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
 
-  &::before {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient($card-border-color, transparent);
-    z-index: 0;
-  }
+    &::before, &::after {
+      content: "";
+      position: absolute;
+      display: block;
+    }
 
-  &::after {
-    background-color: #fff;
-    top: #{$card-border-width};
-    left: #{$card-border-width};
-    bottom: 0;
-    right: #{$card-border-width};
-    z-index: 0;
+    &::before {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient($card-border-color, transparent);
+      z-index: 0;
+    }
+
+    &::after {
+      background-color: #fff;
+      top: #{$card-border-width};
+      left: #{$card-border-width};
+      bottom: 0;
+      right: #{$card-border-width};
+      z-index: 0;
+    }
   }
 }

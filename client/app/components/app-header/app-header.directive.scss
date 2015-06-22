@@ -7,7 +7,7 @@
     transform: translateY(0);
     transition: all .2s;
     position: absolute;
-    left: 30px;
+    left: 0;
     top: 50%;
     margin-top: -40px;
   }
@@ -19,7 +19,7 @@
   .user-account {
     transition: transform .2s;
     position: absolute;
-    right: 30px;
+    right: 0;
     top: 50%;
     margin-top: -24px;
     transform: translateY(0);
