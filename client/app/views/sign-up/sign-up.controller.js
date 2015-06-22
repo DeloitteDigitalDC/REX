@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:SignUp
+ * @name SignUp
  *
  * @description
  * Controller for rex
@@ -14,24 +14,30 @@
     .module('rex')
     .controller('SignUpCtrl', SignUpCtrl);
 
-  function SignUpCtrl(user, $scope) {
+  function SignUpCtrl(user) {
     var vm = this;
 
-    vm.userInfo = {};
-    vm.showError = false;
+    vm.signUpForm = {};
+    vm.userInfo   = {};
+    vm.showError  = false;
 
     vm.signUp = signUp;
 
 
+    /**
+     * @name signUp
+     *
+     * @memberof SignUp
+     *
+     * @description
+     * create a new user
+     */
     function signUp() {
-      debugger;
-      if(vm.signUpForm.$invalid){
+      if (vm.signUpForm.$invalid) {
         vm.showError = true;
-
-      }else{
+      }
+      else {
         user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
-        //TODO need to determine how exactly we are handling form validation
-
       }
 
     }
