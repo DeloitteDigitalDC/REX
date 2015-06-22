@@ -55,7 +55,7 @@ module.exports = function (grunt) {
       },
       sass: {
         files: [
-          '<%= appSettings.app %>/styles/*.scss',
+          '<%= appSettings.app %>/styles/**/*.scss',
           '<%= appSettings.app %>/app/{views,components}/**/*.scss'
         ],
         tasks: ['autoprefixer', 'injector:sass', 'sass']

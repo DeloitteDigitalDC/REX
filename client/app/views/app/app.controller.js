@@ -18,6 +18,7 @@
     var vm = this;
 
     vm.title = 'My App'; // Default Title
+    vm.headerState = 'default';
 
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess); // Listen for state change
 
@@ -31,6 +32,8 @@
      */
     function stateChangeSuccess(event, newState) {
       vm.title = newState.title;
+
+      vm.headerState = newState.headerState;
     }
   }
 

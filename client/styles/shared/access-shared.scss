@@ -1,23 +1,14 @@
 // login styles
 .access-shared {
-  > section {
-    padding: 30px;
-    text-align: center;
-    h1 {
-      font-weight: 700;
-    }
+  section {
+    padding: 12px 0;
+
     hr {
       width: 120px;
-      border-width: 10px;
-      margin-top: 0px;
-      border-color: $lightGray;
     }
   }
 
   form {
-    background-color: $lighterGray;
-    padding: 30px;
-
     input, button {
       margin: 10px 0;
     }

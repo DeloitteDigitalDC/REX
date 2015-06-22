@@ -1,30 +1,32 @@
 <div class="login access-shared">
-  <section>
+  <app-section class="text-center bg-white">
     <h3>What's in your medicine cabinet?</h3>
-    <h1>Ask Rex.</h1>
-    <hr>
-  </section>
+    <h2 class="boldest text-teal">Ask Rex.</h2>
+    <hr class="thickest">
+  </app-section>
 
-  <form class="form" ng-submit="LoginCtrl.login()">
-    <div class="row">
-      <div class="col-sm-offset-3 col-sm-6">
-        <input type="username" class="form-control rex-input" id="username" placeholder="username" ng-model="LoginCtrl.userInfo.username">
+  <app-section class="bg-lighter-gray">
+    <form class="form" ng-submit="LoginCtrl.login()">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <input type="username" class="form-control rex-input" id="username" placeholder="username" ng-model="LoginCtrl.userInfo.username">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-offset-3 col-sm-6">
-        <input type="password" class="form-control rex-input" id="inputPassword" placeholder="password" ng-model="LoginCtrl.userInfo.password">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="password" ng-model="LoginCtrl.userInfo.password">
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-sm-offset-3 col-sm-2">
-        <button type="submit" class="btn rex-button">SIGN IN</button>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-2">
+          <button type="submit" class="btn rex-button">SIGN IN</button>
+        </div>
+        <div class="col-sm-4">
+          <a href="#">Forgot Password</a>
+        </div>
       </div>
-      <div class="col-sm-4">
-        <a href="#">Forgot Password</a>
-      </div>
-    </div>
-  </form>
+    </form>
+  </app-section>
 </div>

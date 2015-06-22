@@ -1,30 +1,22 @@
+$placeholderColor: $gray;
+
 .rex-input, .rex-button {
-  border-radius: 20px;
+  border-radius: 30px;
+  font-size: 1.2em;
 }
 
 .rex-input {
-  padding: 20px;
+  padding: 30px;
+
   &::-webkit-input-placeholder {
-    color: $gray;
-  }
-  &:-moz-placeholder {
-    /* Firefox 18- */
-    color: $gray;
-  }
-  &::-moz-placeholder {
-    /* Firefox 19+ */
-    color: $gray;
-  }
-  &:-ms-input-placeholder {
-    color: $gray;
+    color: $placeholderColor;
   }
 }
 
 .rex-button {
   padding: 10px;
-  background-color: white;
-  border-color: $teal;
-  border-width: 4px;
+  background-color: #fff;
+  border: solid 4px $teal;
   color: $teal;
   width: 100%;
   font-weight: 700;

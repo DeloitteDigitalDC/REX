@@ -1,9 +1,46 @@
 // header styles
 .app-header {
+  // Default header styles
   background-color: $teal;
-  padding: 30px;
+  height: 130px;
 
-  .align-middle {
-    margin: 0 auto;
+  .icon-logo-Rex {
+    transition: all .2s;
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    margin-top: -40px;
+  }
+
+  .icon-ic_account_circle_48px {
+
+  }
+
+  .user-account {
+    transition: transform .2s;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    margin-top: -24px;
+    transform: translateY(0);
+
+    .username {
+      float: left;
+      margin-top: 17px;
+      color: white;
+      margin-right: 10px;
+    }
+  }
+
+  // start custom state styles
+  &.login {
+    .icon-logo-Rex {
+      left: 50%;
+      margin-left: -85px;
+    }
+
+    .user-account {
+      transform: translateY(-100px);
+    }
   }
 }

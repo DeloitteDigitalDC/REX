@@ -8,7 +8,7 @@
  * @description
  * directive for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -16,15 +16,16 @@
 
   function appHeader() {
     return {
-        restrict: 'EA',
-        templateUrl: 'app/components/app-header/app-header.directive.html',
-        scope: {
-          loggedIn: '='
-        },
-        link: link
+      restrict: 'EA',
+      templateUrl: 'app/components/app-header/app-header.directive.html',
+      scope: {
+        state: '='
+      },
+      link: link
     };
 
     function link() {
+
     }
   }
 
