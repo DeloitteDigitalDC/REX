@@ -37,9 +37,12 @@ user.login = function (req, res) {
  * create a new user
  */
 user.createUser = function (req, res) {
+  console.log('body', req.body);
+
   var opts = {
     email   : req.body.username,
-    password: req.body.password
+    password: req.body.password,
+    firstName: req.body.firstName
   };
 
   firebaseRef.createUser(opts, function (error, userData) {
