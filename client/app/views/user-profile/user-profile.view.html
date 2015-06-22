@@ -6,8 +6,29 @@
   <hr class="standard">
 
   <app-section class="bg-lighter-gray">
-    <card-fade class="overlap">
-      Hello World
+    <card-fade class="overlap clearfix">
+      <span class="icon-ic-account-gray pull-left"></span>
+
+      <div class="my-profile pull-left">
+        <h2>Danny Blue</h2>
+
+        <p>Male</p>
+        <p>Washington, DC</p>
+        <p>dblue@deloitte.com</p>
+      </div>
     </card-fade>
+
+    <div class="clearfix">
+      <h3 class="pull-left">My Family</h3>
+
+      <plus-button class="pull-right" open="userProfile.fmlyBtnState" ng-click="userProfile.fmlyBtnToggle()"></plus-button>
+    </div>
+    <card>
+
+    </card>
+
+    <br>
+
+    <hr class="thickest small">
   </app-section>
 </section>

@@ -17,7 +17,13 @@
   function UserProfileCtrl() {
     var vm = this;
 
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
+    vm.fmlyBtnState = false;
+
+    vm.fmlyBtnToggle = fmlyBtnToggle;
+
+    function fmlyBtnToggle() {
+      vm.fmlyBtnState = !vm.fmlyBtnState;
+    }
   }
 
 })();

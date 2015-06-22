@@ -11,26 +11,23 @@
 
 (function () {
 
-  var base                 = '/fda',
-      drug                 = base + '/drug',
-      drugEvents           = drug + '/event.json/',
-      drugLabel            = drug + '/label.json/',
-      drugEnforcement      = drug + '/enforcement.json/';
-  var loginErrorMessage    = 'Incorrect username or password',
-      signUpSuccessMessage = 'Successfully created account',
-      signUpErrorMessage   = 'There was a problem creating this account';
-
+  var base            = '/fda',
+      drug            = base + '/drug',
+      drugEvents      = drug + '/event.json/',
+      drugLabel       = drug + '/label.json/',
+      drugEnforcement = drug + '/enforcement.json/';
 
   angular.module('rex').constant('CONST', {
-    drug  : {
+    drug: {
       event      : drugEvents,
       label      : drugLabel,
       enforcement: drugEnforcement
     },
-    string: {
-      loginError   : loginErrorMessage,
-      signUpSuccess: signUpSuccessMessage,
-      signUpError  : signUpErrorMessage
+
+    messages: {
+      loginError   : 'Incorrect username or password',
+      signUpSuccess: 'Successfully created account',
+      signUpError  : 'There was a problem creating this account'
     }
   });
 

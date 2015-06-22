@@ -15,15 +15,14 @@
     .factory('user', user);
 
   function user($http, $log, $state, notify, CONST) {
-    var userObj = {};
+    var messages = CONST.messages,
+        userObj  = {};
 
     return {
       login     : login,
       createUser: createUser,
       getUser   : getUser
     };
-
-    /* istanbul ignore next: Not testing functions that simply wrap http calls. Testing in controllers. */
 
     /**
      * @name login
@@ -40,12 +39,14 @@
 
       promise.success(function (data) {
         userObj = data;
+
         $state.go('main.cabinet');
       });
 
-      promise.error(function (err) {
-        notify.showAlert(CONST.string.loginError, 'danger');
-        $log.error(CONST.string.loginError);
+      promise.error(function () {
+        notify.showAlert(messages.loginError, 'danger');
+
+        $log.error(messages.loginError);
       });
 
       return promise;
@@ -58,21 +59,25 @@
      *
      * @description create a new user
      *
-     * @param {Object} body
+     * @param {String} username
+     * @param {String} password
+     * @param {String} firstName
      */
     function createUser(username, password, firstName) {
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
         userObj = data;
-        notify.showAlert(CONST.string.signUpSuccess, 'danger');
+        notify.showAlert(messages.signUpSuccess, 'danger');
         $state.go('main.cabinet');
       });
 
-      promise.error(function (err) {
-        notify.showAlert(CONST.string.signUpError, 'danger');
-        $log.error(CONST.string.signUpError);
+      promise.error(function () {
+        notify.showAlert(messages.signUpError, 'danger');
+        $log.error(messages.signUpError);
       });
+
+      return promise;
     }
 
     /**

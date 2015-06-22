@@ -26,12 +26,14 @@ h1 {
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 2.75em;
+  font-weight: 300;
 }
 
 h3 {
   font-size: 2em;
   font-weight: 300;
+  margin-bottom: 15px;
 }
 
 .bold {
@@ -56,6 +58,10 @@ hr {
   &.thickest {
     border: solid 8px $lightGray;
     margin-top: 0;
+  }
+
+  &.small {
+    width: 148px;
   }
 }
 
@@ -155,6 +161,7 @@ hr {
 @import '../app/components/app-section/app-section.directive.scss';
 @import '../app/components/card-fade/card-fade.directive.scss';
 @import '../app/components/card/card.directive.scss';
+@import '../app/components/plus-button/plus-button.directive.scss';
 @import '../app/views/about/about.view.scss';
 @import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/home/home.view.scss';

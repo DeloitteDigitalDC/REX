@@ -1,5 +1,9 @@
 $placeholderColor: $gray;
 
+button {
+  outline: none;
+}
+
 .rex-input, .rex-button {
   border-radius: 30px;
   font-size: 1.2em;

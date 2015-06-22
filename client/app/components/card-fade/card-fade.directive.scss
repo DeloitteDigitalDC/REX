@@ -2,14 +2,17 @@ card-fade {
   display: block;
 
   .card-fade {
+    background: linear-gradient(180deg, #fff 40%, transparent);
+    border-top: solid $card-border-width $card-border-color;
     border-radius: $card-border-radius;
-    padding: $card-border-width;
+    padding: $card-border-width + $card-padding;
     position: relative;
     overflow: hidden;
 
     .card-content {
       position: relative;
       z-index: 1;
+      border-radius: $card-border-radius;
     }
 
     &::before, &::after {
@@ -22,17 +25,17 @@ card-fade {
       top: 0;
       left: 0;
       bottom: 0;
-      right: 0;
-      background: linear-gradient($card-border-color, transparent);
+      width: $card-border-width;
+      background: linear-gradient(180deg, $card-border-color 40%, transparent);
       z-index: 0;
     }
 
     &::after {
-      background-color: #fff;
-      top: #{$card-border-width};
-      left: #{$card-border-width};
+      top: 0;
+      right: 0;
       bottom: 0;
-      right: #{$card-border-width};
+      width: $card-border-width;
+      background: linear-gradient(180deg, $card-border-color 40%, transparent);
       z-index: 0;
     }
   }
