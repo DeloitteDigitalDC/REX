@@ -14,16 +14,26 @@
     .module('rex')
     .controller('SignUpCtrl', SignUpCtrl);
 
-  function SignUpCtrl(user) {
+  function SignUpCtrl(user, $scope) {
     var vm = this;
 
     vm.userInfo = {};
+    vm.showError = false;
 
     vm.signUp = signUp;
 
 
     function signUp() {
-      user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
+      debugger;
+      if(vm.signUpForm.$invalid){
+        vm.showError = true;
+
+      }else{
+        //user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
+        //TODO need to determine how exactly we are handling form validation
+
+      }
+
     }
   }
 

@@ -144,6 +144,13 @@ hr {
   }
 }
 
+/** errors **/
+
+.error-container{
+  color: $scarlet;
+  text-align: center;
+}
+
 // injector
 @import '../app/components/app-footer/app-footer.directive.scss';
 @import '../app/components/app-header/app-header.directive.scss';
