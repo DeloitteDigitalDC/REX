@@ -1,13 +1,14 @@
-// Main.scss
+// home.scss
 
 .home {
-  .bg-image{
+  .bg-image {
     .app-section{
       background-color: rgba(0, 0, 0, 0.6);
       padding: 50px 20px 10px 20px;
     }
+
     app-section{
-      padding:0px;
+      padding:0;
       color: white;
     }
     hr {
@@ -57,6 +58,14 @@
   .home {
     .card{
       height: 280px;
+
+      .rex-button {
+        width: 100%;
+      }
+    }
+
+    .bg-lighter-gray {
+      padding: 35px 0;
     }
   }
 }

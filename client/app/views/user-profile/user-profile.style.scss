@@ -1,0 +1,40 @@
+.user-profile {
+  .overlap {
+    margin-top: -55px;
+    margin-bottom: 50px;
+  }
+
+  plus-button {
+    margin-top: 12px;
+  }
+
+  card {
+    margin-bottom: 25px;
+  }
+  
+  .my-profile {
+    display: inline-block;
+    padding-left: 25px;
+    padding-top: 15px;
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: $gray;
+      margin-bottom: 0;
+    }
+  }
+
+  .card-fade {
+    padding: 60px 30px 100px 30px;
+
+    .icon-ic-account-gray  {
+      height: 200px;
+      width: 200px;
+    }
+  }
+}

@@ -23,11 +23,15 @@
     };
 
     /**
+     * @name showAlert
+     *
+     * @memberof notify
+     *
      * @description Shows a notification at the top of the screen
+     *
      * @param {String} message - A message to display
      * @param {String} type - "success", "warning", or "danger" - Different colors of alert. Default is warning
-     * @param {Number} timeout - How long the alert should display, default is 4000ms (4seconds)
-     * @memberof notify
+     * @param {Number} [timeout] - How long the alert should display, default is 4000ms (4seconds)
      */
     function showAlert(message, type, timeout) {
       $rootScope.alert = {};
@@ -43,21 +47,28 @@
       }
 
       timeoutPromise = $timeout(function () {
+
         $rootScope.alert.visible = false;
+
       }, timeout);
     }
 
+    /**
+     * @name hideAlert
+     *
+     * @memberof notify
+     *
+     * @description Shows a notification at the top of the screen
+     */
     function hideAlert() {
       $timeout.cancel(timeoutPromise);
-      //Wrapping in a timeout call so it waits until the digest cycle is over. Otherwise won't update until next cycle.
+
       $timeout(function () {
         if ($rootScope.alert) {
           $rootScope.alert.visible = false;
         }
       });
     }
-
-    $rootScope.hideAlert = hideAlert;
   }
 
 })();

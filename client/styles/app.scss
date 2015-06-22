@@ -20,17 +20,20 @@ body {
 }
 
 h1 {
-  font-size: 4em;
+  font-size: 3em;
+  font-weight: 300;
   color: $teal;
 }
 
 h2 {
-  font-size: 3em;
+  font-size: 2.75em;
+  font-weight: 300;
 }
 
 h3 {
   font-size: 2em;
   font-weight: 300;
+  margin-bottom: 15px;
 }
 
 .bold {
@@ -47,10 +50,20 @@ h3 {
 
 /** hr shenanigans **/
 hr {
+  &.standard {
+    margin: 0;
+    border: solid 3px $lightGray;
+  }
+
   &.thickest {
     border: solid 6px $lightGray;
     margin-top: 0;
   }
+
+  &.small {
+    width: 148px;
+  }
+
   &.extra-margin-top {
     margin-top: 40px;
   }
@@ -66,8 +79,8 @@ hr {
   position: relative;
 }
 
-.extra-margin-top{
-  margin-top: 40px;
+.page-top {
+  padding-bottom: 50px;
 }
 
 /** text colors **/
@@ -89,6 +102,12 @@ hr {
   }
 }
 
+@media (min-width: 768px) {
+  .container {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
 
 /**
 * Alert
@@ -157,10 +176,12 @@ hr {
 @import '../app/components/app-section/app-section.directive.scss';
 @import '../app/components/card-fade/card-fade.directive.scss';
 @import '../app/components/card/card.directive.scss';
+@import '../app/components/plus-button/plus-button.directive.scss';
 @import '../app/views/about/about.view.scss';
 @import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
 @import '../app/views/sign-up/sign-up.style.scss';
+@import '../app/views/user-profile/user-profile.style.scss';
 // endinjector
