@@ -56,12 +56,16 @@ hr {
   }
 
   &.thickest {
-    border: solid 8px $lightGray;
+    border: solid 6px $lightGray;
     margin-top: 0;
   }
 
   &.small {
     width: 148px;
+  }
+
+  &.extra-margin-top {
+    margin-top: 40px;
   }
 }
 
@@ -86,6 +90,10 @@ hr {
 
 .text-gray {
   color: $gray;
+}
+
+.text-font-gray {
+  color: $fontGray;
 }
 
 @media (min-width: 1200px) {

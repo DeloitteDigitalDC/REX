@@ -44,9 +44,7 @@
       });
 
       promise.error(function () {
-        notify.showAlert(messages.loginError, 'danger');
-
-        $log.error(messages.loginError);
+        notify.showAlert(CONST.string.loginError, 'danger');
       });
 
       return promise;
@@ -73,8 +71,7 @@
       });
 
       promise.error(function () {
-        notify.showAlert(messages.signUpError, 'danger');
-        $log.error(messages.signUpError);
+        notify.showAlert(CONST.string.signUpError, 'danger');
       });
 
       return promise;
