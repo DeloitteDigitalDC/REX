@@ -26,6 +26,7 @@ module.exports = function (config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/fastclick/lib/fastclick.js',
+      'bower_components/lodash/lodash.js',
       'client/*.html',
       'client/*.js',
       'client/app/{views,components}/**/*.{js,html}',

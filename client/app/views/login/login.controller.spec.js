@@ -2,6 +2,7 @@ describe('Controller:LoginCtrl', function () {
 
   // load the controller's module
   beforeEach(module('rex'));
+  beforeEach(module('templates'));
 
   var LoginCtrl, $httpBackend;
 
