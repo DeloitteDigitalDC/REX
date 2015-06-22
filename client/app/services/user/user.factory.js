@@ -43,9 +43,8 @@
         $state.go('main.cabinet');
       });
 
-      promise.error(function (err) {
+      promise.error(function () {
         notify.showAlert(CONST.string.loginError, 'danger');
-        $log.error(CONST.string.loginError);
       });
 
       return promise;
@@ -65,13 +64,12 @@
 
       promise.success(function (data) {
         userObj = data;
-        notify.showAlert(CONST.string.signUpSuccess, 'danger');
         $state.go('main.cabinet');
+
       });
 
-      promise.error(function (err) {
+      promise.error(function () {
         notify.showAlert(CONST.string.signUpError, 'danger');
-        $log.error(CONST.string.signUpError);
       });
     }
 

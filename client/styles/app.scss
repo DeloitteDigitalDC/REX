@@ -48,8 +48,11 @@ h3 {
 /** hr shenanigans **/
 hr {
   &.thickest {
-    border: solid 8px $lightGray;
+    border: solid 6px $lightGray;
     margin-top: 0;
+  }
+  &.extra-margin-top {
+    margin-top: 40px;
   }
 }
 
@@ -63,6 +66,10 @@ hr {
   position: relative;
 }
 
+.extra-margin-top{
+  margin-top: 40px;
+}
+
 /** text colors **/
 .text-teal {
   color: $teal;
@@ -70,6 +77,10 @@ hr {
 
 .text-gray {
   color: $gray;
+}
+
+.text-font-gray {
+  color: $fontGray;
 }
 
 @media (min-width: 1200px) {

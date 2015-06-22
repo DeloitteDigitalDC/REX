@@ -21,4 +21,10 @@ $placeholderColor: $gray;
   color: $teal;
   width: 100%;
   font-weight: 700;
+  &:hover,
+  &:focus,
+  &:active {
+    color: white;
+    background-color: $teal;
+  }
 }
