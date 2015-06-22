@@ -21,8 +21,6 @@ describe('directive:card', function () {
 
     var text = element.find('ng-transclude').find('span').text();
 
-    console.log(element.isolateScope().foo);
-
     expect(text).toBe('Hello World');
   }));
 });

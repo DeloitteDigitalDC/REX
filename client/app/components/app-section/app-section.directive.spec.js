@@ -4,7 +4,6 @@ describe('directive:app-section', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
   beforeEach(module('templates'));
 
   var element, scope;
@@ -15,10 +14,13 @@ describe('directive:app-section', function () {
   }));
 
   // compile the element to be tested
-  it('should be a thing', inject(function ($compile) {
-     element = angular.element('<app-section></app-section>');
-     element = $compile(element)(scope);
+  it('should place the h1 tag inside of the section structure', inject(function ($compile) {
+    element = angular.element('<app-section><h1>Hello World</h1></app-section>');
+    element = $compile(element)(scope);
+    scope.$apply();
 
-     scope.$apply();
+    var content = element.find('section').find('section');
+
+    expect(content.find('h1')).toBeTruthy();
   }));
 });

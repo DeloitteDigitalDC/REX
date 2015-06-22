@@ -4,8 +4,6 @@ describe('directive:app-footer', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-
-  // Uncomment if template used
   beforeEach(module('templates'));
 
   var element, scope;

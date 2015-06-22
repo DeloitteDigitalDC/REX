@@ -23,8 +23,7 @@
       link       : link
     };
 
-    function link(scope) {
-      scope.foo = 'Hello World';
+    function link() {
     }
   }
 

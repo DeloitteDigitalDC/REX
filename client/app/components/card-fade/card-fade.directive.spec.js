@@ -1,11 +1,10 @@
 'use strict';
 
-describe('directive:card-fade', function () {
+describe('directive:card', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
-  // beforeEach(module('components/card-fade/card-fade.html'));
+  beforeEach(module('templates'));
 
   var element, scope;
 
@@ -15,10 +14,13 @@ describe('directive:card-fade', function () {
   }));
 
   // compile the element to be tested
-  it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<card-fade></card-fade>');
-    // element = $compile(element)(scope);
+  it('should render a faded card with the text transcluded in', inject(function ($compile) {
+    element = angular.element('<card-fade>Hello World</card-fade>');
+    element = $compile(element)(scope);
+    scope.$apply();
 
-    // scope.$apply();
+    var text = element.find('ng-transclude').find('span').text();
+
+    expect(text).toBe('Hello World');
   }));
 });
