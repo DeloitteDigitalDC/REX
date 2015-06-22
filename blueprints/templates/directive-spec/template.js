@@ -5,7 +5,7 @@ describe('<%= type %>:<%= dashedName %>', function () {
   // load the directive's module and view
   beforeEach(module('<%= appName %>'));
   // Uncomment if template used
-  // beforeEach(module('components/<%= dashedName %>/<%= dashedName %>.directive.html'));
+  // beforeEach(module('templates'));
 
   var element, scope;
 

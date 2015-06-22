@@ -5,7 +5,7 @@ describe('directive:app-header', function () {
   // load the directive's module and view
   beforeEach(module('rex'));
   // Uncomment if template used
-  // beforeEach(module('components/app-header/app-header.html'));
+  beforeEach(module('templates'));
 
   var element, scope;
 
@@ -16,9 +16,9 @@ describe('directive:app-header', function () {
 
   // compile the element to be tested
   it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<app-header></app-header>');
-    // element = $compile(element)(scope);
+     element = angular.element('<app-header></app-header>');
+     element = $compile(element)(scope);
 
-    // scope.$apply();
+     scope.$apply();
   }));
 });

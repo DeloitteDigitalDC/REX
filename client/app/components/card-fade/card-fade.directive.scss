@@ -25,11 +25,11 @@
   }
 
   &::after {
+    background-color: #fff;
     top: #{$card-border-width};
     left: #{$card-border-width};
     bottom: 0;
     right: #{$card-border-width};
-    background: inherit;
     z-index: 0;
   }
 }

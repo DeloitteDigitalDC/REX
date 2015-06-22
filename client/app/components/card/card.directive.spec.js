@@ -4,7 +4,7 @@ describe('directive:card', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  beforeEach(module('app/components/card/card.directive.html'));
+  beforeEach(module('templates'));
 
   var element, scope;
 

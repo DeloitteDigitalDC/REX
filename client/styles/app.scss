@@ -92,6 +92,13 @@ hr {
 .bg-teal {
   background-color: $teal;
 }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
 // injector
 @import '../app/components/app-footer/app-footer.directive.scss';
 @import '../app/components/app-header/app-header.directive.scss';

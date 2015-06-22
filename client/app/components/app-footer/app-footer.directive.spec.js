@@ -6,7 +6,7 @@ describe('directive:app-footer', function () {
   beforeEach(module('rex'));
 
   // Uncomment if template used
-  beforeEach(module('app/components/app-footer/app-footer.directive.html'));
+  beforeEach(module('templates'));
 
   var element, scope;
 

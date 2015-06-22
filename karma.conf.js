@@ -50,12 +50,13 @@ module.exports = function (config) {
     ],
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'client/'
+      stripPrefix: 'client/',
+      moduleName: 'templates'
     },
 
     preprocessors: {
       'client/*.html': 'ng-html2js',
-      'client/app/components/**/*.html': 'ng-html2js',
+      'client/app/{components,views}/**/*.html': 'ng-html2js',
       'client/app/{components,services,views}/**/!(*spec).js': ['coverage']
     },
 
