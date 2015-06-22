@@ -1,27 +1,37 @@
-<div class="container">
+<div class="login access-shared">
+  <app-section class="text-center bg-white">
+    <h3>What's in your medicine cabinet?</h3>
+    <h2 class="boldest text-teal">Ask Rex.</h2>
+    <hr class="thickest">
+  </app-section>
 
-  <form class="form-horizontal" ng-submit="LoginCtrl.login()">
-    <div class="form-group">
-      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-
-      <div class="col-sm-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
+  <app-section class="bg-lighter-gray">
+    <form class="form" name="loginForm" ng-submit="LoginCtrl.login()">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <input ng-minlength="3" type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-
-      <div class="col-sm-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <input ng-minlength="3" type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Sign in</button>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-3">
+          <button type="submit" class="btn rex-button">SIGN IN</button>
+        </div>
+
+        <div class="col-sm-3 text-right">
+          <a href="#" class="text-teal forgot">Forgot Password</a>
+        </div>
       </div>
-    </div>
-  </form>
 
+      <div class="row text-right sign-up">
+        <div class="col-sm-offset-3 col-sm-6">Don't have an account yet? <a ui-sref="main.signUp" class="text-teal bolder">Sign up</a></div>
+      </div>
+    </form>
+  </app-section>
 </div>

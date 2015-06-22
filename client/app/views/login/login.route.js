@@ -11,7 +11,8 @@
           templateUrl: 'app/views/login/login.view.html',
           controller: 'LoginCtrl',
           controllerAs: 'LoginCtrl',
-          title: 'Login'
+          title: 'Login',
+          headerState: 'login'
         });
     });
 

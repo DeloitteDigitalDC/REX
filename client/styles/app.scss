@@ -1,23 +1,148 @@
 /* ------ Imports -----*/
-@import "../../bower_components/bootstrap/dist/css/bootstrap.css";
+@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
+@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
+@import 'mediaQueries';
 @import 'colors';
-@import 'fonts';
 @import 'inputs';
+@import 'backgrounds';
 @import 'sprites';
+@import 'mixins';
+@import 'shared/access-shared';
+@import 'shared/cards-shared';
 
 /** Text Styles **/
 
-body{
-  font-family: Roboto;
+body {
+  background: $lightGray;
+  font-family: 'Roboto', sans-serif;
   color: $fontGray;
   font-size: 16px;
 }
 
+h1 {
+  font-size: 4em;
+  color: $teal;
+}
 
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.boldest {
+  font-weight: 700;
+}
+
+/** hr shenanigans **/
+hr {
+  &.thickest {
+    border: solid 8px $lightGray;
+    margin-top: 0;
+  }
+}
+
+/** layout stuff **/
+.container-fluid {
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  position: relative;
+}
+
+/** text colors **/
+.text-teal {
+  color: $teal;
+}
+
+.text-gray {
+  color: $gray;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
+
+/**
+* Alert
+*/
+.alert {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: 1025;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  -webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.25);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.25);
+
+  &.alert-danger {
+    color: $scarlet;
+    background: rgb(236,202,202);
+    border-color: lighten($scarlet, 40%);
+  }
+
+  &.alert-success {
+    color: #036A20; //persimmon complementary color!
+  }
+
+  &.alert-warning {
+    color: $scarlet;
+    background-color: rgb(252,238,201);
+  }
+
+  &.alert-info {
+    color: #115884;
+    background: lighten(#115884, 65%);
+    border-color: lighten(#115884, 55%);
+  }
+  &.ng-enter,
+  &.ng-leave {
+    -webkit-transition: all .5s linear;
+    -moz-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    opacity: 0;
+    top: -10px;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active  {
+    opacity: 1;
+    top: 55px;
+  }
+}
 
 // injector
+@import '../app/components/app-footer/app-footer.directive.scss';
+@import '../app/components/app-header/app-header.directive.scss';
+@import '../app/components/app-section/app-section.directive.scss';
+@import '../app/components/card-fade/card-fade.directive.scss';
+@import '../app/components/card/card.directive.scss';
 @import '../app/views/about/about.view.scss';
+@import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
+@import '../app/views/sign-up/sign-up.style.scss';
 // endinjector

@@ -6,7 +6,7 @@
  * @name user
  *
  * @description
- * Factory for user things -- create user, login/authentication
+ * Factory for managing users.
  */
 (function () {
 
@@ -14,7 +14,7 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $log) {
+  function user($http, $log, $state, notify, CONST) {
     var userObj = {};
 
     return {
@@ -40,10 +40,12 @@
 
       promise.success(function (data) {
         userObj = data;
+        $state.go('main.cabinet');
       });
 
       promise.error(function (err) {
-        $log.error(err);
+        notify.showAlert(CONST.string.loginError, 'danger');
+        $log.error(CONST.string.loginError);
       });
 
       return promise;
@@ -58,8 +60,19 @@
      *
      * @param {Object} body
      */
-    function createUser(body) {
-      return $http.post('/user/createUser', body);
+    function createUser(username, password, firstName) {
+      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
+
+      promise.success(function (data) {
+        userObj = data;
+        notify.showAlert(CONST.string.signUpSuccess, 'danger');
+        $state.go('main.cabinet');
+      });
+
+      promise.error(function (err) {
+        notify.showAlert(CONST.string.signUpError, 'danger');
+        $log.error(CONST.string.signUpError);
+      });
     }
 
     /**
