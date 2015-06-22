@@ -4,28 +4,40 @@
     padding: 12px 0;
 
     hr {
-      width: 120px;
+      width: 148px;
     }
   }
 
   form {
-    input, button {
-      margin: 10px 0;
+    .row {
+      margin: 35px -15px;
+
+      &:first-child {
+        margin-top: 5px;
+      }
+
+      &:last-child {
+        margin-bottom: 5px;
+      }
     }
 
-    a {
-      display: block;
-      text-align: right;
-      color: $teal;
-      padding-top: 25px;
+    .forgot {
+      display: inline-block;
+      margin-top: 15px;
     }
   }
 
 }
 
 @media #{$lessThanTablet} {
-  .access-shared form a {
-    text-align: center;
-    padding-top: 15px;
+  .access-shared form {
+    .forgot {
+      display: block;
+      text-align: center;
+    }
+
+    .sign-up {
+      text-align: center;
+    }
   }
 }

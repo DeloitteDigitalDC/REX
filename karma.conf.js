@@ -25,11 +25,10 @@ module.exports = function (config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/fastclick/lib/fastclick.js',
       'client/*.html',
       'client/*.js',
-      'client/app/components/**/*.{js,html}',
-      'client/app/views/**/*.html',
-      'client/app/views/**/*.js',
+      'client/app/{views,components}/**/*.{js,html}',
       'client/app/services/**/*.js'
     ],
 

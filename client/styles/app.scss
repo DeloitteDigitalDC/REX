@@ -1,10 +1,11 @@
 /* ------ Imports -----*/
 @import '../../bower_components/bootstrap/dist/css/bootstrap.css';
-@import url(http://fonts.googleapis.com/css?family=Roboto:300,700,400);
+@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
 
 @import 'mediaQueries';
 @import 'colors';
 @import 'inputs';
+@import 'backgrounds';
 @import 'sprites';
 @import 'mixins';
 @import 'shared/access-shared';
@@ -48,7 +49,7 @@ h3 {
 /** hr shenanigans **/
 hr {
   &.thickest {
-    border: solid 10px $lightGray;
+    border: solid 8px $lightGray;
     margin-top: 0;
   }
 }
@@ -66,31 +67,6 @@ hr {
 /** text colors **/
 .text-teal {
   color: $teal;
-}
-
-/** backgrounds **/
-.bg-white {
-  background-color: #fff;
-}
-
-.bg-lighter-gray {
-  background-color: $lighterGray;
-}
-
-.bg-light-gray {
-  background-color: $lightGray;
-}
-
-.bg-gray {
-  background-color: $gray;
-}
-
-.bg-dark-gray {
-  background-color: $darkGray;
-}
-
-.bg-teal {
-  background-color: $teal;
 }
 
 @media (min-width: 1200px) {
