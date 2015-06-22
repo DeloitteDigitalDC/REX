@@ -17,8 +17,7 @@
   function AppCtrl($rootScope) {
     var vm = this;
 
-    vm.title = 'My App'; // Default Title
-    vm.headerState = 'default';
+    vm.title = 'REX'; // Default Title
 
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess); // Listen for state change
 
