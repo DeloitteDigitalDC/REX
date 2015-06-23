@@ -37,6 +37,13 @@
     }
   }
 }
+@media #{$lessThanBigScreen} {
+  .home {
+    .card{
+      height: 300px;
+    }
+  }
+}
 
 @media #{$lessThanDesktop} {
   .home {

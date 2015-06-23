@@ -21,7 +21,9 @@ h3 {
   font-weight: 300;
   margin-bottom: 15px;
 }
-
+.light-weight{
+  font-weight: 300;
+}
 .bold {
   font-weight: 500;
 }
@@ -45,4 +47,14 @@ h3 {
 
 .text-font-gray {
   color: $fontGray;
+}
+
+.text-white{
+  color: white;
+}
+
+/** text helper classes **/
+
+.text-left {
+  text-align: left;
 }

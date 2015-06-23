@@ -21,6 +21,14 @@
 
     vm.login = login;
 
+    /**
+     * @name login
+     *
+     * @memberof LoginCtrl
+     *
+     * @description
+     * call user service to authenticate user
+     */
     function login() {
       user.login(vm.userInfo.username, vm.userInfo.password);
     }

@@ -1,0 +1,8 @@
+<div class="drug-card ">
+  <card ng-class="{'recalled' : drug.recalled}" ng-click="goToDetails()">
+    <div ng-if="drug.recalled" class=" card-icon icon-ic_pillbottle-darkred"><div class="text-white recalled-text" >RECALL</div></div>
+    <div ng-if="!drug.recalled" class=" card-icon icon-ic_pillbottle"></div>
+    <div class="text-font-gray bolder drug-name">{{drug.name}}</div>
+    <div class="text-gray date" ng-class="{'expired' : expired }">Exp: {{drug.expirationDate | date : 'shortDate'}}</div>
+  </card>
+</div>
