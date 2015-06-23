@@ -1,15 +1,25 @@
 .drug-tabs {
   div {
-    display : inline-block;
+    display: inline-block;
     margin-right: 20px;
   }
   a {
     font-weight: 500;
-    color:$teal;
+    color: $teal;
   }
 
   .active a {
-    color:$darkTeal;
+    color: $darkTeal;
   }
+}
 
+@media #{$lessThanSmall} {
+  .drug-tabs {
+    div {
+      margin-right: 10px;
+      a {
+        font-size: .8em
+      }
+    }
+  }
 }
