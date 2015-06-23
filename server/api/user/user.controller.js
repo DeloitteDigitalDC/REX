@@ -1,15 +1,15 @@
 'use strict';
 
-var firebaseRef = require('../../firebase'),
-    request     = require('request'),
-    config      = require('../../config');
+var fb      = require('../../firebase'),
+    request = require('request'),
+    config  = require('../../config');
 
 var user = {};
 
 /**
- * @name router.user.login
+ * @name login
  *
- * @memberof router.user
+ * @memberof user.controller
  *
  * @description
  * login through firebase
@@ -20,17 +20,21 @@ user.login = function (req, res) {
     password: req.body.password
   };
 
-  firebaseRef.authWithPassword(opts, function (error, authData) {
-    if (error) {
-      return res.sendStatus(500).send(error);
-    }
+  fb.login(opts, __success, __error);
 
-    res.send(authData);
-  });
+  function __success(authData) {
+    res.send(authData)
+  }
+
+  function __error(err) {
+    res.sendStatus(500).send(err);
+  }
 };
 
 /**
  * @name getDetails
+ *
+ * @memberof user.controller
  *
  * @param req
  * @param res
@@ -45,6 +49,8 @@ user.getDetails = function (req, res) {
 /**
  * @name getDetails
  *
+ * @memberof user.controller
+ *
  * @param req
  * @param res
  *
@@ -58,10 +64,10 @@ user.resetPassword = function (req, res) {
   //  newPassword: "shinynewpassword"
   //}
 
-  firebaseRef.changePassword(req.body, _changedResponse);
+  fb.ref.changePassword(req.body, __changedResponse);
 
-  function _changedResponse(err) {
-    if(err) {
+  function __changedResponse(err) {
+    if (err) {
       res.sendStatus(500).send(err, 'Error changing password');
     }
 
@@ -70,9 +76,9 @@ user.resetPassword = function (req, res) {
 };
 
 /**
- * @name router.user.createUser
+ * @name createUser
  *
- * @memberof router.user
+ * @memberof user.controller
  *
  * @description
  * create a new user
@@ -81,8 +87,8 @@ user.createUser = function (req, res) {
   var data = req.body;
 
   var user = {
-    email    : data.username,
-    password : data.password
+    email   : data.username,
+    password: data.password
   };
 
   var details = {
@@ -90,20 +96,24 @@ user.createUser = function (req, res) {
   };
 
   // create user
-  firebaseRef.createUser(user, function (error, userData) {
-    if (error) {
-      return res.send(error);
+  fb.ref.createUser(user, function (err, userData) {
+    if (err) {
+      return res.send(err);
     }
 
-    firebaseRef.authWithPassword(user, function (error, authData) {
-      if (error) {
-        return res.sendStatus(500).send(error);
-      }
+    // if creation is successful log the use in
+    fb.login(user, __success, __error);
 
-      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, { json: details }, function () {
+    // on successful login update the current users data in the users collection
+    function __success(authData) {
+      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, {json: details}, function () {
         res.send(authData);
       });
-    });
+    }
+
+    function __error(error) {
+      res.sendStatus(500).send(error);
+    }
   });
 };
 
