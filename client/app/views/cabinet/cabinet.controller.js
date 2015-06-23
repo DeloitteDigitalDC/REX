@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:Cabinet
+ * @name CabinetCtrl
  *
  * @description
  * Controller for rex
@@ -14,13 +14,56 @@
     .module('rex')
     .controller('CabinetCtrl', CabinetCtrl);
 
-  function CabinetCtrl(drug) {
+  function CabinetCtrl(drug, util) {
     var vm = this;
 
-   // https://api.fda.gov/drug/enforcement.json?limit=100&search=(openfda.brand_name:Advil+OXYCODONE)
-   // var results = drug.enforce(qs);
-   //
-   // console.log(results);
+    var recalls;
+
+    function init() {
+      queryRecalls();
+    }
+    /**
+     * @name queryRecalls
+     *
+     * @memberof CabinetCtrl
+     *
+     * @description create string and query for recalls
+     *
+     */
+    function queryRecalls() {
+      var query = util.createSearchQry(vm.drugs);
+      //TODO: add status:ongoing -- this is working with our API right now
+      //TODO: Related to above, handle search terms with spaces
+      // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
+       var searchTerm = '(' + _.trimRight(query, '+') +')';
+      drug.enforce({search: searchTerm, limit: 100}).success(function (data) {
+        console.log('enforce', data);
+        recalls = data.results;
+        compareRecalls();
+      });
+    }
+
+    /**
+     * @name compareRecalls
+     *
+     * @memberof CabinetCtrl
+     *
+     * @description loop through each of the users drugs and check if it matches one of the recalled drugs
+     *
+     */
+    function compareRecalls(){
+      _.forEach(vm.drugs, function(drug, idx){
+        _.forEach(recalls, function(recall){
+          if(recall.openfda.brand_name){
+            if(recall.openfda.brand_name[0] === drug.name){
+              vm.drugs[idx].recalled = true;
+              console.log('drug match name', drug.name);
+            }
+          }
+        })
+      })
+    }
+
 
     /**
      *
@@ -29,77 +72,39 @@
      * @example json generator
      * [
      '{{repeat(10)}}',
-         {
-            name : '{{lorem(2, "words")}}',
-            expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), "YYYY-MM-ddThh:mm:ss")}}',
-            recalled : '{{bool()}}',
-            id : '{{index(1)}}'
-           }
-         ]
+     {
+		name : '{{lorem(2, "words")}}',
+		expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), "YYYY-MM-ddThh:mm:ss")}}',
+		recalled : '{{bool()}}',
+		id : '{{index(1)}}'
+	   }
+     ]
      */
+    //TODO: get list of drugs from out DB in user data
     vm.drugs = [
       {
-        "name": "Tylenol",
+        "name"          : "Tylenol",
         "expirationDate": "2016-05-02T05:28:07",
-        "recalled": false,
-        "id": 1
+        "id"            : 1
       },
       {
-        "name": "reprehenderit cupidatat",
+        "name"          : "Advil", //ADVIL PM comes back but not matching our check
         "expirationDate": "2015-10-29T16:00:55",
-        "recalled": false,
-        "id": 2
+        "id"            : 2
       },
       {
-        "name": "adipisicing tempor",
+        "name"          : "OXYCODONE ACETAMINOPHEN", //OXYCODONE AND ACETAMINOPHEN comes back (and others) but not counting in our match
         "expirationDate": "2016-03-17T05:41:15",
-        "recalled": false,
-        "id": 3
+        "id"            : 3
       },
       {
-        "name": "Lorem magna",
+        "name"          : "NIACIN",
         "expirationDate": "2016-02-28T16:18:23",
-        "recalled": true,
-        "id": 4
-      },
-      {
-        "name": "excepteur quis",
-        "expirationDate": "2016-12-31T03:36:19",
-        "recalled": false,
-        "id": 5
-      },
-      {
-        "name": "reprehenderit non",
-        "expirationDate": "2015-08-30T10:51:46",
-        "recalled": true,
-        "id": 6
-      },
-      {
-        "name": "Lorem enim",
-        "expirationDate": "2016-08-19T05:43:21",
-        "recalled": false,
-        "id": 7
-      },
-      {
-        "name": "deserunt deserunt",
-        "expirationDate": "2016-07-23T07:29:34",
-        "recalled": true,
-        "id": 8
-      },
-      {
-        "name": "proident dolore",
-        "expirationDate": "2015-07-10T17:40:21",
-        "recalled": false,
-        "id": 9
-      },
-      {
-        "name": "deserunt laboris",
-        "expirationDate": "2016-12-09T07:01:20",
-        "recalled": false,
-        "id": 10
+        "id"            : 4
       }
-    ]
+    ];
 
+    init();
 
 
   }
