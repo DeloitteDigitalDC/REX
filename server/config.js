@@ -23,7 +23,7 @@ module.exports = {
 
   // api key for fda data
   fdaKey: (function () {
-    var key = settings.fdaKey || process.env.FDA_KEY;
+    var key = process.env.FDA_KEY || settings.FDA_KEY ;
 
     if (!key) {
       console.log(chalk.magenta('### No API key has been attached. For production please provide and FDA API key. (FDA_KEY=thisisthekeyigotfromfda)'));
@@ -33,10 +33,18 @@ module.exports = {
   })(),
 
   // the firebase instance to use
-  firebase: settings.firebase || process.env.FIREBASE,
+  firebase:(function() {
+    var fb = process.env.FIREBASE || settings.FIREBASE;
+
+    if(!fb) {
+      throw new Error(chalk.bgRed(chalk.black(' No Firebase has been defined. Go to firebase.com and create a free account. ')));
+    }
+
+    return fb;
+  })(),
 
   // the location of the front end application
   appDir: __dirname + '/../client',
 
-  port: settings.port || process.env.PORT || 3000
+  port: process.env.PORT || settings.PORT || 3000
 };
