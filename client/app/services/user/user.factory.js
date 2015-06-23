@@ -141,7 +141,7 @@
       var drugs = [
         {
           'name'          : 'Acetaminophen',
-          'expirationDate': '2016-05-02T05:28:07',
+          'expirationDate': '2015-02-02T05:28:07',
           'id'            : 1
         },
         {
@@ -150,7 +150,7 @@
           'id'            : 2
         },
         {
-          'name'          : 'OXYCODONE ACETAMINOPHEN', //OXYCODONE AND ACETAMINOPHEN comes back (and others) but not counting in our match
+          'name'          : 'Oxycodone Acetaminophen', //OXYCODONE AND ACETAMINOPHEN comes back (and others) but not counting in our match
           'expirationDate': '2016-03-17T05:41:15',
           'id'            : 3
         },
