@@ -14,8 +14,13 @@
     .module('rex')
     .controller('CabinetCtrl', CabinetCtrl);
 
-  function CabinetCtrl() {
+  function CabinetCtrl(drug) {
     var vm = this;
+
+   // https://api.fda.gov/drug/enforcement.json?limit=100&search=(openfda.brand_name:Advil+OXYCODONE)
+   // var results = drug.enforce(qs);
+   //
+   // console.log(results);
 
     /**
      *

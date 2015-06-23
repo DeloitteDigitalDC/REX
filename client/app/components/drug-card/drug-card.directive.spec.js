@@ -14,17 +14,17 @@ describe('directive:drug-card', function () {
   }));
 
   // compile the element to be tested
+  //TODO: complete this test
   it('should be a thing', inject(function ($compile) {
-     element = angular.element('<drug-card></drug-card>');
-     element = $compile(element)(scope);
-
-     scope.$apply();
-  }));
-
-  it('should be a thing', inject(function ($compile) {
-    element = angular.element('<drug-card></drug-card>');
-    element = $compile(element)(scope);
-
-    scope.$apply();
+    //scope.drug = {
+    //  "name": "Tylenol",
+    //  "expirationDate": "2016-05-02T05:28:07",
+    //  "recalled": false,
+    //  "id": 1
+    //};
+    // element = angular.element('<drug-card></drug-card>');
+    // element = $compile(element)(scope);
+    //
+    // scope.$apply();
   }));
 });

@@ -36,6 +36,11 @@
         background-color: $scarlet;
         border-color: $lava;
 
+        .card-icon {
+          width: 180px;
+          position: relative;
+        }
+
         .date, .drug-name {
           color: white;
         }
@@ -49,7 +54,7 @@
           font-weight: 700;
           position: absolute;
           top: 25%;
-          right: -50%;
+          right: -15%;
         }
       }
     }

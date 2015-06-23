@@ -19,22 +19,29 @@
       restrict: 'EA',
       templateUrl: 'app/components/drug-card/drug-card.directive.html',
       scope: {
-        drug : "="
+        drug : '='
       },
       link: link
     };
 
     function link($scope) {
 
+      $scope.expired = checkExpired($scope.drug.expirationDate);
+
       /**
-       * @name expired
+       * @name checkExpired
        *
        * @memberof drugCard
+       *
+       * @param {Date} exprDate - expiration date
+       * @returns {Boolean} - returns true if expired
        *
        * @description
        * user moment.js to determine if drug is expired and set $scope variable to we can assign a class in the view
        */
-      $scope.expired = moment($scope.drug.expirationDate).isBefore(moment());
+      function checkExpired(exprDate){
+        return moment(exprDate).isBefore(moment());
+      }
 
       /**
        * @name login
@@ -45,8 +52,8 @@
        * when a user clicks on a drug card, go to that drug's detailed page
        */
       $scope.goToDetails = function(){
-        $state.go("main.drugProfile", {id:$scope.drug.id, name:$scope.drug.name})
-      }
+        $state.go('main.drugProfile', {id:$scope.drug.id, name:$scope.drug.name});
+      };
 
     }
   }
