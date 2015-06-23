@@ -79,14 +79,13 @@ module.exports = function (grunt) {
      */
     connect: {
       options: {
-        port: 9000,
+        port: require('./server/config.js').port,
         hostname: '*',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
       livereload: {
         options: {
-          open: grunt.option('open'),
           middleware: function (connect) {
             var middleware = [
               connect.static('.tmp'),
