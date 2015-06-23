@@ -4,16 +4,40 @@ describe('factory:user', function () {
 
   // load the factory's module
   beforeEach(module('rex'));
+  beforeEach(module('templates'));
 
-  var user;
+  var user, $httpBackend;
 
   // initialize a new instance of the factory before each test
   beforeEach(inject(function ($injector) {
-    user = $injector.get('user');
+    user         = $injector.get('user');
+    $httpBackend = $injector.get('$httpBackend');
   }));
 
-  it('condition of test', function () {
+  it('should login and get user details', function () {
+    $httpBackend.whenPOST('/user/login').respond(200, {
+      name: 'Ben',
+      age : 125,
+      sex : 'male'
+    });
 
+    user.login('user@mail.com', 'helloWOrld@1');
+
+    $httpBackend.flush();
+
+    expect(user.getUser().name).toBe('Ben');
   });
 
+  it('should create and account and get user details', function () {
+    $httpBackend.whenPOST('/user/create').respond(200, {
+      name: 'Lucy',
+      age : 25
+    });
+
+    user.createUser('user@mail.com', 'helloWOrld@1', 'Lucy');
+
+    $httpBackend.flush();
+
+    expect(user.getUser().age).toBe(25);
+  });
 });

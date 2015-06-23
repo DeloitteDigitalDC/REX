@@ -6,7 +6,7 @@
  * @name user
  *
  * @description
- * Factory for user things -- create user, login/authentication
+ * Factory for managing users.
  */
 (function () {
 
@@ -14,16 +14,16 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $log) {
-    var userObj = {};
+  function user($http, $state, notify, CONST, $cookies) {
+    var messages = CONST.messages,
+        userObj  = {};
 
     return {
       login     : login,
       createUser: createUser,
-      getUser   : getUser
+      getUser   : getUser,
+      details   : details
     };
-
-    /* istanbul ignore next: Not testing functions that simply wrap http calls. Testing in controllers. */
 
     /**
      * @name login
@@ -39,11 +39,14 @@
       var promise = $http.post('/user/login', {username: username, password: password});
 
       promise.success(function (data) {
-        userObj = data;
+        $cookies.put('jwt', data.token);
+        $cookies.put('uid', data.uid);
+
+        $state.go('main.cabinet');
       });
 
-      promise.error(function (err) {
-        $log.error(err);
+      promise.error(function () {
+        notify.showAlert(CONST.messages.loginError, 'danger');
       });
 
       return promise;
@@ -56,10 +59,38 @@
      *
      * @description create a new user
      *
-     * @param {Object} body
+     * @param {String} username
+     * @param {String} password
+     * @param {String} firstName
      */
-    function createUser(body) {
-      return $http.post('/user/createUser', body);
+    function createUser(username, password, firstName) {
+      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
+
+      promise.success(function (data) {
+        userObj = data;
+        notify.showAlert(messages.signUpSuccess, 'success');
+        $state.go('main.cabinet');
+
+        console.log(data);
+      });
+
+      promise.error(function () {
+        notify.showAlert(CONST.messages.signUpError, 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * @name details
+     *
+     * @memberof user
+     *
+     * @description
+     * returns the use details of the given uid.
+     */
+    function details() {
+      return $http.get('/user/' + $cookies.get('uid') + '/details/');
     }
 
     /**

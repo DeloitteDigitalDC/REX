@@ -1,0 +1,34 @@
+$placeholderColor: $gray;
+
+button {
+  outline: none;
+}
+
+.rex-input, .rex-button {
+  border-radius: 30px;
+  font-size: 1.2em;
+}
+
+.rex-input {
+  padding: 18px 30px;
+  height: auto;
+
+  &::-webkit-input-placeholder {
+    color: $placeholderColor;
+  }
+}
+
+.rex-button {
+  padding: 10px;
+  background-color: #fff;
+  border: solid 4px $teal;
+  color: $teal;
+  width: 100%;
+  font-weight: 700;
+  &:hover,
+  &:focus,
+  &:active {
+    color: white;
+    background-color: $teal;
+  }
+}

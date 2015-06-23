@@ -6,7 +6,7 @@
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
     "grunt-asset-injector": "^0.1.0",
-    "grunt-autoprefixer": "^2.2.0",
+    "grunt-autoprefixer": "^3.0.3",
     "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-connect-proxy": "0.1.10",
@@ -33,41 +33,41 @@
     "karma": "^0.12.31",
     "karma-coverage": "^0.4.2",
     "karma-jasmine": "^0.3.5",
+    "karma-ng-html2js-preprocessor": "^0.1.2",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.2.5",
+    "nock": "^2.6.0",
     "supertest": "^1.0.1",
-    "time-grunt": "^1.1.0",
-    "nock": "^2.6.0"
+    "time-grunt": "^1.1.0"
   },
   "engines": {
     "node": ">=0.12.2"
   },
   "scripts": {
     "server": "node node_modules/grunt-cli/bin/grunt serve",
-    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server && npm run report",
+    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
     "linter": "node node_modules/grunt-cli/bin/grunt jshint",
-
-    "test": "npm run test-client && npm run test-server && npm run report",
+    "test": "npm run test-client && npm run test-server",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
-    "test-server": "node node_modules/mocha/bin/_mocha server/tests/unit",
-    "report": "node node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha server/app.js",
-
+    "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js -R spec",
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",
     "route": "yo angular-blueprint:route",
     "blueprint": "yo angular-blueprint:blueprint",
-    "filter": "yo angular-blueprint:filter"
+    "filter": "yo angular-blueprint:filter",
+    "directive": "yo angular-blueprint:directive"
   },
   "dependencies": {
     "body-parser": "^1.13.1",
     "chalk": "^1.0.0",
+    "cookie-parser": "^1.3.5",
     "express": "^4.12.4",
     "firebase": "^2.2.7",
-    "lodash": "^3.9.3",
     "istanbul": "^0.3.15",
+    "lodash": "^3.9.3",
     "request": "^2.58.0"
   }
 }

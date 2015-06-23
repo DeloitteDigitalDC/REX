@@ -1,0 +1,40 @@
+$plus-button-cross-size: 12px;
+
+.plus-button {
+  transition: transform .2s;
+  transform: rotate(0deg);
+  background-color: $scarlet;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  border-width: 0;
+  position: relative;
+
+  &::before {
+    background: #fff;
+    content: "";
+    position: absolute;
+    top:$plus-button-cross-size;
+    bottom: $plus-button-cross-size;
+    left: 50%;
+    margin-left: -2px;
+    display:inline;
+    width: 4px;
+  }
+
+  &::after {
+    background: #fff;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: $plus-button-cross-size;
+    right: $plus-button-cross-size;
+    margin-top: -2px;
+    display:inline;
+    height: 4px;
+  }
+
+  &.open {
+    transform: rotate(45deg);
+  }
+}

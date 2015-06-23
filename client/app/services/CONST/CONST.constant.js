@@ -22,6 +22,12 @@
       event      : drugEvents,
       label      : drugLabel,
       enforcement: drugEnforcement
+    },
+
+    messages: {
+      loginError   : 'Incorrect username or password',
+      signUpSuccess: 'Successfully created account',
+      signUpError  : 'There was a problem creating this account'
     }
   });
 
