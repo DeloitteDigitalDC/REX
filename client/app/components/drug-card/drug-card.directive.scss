@@ -1,0 +1,54 @@
+.drug-card {
+  display: block;
+
+  .card {
+    height: 320px;
+    position: relative;
+
+    .card-icon {
+      display: block;
+      margin: 10px auto;
+      height: 175px;
+      width: 120px;
+      position: relative;
+    }
+
+    .drug-name {
+      word-spacing: 99999999px;
+    }
+
+    .date {
+      margin-top: 20px;
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+    }
+  }
+
+  card {
+    margin: 20px auto;
+
+    &.recalled {
+      .card {
+        background-color: $scarlet;
+        border-color: $lava;
+
+        .date, .drug-name {
+          color: white;
+        }
+        .date{
+          font-weight: 300;
+        }
+
+        .recalled-text{
+          font-size: 4em;
+          text-align: center;
+          font-weight: 700;
+          position: absolute;
+          top: 25%;
+          right: -50%;
+        }
+      }
+    }
+  }
+}
