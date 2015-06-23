@@ -22,9 +22,7 @@ fda.getFDA = function getFDA(req, res) {
   var qs     = req.query,
       params = req.params;
 
-
   qs.search =  decodeURI(qs.search);
-  console.log(qs.search);
 
   qs.api_key = qs.api_key || apiKey;
 
@@ -32,7 +30,7 @@ fda.getFDA = function getFDA(req, res) {
     qs       : qs,
     keepAlive: true
   };
-  console.log(fdaUrl + params.type + '/' + params.cat);
+
   request(fdaUrl + params.type + '/' + params.cat, opts).pipe(res);
 };
 

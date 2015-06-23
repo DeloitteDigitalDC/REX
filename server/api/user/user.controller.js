@@ -122,4 +122,28 @@ user.createUser = function (req, res) {
   });
 };
 
+/**
+ * @name getCabinetDrugs
+ *
+ * @memberof user.controller
+ *
+ * @param req
+ * @param res
+ */
+user.getCabinetDrugs = function (req, res) {
+  request(config.firebase + '/users/' + req.params.uid + '/cabinet/.json?auth=' + req.cookies.jwt).pipe(res);
+};
+
+/**
+ * @name addCabinetDrug
+ *
+ * @memberof user.controller
+ *
+ * @param req
+ * @param res
+ */
+user.addCabinetDrug = function (req, res) {
+  request(config.firebase + '/users/' + req.params.uid + '/cabinet/.json?auth=' + req.cookies.jwt).pipe(res);
+};
+
 module.exports = user;

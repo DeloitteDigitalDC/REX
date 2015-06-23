@@ -6,12 +6,14 @@ describe('factory:user', function () {
   beforeEach(module('rex'));
   beforeEach(module('templates'));
 
-  var user, $httpBackend;
+  var user, $httpBackend, $q;
 
   // initialize a new instance of the factory before each test
   beforeEach(inject(function ($injector) {
     user         = $injector.get('user');
     $httpBackend = $injector.get('$httpBackend');
+    $q           = $injector.get('$q');
+
 
     var myUser = {
       name: 'Ben',
@@ -19,27 +21,20 @@ describe('factory:user', function () {
       sex : 'male'
     };
 
-    var deferred = $q.defer();
-    deferred.resolve('somevalue'); //  always resolved, you can do it from your spec
-    spyOn(user, 'removeAndGetNext').and.returnValue(deferred.promise);
+    $httpBackend.whenPOST('/user/login').respond(200, myUser);
 
+    var deferred = $q.defer();
+    deferred.resolve(myUser); //  always resolved, you can do it from your spec
+    spyOn(user, 'details').and.returnValue(deferred.promise);
   }));
 
   it('should login and get user details', function () {
-
-    $httpBackend.whenPOST('/user/login').respond(200, {
-      name: 'Ben',
-      age : 125,
-      sex : 'male'
-    });
-
     user.login('user@mail.com', 'helloWOrld@1');
 
     $httpBackend.flush();
 
-    user.details().then(function(data) {
-      console.log(data);
-
+    user.details().then(function (data) {
+      console.log('asdfasdfasdfasdfasdfasdf');
       expect(data.name).toBe('Ben');
     });
   });

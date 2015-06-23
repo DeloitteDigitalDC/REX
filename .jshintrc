@@ -21,6 +21,7 @@
     "angular": true,
     "describe": true,
     "it": true,
-    "_": true
+    "_": true,
+    "moment": true
   }
 }
