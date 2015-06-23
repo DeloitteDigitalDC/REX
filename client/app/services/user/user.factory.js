@@ -122,10 +122,25 @@
      * @memberof user
      */
     function getCabinetDrugs() {
+      /**
+       *
+       * @type {*[]}
+       *
+       * @example json generator
+       * [
+       '{{repeat(10)}}',
+       {
+      name : '{{lorem(2, 'words')}}',
+      expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), 'YYYY-MM-ddThh:mm:ss')}}',
+      recalled : '{{bool()}}',
+      id : '{{index(1)}}'
+     }
+       ]
+       */
       //TODO: get list of drugs from out DB in user data
       var drugs = [
         {
-          'name'          : 'Tylenol',
+          'name'          : 'Acetaminophen',
           'expirationDate': '2016-05-02T05:28:07',
           'id'            : 1
         },

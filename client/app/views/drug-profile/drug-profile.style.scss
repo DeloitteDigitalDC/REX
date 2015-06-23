@@ -1,5 +1,11 @@
 .drug-profile {
-
+  .card-fade {
+    padding: 20px 40px 100px 40px;
+    .icon-ic-account-gray  {
+      height: 200px;
+      width: 200px;
+    }
+  }
 }
 
 @media #{$lessThanSmall} {
