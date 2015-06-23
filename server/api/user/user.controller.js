@@ -34,11 +34,40 @@ user.login = function (req, res) {
  *
  * @param req
  * @param res
+ *
+ * @description
+ * get the details for the authenticated used;
  */
 user.getDetails = function (req, res) {
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.jwt).pipe(res);
 };
 
+/**
+ * @name getDetails
+ *
+ * @param req
+ * @param res
+ *
+ * @description
+ * reset a password
+ */
+user.resetPassword = function (req, res) {
+  //{
+  //  email: "bobtony@firebase.com",
+  //  oldPassword: "correcthorsebatterystaple",
+  //  newPassword: "shinynewpassword"
+  //}
+
+  firebaseRef.changePassword(req.body, _changedResponse);
+
+  function _changedResponse(err) {
+    if(err) {
+      res.sendStatus(500).send(err, 'Error changing password');
+    }
+
+    res.sendStatus(200).send('Password has been updated!');
+  }
+};
 
 /**
  * @name router.user.createUser
@@ -49,17 +78,32 @@ user.getDetails = function (req, res) {
  * create a new user
  */
 user.createUser = function (req, res) {
-  var opts = {
-    email    : req.body.username,
-    password : req.body.password,
-    firstName: req.body.firstName
+  var data = req.body;
+
+  var user = {
+    email    : data.username,
+    password : data.password
   };
 
-  firebaseRef.createUser(opts, function (error, userData) {
+  var details = {
+    nickName: data.firstName
+  };
+
+  // create user
+  firebaseRef.createUser(user, function (error, userData) {
     if (error) {
       return res.send(error);
     }
-    res.send(userData);
+
+    firebaseRef.authWithPassword(user, function (error, authData) {
+      if (error) {
+        return res.sendStatus(500).send(error);
+      }
+
+      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, { json: details }, function () {
+        res.send(authData);
+      });
+    });
   });
 };
 

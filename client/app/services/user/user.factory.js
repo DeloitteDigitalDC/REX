@@ -21,7 +21,8 @@
     return {
       login     : login,
       createUser: createUser,
-      getUser   : getUser
+      getUser   : getUser,
+      details   : details
     };
 
     /**
@@ -39,12 +40,9 @@
 
       promise.success(function (data) {
         $cookies.put('jwt', data.token);
+        $cookies.put('uid', data.uid);
 
         $state.go('main.cabinet');
-
-        $http.get('/user/details/' + data.uid + '/').success(function(data) {
-          console.log(data);
-        });
       });
 
       promise.error(function () {
@@ -70,8 +68,10 @@
 
       promise.success(function (data) {
         userObj = data;
-        notify.showAlert(messages.signUpSuccess, 'danger');
+        notify.showAlert(messages.signUpSuccess, 'success');
         $state.go('main.cabinet');
+
+        console.log(data);
       });
 
       promise.error(function () {
@@ -79,6 +79,18 @@
       });
 
       return promise;
+    }
+
+    /**
+     * @name details
+     *
+     * @memberof user
+     *
+     * @description
+     * returns the use details of the given uid.
+     */
+    function details() {
+      return $http.get('/user/' + $cookies.get('uid') + '/details/');
     }
 
     /**
