@@ -4,8 +4,7 @@ describe('directive:drug-card', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
-  // beforeEach(module('templates'));
+  beforeEach(module('templates'));
 
   var element, scope;
 
@@ -16,9 +15,16 @@ describe('directive:drug-card', function () {
 
   // compile the element to be tested
   it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<drug-card></drug-card>');
-    // element = $compile(element)(scope);
+     element = angular.element('<drug-card></drug-card>');
+     element = $compile(element)(scope);
 
-    // scope.$apply();
+     scope.$apply();
+  }));
+
+  it('should be a thing', inject(function ($compile) {
+    element = angular.element('<drug-card></drug-card>');
+    element = $compile(element)(scope);
+
+    scope.$apply();
   }));
 });
