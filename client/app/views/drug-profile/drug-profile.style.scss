@@ -1,3 +1,16 @@
 .drug-profile {
 
 }
+
+@media #{$lessThanSmall} {
+  .drug-profile {
+    .drug-tabs{
+      width: 333px;
+      display: block;
+      margin: 0 auto;
+    }
+    h1{
+      text-align: center;
+    }
+  }
+}

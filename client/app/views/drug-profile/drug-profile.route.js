@@ -7,11 +7,12 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.drugProfile', {
-          url         : '/drug-profile/:id/:name',
+          url         : '/drug-profile/:name',
           templateUrl : 'app/views/drug-profile/drug-profile.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
-          title       : 'Drug profile'
+          title       : 'Drug profile',
+          headerState : 'loggedIn'
         });
     });
 

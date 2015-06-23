@@ -8,7 +8,7 @@
  * @description
  * directive for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -16,12 +16,12 @@
 
   function drugCard($state) {
     return {
-      restrict: 'EA',
+      restrict   : 'EA',
       templateUrl: 'app/components/drug-card/drug-card.directive.html',
-      scope: {
-        drug : '='
+      scope      : {
+        drug: '='
       },
-      link: link
+      link       : link
     };
 
     function link($scope) {
@@ -39,7 +39,7 @@
        * @description
        * user moment.js to determine if drug is expired and set $scope variable to we can assign a class in the view
        */
-      function checkExpired(exprDate){
+      function checkExpired(exprDate) {
         return moment(exprDate).isBefore(moment());
       }
 
@@ -51,8 +51,8 @@
        * @description
        * when a user clicks on a drug card, go to that drug's detailed page
        */
-      $scope.goToDetails = function(){
-        $state.go('main.drugProfile', {id:$scope.drug.id, name:$scope.drug.name});
+      $scope.goToDetails = function () {
+        $state.go('main.drugProfile.uses', {name: $scope.drug.name});
       };
 
     }
