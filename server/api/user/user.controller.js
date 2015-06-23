@@ -16,8 +16,6 @@ var user = {};
  * login through firebase
  */
 user.login = function (req, res) {
-  var uid = req.params.uid;
-
   var opts = {
     email   : req.body.username,
     password: req.body.password
@@ -26,10 +24,10 @@ user.login = function (req, res) {
   fb.login(opts, __success, __error);
 
   function __success(auth) {
-    request(url + '/users/' + uid + '.json?auth=' + auth.token, function (err, user) {
-      user.token = auth.token;
+    request(url + 'users/' + auth.uid + '/.json?auth=' + auth.token, function (err, reslt, body) {
+      auth.data = JSON.parse(body);
 
-      res.send(user);
+      res.send(auth);
     });
   }
 

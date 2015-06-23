@@ -70,12 +70,12 @@ npm run test-client // just client side tests
 ```
 
 ```
-npm run test-server // just run server side tests
+npm run test-server // just server side tests
 ```
 
 ##### To build app for deployment
 
-This will create a folder called /dist which will container server/ and client/.
+This will create a folder called /dist which will contain server/ and client/.
 
 ```
 npm run build

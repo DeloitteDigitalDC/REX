@@ -25,7 +25,7 @@
       vm.fmlyBtnState = !vm.fmlyBtnState;
     }
 
-    user.details().success(function(data) {
+    user.details().then(function(data) {
       console.log(data);
     });
   }
