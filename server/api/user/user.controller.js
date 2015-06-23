@@ -1,6 +1,8 @@
 'use strict';
 
-var firebaseRef = require('../../firebase');
+var firebaseRef = require('../../firebase'),
+    request     = require('request'),
+    config      = require('../../config');
 
 var user = {};
 
@@ -22,10 +24,21 @@ user.login = function (req, res) {
     if (error) {
       return res.sendStatus(500).send(error);
     }
+
     res.send(authData);
   });
-
 };
+
+/**
+ * @name getDetails
+ *
+ * @param req
+ * @param res
+ */
+user.getDetails = function (req, res) {
+  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.jwt).pipe(res);
+};
+
 
 /**
  * @name router.user.createUser
@@ -36,11 +49,9 @@ user.login = function (req, res) {
  * create a new user
  */
 user.createUser = function (req, res) {
-  console.log('body', req.body);
-
   var opts = {
-    email   : req.body.username,
-    password: req.body.password,
+    email    : req.body.username,
+    password : req.body.password,
     firstName: req.body.firstName
   };
 

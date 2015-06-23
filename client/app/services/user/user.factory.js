@@ -14,7 +14,7 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $log, $state, notify, CONST) {
+  function user($http, $state, notify, CONST, $cookies) {
     var messages = CONST.messages,
         userObj  = {};
 
@@ -38,13 +38,17 @@
       var promise = $http.post('/user/login', {username: username, password: password});
 
       promise.success(function (data) {
-        userObj = data;
+        $cookies.put('jwt', data.token);
 
         $state.go('main.cabinet');
+
+        $http.get('/user/details/' + data.uid + '/').success(function(data) {
+          console.log(data);
+        });
       });
 
       promise.error(function () {
-        notify.showAlert(CONST.string.loginError, 'danger');
+        notify.showAlert(CONST.messages.loginError, 'danger');
       });
 
       return promise;
@@ -71,7 +75,7 @@
       });
 
       promise.error(function () {
-        notify.showAlert(CONST.string.signUpError, 'danger');
+        notify.showAlert(CONST.messages.signUpError, 'danger');
       });
 
       return promise;
