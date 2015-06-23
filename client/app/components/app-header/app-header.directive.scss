@@ -7,7 +7,8 @@
     transform: translateY(0);
     transition: all .2s;
     position: absolute;
-    left: 0;
+    left: 50%;
+    margin-left: -85px;
     top: 50%;
     margin-top: -40px;
   }
@@ -22,7 +23,7 @@
     right: 0;
     top: 50%;
     margin-top: -24px;
-    transform: translateY(0);
+    transform: translateY(-100px);
 
     .username {
       float: left;
@@ -33,14 +34,14 @@
   }
 
   // start custom state styles
-  &.login {
+  &.loggedIn {
     .icon-logo-Rex {
-      left: 50%;
-      margin-left: -85px;
+      left: 0;
+      margin-left: 0;
     }
 
     .user-account {
-      transform: translateY(-100px);
+      transform: translateY(0);
     }
   }
 }

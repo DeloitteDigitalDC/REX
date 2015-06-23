@@ -17,6 +17,8 @@ app.use(express.static(config.appDir)); // use the static app directory
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
 
+app.use(require('cookie-parser')());
+
 require('./router')(app); // include the router
 
 module.exports = app;

@@ -25,7 +25,6 @@ describe('Controller: AppCtrl', function () {
     $rootScope.$digest();
 
     expect(AppCtrl.title).toBe('Login');
-    expect(AppCtrl.headerState).toBe('login');
   });
 
 });

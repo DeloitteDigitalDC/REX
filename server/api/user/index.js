@@ -11,6 +11,8 @@
 var router = require('express').Router(),
     ctrl   = require('./user.controller');
 
+router.get('/details/:uid', ctrl.getDetails);
+
 router.post('/login', ctrl.login);
 router.post('/create', ctrl.createUser);
 
