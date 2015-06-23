@@ -14,7 +14,7 @@
     .module('rex')
     .controller('UserProfileCtrl', UserProfileCtrl);
 
-  function UserProfileCtrl() {
+  function UserProfileCtrl(user) {
     var vm = this;
 
     vm.fmlyBtnState = false;
@@ -24,6 +24,10 @@
     function fmlyBtnToggle() {
       vm.fmlyBtnState = !vm.fmlyBtnState;
     }
+
+    user.details().success(function(data) {
+      console.log(data);
+    });
   }
 
 })();
