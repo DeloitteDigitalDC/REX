@@ -29,6 +29,11 @@
      * @memberof drugs
      *
      * @param {Object} qs
+     *
+     * @example
+     * drug.events({ search: 'patient.patientonsetage:56', limit: 25 }).success(function (data) {
+          console.log(data);
+        });
      */
     function events(qs) {
       return $http.get(path.event, {params: qs});
@@ -42,7 +47,7 @@
      * @param {Object} qs
      */
     function labels(qs) {
-      return $http.get(path.drugLabel, {params: qs});
+      return $http.get(path.label, {params: qs});
     }
 
     /**
@@ -53,7 +58,7 @@
      * @param {Object} qs
      */
     function enforce(qs) {
-      return $http.get(path.drugEnforcement, {params: qs});
+      return $http.get(path.enforcement, {params: qs});
     }
   }
 

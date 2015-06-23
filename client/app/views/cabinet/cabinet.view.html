@@ -1,3 +1,17 @@
-<section class="cabinet">
-  cabinet view
-</section>
+<div class="cabinet">
+  <app-section class="text-center bg-white">
+    <h2 class="text-teal">My Drug Cabinet</h2>
+    <div class="row">
+      <div class="col-sm-12">
+        <input class="text-center pull-right form-control" ng-model="cabinet.filter" placeholder="Filter by Drug Name">
+      </div>
+    </div>
+  </app-section>
+  <app-section class="bg-lighter-gray">
+    <div class="row">
+      <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
+        <drug-card drug="drug"></drug-card>
+      </div>
+    </div>
+  </app-section>
+</div>
