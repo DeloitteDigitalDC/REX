@@ -14,10 +14,10 @@
     .module('rex')
     .controller('DrugProfileCtrl', DrugProfileCtrl);
 
-  function DrugProfileCtrl() {
+  function DrugProfileCtrl($stateParams) {
     var vm = this;
+    vm.drugName = $stateParams.name;
 
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
   }
 
 })();
