@@ -22,10 +22,13 @@
 @import '../app/components/card-fade/card-fade.directive.scss';
 @import '../app/components/card/card.directive.scss';
 @import '../app/components/drug-card/drug-card.directive.scss';
+@import '../app/components/drug-tabs/drug-tabs.directive.scss';
 @import '../app/components/plus-button/plus-button.directive.scss';
 @import '../app/views/about/about.view.scss';
 @import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/drug-profile/drug-profile.style.scss';
+@import '../app/views/drug-profile/pregnancy/pregnancy.style.scss';
+@import '../app/views/drug-profile/recalls/recalls.style.scss';
 @import '../app/views/drug-profile/uses/uses.style.scss';
 @import '../app/views/drug-profile/warnings/warnings.style.scss';
 @import '../app/views/home/home.view.scss';
