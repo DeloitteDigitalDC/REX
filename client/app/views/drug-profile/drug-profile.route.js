@@ -11,7 +11,8 @@
           templateUrl : 'app/views/drug-profile/drug-profile.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
-          title       : 'Drug profile'
+          title       : 'Drug profile',
+          headerState : 'loggedIn'
         });
     });
 

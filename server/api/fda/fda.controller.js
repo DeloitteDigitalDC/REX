@@ -24,6 +24,7 @@ fda.getFDA = function getFDA(req, res) {
 
 
   qs.search =  decodeURI(qs.search);
+  console.log(qs.search);
 
   qs.api_key = qs.api_key || apiKey;
 
