@@ -25,8 +25,7 @@
     };
 
     function link($scope) {
-      $scope.expired = false;
-
+      $scope.expired = moment($scope.drug.expirationDate).isBefore(moment());
 
     }
   }

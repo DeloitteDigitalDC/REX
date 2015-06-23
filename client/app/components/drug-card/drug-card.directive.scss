@@ -22,6 +22,9 @@
       position: absolute;
       bottom: 15px;
       left: 15px;
+      &.expired{
+        color: $scarlet;
+      }
     }
   }
 
