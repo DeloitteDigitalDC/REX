@@ -61,8 +61,8 @@
               console.log('drug match name', drug.name);
             }
           }
-        })
-      })
+        });
+      });
     }
 
     init();
