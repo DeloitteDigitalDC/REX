@@ -14,16 +14,16 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, notify, CONST, $cookies) {
+  function user($http, $state, notify, CONST, $cookies, $q) {
     var messages = CONST.messages,
         userObj  = {};
 
     return {
-      login     : login,
-      createUser: createUser,
-      getUser   : getUser,
-      details   : details,
-      getCabinetDrugs     : getCabinetDrugs
+      login          : login,
+      logout         : logout,
+      createUser     : createUser,
+      details        : details,
+      getCabinetDrugs: getCabinetDrugs
     };
 
     /**
@@ -43,6 +43,8 @@
         $cookies.put('jwt', data.token);
         $cookies.put('uid', data.uid);
 
+        userObj = data;
+
         $state.go('main.cabinet');
       });
 
@@ -51,6 +53,18 @@
       });
 
       return promise;
+    }
+
+    /**
+     * @name logout
+     *
+     * @memberof user
+     *
+     * @description log the user out by removing the login cookies from browser.
+     */
+    function logout() {
+      $cookies.remove('jwt');
+      $cookies.remove('uid');
     }
 
     /**
@@ -71,8 +85,6 @@
         userObj = data;
         notify.showAlert(messages.signUpSuccess, 'success');
         $state.go('main.cabinet');
-
-        console.log(data);
       });
 
       promise.error(function () {
@@ -91,19 +103,17 @@
      * returns the use details of the given uid.
      */
     function details() {
-      return $http.get('/user/' + $cookies.get('uid') + '/details/');
-    }
+      var deferred = $q.defer();
 
-    /**
-     * TODO: need to try to fetch user from firebase if not object stored
-     * @name getUser
-     *
-     * @memberof user
-     */
-    function getUser() {
-      return userObj;
-    }
+      if (userObj) {
+        deferred.resolve(userObj.data);
+      }
+      else {
+        return $http.get('/user/' + $cookies.get('uid') + '/details/');
+      }
 
+      return deferred.promise;
+    }
 
     /**
      * TODO: need to try to get this data from firebase
@@ -111,7 +121,7 @@
      *
      * @memberof user
      */
-    function getCabinetDrugs(){
+    function getCabinetDrugs() {
       /**
        *
        * @type {*[]}
@@ -120,11 +130,11 @@
        * [
        '{{repeat(10)}}',
        {
-		  name : '{{lorem(2, "words")}}',
-		  expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), "YYYY-MM-ddThh:mm:ss")}}',
-		  recalled : '{{bool()}}',
-		  id : '{{index(1)}}'
-		 }
+      name : '{{lorem(2, "words")}}',
+      expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), "YYYY-MM-ddThh:mm:ss")}}',
+      recalled : '{{bool()}}',
+      id : '{{index(1)}}'
+     }
        ]
        */
       //TODO: get list of drugs from out DB in user data
@@ -152,9 +162,6 @@
       ];
       return drugs;
     }
-
   }
 
 })();
-
-

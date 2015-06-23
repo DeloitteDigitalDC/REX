@@ -12,9 +12,21 @@ describe('factory:user', function () {
   beforeEach(inject(function ($injector) {
     user         = $injector.get('user');
     $httpBackend = $injector.get('$httpBackend');
+
+    var myUser = {
+      name: 'Ben',
+      age : 125,
+      sex : 'male'
+    };
+
+    var deferred = $q.defer();
+    deferred.resolve('somevalue'); //  always resolved, you can do it from your spec
+    spyOn(user, 'removeAndGetNext').and.returnValue(deferred.promise);
+
   }));
 
   it('should login and get user details', function () {
+
     $httpBackend.whenPOST('/user/login').respond(200, {
       name: 'Ben',
       age : 125,
@@ -25,7 +37,11 @@ describe('factory:user', function () {
 
     $httpBackend.flush();
 
-    expect(user.getUser().name).toBe('Ben');
+    user.details().then(function(data) {
+      console.log(data);
+
+      expect(data.name).toBe('Ben');
+    });
   });
 
   it('should create and account and get user details', function () {
@@ -37,7 +53,5 @@ describe('factory:user', function () {
     user.createUser('user@mail.com', 'helloWOrld@1', 'Lucy');
 
     $httpBackend.flush();
-
-    expect(user.getUser().age).toBe(25);
   });
 });

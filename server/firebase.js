@@ -1,3 +1,5 @@
+'use strict';
+
 var Firebase     = require('firebase'),
     firebasePath = require('./config').firebase,
     firebaseRef  = new Firebase(firebasePath);

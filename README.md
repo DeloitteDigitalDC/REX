@@ -38,7 +38,7 @@ rm -rf .git
 
 ### Configure App
 
-The app can be configured in two way. 
+The app can be configured in two ways. 
 
 The first way is to use Environment Variables.
 
@@ -53,25 +53,37 @@ PORT          | the server port               | 3000
 
 ### Commands
 
-To start the development server
+##### To start the development server
 
 ```
 npm run server
 ```
 
-To run unit tests
+##### To run unit tests
 
 ```
-npm run test
+npm run test // all tests
 ```
 
-To build app for deployment
+```
+npm run test-client // just client side tests
+```
+
+```
+npm run test-server // just server side tests
+```
+
+##### To build app for deployment
+
+This will create a folder called /dist which will contain server/ and client/.
 
 ```
 npm run build
 ```
 
-Generate documentation
+To start the server for production navigate to the dist folder and run ```node ./server/app-server.js```
+
+##### Generate documentation
 
 ```
 npm run docs

@@ -2,7 +2,8 @@
 
 var fb      = require('../../firebase'),
     request = require('request'),
-    config  = require('../../config');
+    config  = require('../../config'),
+    url     = config.firebase;
 
 var user = {};
 
@@ -22,8 +23,12 @@ user.login = function (req, res) {
 
   fb.login(opts, __success, __error);
 
-  function __success(authData) {
-    res.send(authData)
+  function __success(auth) {
+    request(url + 'users/' + auth.uid + '/.json?auth=' + auth.token, function (err, reslt, body) {
+      auth.data = JSON.parse(body);
+
+      res.send(auth);
+    });
   }
 
   function __error(err) {
