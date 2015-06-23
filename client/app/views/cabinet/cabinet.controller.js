@@ -32,8 +32,7 @@
      */
     function queryRecalls() {
       var query = util.createSearchQry(vm.drugs);
-      //TODO: add status:ongoing -- this is working with our API right now
-      //TODO: Related to above, handle search terms with spaces
+      //TODO: add status:ongoing -- this isnt working with our API right now
       // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
        var searchTerm = '(' + _.trimRight(query, '+') +')';
       drug.enforce({search: searchTerm, limit: 100}).success(function (data) {

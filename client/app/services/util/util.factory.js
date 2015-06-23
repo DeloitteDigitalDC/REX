@@ -33,7 +33,7 @@
     function createSearchQry(drugArray) {
       var string = 'openfda.brand_name:';
       _.forEach(drugArray, function (el) {
-
+        //TODO wrap multiple words in quotes, remove the word AND, ongoing status
         string = string + encodeURIComponent(el.name) + '+';
       });
       return string;

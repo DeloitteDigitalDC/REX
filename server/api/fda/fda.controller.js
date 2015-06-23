@@ -23,10 +23,7 @@ fda.getFDA = function getFDA(req, res) {
       params = req.params;
 
 
-  console.log('params', params);
-
   qs.search =  decodeURI(qs.search);
-  console.log('qs', qs);
 
   qs.api_key = qs.api_key || apiKey;
 
