@@ -27,6 +27,7 @@
 
     function link(scope) {
       scope.goHome = goHome;
+      scope.goToSearch = goToSearch;
 
       /**
        * If the user is logged in take them to the cabinet else go to the home page.
@@ -40,6 +41,10 @@
         else {
           $state.go('main.home');
         }
+      }
+
+      function goToSearch() {
+        $state.go('main.search.searchResults');
       }
     }
   }

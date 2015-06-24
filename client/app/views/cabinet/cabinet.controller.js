@@ -44,14 +44,12 @@
      * @private
      */
     function _queryRecalls() {
-      var query = util.createSearchQry(vm.drugs);
+      var query = util.createBasicQry(vm.drugs);
 
       //TODO: add status:ongoing -- this isnt working with our API right now
       // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
 
-      var searchTerm = '(' + _.trimRight(query, '+') + ')';
-
-      drug.enforce({search: searchTerm, limit: 100}).success(function (data) {
+      drug.enforce({search: query, limit: 100}).success(function (data) {
         recalls = data.results;
 
         _compareRecalls();

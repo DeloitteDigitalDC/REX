@@ -1,9 +1,33 @@
 .search-input{
+  border-bottom: solid 3px $lightGray;
   .rex-input{
     margin: 20px 0;
-    &:after{
+  }
+  button.search-icon{
+    width: 65px;
+    height: 72px;
+    position: absolute;
+    right: 26px;
+    top: 22px;
+    background-color: transparent;
+    border: 0;
+    @extend .icon-ic_search_48px;
+  }
+}
 
-      @extend .icon-ic_search_48px;
+@media #{$lessThanSmall} {
+  .search-input {
+    h1{
+      text-align: center;
+    }
+
+  }
+}
+
+@media #{$lessThanTablet} {
+  .search-input {
+    button.search-icon{
+      top: 0px;
     }
   }
 }

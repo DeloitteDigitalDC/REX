@@ -17,7 +17,8 @@
   function SearchCtrl() {
     var vm = this;
 
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
+    vm.results = [];
+
   }
 
 })();
