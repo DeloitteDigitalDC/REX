@@ -1,4 +1,7 @@
 <div class="search">
-  <div search-input></div>
+  <div search-input search-results="search.results"></div>
+    <app-section class="bg-lighter-gray" ng-show="search.results.length === 0">
+      <hr class="thickest">
+    </app-section>
   <ui-view></ui-view>
 </div>

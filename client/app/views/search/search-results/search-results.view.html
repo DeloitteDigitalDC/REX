@@ -1,5 +1,6 @@
 <section class="search-results">
   <app-section class="bg-lighter-gray">
-    <hr class="thickest">
+    <div ng-repeat="result in search.results">{{result.openfda.brand_name[0]}}</div>
   </app-section>
+
 </section>

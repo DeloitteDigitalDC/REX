@@ -63,8 +63,6 @@
         qry = qry + 'openfda.brand_name:"' + w + '"+';
       });
 
-      debugger;
-
       qry = _.trimRight(qry, '+');
       qry       = '(' + qry + ')';
 
