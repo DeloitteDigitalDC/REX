@@ -104,6 +104,10 @@ user.createUser = function (req, res) {
       1: {
         name: 'Niacin',
         expirationDate: '1/1/2018'
+      },
+      3: {
+        name: 'Acetaminophen',
+        expirationDate: '5/10/2018'
       }
     }
   };
