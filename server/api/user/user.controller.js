@@ -8,8 +8,6 @@ var fb      = require('../../firebase'),
 var user = {};
 
 /**
- * @name login
- *
  * @memberof user.controller
  *
  * @description
@@ -39,15 +37,12 @@ user.login = function (req, res) {
 };
 
 /**
- * @name getDetails
+ * get the details for the authenticated used;
  *
  * @memberof user.controller
  *
  * @param req
  * @param res
- *
- * @description
- * get the details for the authenticated used;
  */
 user.getDetails = function (req, res) {
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
