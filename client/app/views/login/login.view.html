@@ -9,12 +9,16 @@
     <form class="form" name="loginForm" ng-submit="LoginCtrl.login()">
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
+          <label class="sr-only" for="username">Username</label>
+
           <input ng-minlength="3" type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
+          <label class="sr-only" for="inputPassword">Password</label>
+
           <input ng-minlength="3" type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
         </div>
       </div>
