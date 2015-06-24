@@ -1,26 +1,25 @@
 .cabinet {
-  h2{
+  h2 {
     text-align: left;
   }
-  input.form-control{
+
+  input.rex-input {
     display: inline-block;
-    width: 250px;
-    margin-left: 15px;
-    margin-right: 15px;
   }
 }
 
 @media #{$lessThanSmall} {
   .cabinet {
-
-    h2{
+    h2 {
       text-align: center;
     }
-    input.form-control{
+
+    input.form-control {
       width: 100%;
       margin: 10px 0;
     }
-    .filter-label{
+
+    .filter-label {
       display: none;
     }
   }
