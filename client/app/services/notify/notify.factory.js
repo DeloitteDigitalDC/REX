@@ -23,7 +23,6 @@
     };
 
     /**
-     * @name showAlert
      *
      * @memberof notify
      *
@@ -54,7 +53,6 @@
     }
 
     /**
-     * @name hideAlert
      *
      * @memberof notify
      *

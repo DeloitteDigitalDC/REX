@@ -27,7 +27,6 @@
     };
 
     /**
-     * @name login
      *
      * @memberof user
      *
@@ -68,15 +67,16 @@
     }
 
     /**
-     * @name createUser
+     *
+     * @param {String} username
+     * @param {String} password
+     * @param {String} firstName
      *
      * @memberof user
      *
      * @description create a new user
      *
-     * @param {String} username
-     * @param {String} password
-     * @param {String} firstName
+
      */
     function createUser(username, password, firstName) {
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
@@ -95,7 +95,6 @@
     }
 
     /**
-     * @name details
      *
      * @memberof user
      *
@@ -117,7 +116,6 @@
 
     /**
      * TODO: need to try to get this data from firebase
-     * @name getCabinetDrugs
      *
      * @memberof user
      */
@@ -126,18 +124,13 @@
       var drugs = [
         {
           'name'          : 'Acetaminophen',
-          'expirationDate': '2016-05-02T05:28:07',
+          'expirationDate': '2015-02-02T05:28:07',
           'id'            : 1
         },
         {
           'name'          : 'Advil', //ADVIL PM comes back but not matching our check
           'expirationDate': '2015-10-29T16:00:55',
           'id'            : 2
-        },
-        {
-          'name'          : 'OXYCODONE ACETAMINOPHEN', //OXYCODONE AND ACETAMINOPHEN comes back (and others) but not counting in our match
-          'expirationDate': '2016-03-17T05:41:15',
-          'id'            : 3
         },
         {
           'name'          : 'NIACIN',

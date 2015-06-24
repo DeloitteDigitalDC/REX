@@ -22,17 +22,18 @@
     $rootScope.$on('$stateChangeSuccess', stateChangeSuccess); // Listen for state change
 
     /**
-     * @name stateChangeSuccess
      *
      * @memberof AppCtrl
      *
      * @param {Object} event - the event object
      * @param {Object} newState - the new state object
      */
-    function stateChangeSuccess(event, newState) {
+    function stateChangeSuccess(event, newState, toParams, fromState, fromParams) {
       vm.title = newState.title;
 
       vm.headerState = newState.headerState;
+
+      vm.state = newState;
 
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
