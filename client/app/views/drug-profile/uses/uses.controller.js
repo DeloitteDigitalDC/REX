@@ -8,7 +8,7 @@
  * @description
  * Controller for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -22,7 +22,7 @@
 
     init();
 
-    function init(){
+    function init() {
       _getDrugData();
     }
 
@@ -36,9 +36,8 @@
      *
      * @TODO check for best result when more than one is returned? not sure if they are always identical for the fields we care about
      */
-
-    function _getDrugData(){
-      drug.labels({ search: 'openfda.brand_name.exact:"'+ vm.drugName +'"', limit: 25 }).success(function (data) {
+    function _getDrugData() {
+      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}).success(function (data) {
         console.log(data);
         vm.drugData = data.results[0];
         console.log(vm.drugData);

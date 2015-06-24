@@ -122,21 +122,6 @@
      * @memberof user
      */
     function getCabinetDrugs() {
-      /**
-       *
-       * @type {*[]}
-       *
-       * @example json generator
-       * [
-       '{{repeat(10)}}',
-       {
-      name : '{{lorem(2, 'words')}}',
-      expirationDate : '{{date(new Date(2015, 0, 1), new Date(2017, 0, 1), 'YYYY-MM-ddThh:mm:ss')}}',
-      recalled : '{{bool()}}',
-      id : '{{index(1)}}'
-     }
-       ]
-       */
       //TODO: get list of drugs from out DB in user data
       var drugs = [
         {
@@ -148,11 +133,6 @@
           'name'          : 'Advil', //ADVIL PM comes back but not matching our check
           'expirationDate': '2015-10-29T16:00:55',
           'id'            : 2
-        },
-        {
-          'name'          : 'Oxycodone Acetaminophen', //OXYCODONE AND ACETAMINOPHEN comes back (and others) but not counting in our match
-          'expirationDate': '2016-03-17T05:41:15',
-          'id'            : 3
         },
         {
           'name'          : 'NIACIN',

@@ -1,7 +1,8 @@
 <section class="drug-profile profile-shared">
   <app-section class="bg-white page-top">
-    <div class="text-teal bold"><span class="icon-ic_arrow_back_24px"></span><span class="back-text">Back</span></div>
+    <div state="AppCtrl.fromState" back-button></div>
     <h1>{{drugProfile.drugName}}</h1>
+
     <div drug-tabs drug-name="drugProfile.drugName"></div>
   </app-section>
 

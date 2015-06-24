@@ -29,10 +29,12 @@
      * @param {Object} event - the event object
      * @param {Object} newState - the new state object
      */
-    function stateChangeSuccess(event, newState) {
+    function stateChangeSuccess(event, newState, toParams, fromState, fromParams) {
       vm.title = newState.title;
 
       vm.headerState = newState.headerState;
+
+      vm.fromState = fromState;
 
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     }

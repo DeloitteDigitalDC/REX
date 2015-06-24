@@ -47,6 +47,7 @@
      * @param {Object} qs
      */
     function labels(qs) {
+      console.log(qs);
       return $http.get(path.label, {params: qs});
     }
 
@@ -58,6 +59,8 @@
      * @param {Object} qs
      */
     function enforce(qs) {
+      console.log('qs', qs);
+      console.log('path', path.enforcement);
       return $http.get(path.enforcement, {params: qs});
     }
   }
