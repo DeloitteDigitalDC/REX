@@ -25,7 +25,9 @@
 
     function link($scope) {
       $scope.goBack = function(){
-        if ($state.includes('main.drugProfile.**')) {
+        if ($state.includes('main.search.**')) {
+          $state.go('main.search');
+        } else {
           $state.go('main.cabinet');
         }
       };

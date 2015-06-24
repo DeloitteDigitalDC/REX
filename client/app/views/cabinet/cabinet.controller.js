@@ -63,12 +63,11 @@
      */
     function _compareRecalls() {
       _.forEach(vm.drugs, function (drug) {
-
         if(drug) {
           _.forEach(recalls, function (recall) {
 
             if (recall.openfda.brand_name) {
-              if (recall.openfda.brand_name[0] === drug.name) {
+              if ((recall.openfda.brand_name[0]).toUpperCase() === (drug.name).toUpperCase()) {
                 drug.recalled = true;
               }
             }

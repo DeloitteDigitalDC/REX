@@ -17,7 +17,6 @@
   function WarningsCtrl($stateParams, drug) {
     var vm = this;
 
-    //since different fiend schema, don't load until we have received the data
     vm.fieldsLoaded = false;
     vm.drugName = $stateParams.name;
     vm.drugData = {};

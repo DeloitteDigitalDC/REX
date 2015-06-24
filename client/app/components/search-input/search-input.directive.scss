@@ -1,0 +1,9 @@
+.search-input{
+  .rex-input{
+    margin: 20px 0;
+    &:after{
+
+      @extend .icon-ic_search_48px;
+    }
+  }
+}

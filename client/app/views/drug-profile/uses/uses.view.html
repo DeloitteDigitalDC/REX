@@ -1,4 +1,4 @@
-<section class="uses">
+<section class="uses" ng-show="uses.fieldsLoaded">
   <h3>Indications and Usage</h3>
 
   <p>{{ uses.drugData.indications_and_usage ? uses.drugData.indications_and_usage[0] : 'No data available.' }}</p>

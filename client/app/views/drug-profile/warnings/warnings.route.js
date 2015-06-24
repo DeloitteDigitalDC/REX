@@ -13,6 +13,14 @@
           controllerAs: 'warnings',
           title       : 'Warnings',
           headerState : 'loggedIn'
+        })
+        .state('main.search.drugProfile.warnings', {
+          url         : '/warnings',
+          templateUrl : 'app/views/drug-profile/warnings/warnings.view.html',
+          controller  : 'WarningsCtrl',
+          controllerAs: 'warnings',
+          title       : 'Warnings',
+          headerState : 'loggedIn'
         });
     });
 
