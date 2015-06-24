@@ -31,9 +31,7 @@
                 }
               }
               else {
-                if($cookies.get('token') ) {
-                  return user.details();
-                }
+                return user.details();
               }
             }
           }

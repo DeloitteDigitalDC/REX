@@ -19,7 +19,7 @@ describe('Controller: AppCtrl', function () {
     expect(AppCtrl.title).toBe('REX');
   });
 
-  it('should change title and headerState to Login/login', function () {
+  it('should change title to Login', function () {
     $state.go('main.login');
 
     $rootScope.$digest();

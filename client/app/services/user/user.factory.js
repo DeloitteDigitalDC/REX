@@ -86,7 +86,6 @@
     }
 
     /**
-     *
      * @memberof user
      *
      * @description

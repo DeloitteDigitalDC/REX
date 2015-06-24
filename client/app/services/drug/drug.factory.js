@@ -25,6 +25,8 @@
     };
 
     /**
+     * Query the
+     *
      * @memberof drugs
      *
      * @param {Object} qs

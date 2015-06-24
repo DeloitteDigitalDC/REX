@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:DrugProfile
+ * @name DrugProfile
  *
  * @description
  * Controller for rex

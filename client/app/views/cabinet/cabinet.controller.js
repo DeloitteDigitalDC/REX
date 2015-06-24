@@ -21,23 +21,27 @@
 
     init();
 
+    /**
+     * @memberof CabinetCtrl
+     */
     function init() {
       vm.drugs = [];
 
       user.details().then(function(data) {
         vm.drugs = data.data.drugs;
 
-        queryRecalls();
+        _queryRecalls();
       });
     }
 
     /**
-     *
      * @memberof CabinetCtrl
      *
      * @description create string and query for recalls
+     *
+     * @private
      */
-    function queryRecalls() {
+    function _queryRecalls() {
       var query = util.createSearchQry(vm.drugs);
 
       //TODO: add status:ongoing -- this isnt working with our API right now
@@ -47,17 +51,17 @@
 
       drug.enforce({search: searchTerm, limit: 100}).success(function (data) {
         recalls = data.results;
-        compareRecalls();
+
+        _compareRecalls();
       });
     }
 
     /**
-     *
      * @memberof CabinetCtrl
      *
      * @description loop through each of the users drugs and check if it matches one of the recalled drugs
      */
-    function compareRecalls() {
+    function _compareRecalls() {
       _.forEach(vm.drugs, function (drug) {
 
         if(drug) {
