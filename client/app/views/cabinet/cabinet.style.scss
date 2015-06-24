@@ -6,6 +6,10 @@
   input.rex-input {
     display: inline-block;
   }
+
+  .drugs {
+    min-height: 390px;
+  }
 }
 
 @media #{$lessThanSmall} {

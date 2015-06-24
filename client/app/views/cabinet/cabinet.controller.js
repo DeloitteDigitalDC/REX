@@ -30,6 +30,8 @@
       user.details().then(function(data) {
         vm.drugs = data.data.drugs;
 
+        console.log(vm.drugs);
+
         _queryRecalls();
       });
     }

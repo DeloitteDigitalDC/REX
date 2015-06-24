@@ -167,7 +167,7 @@
 
       userObj = data;
 
-      $state.go('main.cabinet');
+      $state.go('main.cabinet', {}, {reload: true});
     }
   }
 
