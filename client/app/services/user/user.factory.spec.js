@@ -18,7 +18,10 @@ describe('factory:user', function () {
     var myUser = {
       name: 'Ben',
       age : 125,
-      sex : 'male'
+      sex : 'male',
+      data: {
+        nickName: 'Foo'
+      }
     };
 
     $httpBackend.whenPOST('/user/login').respond(200, myUser);
@@ -42,7 +45,10 @@ describe('factory:user', function () {
   it('should create and account and get user details', function () {
     $httpBackend.whenPOST('/user/create').respond(200, {
       name: 'Lucy',
-      age : 25
+      age : 25,
+      data: {
+        nickName: 'foo'
+      }
     });
 
     user.createUser('user@mail.com', 'helloWOrld@1', 'Lucy');
