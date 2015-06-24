@@ -8,8 +8,6 @@ var fb      = require('../../firebase'),
 var user = {};
 
 /**
- * @name login
- *
  * @memberof user.controller
  *
  * @description
@@ -39,15 +37,12 @@ user.login = function (req, res) {
 };
 
 /**
- * @name getDetails
+ * get the details for the authenticated used;
  *
  * @memberof user.controller
  *
  * @param req
  * @param res
- *
- * @description
- * get the details for the authenticated used;
  */
 user.getDetails = function (req, res) {
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
@@ -99,7 +94,16 @@ user.createUser = function (req, res) {
   };
 
   var details = {
-    nickName: data.firstName
+    nickName: data.firstName,
+    //Sample Seed Data
+    drugs: {
+      0: {
+        name: 'Advil'
+      },
+      1: {
+        name: 'Niacin'
+      }
+    }
   };
 
   // create user
@@ -113,8 +117,9 @@ user.createUser = function (req, res) {
 
     // on successful login update the current users data in the users collection
     function __success(authData) {
-      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, {json: details}, function () {
+      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, {json: details}, function (err, data, body) {
         authData.success = 'USER_CREATED';
+        authData.data = body;
 
         res.send(authData);
       });
