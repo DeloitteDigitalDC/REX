@@ -25,9 +25,11 @@
     },
 
     messages: {
-      loginError   : 'Incorrect username or password',
-      signUpSuccess: 'Successfully created account',
-      signUpError  : 'There was a problem creating this account'
+      'INVALID_USER'    : 'Incorrect username',
+      'INVALID_PASSWORD': 'Invalid password',
+      'EMAIL_TAKEN'     : 'There is already an account with this email',
+      'USER_CREATED'    : 'Successfully created account ',
+      'LOGGED_IN'       : 'Logged in as '
     }
   });
 

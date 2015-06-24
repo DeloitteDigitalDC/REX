@@ -14,8 +14,9 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, notify, CONST, $cookies, $q) {
+  function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
+        cookies  = ['uid', 'token'],
         userObj  = {};
 
     return {
@@ -27,118 +28,146 @@
     };
 
     /**
+     * logs in a user
      *
      * @memberof user
-     *
-     * @description logs in a user
      *
      * @param {String} username - the username
      * @param {String} password - the password
      */
     function login(username, password) {
+      $rootScope.loading = true;
+
       var promise = $http.post('/user/login', {username: username, password: password});
 
       promise.success(function (data) {
-        $cookies.put('jwt', data.token);
-        $cookies.put('uid', data.uid);
-
-        userObj = data;
-
-        $state.go('main.cabinet');
-      });
-
-      promise.error(function () {
-        notify.showAlert(CONST.messages.loginError, 'danger');
+        _authenticate(data);
       });
 
       return promise;
     }
 
     /**
-     * @name logout
+     * Log the user out by removing the login cookies from browser
      *
      * @memberof user
-     *
-     * @description log the user out by removing the login cookies from browser.
      */
     function logout() {
-      $cookies.remove('jwt');
-      $cookies.remove('uid');
+      _.forEach(cookies, function (cookie) {
+        $cookies.remove(cookie);
+      });
     }
 
     /**
+     * Create a new user.
      *
      * @param {String} username
      * @param {String} password
      * @param {String} firstName
      *
      * @memberof user
-     *
-     * @description create a new user
-     *
-
      */
     function createUser(username, password, firstName) {
+      $rootScope.loading = true;
+
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
-        userObj = data;
-        notify.showAlert(messages.signUpSuccess, 'success');
-        $state.go('main.cabinet');
-      });
+        console.log(data);
 
-      promise.error(function () {
-        notify.showAlert(CONST.messages.signUpError, 'danger');
+        _authenticate(data);
       });
 
       return promise;
     }
 
     /**
+     * returns the use details of the given uid.
+     * Will either return the user details stored in memory or fetch from the server.
      *
      * @memberof user
      *
-     * @description
-     * returns the use details of the given uid.
+     * @example
+     * user.details().then(function (data) {
+     *   console.log(data);
+     * })
      */
     function details() {
-      var deferred = $q.defer();
+      var deferred;
 
-      if (userObj) {
-        deferred.resolve(userObj.data);
+      if (userObj.data) {
+        deferred = $q.defer();
+
+        deferred.resolve(userObj);
+
+        return deferred.promise;
       }
       else {
-        return $http.get('/user/' + $cookies.get('uid') + '/details/');
-      }
+        deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
-      return deferred.promise;
+        deferred.success(function (data) {
+          user.data = data;
+        });
+
+        return deferred;
+      }
     }
 
     /**
-     * TODO: need to try to get this data from firebase
+     * @TODO need to try to get this data from firebase
+     *
+     * return just the drug data from the cached user object.
      *
      * @memberof user
      */
     function getCabinetDrugs() {
-      //TODO: get list of drugs from out DB in user data
-      var drugs = [
-        {
-          'name'          : 'Acetaminophen',
-          'expirationDate': '2015-02-02T05:28:07',
-          'id'            : 1
-        },
-        {
-          'name'          : 'Advil', //ADVIL PM comes back but not matching our check
-          'expirationDate': '2015-10-29T16:00:55',
-          'id'            : 2
-        },
-        {
-          'name'          : 'NIACIN',
-          'expirationDate': '2016-02-28T16:18:23',
-          'id'            : 4
-        }
-      ];
-      return drugs;
+      return userObj.data.drugs;
+    }
+
+    /**
+     * Authenticate the user with the browser.
+     * Displays the correct alert message and sets loadings to false.
+     *
+     * @memberof user
+     *
+     * @param {Object} data - the data returned from the login call.
+     *
+     * @private
+     */
+    function _authenticate(data) {
+      if (data.code) {
+        notify.showAlert(CONST.messages[data.code], 'danger');
+
+        $rootScope.loading = false;
+      }
+      else {
+        _userLoggedIn(data);
+
+        notify.showAlert(messages[data.success] + userObj.data.nickName, 'success');
+
+        $rootScope.loading = false;
+      }
+    }
+
+    /**
+     * Sets the cookies for the authenticated user.
+     *
+     * @memberof {Object} user - the user object returned from the login call.
+     *
+     * @private
+     */
+    function _userLoggedIn(data) {
+      var expireDate = new Date();
+
+      expireDate.setDate(expireDate.getDate() + 1);
+
+      _.forEach(cookies, function (cookie) {
+        $cookies.put(cookie, data[cookie], {expires: expireDate});
+      });
+
+      userObj = data;
+
+      $state.go('main.cabinet');
     }
   }
 

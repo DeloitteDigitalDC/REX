@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:DrugProfile
+ * @name DrugProfile
  *
  * @description
  * Controller for rex
@@ -14,12 +14,10 @@
     .module('rex')
     .controller('DrugProfileCtrl', DrugProfileCtrl);
 
-  function DrugProfileCtrl($stateParams, drug) {
+  function DrugProfileCtrl($stateParams) {
     var vm = this;
 
     vm.drugName = $stateParams.name;
-
-
   }
 
 })();

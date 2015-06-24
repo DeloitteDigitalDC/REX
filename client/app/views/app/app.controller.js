@@ -28,7 +28,7 @@
      * @param {Object} event - the event object
      * @param {Object} newState - the new state object
      */
-    function stateChangeSuccess(event, newState, toParams, fromState, fromParams) {
+    function stateChangeSuccess(event, newState) {
       vm.title = newState.title;
 
       vm.headerState = newState.headerState;

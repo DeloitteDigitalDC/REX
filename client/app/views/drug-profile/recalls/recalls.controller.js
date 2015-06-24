@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:Recalls
+ * @name RecallsCtrl
  *
  * @description
  * Controller for rex
@@ -14,11 +14,7 @@
     .module('rex')
     .controller('RecallsCtrl', RecallsCtrl);
 
-  function RecallsCtrl() {
-    var vm = this;
-
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
-  }
+  function RecallsCtrl() { }
 
 })();
 

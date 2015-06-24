@@ -23,7 +23,6 @@
 
     vm.signUp = signUp;
 
-
     /**
      *
      * @memberof SignUp

@@ -15,7 +15,11 @@ describe('Controller:SignUpCtrl', function () {
   }));
 
   it('hits signUp endpoint', function () {
-    $httpBackend.whenPOST('/user/create').respond(201, 'a value');
+    $httpBackend.whenPOST('/user/create').respond(200, {
+      data: {
+        nickName: 'Danny'
+      }
+    });
 
     SignUpCtrl.signUp('user@mail.com', 'helloWOrld@1', 'name');
 
