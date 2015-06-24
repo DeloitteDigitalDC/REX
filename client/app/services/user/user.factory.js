@@ -28,7 +28,6 @@
     };
 
     /**
-     * @name login
      *
      * @memberof user
      *
@@ -63,15 +62,16 @@
     }
 
     /**
-     * @name createUser
+     *
+     * @param {String} username
+     * @param {String} password
+     * @param {String} firstName
      *
      * @memberof user
      *
      * @description create a new user
      *
-     * @param {String} username
-     * @param {String} password
-     * @param {String} firstName
+
      */
     function createUser(username, password, firstName) {
       $rootScope.loading = true;
@@ -86,7 +86,6 @@
     }
 
     /**
-     * @name details
      *
      * @memberof user
      *
@@ -116,7 +115,6 @@
 
     /**
      * TODO: need to try to get this data from firebase
-     * @name getCabinetDrugs
      *
      * @memberof user
      */

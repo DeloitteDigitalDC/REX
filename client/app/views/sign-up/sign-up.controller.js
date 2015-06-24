@@ -25,7 +25,6 @@
 
 
     /**
-     * @name signUp
      *
      * @memberof SignUp
      *

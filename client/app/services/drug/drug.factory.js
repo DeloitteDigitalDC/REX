@@ -14,8 +14,9 @@
     .module('rex')
     .factory('drug', drug);
 
-  function drug($http, CONST) {
+  function drug($http, CONST, $q) {
     var path = CONST.drug;
+    var cachedDrugLabel, cachedDrugName, labelPromise;
 
     return {
       events : events,
@@ -24,8 +25,6 @@
     };
 
     /**
-     * @name events
-     *
      * @memberof drugs
      *
      * @param {Object} qs
@@ -40,25 +39,64 @@
     }
 
     /**
-     * @name labels
-     *
      * @memberof drugs
      *
      * @param {Object} qs
+     * @param {String} drugName
      */
-    function labels(qs) {
-      return $http.get(path.label, {params: qs});
+    function labels(qs, drugName) {
+      if (drugName === cachedDrugName) {
+        labelPromise = _returnCachedLabel();
+      } else {
+        labelPromise = _returnHttpPromise(qs, drugName);
+      }
+
+      return labelPromise;
     }
 
     /**
-     * @name enforcements
-     *
      * @memberof drugs
      *
      * @param {Object} qs
      */
     function enforce(qs) {
       return $http.get(path.enforcement, {params: qs});
+    }
+
+    /**
+     * @memberof drugs
+     *
+     * @description returns already cached label info
+     *
+     * @returns {Object} labelPromise
+     *
+     * @private
+     */
+    function _returnCachedLabel() {
+      labelPromise = $q.defer();
+      labelPromise.resolve(cachedDrugLabel);
+
+      return labelPromise.promise;
+    }
+
+    /**
+     * calls api for label info
+     *
+     * @memberof drugs
+     *
+     * @returns {Object} labelPromise
+     *
+     * @private
+     */
+    function _returnHttpPromise(qs, drugName) {
+      labelPromise  = $http.get(path.label, {params: qs});
+
+      labelPromise.then(function (data) {
+        cachedDrugName  = drugName;
+        cachedDrugLabel = data;
+      });
+
+      return labelPromise;
     }
   }
 

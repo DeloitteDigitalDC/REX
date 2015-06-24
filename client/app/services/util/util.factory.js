@@ -20,7 +20,6 @@
     };
 
     /**
-     * @name createSearchQry
      *
      * @memberof util
      *
@@ -29,7 +28,6 @@
      * @description create string for drug query
      *
      */
-
     function createSearchQry(drugs) {
       var string = 'openfda.brand_name:';
 
