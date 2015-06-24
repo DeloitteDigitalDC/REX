@@ -28,7 +28,6 @@
     }
 
     /**
-     * @name queryRecalls
      *
      * @memberof CabinetCtrl
      *
@@ -51,7 +50,6 @@
     }
 
     /**
-     * @name compareRecalls
      *
      * @memberof CabinetCtrl
      *

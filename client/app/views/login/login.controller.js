@@ -22,7 +22,6 @@
     vm.login = login;
 
     /**
-     * @name login
      *
      * @memberof LoginCtrl
      *

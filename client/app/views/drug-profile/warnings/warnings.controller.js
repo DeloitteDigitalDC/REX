@@ -15,9 +15,8 @@
     .controller('WarningsCtrl', WarningsCtrl);
 
   function WarningsCtrl() {
-    var vm = this;
+    //var vm = this;
 
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
   }
 
 })();

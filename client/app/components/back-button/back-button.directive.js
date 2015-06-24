@@ -31,7 +31,7 @@
         } else {
           $state.go($scope.state.name);
         }
-      }
+      };
     }
   }
 
