@@ -2,6 +2,7 @@ describe('Controller:LoginCtrl', function () {
 
   // load the controller's module
   beforeEach(module('rex'));
+  beforeEach(module('templates'));
 
   var LoginCtrl, $httpBackend;
 
@@ -11,8 +12,12 @@ describe('Controller:LoginCtrl', function () {
     LoginCtrl = $injector.get('$controller')('LoginCtrl');
   }));
 
-  it('condition of test', function () {
-    $httpBackend.whenPOST('/user/login').respond(201, 'a value');
+  it('hits login enpoint', function () {
+    $httpBackend.whenPOST('/user/login').respond(200, {
+      data: {
+        nickName: 'Foo'
+      }
+    });
 
     LoginCtrl.login('user@mail.com', 'helloWOrld@1');
 

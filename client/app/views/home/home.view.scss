@@ -1,8 +1,78 @@
-// Main.scss
+// home.scss
 
-.home-view {
+.home {
+  .bg-image {
+    .app-section{
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 50px 20px 10px 20px;
+    }
 
+    app-section{
+      padding:0;
+      color: white;
+    }
+    hr {
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  .bg-lighter-gray {
+    padding: 80px 20px;
+  }
+
+  hr {
+    width: 148px;
+  }
+
+  .card {
+    margin: 20px auto;
+    height: 280px;
+      p{
+      margin-top: 20px;
+    }
+    .rex-button{
+      float: right;
+      width: 60%;
+      margin-top: 20px;
+    }
+  }
 }
-h1 {
-  color: red;
+@media #{$lessThanBigScreen} {
+  .home {
+    .card{
+      height: 300px;
+    }
+  }
+}
+
+@media #{$lessThanDesktop} {
+  .home {
+    .card{
+      height: 400px;
+    }
+  }
+}
+
+@media #{$lessThanTablet} {
+  .home {
+    .card{
+      height: 240px;
+    }
+  }
+}
+
+@media #{$lessThanSmall} {
+  .home {
+    .card{
+      height: 280px;
+
+      .rex-button {
+        width: 100%;
+      }
+    }
+
+    .bg-lighter-gray {
+      padding: 35px 0;
+    }
+  }
 }

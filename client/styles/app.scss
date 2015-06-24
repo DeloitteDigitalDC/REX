@@ -1,23 +1,39 @@
 /* ------ Imports -----*/
-@import "../../bower_components/bootstrap/dist/css/bootstrap.css";
+@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
+@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
+
+@import 'mediaQueries';
 @import 'colors';
-@import 'fonts';
 @import 'inputs';
+@import 'backgrounds';
 @import 'sprites';
-
-/** Text Styles **/
-
-body{
-  font-family: Roboto;
-  color: $fontGray;
-  font-size: 16px;
-}
-
-
+@import 'mixins';
+@import 'alerts';
+@import 'layouts';
+@import 'text';
+@import 'shared/access-shared';
+@import 'shared/cards-shared';
+@import 'shared/profile-shared';
 
 // injector
-@import '../app/views/about/about.view.scss';
+@import '../app/components/app-footer/app-footer.directive.scss';
+@import '../app/components/app-header/app-header.directive.scss';
+@import '../app/components/app-section/app-section.directive.scss';
+@import '../app/components/back-button/back-button.directive.scss';
+@import '../app/components/card-fade/card-fade.directive.scss';
+@import '../app/components/card/card.directive.scss';
+@import '../app/components/drug-card/drug-card.directive.scss';
+@import '../app/components/drug-tabs/drug-tabs.directive.scss';
+@import '../app/components/plus-button/plus-button.directive.scss';
+@import '../app/views/cabinet/cabinet.style.scss';
+@import '../app/views/drug-profile/drug-profile.style.scss';
+@import '../app/views/drug-profile/pregnancy/pregnancy.style.scss';
+@import '../app/views/drug-profile/recalls/recalls.style.scss';
+@import '../app/views/drug-profile/uses/uses.style.scss';
+@import '../app/views/drug-profile/warnings/warnings.style.scss';
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
+@import '../app/views/sign-up/sign-up.style.scss';
+@import '../app/views/user-profile/user-profile.style.scss';
 // endinjector

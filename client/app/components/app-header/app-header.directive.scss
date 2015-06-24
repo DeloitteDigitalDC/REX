@@ -1,0 +1,47 @@
+// header styles
+.app-header {
+  // Default header styles
+  height: 130px;
+
+  .icon-logo-Rex {
+    transform: translateY(0);
+    transition: all .2s;
+    position: absolute;
+    left: 50%;
+    margin-left: -85px;
+    top: 50%;
+    margin-top: -40px;
+  }
+
+  .icon-ic-account-circle {
+
+  }
+
+  .user-account {
+    transition: transform .2s;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -24px;
+    transform: translateY(-100px);
+
+    .username {
+      float: left;
+      margin-top: 17px;
+      color: white;
+      margin-right: 10px;
+    }
+  }
+
+  // start custom state styles
+  &.loggedIn {
+    .icon-logo-Rex {
+      left: 0;
+      margin-left: 0;
+    }
+
+    .user-account {
+      transform: translateY(0);
+    }
+  }
+}

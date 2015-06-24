@@ -4,6 +4,7 @@ describe('factory:drugs', function () {
 
   // load the factory's module
   beforeEach(module('rex'));
+  beforeEach(module('templates'));
 
   var drugs;
 

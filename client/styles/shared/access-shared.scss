@@ -1,0 +1,42 @@
+// login styles
+.access-shared {
+  section {
+    padding: 12px 0;
+
+    hr {
+      width: 148px;
+    }
+  }
+
+  form {
+    .row {
+      margin: 35px -15px;
+
+      &:first-child {
+        margin-top: 5px;
+      }
+
+      &:last-child {
+        margin-bottom: 5px;
+      }
+    }
+
+    .forgot {
+      display: inline-block;
+      margin-top: 15px;
+    }
+  }
+}
+
+@media #{$lessThanTablet} {
+  .access-shared form {
+    .forgot {
+      display: block;
+      text-align: center;
+    }
+
+    .sign-up {
+      text-align: center;
+    }
+  }
+}
