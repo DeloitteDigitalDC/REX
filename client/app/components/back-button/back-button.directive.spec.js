@@ -4,8 +4,7 @@ describe('directive:back-button', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
-  // beforeEach(module('templates'));
+  beforeEach(module('templates'));
 
   var element, scope;
 
@@ -15,10 +14,12 @@ describe('directive:back-button', function () {
   }));
 
   // compile the element to be tested
-  it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<back-button></back-button>');
-    // element = $compile(element)(scope);
+  it('state should undefined/default', inject(function ($compile) {
+    element = angular.element('<back-button></back-button>');
+    element = $compile(element)(scope);
 
-    // scope.$apply();
+    scope.$apply();
+
+    expect(element.isolateScope().state).toBeFalsy();
   }));
 });
