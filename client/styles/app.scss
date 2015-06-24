@@ -25,6 +25,7 @@
 @import '../app/components/drug-card/drug-card.directive.scss';
 @import '../app/components/drug-tabs/drug-tabs.directive.scss';
 @import '../app/components/plus-button/plus-button.directive.scss';
+@import '../app/components/search-input/search-input.directive.scss';
 @import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/drug-profile/drug-profile.style.scss';
 @import '../app/views/drug-profile/pregnancy/pregnancy.style.scss';
@@ -34,6 +35,8 @@
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
+@import '../app/views/search/search-results/search-results.style.scss';
+@import '../app/views/search/search.style.scss';
 @import '../app/views/sign-up/sign-up.style.scss';
 @import '../app/views/user-profile/user-profile.style.scss';
 // endinjector

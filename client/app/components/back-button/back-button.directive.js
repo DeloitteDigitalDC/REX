@@ -25,8 +25,9 @@
 
     function link($scope) {
       $scope.goBack = function(){
-        //TODO: change this to check for search state first when we implement search
-        if ($state.includes('main.drugProfile.**')) {
+        if ($state.includes('main.search.**')) {
+          $state.go('main.search');
+        } else {
           $state.go('main.cabinet');
         }
       };

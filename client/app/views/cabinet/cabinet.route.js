@@ -11,8 +11,7 @@
           templateUrl : 'app/views/cabinet/cabinet.view.html',
           controller  : 'CabinetCtrl',
           controllerAs: 'cabinet',
-          title       : 'Cabinet',
-          headerState : 'loggedIn'
+          title       : 'Cabinet'
         });
     });
 
