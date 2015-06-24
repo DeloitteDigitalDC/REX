@@ -28,10 +28,9 @@
     };
 
     /**
+     * logs in a user
      *
      * @memberof user
-     *
-     * @description logs in a user
      *
      * @param {String} username - the username
      * @param {String} password - the password
@@ -49,11 +48,9 @@
     }
 
     /**
-     * @name logout
+     * Log the user out by removing the login cookies from browser
      *
      * @memberof user
-     *
-     * @description log the user out by removing the login cookies from browser.
      */
     function logout() {
       _.forEach(cookies, function (cookie) {
@@ -62,16 +59,13 @@
     }
 
     /**
+     * Create a new user.
      *
      * @param {String} username
      * @param {String} password
      * @param {String} firstName
      *
      * @memberof user
-     *
-     * @description create a new user
-     *
-
      */
     function createUser(username, password, firstName) {
       $rootScope.loading = true;
@@ -79,6 +73,8 @@
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
+        console.log(data);
+
         _authenticate(data);
       });
 
@@ -86,10 +82,15 @@
     }
 
     /**
+     * returns the use details of the given uid.
+     * Will either return the user details stored in memory or fetch from the server.
+     *
      * @memberof user
      *
-     * @description
-     * returns the use details of the given uid.
+     * @example
+     * user.details().then(function (data) {
+     *   console.log(data);
+     * })
      */
     function details() {
       var deferred;
@@ -113,7 +114,9 @@
     }
 
     /**
-     * TODO: need to try to get this data from firebase
+     * @TODO need to try to get this data from firebase
+     *
+     * return just the drug data from the cached user object.
      *
      * @memberof user
      */
@@ -122,11 +125,12 @@
     }
 
     /**
-     * @name _authenticate
+     * Authenticate the user with the browser.
+     * Displays the correct alert message and sets loadings to false.
      *
      * @memberof user
      *
-     * @param {Object} data
+     * @param {Object} data - the data returned from the login call.
      *
      * @private
      */
@@ -146,9 +150,9 @@
     }
 
     /**
-     * @name _userLoggedIn
+     * Sets the cookies for the authenticated user.
      *
-     * @memberof {Object} user
+     * @memberof {Object} user - the user object returned from the login call.
      *
      * @private
      */
