@@ -8,6 +8,10 @@
     color: $teal;
   }
 
+  a.pregnancy{
+    content: 'Pregnancy & BreastFeeding';
+  }
+
   .active a {
     color: $darkTeal;
   }
@@ -15,11 +19,6 @@
 
 @media #{$lessThanSmall} {
   .drug-tabs {
-    div {
-      margin-right: 10px;
-      a {
-        font-size: .8em
-      }
-    }
+    margin-left: 15px;
   }
 }

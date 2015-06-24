@@ -17,6 +17,7 @@
   function UsesCtrl(drug, $stateParams) {
     var vm = this;
 
+    vm.fieldsLoaded = false;
     vm.drugName = $stateParams.name;
     vm.drugData = {};
 
@@ -38,6 +39,7 @@
     function _getDrugData() {
       drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName).then(function (data) {
         vm.drugData = data.data.results[0];
+        vm.fieldsLoaded = true;
       });
     }
 
