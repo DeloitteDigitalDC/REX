@@ -14,7 +14,7 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
+  function user($http, $state, $location, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
         cookies  = ['uid', 'token'],
         userObj  = {};
@@ -166,6 +166,8 @@
       });
 
       userObj = data;
+
+      //$location.path('/cabinet');
 
       $state.go('main.cabinet', {}, {reload: true});
     }

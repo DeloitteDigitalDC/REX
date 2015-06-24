@@ -29,7 +29,12 @@
      * call user service to authenticate user
      */
     function login() {
-      user.login(vm.userInfo.username, vm.userInfo.password);
+      if (vm.userInfo.$invalid) {
+        vm.showError = true;
+      }
+      else {
+        user.login(vm.userInfo.username, vm.userInfo.password);
+      }
     }
   }
 
