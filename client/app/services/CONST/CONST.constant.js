@@ -19,8 +19,8 @@
       drugEnforcement = drug + '/enforcement.json/';
 
   // restricted route paths
-  var shared          = ['/login', '/sign-up'],
-      publicPaths     = ['/'].concat(shared),
+  var shared          = ['/', '/login', '/sign-up'],
+      publicPaths     = [].concat(shared),
       logInRestricted = [].concat(shared);
 
   angular.module('rex').constant('CONST', {

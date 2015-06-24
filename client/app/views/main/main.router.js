@@ -31,11 +31,9 @@
               var location = $location.path();
 
               if (!$cookies.get('token')) {
-
                 if (__redirect(true, CONST.paths.publicPaths, location)) {
                   $location.path('/');
                 }
-
               }
               else {
                 if (__redirect(false, CONST.paths.logInRestricted, location)) {
