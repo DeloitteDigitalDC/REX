@@ -13,7 +13,11 @@ describe('Controller:LoginCtrl', function () {
   }));
 
   it('hits login enpoint', function () {
-    $httpBackend.whenPOST('/user/login').respond(201, 'a value');
+    $httpBackend.whenPOST('/user/login').respond(200, {
+      data: {
+        nickName: 'Foo'
+      }
+    });
 
     LoginCtrl.login('user@mail.com', 'helloWOrld@1');
 

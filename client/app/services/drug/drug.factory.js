@@ -25,7 +25,7 @@
     };
 
     /**
-     * @name events
+     * Query the
      *
      * @memberof drugs
      *
@@ -33,18 +33,18 @@
      *
      * @example
      * drug.events({ search: 'patient.patientonsetage:56', limit: 25 }).success(function (data) {
-     *     console.log(data);
-     *   });
+     *   console.log(data);
+     * });
      */
     function events(qs) {
       return $http.get(path.event, {params: qs});
     }
 
     /**
-     *
      * @memberof drugs
      *
      * @param {Object} qs
+     * @param {String} drugName
      */
     function labels(qs, drugName) {
       if (drugName === cachedDrugName) {
@@ -57,8 +57,6 @@
     }
 
     /**
-     * @name enforcements
-     *
      * @memberof drugs
      *
      * @param {Object} qs
@@ -68,18 +66,18 @@
     }
 
     /**
-     * returns already cached label info
-     *
      * @memberof drugs
+     *
+     * @description returns already cached label info
      *
      * @returns {Object} labelPromise
      *
      * @private
      */
     function _returnCachedLabel() {
-      console.log('cached');
       labelPromise = $q.defer();
       labelPromise.resolve(cachedDrugLabel);
+
       return labelPromise.promise;
     }
 
@@ -93,14 +91,14 @@
      * @private
      */
     function _returnHttpPromise(qs, drugName) {
-      console.log('http');
       labelPromise  = $http.get(path.label, {params: qs});
+
       labelPromise.then(function (data) {
         cachedDrugName  = drugName;
         cachedDrugLabel = data;
       });
-      return labelPromise;
 
+      return labelPromise;
     }
   }
 

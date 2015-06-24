@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:Pregnancy
+ * @name PregnancyCtrl
  *
  * @description
  * Controller for rex
@@ -14,11 +14,7 @@
     .module('rex')
     .controller('PregnancyCtrl', PregnancyCtrl);
 
-  function PregnancyCtrl() {
-    var vm = this;
-
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
-  }
+  function PregnancyCtrl() { }
 
 })();
 

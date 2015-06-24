@@ -36,7 +36,6 @@
      * @memberof WarningsCtrl
      *
      * @private
-     *
      */
     function _getDrugData() {
       drug.labels({
