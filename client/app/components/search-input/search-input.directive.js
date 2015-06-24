@@ -21,8 +21,7 @@
       scope: {
         searchResults : '='
       },
-      link: link,
-      controller: controller
+      link: link
     };
 
     function link($scope) {
@@ -32,6 +31,8 @@
 
         var query = util.createUnionQry($scope.search.searchTerms);
         console.log('qry', query);
+
+        //TODO: save search results in factory and look in there before searching
         //search.searchDrugName(query);
         drug.enforce({search: query, limit: 100}).success(function (data) {
           console.log('data', data.results);
@@ -39,10 +40,6 @@
           $state.go('main.search.searchResults')
         });
       };
-    }
-
-    function controller($scope, $element){
-
     }
   }
 
