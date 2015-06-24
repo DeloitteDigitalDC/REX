@@ -33,8 +33,7 @@
 
       vm.headerState = newState.headerState;
 
-      vm.fromState = fromState;
-      vm.fromParams = fromParams;
+      vm.state = newState;
 
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     }

@@ -19,17 +19,14 @@
       restrict: 'EA',
       templateUrl: 'app/components/back-button/back-button.directive.html',
       scope: {
-        state: '='
       },
       link: link
     };
 
     function link($scope) {
       $scope.goBack = function(){
-        if (!$scope.state.name) {
+        if ($state.includes('main.drugProfile.**')) {
           $state.go('main.cabinet');
-        } else {
-          $state.go($scope.state.name);
         }
       };
     }

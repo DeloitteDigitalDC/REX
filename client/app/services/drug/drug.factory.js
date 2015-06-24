@@ -53,7 +53,6 @@
         labelPromise = _returnHttpPromise(qs, drugName);
       }
 
-
       return labelPromise;
     }
 
@@ -78,6 +77,7 @@
      * @private
      */
     function _returnCachedLabel() {
+      console.log('cached');
       labelPromise = $q.defer();
       labelPromise.resolve(cachedDrugLabel);
       return labelPromise.promise;
@@ -93,6 +93,7 @@
      * @private
      */
     function _returnHttpPromise(qs, drugName) {
+      console.log('http');
       labelPromise  = $http.get(path.label, {params: qs});
       labelPromise.then(function (data) {
         cachedDrugName  = drugName;
