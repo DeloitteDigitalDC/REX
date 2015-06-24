@@ -22,9 +22,13 @@
     init();
 
     function init() {
-      vm.drugs = user.getCabinetDrugs();
+      vm.drugs = [];
 
-      queryRecalls();
+      user.details().then(function(data) {
+        vm.drugs = data.data.drugs;
+
+        queryRecalls();
+      });
     }
 
     /**
@@ -33,7 +37,6 @@
      * @memberof CabinetCtrl
      *
      * @description create string and query for recalls
-     *
      */
     function queryRecalls() {
       var query = util.createSearchQry(vm.drugs);
@@ -44,7 +47,6 @@
       var searchTerm = '(' + _.trimRight(query, '+') + ')';
 
       drug.enforce({search: searchTerm, limit: 100}).success(function (data) {
-        console.log('enforce', data);
         recalls = data.results;
         compareRecalls();
       });
@@ -56,18 +58,22 @@
      * @memberof CabinetCtrl
      *
      * @description loop through each of the users drugs and check if it matches one of the recalled drugs
-     *
      */
     function compareRecalls() {
-      _.forEach(vm.drugs, function (drug, idx) {
-        _.forEach(recalls, function (recall) {
-          if (recall.openfda.brand_name) {
-            if (recall.openfda.brand_name[0] === drug.name) {
-              vm.drugs[idx].recalled = true;
-              console.log('drug match name', drug.name);
+      _.forEach(vm.drugs, function (drug) {
+
+        if(drug) {
+          _.forEach(recalls, function (recall) {
+
+            if (recall.openfda.brand_name) {
+              if (recall.openfda.brand_name[0] === drug.name) {
+                drug.recalled = true;
+              }
             }
-          }
-        });
+
+          });
+        }
+
       });
     }
 

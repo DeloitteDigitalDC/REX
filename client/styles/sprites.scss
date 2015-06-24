@@ -121,3 +121,63 @@
   background-image : url('../images/ic_pillbottle-darkred.svg');
   background-repeat: no-repeat;
 }
+
+.loader {
+  &::before {
+    content: '';
+    background: rgba(255, 255, 255, .75);
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &::after {
+    animation: rotate .8s linear infinite;
+    content: '';
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNDAwIDQwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgNDAwIDQwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZmlsbD0iIzAwQTk5RCIgZD0iTTE5MS45LDMxOS43Yy01OS41LTQuMi0xMDguMS01Mi4zLTExMS45LTExMkM3NS42LDEzOC4xLDEzMi4yLDgwLDE5OC41LDgwVjBDODUuNywwLTguNSw5OC4yLDAuNiwyMTUuN2M3LjgsMTAwLjYsOTEuMSwxODAuMywxOTEuNywxODQuMUMzMDYsNDA0LjEsNDAwLDMxMyw0MDAsMjAwaC03OS44QzMyMC4yLDI2OSwyNjEuOCwzMjQuNiwxOTEuOSwzMTkuN3oiLz48cGF0aCBvcGFjaXR5PSIwIiBmaWxsPSIjMDBBOTlEIiBkPSJNMTk1LTIxdjgwYzY4LDAsMTIxLjYsNTMuOCwxMjEuNiwxMjBoNzkuOEMzOTYuNCw2OC41LDMwNy0yMSwxOTUtMjF6Ii8+PC9nPjwvc3ZnPg==');
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 100px;
+    left: 50%;
+    margin-left: -50px;
+    top: 50%;
+    margin-top: -50px;
+    position: absolute;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+@-moz-keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+  }
+}
+
+

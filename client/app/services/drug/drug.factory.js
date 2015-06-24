@@ -32,8 +32,8 @@
      *
      * @example
      * drug.events({ search: 'patient.patientonsetage:56', limit: 25 }).success(function (data) {
-          console.log(data);
-        });
+     *   console.log(data);
+     * });
      */
     function events(qs) {
       return $http.get(path.event, {params: qs});

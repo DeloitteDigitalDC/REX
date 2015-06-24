@@ -24,18 +24,23 @@
      *
      * @memberof util
      *
-     * @param {Object[]} drugArray - array of drug objects
+     * @param {Object} drugs - list of drugs
      *
      * @description create string for drug query
      *
      */
 
-    function createSearchQry(drugArray) {
-      var string = 'openfda.brand_name.exact:';
-      _.forEach(drugArray, function (el) {
-        //TODO wrap multiple words in quotes, remove the word AND, ongoing status
-        string = string + encodeURIComponent(el.name) + '+';
-      });
+    function createSearchQry(drugs) {
+      var string = 'openfda.brand_name:';
+
+      for(var drug in drugs) {
+        if(drugs.hasOwnProperty(drug)) {
+          if(drugs[drug]) {
+            string = string + encodeURIComponent(drugs[drug].name) + '+';
+          }
+        }
+      }
+
       return string;
     }
   }
