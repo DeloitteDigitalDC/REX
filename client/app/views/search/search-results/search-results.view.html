@@ -1,6 +1,6 @@
 <section class="search-results">
   <app-section class="bg-lighter-gray">
-    <div ng-repeat="result in search.results">{{result.openfda.brand_name[0]}}</div>
+    <div class="result" ng-repeat="result in search.results"><a ui-sref="main.search.drugProfile.uses({name : result.openfda.brand_name[0]})">{{result.openfda.brand_name[0]}}</a></div>
   </app-section>
 
 </section>
