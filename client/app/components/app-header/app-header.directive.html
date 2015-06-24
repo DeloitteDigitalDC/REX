@@ -1,11 +1,11 @@
 <app-section class="bg-teal">
-  <section class="app-header" ng-class="state">
-    <a class="icon-logo-Rex" ui-sref="main.home"></a>
+  <section class="app-header" ng-class="{'logged-in': user}">
+    <a class="icon-logo-Rex" ng-click="goHome()" href="#"></a>
 
-    <a class="user-account" ui-sref="main.login">
+    <a class="user-account" ui-sref="main.userProfile">
       <span class="icon-ic-account-circle"></span>
 
-      <span class="username hidden-xs">Hi Danny!</span>
+      <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
     </a>
   </section>
 </app-section>

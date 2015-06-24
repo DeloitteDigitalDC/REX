@@ -14,12 +14,12 @@
     .module('rex')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl(isActive) {
+  function MainCtrl(isActive, userDetails) {
     var vm = this;
 
-    vm.user = { username: 'USER'};
-
     vm.isActive = isActive;
+
+    vm.user = userDetails;
   }
 
 })();
