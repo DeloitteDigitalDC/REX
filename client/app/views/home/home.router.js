@@ -11,7 +11,8 @@
           templateUrl : 'app/views/home/home.view.html',
           controller  : 'HomeCtrl',
           controllerAs: 'HomeCtrl',
-          title       : 'home'
+          title       : 'home',
+          public      : true
         });
     });
 

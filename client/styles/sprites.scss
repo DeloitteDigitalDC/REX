@@ -129,9 +129,6 @@
 }
 
 .loader {
-  position: relative;
-  z-index: 1000;
-
   &::after {
     display: inline-block;
     left: 50%;

@@ -7,11 +7,12 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.signUp', {
-          url         : '/sign-up',
-          templateUrl : 'app/views/sign-up/sign-up.view.html',
-          controller  : 'SignUpCtrl',
-          controllerAs: 'signUp',
-          title       : 'Sign up'
+          url           : '/sign-up',
+          templateUrl   : 'app/views/sign-up/sign-up.view.html',
+          controller    : 'SignUpCtrl',
+          controllerAs  : 'signUp',
+          title         : 'Sign up',
+          public        : true
         });
     });
 

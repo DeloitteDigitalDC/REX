@@ -2,20 +2,6 @@
 
 (function () {
 
-  var __redirect = function(initial, paths, location) {
-    var redirect = initial;
-
-    for (var i = 0, len = paths.length; i < len; i++) {
-      if (location === paths[i]) {
-        redirect = !initial;
-
-        break;
-      }
-    }
-
-    return redirect;
-  };
-
   angular
     .module('rex')
     .config(function ($stateProvider) {
@@ -27,21 +13,16 @@
           controllerAs: 'MainCtrl',
           title       : 'Main',
           resolve     : {
-            userDetails: function (user, $cookies, $location, CONST) {
-              var location = $location.path();
-
+            userDetails: function (user, $cookies, $q) {
               if (!$cookies.get('token')) {
-                if (__redirect(true, CONST.paths.publicPaths, location)) {
-                  $location.path('/');
-                }
+                var deferred = $q.defer();
+
+                deferred.resolve({});
+
+                return deferred.promise;
               }
               else {
-                if (__redirect(false, CONST.paths.logInRestricted, location)) {
-                  $location.path('/cabinet');
-                }
-
                 return user.details();
-
               }
             }
           }

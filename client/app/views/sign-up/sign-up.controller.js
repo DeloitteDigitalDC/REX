@@ -24,11 +24,9 @@
     vm.signUp = signUp;
 
     /**
+     * create a new user
      *
      * @memberof SignUp
-     *
-     * @description
-     * create a new user
      */
     function signUp() {
       if (vm.signUpForm.$invalid) {
@@ -37,7 +35,6 @@
       else {
         user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
       }
-
     }
   }
 

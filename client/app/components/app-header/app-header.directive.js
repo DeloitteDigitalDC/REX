@@ -34,7 +34,7 @@
        * @memberof appHeader
        */
       function goHome() {
-        if(scope.user) {
+        if(scope.user.data) {
           $state.go('main.cabinet');
         }
         else {

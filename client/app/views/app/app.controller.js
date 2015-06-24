@@ -14,7 +14,7 @@
     .module('rex')
     .controller('AppCtrl', AppCtrl);
 
-  function AppCtrl($rootScope) {
+  function AppCtrl($rootScope, $cookies, $state) {
     var vm = this;
 
     vm.title = 'REX'; // Default Title
@@ -34,6 +34,21 @@
       vm.headerState = newState.headerState;
 
       vm.state = newState;
+
+      if(!newState.public) {
+        if(!$cookies.get('token')) {
+          event.preventDefault();
+
+          $state.go('main.home');
+        }
+      }
+      else {
+        if($cookies.get('token')) {
+          event.preventDefault();
+
+          $state.go('main.cabinet');
+        }
+      }
 
       document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
