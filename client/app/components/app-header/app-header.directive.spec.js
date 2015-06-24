@@ -15,21 +15,14 @@ describe('directive:app-header', function () {
 
   // compile the element to be tested
   it('should be have the state of login', inject(function ($compile) {
-    element = angular.element('<app-header state="\'login\'"></app-header>');
+    element = angular.element('<app-header user="{ data: { nickName: \'Danny\'} }"></app-header>');
     element = $compile(element)(scope);
     scope.$apply();
 
     var login = element.find('section').find('section').find('section');
 
-    expect(element.isolateScope().state).toBe('login');
-    expect(login.hasClass('login')).toBe(true);
+    expect(element.isolateScope().user.data.nickName).toBe('Danny');
+    expect(login.hasClass('logged-in')).toBe(true);
   }));
 
-  it('state should undefined/default', inject(function ($compile) {
-    element = angular.element('<app-header></app-header>');
-    element = $compile(element)(scope);
-    scope.$apply();
-
-    expect(element.isolateScope().state).toBeFalsy();
-  }));
 });
