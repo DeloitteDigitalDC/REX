@@ -6,11 +6,12 @@
       </div>
 
       <div class="col-sm-6">
-        <label for="filterDrugName">Filter by drug name</label>
+        <label for="filterDrugName" class="sr-only">Filter by drug name</label>
         <input id="filterDrugName" class="form-control rex-input" ng-model="cabinet.filter" placeholder="Filter by Drug Name">
       </div>
     </div>
   </app-section>
+
   <app-section class="bg-lighter-gray">
     <div class="row">
       <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
