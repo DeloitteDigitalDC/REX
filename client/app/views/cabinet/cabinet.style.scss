@@ -6,6 +6,14 @@
   input.rex-input {
     display: inline-block;
   }
+
+  .drugs {
+    min-height: 390px;
+  }
+
+  .loader {
+    margin-top: 9%;
+  }
 }
 
 @media #{$lessThanSmall} {

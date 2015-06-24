@@ -20,7 +20,6 @@
     vm.fieldsLoaded = false;
     vm.drugName = $stateParams.name;
     vm.drugData = {};
-
     vm.otc      = true;
 
     init();
@@ -46,7 +45,6 @@
           vm.otc = false;
         }
         vm.fieldsLoaded = true;
-        console.log('drug data', vm.drugData);
       });
     }
 

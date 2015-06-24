@@ -2,6 +2,7 @@
   display: block;
 
   .card {
+    transition: all .5s linear;
     height: 320px;
     position: relative;
     cursor: pointer;
