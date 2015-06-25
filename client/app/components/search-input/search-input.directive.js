@@ -31,22 +31,22 @@
 
 
       $scope.searchByName = function () {
-
+        $scope.noResults = false;
         $scope.searchResults = [];
         $state.go('main.search.searchResults');
         $scope.showLoader    = true;
         var query            = util.createUnionQry($scope.search.searchTerms);
-
+        console.log(query)
         //TODO: save search results in factory and look in there before searching
         //search.searchDrugName(query);
-        drug.enforce({search: query, limit: 100}).success(function (data) {
-          console.log('data', data.results);
-          $scope.searchResults = data.results;
+        drug.labelsSearch({search: query, limit: 100}).then(function (data) {
+          console.log('data', data.data.results);
+          $scope.searchResults = data.data.results;
           $scope.showLoader    = false;
 
-        }).error(function (){
-          $scope.noResults = true;
-          $scope.showLoader    = false;
+        }, function(){
+            $scope.noResults = true;
+            $scope.showLoader    = false;
         });
       };
     }

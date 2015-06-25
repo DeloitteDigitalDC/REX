@@ -64,7 +64,7 @@
       });
 
       qry = _.trimRight(qry, '+');
-      qry       = '(' + qry + ')';
+      qry = '(' + qry + ')';
 
       return qry;
     }

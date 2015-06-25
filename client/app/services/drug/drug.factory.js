@@ -21,7 +21,8 @@
     return {
       events : events,
       labels : labels,
-      enforce: enforce
+      enforce: enforce,
+      labelsSearch: labelsSearch
     };
 
     /**
@@ -54,6 +55,10 @@
       }
 
       return labelPromise;
+    }
+
+    function labelsSearch(qs){
+      return $http.get(path.label, {params: qs});
     }
 
     /**
