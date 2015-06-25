@@ -15,9 +15,8 @@
     .factory('user', user);
 
   function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
-    var messages = CONST.messages,
-        cookies  = ['uid', 'token'],
-        userObj  = {};
+    var cookies = ['uid', 'token'],
+        userObj = {};
 
     return {
       login          : login,
@@ -159,8 +158,6 @@
       }
       else {
         _userLoggedIn(data);
-
-        notify.showAlert(messages[data.success] + userObj.data.nickName, 'success');
 
         $rootScope.loading = false;
       }
