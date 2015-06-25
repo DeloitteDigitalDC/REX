@@ -151,8 +151,9 @@
      * @private
      */
     function _authenticate(data) {
+      console.log(data.code);
       if (data.code) {
-        notify.showAlert(CONST.messages[data.code], 'danger');
+        notify.showAlert(messages[data.code], 'danger');
 
         $rootScope.loading = false;
       }
