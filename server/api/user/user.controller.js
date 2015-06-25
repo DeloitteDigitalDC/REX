@@ -106,16 +106,12 @@ user.createUser = function (req, res) {
     //Sample Seed Data
     drugs       : {
       0: {
-        name          : 'Advil',
+        name          : 'Advil Liquigels',
         expirationDate: '1/1/2015'
       },
       1: {
         name          : 'Niacin',
         expirationDate: '1/1/2018'
-      },
-      3: {
-        name          : 'Acetaminophen',
-        expirationDate: '5/10/2018'
       }
     }
   };
