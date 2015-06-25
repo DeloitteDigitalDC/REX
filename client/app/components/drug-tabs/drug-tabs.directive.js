@@ -14,7 +14,7 @@
     .module('rex')
     .directive('drugTabs', drugTabs);
 
-  function drugTabs() {
+  function drugTabs($state) {
     return {
       restrict: 'EA',
       templateUrl: 'app/components/drug-tabs/drug-tabs.directive.html',
@@ -24,7 +24,14 @@
       link: link
     };
 
-    function link() {
+    function link(scope) {
+
+      scope.inSearch = false;
+
+      if ($state.includes('main.search.**')){
+        scope.inSearch = true;
+      }
+
     }
   }
 

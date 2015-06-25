@@ -11,8 +11,19 @@
           templateUrl : 'app/views/drug-profile/pregnancy/pregnancy.view.html',
           controller  : 'PregnancyCtrl',
           controllerAs: 'pregnancy',
+          title       : 'Pregnancy'
+        })
+        .state('main.search.drugProfile.pregnancy', {
+          url         : '/pregnancy',
+          templateUrl : 'app/views/drug-profile/pregnancy/pregnancy.view.html',
+          controller  : 'PregnancyCtrl',
+          controllerAs: 'pregnancy',
           title       : 'Pregnancy',
-          headerState : 'loggedIn'
+          buttonData  : {
+            display: true,
+            open   : true,
+            link   : 'main.cabinet'
+          }
         });
     });
 
