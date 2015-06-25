@@ -1,4 +1,5 @@
 <div class="loader" ng-show="!recalls.fieldsLoaded"></div>
+<h3 ng-show="recalls.noData">No Data.</h3>
 <div class="recalls" ng-show="recalls.fieldsLoaded">
   <section ng-repeat="recall in recalls.recallData">
     <h3>Report Date</h3>

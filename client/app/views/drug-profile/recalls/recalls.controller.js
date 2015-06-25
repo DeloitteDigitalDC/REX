@@ -20,6 +20,7 @@
     vm.fieldsLoaded = false;
     vm.drugName = $stateParams.name;
     vm.recallData = [];
+    vm.noData = false;
 
     init();
 
@@ -43,6 +44,9 @@
         });
         console.log(vm.recallData);
         vm.fieldsLoaded = true;
+      }).error(function () {
+        vm.fieldsLoaded = true;
+        vm.noData = true;
       });
     }
 
