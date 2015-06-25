@@ -12,9 +12,7 @@
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.recalls({name : drugName})">Recalls</a>
   </div>
   <div ui-sref-active-eq="active">
-
     <a ng-if="!inSearch" ui-sref="main.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
-
   </div>
 </div>

@@ -17,7 +17,7 @@
   function util() {
     return {
       createBasicQry: createBasicQry,
-      createlabelSearchQry: createlabelSearchQry
+      createSingleSearchQry: createSingleSearchQry
     };
 
     /**
@@ -55,13 +55,9 @@
      *
      * @returns {String}
      */
-    function createlabelSearchQry(searchTerms) {
-      var qry   = '';
+    function createSingleSearchQry(searchTerms) {
 
-      qry = qry + 'openfda.brand_name:"' +searchTerms+ '"+';
-
-      qry = _.trimRight(qry, '+');
-      qry = '(' + qry + ')';
+      var qry = '(' + 'openfda.brand_name:"' +searchTerms+ '")';
 
       return qry;
     }

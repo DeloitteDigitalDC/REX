@@ -52,7 +52,12 @@
        * when a user clicks on a drug card, go to that drug's detailed page
        */
       $scope.goToDetails = function () {
-        $state.go('main.drugProfile.uses', {name: $scope.drug.name});
+        if($scope.drug.recalled){
+          $state.go('main.drugProfile.recalls', {name: $scope.drug.name});
+        } else {
+          $state.go('main.drugProfile.uses', {name: $scope.drug.name});
+        }
+
       };
 
     }
