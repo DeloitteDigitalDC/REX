@@ -1,5 +1,12 @@
 // header styles
 .app-header {
+
+  .plus-button{
+    position: absolute;
+    right: 10%;
+    bottom: -40px;
+    z-index: 2;
+  }
   // Default header styles
   height: 130px;
 

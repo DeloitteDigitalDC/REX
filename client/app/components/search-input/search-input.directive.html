@@ -3,14 +3,19 @@
     <div class="row">
       <div class="col-sm-12">
         <h2 class="text-teal">Add Drug</h2>
-        <div class="icon-ic_search_48px"></div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <label for="searchDrugName" class="sr-only">Search by drug name</label>
-        <input id="searchDrugName" class="form-control rex-input" ng-model="searchTerm" placeholder="Search by Drug Name">
+        <form name="searchForm" ng-submit="searchByName()">
+          <label for="searchDrugName" class="sr-only">Search by drug name</label>
+          <input id="searchDrugName" class="form-control rex-input" ng-model="search.searchTerms"
+                 placeholder="Search by Drug Name">
+          <button type="submit" class="search-icon"></button>
+        </form>
       </div>
     </div>
   </app-section>
+  <div class="loader" ng-show="showLoader"></div>
+  <h3 class="noResults text-teal text-center" ng-show="noResults">No Results.</h3>
 </section>
