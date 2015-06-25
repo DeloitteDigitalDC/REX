@@ -17,7 +17,7 @@
   function util() {
     return {
       createBasicQry: createBasicQry,
-      createlabelSearchQry: createlabelSearchQry
+      createSingleSearchQry: createSingleSearchQry
     };
 
     /**
@@ -55,18 +55,9 @@
      *
      * @returns {String}
      */
-    function createlabelSearchQry(searchTerms) {
-      var words = _.words(searchTerms);
-      var qry   = '';
+    function createSingleSearchQry(searchTerms) {
 
-      _.forEach(words, function (w) {
-
-        //qry = qry + 'openfda.brand_name:"' + w + '"+';
-      });
-      qry = qry + 'openfda.brand_name:"' +searchTerms+ '"+';
-
-      qry = _.trimRight(qry, '+');
-      qry = '(' + qry + ')';
+      var qry = '(' + 'openfda.brand_name:"' +searchTerms+ '")';
 
       return qry;
     }

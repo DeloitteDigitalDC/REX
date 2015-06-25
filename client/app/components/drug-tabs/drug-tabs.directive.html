@@ -1,9 +1,18 @@
 <div class="drug-tabs">
-  <div ui-sref-active-eq="active"><a ui-sref="main.drugProfile.uses({name : drugName})">Uses</a></div>
-  <div ui-sref-active-eq="active"><a ui-sref="main.drugProfile.warnings({name : drugName})">Warnings</a></div>
-  <div ui-sref-active-eq="active"><a ui-sref="main.drugProfile.recalls({name : drugName})">Recalls</a></div>
   <div ui-sref-active-eq="active">
-    <a class="hidden-xs" ui-sref="main.drugProfile.pregnancy({name : drugName})">Pregnancy & Breastfeeding</a>
-    <a class="visible-xs-block" ui-sref="main.drugProfile.pregnancy({name : drugName})">Pregnancy</a>
+    <a ng-if="!inSearch" ui-sref="main.drugProfile.uses({name : drugName})">Uses</a>
+    <a ng-if="inSearch" ui-sref="main.search.drugProfile.uses({name : drugName})">Uses</a>
+  </div>
+  <div ui-sref-active-eq="active">
+    <a ng-if="!inSearch" ui-sref="main.drugProfile.warnings({name : drugName})">Warnings</a>
+    <a ng-if="inSearch" ui-sref="main.search.drugProfile.warnings({name : drugName})">Warnings</a>
+  </div>
+  <div ui-sref-active-eq="active">
+    <a ng-if="!inSearch" ui-sref="main.drugProfile.recalls({name : drugName})">Recalls</a>
+    <a ng-if="inSearch" ui-sref="main.search.drugProfile.recalls({name : drugName})">Recalls</a>
+  </div>
+  <div ui-sref-active-eq="active">
+    <a ng-if="!inSearch" ui-sref="main.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
+    <a ng-if="inSearch" ui-sref="main.search.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
   </div>
 </div>

@@ -173,27 +173,3 @@ img.icon {
   }
 }
 
-@-webkit-keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-
-@-moz-keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-  }
-}
-
-

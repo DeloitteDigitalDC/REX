@@ -3,7 +3,7 @@
     <a class="icon-logo-Rex" ng-click="goHome()" href="#"></a>
 
     <a class="user-account" ui-sref="main.userProfile">
-      <img class="icon" src="http://www.gravatar.com/avatar/{{user.data.gravatarHash}}?s=48"/>
+      <rex-icon hash="user.data.gravatarHash" size="48"></rex-icon>
 
       <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
     </a>

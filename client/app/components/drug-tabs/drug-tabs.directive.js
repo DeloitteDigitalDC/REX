@@ -8,23 +8,26 @@
  * @description
  * directive for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
     .directive('drugTabs', drugTabs);
 
-  function drugTabs() {
+  function drugTabs($state) {
     return {
-      restrict: 'EA',
+      restrict   : 'EA',
       templateUrl: 'app/components/drug-tabs/drug-tabs.directive.html',
-      scope: {
-        drugName : '='
+      scope      : {
+        drugName: '='
       },
-      link: link
+      link       : link
     };
 
-    function link() {
+    function link(scope) {
+
+      scope.inSearch = $state.includes('main.search.**');
+
     }
   }
 

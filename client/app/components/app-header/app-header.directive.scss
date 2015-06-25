@@ -1,6 +1,5 @@
 // header styles
 .app-header {
-
   .plus-button{
     position: absolute;
     top: 115px;
@@ -12,12 +11,9 @@
     right: 10%;
   }
 
-  // Default header styles
   height: 130px;
 
   .icon-logo-Rex {
-    transform: translateY(0);
-    transition: all .2s;
     position: absolute;
     left: 50%;
     margin-left: -85px;
@@ -25,22 +21,17 @@
     margin-top: -40px;
   }
 
-  .icon-ic-account-circle {
-
-  }
-
   .user-account {
-    transition: transform .2s;
+    display: none;
     position: absolute;
     right: 0;
     top: 50%;
     margin-top: -24px;
-    transform: translateY(-100px);
 
     .username {
       float: left;
       margin-top: 17px;
-      color: white;
+      color: #fff;
       margin-right: 10px;
     }
   }
@@ -48,12 +39,16 @@
   // start custom state styles
   &.logged-in {
     .icon-logo-Rex {
+      transition: all .3s;
+
       left: 0;
       margin-left: 0;
     }
 
     .user-account {
-      transform: translateY(0);
+      display: inline-block;
+      right: 0;
+      margin-left: 0;
     }
   }
 }

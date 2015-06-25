@@ -20,7 +20,11 @@
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
           title       : 'Drug profile',
-          headerState : 'loggedIn'
+          buttonData  : {
+            display: true,
+            open   : true,
+            link   : 'main.cabinet'
+          }
         });
     });
 

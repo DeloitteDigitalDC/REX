@@ -15,9 +15,8 @@
     .factory('user', user);
 
   function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
-    var messages = CONST.messages,
-        cookies  = ['uid', 'token'],
-        userObj  = {};
+    var cookies = ['uid', 'token'],
+        userObj = {};
 
     return {
       login          : login,
@@ -151,15 +150,14 @@
      * @private
      */
     function _authenticate(data) {
+      console.log(data.code);
       if (data.code) {
-        notify.showAlert(CONST.messages[data.code], 'danger');
+        //notify.showAlert(messages[data.code], 'danger');
 
         $rootScope.loading = false;
       }
       else {
         _userLoggedIn(data);
-
-        notify.showAlert(messages[data.success] + userObj.data.nickName, 'success');
 
         $rootScope.loading = false;
       }

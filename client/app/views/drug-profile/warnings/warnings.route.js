@@ -20,7 +20,12 @@
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
           title       : 'Warnings',
-          headerState : 'loggedIn'
+          headerState : 'loggedIn',
+          buttonData  : {
+            display: true,
+            open   : true,
+            link   : 'main.cabinet'
+          }
         });
     });
 

@@ -22,19 +22,13 @@
     vm.login = login;
 
     /**
-     *
      * @memberof LoginCtrl
      *
      * @description
      * call user service to authenticate user
      */
     function login() {
-      if (vm.userInfo.$invalid) {
-        vm.showError = true;
-      }
-      else {
-        user.login(vm.userInfo.username, vm.userInfo.password);
-      }
+      user.login(vm.userInfo.username, vm.userInfo.password);
     }
   }
 

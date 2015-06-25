@@ -24,8 +24,12 @@ user.login = function (req, res) {
 
   function __success(auth) {
     request(url + 'users/' + auth.uid + '/.json?auth=' + auth.token, function (err, reslt, body) {
-      auth.data = body;
-      //auth.data = JSON.parse(body);
+      try {
+        auth.data = JSON.parse(body);
+      }
+      catch(e) {
+        auth.data = body;
+      }
 
       auth.success = 'LOGGED_IN';
 
@@ -102,16 +106,12 @@ user.createUser = function (req, res) {
     //Sample Seed Data
     drugs       : {
       0: {
-        name          : 'Advil',
+        name          : 'Childrens Advil',
         expirationDate: '1/1/2015'
       },
       1: {
         name          : 'Niacin',
         expirationDate: '1/1/2018'
-      },
-      3: {
-        name          : 'Acetaminophen',
-        expirationDate: '5/10/2018'
       }
     }
   };

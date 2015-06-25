@@ -46,6 +46,9 @@
      *
      * @param {Object} qs
      * @param {String} drugName
+     *
+     * @TODO check for best result when more than one is returned? not sure if they are always identical for the fields we care about
+     *
      */
     function labels(qs, drugName) {
       if (drugName === cachedDrugName) {
