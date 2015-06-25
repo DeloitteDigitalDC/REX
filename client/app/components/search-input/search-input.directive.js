@@ -30,7 +30,6 @@
       scope.showLoader = false;
       scope.noResults  = false;
 
-
       scope.searchByName = function () {
 
         scope.noResults     = false;
@@ -39,10 +38,7 @@
         scope.showLoader    = true;
 
 
-        var query = util.createlabelSearchQry(scope.search.searchTerms);
-
-        //TODO: save search results in factory and look in there before searching
-        //search.searchDrugName(query);
+        var query = util.createSingleSearchQry(scope.search.searchTerms);
 
         drug.labelsSearch({search: query, limit: 100}).then(function (data) {
 

@@ -11,8 +11,7 @@
           templateUrl : 'app/views/drug-profile/uses/uses.view.html',
           controller  : 'UsesCtrl',
           controllerAs: 'uses',
-          title       : 'Uses',
-          headerState : 'loggedIn'
+          title       : 'Uses'
         })
         .state('main.search.drugProfile.uses', {
           url         : '/uses',
@@ -20,7 +19,6 @@
           controller  : 'UsesCtrl',
           controllerAs: 'uses',
           title       : 'Uses',
-          headerState : 'loggedIn',
           buttonData  : {
             display: true,
             open   : true,
