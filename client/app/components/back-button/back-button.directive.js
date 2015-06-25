@@ -26,7 +26,7 @@
     function link($scope) {
       $scope.goBack = function(){
         if ($state.includes('main.search.**')) {
-          $state.go('main.search.search-results');
+          $state.go('main.search.searchResults');
         } else {
           $state.go('main.cabinet');
         }
