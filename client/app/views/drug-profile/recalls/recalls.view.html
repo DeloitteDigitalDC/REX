@@ -1,18 +1,19 @@
 <div class="loader" ng-show="!recalls.fieldsLoaded"></div>
-<h3 ng-show="recalls.noData">No Data.</h3>
+<h4 ng-show="recalls.noData">No Data.</h4>
 <div class="recalls" ng-show="recalls.fieldsLoaded">
   <section ng-repeat="recall in recalls.recallData">
-    <h3>Report Date</h3>
+    <h4>Report Date</h4>
     <p>{{ recall.report_date | date: 'MM/dd/yyyy' }}</p>
-    <h3>Status</h3>
+    <h4>Status</h4>
     <p>{{ recall.status ? recall.status : 'No data available.' }}</p>
-    <h3>Reason for Recall</h3>
+    <h4>Reason for Recall</h4>
     <p>{{ recall.reason_for_recall ? recall.reason_for_recall : 'No data available.' }}</p>
-    <h3>Voluntary or Mandated</h3>
+    <h4>Voluntary or Mandated</h4>
     <p>{{ recall.voluntary_mandated ? recall.voluntary_mandated : 'No data available.' }}</p>
-    <h3>Distribution Pattern</h3>
+    <h4>Distribution Pattern</h4>
     <p>{{ recall.distribution_pattern ? recall.distribution_pattern : 'No data available.' }}</p>
-    <h3>Product Quantity</h3>
+    <h4>Product Quantity</h4>
     <p>{{ recall.product_quantity ? recall.product_quantity : 'No data available.' }}</p>
+    <hr>
   </section>
 </div>
