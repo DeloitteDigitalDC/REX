@@ -2,7 +2,11 @@ $plus-button-cross-size: 12px;
 
 .plus-button {
   transition: transform .2s;
+  -webkit-transition: -webkit-transform .2s;
+
   transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+
   background-color: $scarlet;
   height: 48px;
   width: 48px;
@@ -36,5 +40,6 @@ $plus-button-cross-size: 12px;
 
   &.open {
     transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
   }
 }
