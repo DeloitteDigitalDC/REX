@@ -16,8 +16,10 @@
     <div class="loader" ng-show="!cabinet.drugs.length && !cabinet.stopLoading"></div>
 
     <div class="row">
-      <div ng-show="!cabinet.drugs.length && cabinet.stopLoading" class="col-sm-6 col-md-4">
-        <card><a ui-sref="main.search">Add a drug!</a></card>
+      <div ng-show="!cabinet.drugs.length && cabinet.stopLoading" class="col-sm-6 col-md-4" ui-sref="main.search">
+        <div class="drug-card no-drug">
+          <card ><h2 class="text-center bold">Add <br>a Drug</h2></card>
+        </div>
       </div>
       <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
         <drug-card drug="drug"></drug-card>
