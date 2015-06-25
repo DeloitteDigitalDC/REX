@@ -37,7 +37,6 @@ describe('factory:user', function () {
     $httpBackend.flush();
 
     user.details().then(function (data) {
-      console.log('asdfasdfasdfasdfasdfasdf');
       expect(data.name).toBe('Ben');
     });
   });

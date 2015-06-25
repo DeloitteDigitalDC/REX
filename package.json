@@ -49,11 +49,9 @@
     "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
     "linter": "node node_modules/grunt-cli/bin/grunt jshint",
-
     "test": "npm run test-client && npm run test-server",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
     "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js -R spec",
-
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",
@@ -63,6 +61,7 @@
     "directive": "yo angular-blueprint:directive"
   },
   "dependencies": {
+    "MD5": "^1.2.2",
     "body-parser": "^1.13.1",
     "chalk": "^1.0.0",
     "cookie-parser": "^1.3.5",
