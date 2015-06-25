@@ -31,16 +31,15 @@
      * @memberof CabinetCtrl
      */
     function init() {
-      vm.drugs = [];
+      vm.drugs       = [];
       vm.stopLoading = false;
 
-      user.details().then(function(data) {
+      user.details().then(function (data) {
         vm.drugs = data.data.drugs;
 
-        if(!vm.drugs){
+        if (!vm.drugs) {
           vm.stopLoading = true;
-          return;
-        } else{
+        } else {
           _queryRecalls();
         }
       });
@@ -60,8 +59,8 @@
       // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
 
       drug.enforce({search: query, limit: 100}).success(function (data) {
-        recalls = data.results;
-
+        recalls        = data.results;
+        vm.stopLoading = true;
         _compareRecalls();
       });
     }
@@ -73,7 +72,7 @@
      */
     function _compareRecalls() {
       _.forEach(vm.drugs, function (drug) {
-        if(drug) {
+        if (drug) {
           _.forEach(recalls, function (recall) {
 
             if (recall.openfda.brand_name) {
