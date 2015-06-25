@@ -2,7 +2,7 @@ card-fade {
   display: block;
 
   .card-fade {
-    background: linear-gradient(180deg, #fff 40%, transparent);
+    background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0));
     border-top: solid $card-border-width $card-border-color;
     border-radius: $card-border-radius;
     padding: $card-border-width + $card-padding;
@@ -26,7 +26,7 @@ card-fade {
       left: 0;
       bottom: 0;
       width: $card-border-width;
-      background: linear-gradient(180deg, $card-border-color 40%, transparent);
+      background: linear-gradient(to bottom, $card-border-color 40%, rgba(255,255,255,0));
       z-index: 0;
     }
 
@@ -35,7 +35,7 @@ card-fade {
       right: 0;
       bottom: 0;
       width: $card-border-width;
-      background: linear-gradient(180deg, $card-border-color 40%, transparent);
+      background: linear-gradient(to bottom, $card-border-color 40%, rgba(255,255,255,0));
       z-index: 0;
     }
   }
