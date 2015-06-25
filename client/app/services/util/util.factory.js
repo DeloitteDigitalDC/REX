@@ -58,11 +58,7 @@
     function createlabelSearchQry(searchTerms) {
       var words = _.words(searchTerms);
       var qry   = '';
-
-      _.forEach(words, function (w) {
-
-        //qry = qry + 'openfda.brand_name:"' + w + '"+';
-      });
+      
       qry = qry + 'openfda.brand_name:"' +searchTerms+ '"+';
 
       qry = _.trimRight(qry, '+');
