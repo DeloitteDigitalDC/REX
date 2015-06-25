@@ -1,19 +1,31 @@
 <div class="loader" ng-show="!recalls.fieldsLoaded"></div>
-<h4 ng-show="recalls.noData">No Data.</h4>
+<h4 ng-show="recalls.noData">No Related Recalls.</h4>
+
 <div class="recalls" ng-show="recalls.fieldsLoaded">
+  <h3>Related Recalls</h3>
   <section ng-repeat="recall in recalls.recallData">
-    <h4>Report Date</h4>
-    <p>{{ recall.report_date | date: 'MM/dd/yyyy' }}</p>
-    <h4>Status</h4>
-    <p>{{ recall.status ? recall.status : 'No data available.' }}</p>
-    <h4>Reason for Recall</h4>
-    <p>{{ recall.reason_for_recall ? recall.reason_for_recall : 'No data available.' }}</p>
-    <h4>Voluntary or Mandated</h4>
-    <p>{{ recall.voluntary_mandated ? recall.voluntary_mandated : 'No data available.' }}</p>
-    <h4>Distribution Pattern</h4>
-    <p>{{ recall.distribution_pattern ? recall.distribution_pattern : 'No data available.' }}</p>
-    <h4>Product Quantity</h4>
-    <p>{{ recall.product_quantity ? recall.product_quantity : 'No data available.' }}</p>
+    <h4 ><a ng-click="recall.expanded = !recall.expanded">{{recall.openfda.brand_name[0]}}</a></h4>
     <hr>
+    <div ng-show="recall.expanded">
+      <h4>Report Date</h4>
+
+      <p>{{ recall.report_date | date: 'MM/dd/yyyy' }}</p>
+      <h4>Status</h4>
+
+      <p>{{ recall.status ? recall.status : 'No data available.' }}</p>
+      <h4>Reason for Recall</h4>
+
+      <p>{{ recall.reason_for_recall ? recall.reason_for_recall : 'No data available.' }}</p>
+      <h4>Voluntary or Mandated</h4>
+
+      <p>{{ recall.voluntary_mandated ? recall.voluntary_mandated : 'No data available.' }}</p>
+      <h4>Distribution Pattern</h4>
+
+      <p>{{ recall.distribution_pattern ? recall.distribution_pattern : 'No data available.' }}</p>
+      <h4>Product Quantity</h4>
+
+      <p>{{ recall.product_quantity ? recall.product_quantity : 'No data available.' }}</p>
+      <hr>
+    </div>
   </section>
 </div>
