@@ -32,7 +32,7 @@
       'EMAIL_TAKEN'     : 'There is already an account with this email',
       'USER_CREATED'    : 'Successfully created account ',
       'LOGGED_IN'       : 'Logged in as ',
-      'INVALID_EMAIL' : 'Invalid email'
+      'INVALID_EMAIL'   : 'Invalid email'
     }
   });
 

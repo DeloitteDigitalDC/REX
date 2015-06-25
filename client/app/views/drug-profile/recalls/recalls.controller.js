@@ -14,7 +14,7 @@
     .module('rex')
     .controller('RecallsCtrl', RecallsCtrl);
 
-  function RecallsCtrl($stateParams, drug, $scope, util) {
+  function RecallsCtrl($stateParams, drug, util) {
     var vm = this;
 
     vm.fieldsLoaded = false;
@@ -39,10 +39,10 @@
       var query = util.createSingleSearchQry(vm.drugName);
 
       drug.enforce({search: query, limit: 100}).success(function (data) {
-        vm.recallData = _.forEach(data.results, function(el, idx){
+        vm.recallData = _.forEach(data.results, function(el){
           el.report_date = _dateFormatter(el.report_date);
         });
-        console.log(vm.recallData);
+
         vm.fieldsLoaded = true;
       }).error(function () {
         vm.fieldsLoaded = true;

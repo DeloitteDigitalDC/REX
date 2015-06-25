@@ -19,7 +19,7 @@
 
     vm.title = 'REX'; // Default Title
 
-    $rootScope.$on('$stateChangeSuccess', stateChangeSuccess); // Listen for state change
+    $rootScope.$on('$stateChangeStart', stateChangeStart); // Listen for state change
 
     /**
      *
@@ -28,9 +28,9 @@
      * @param {Object} event - the event object
      * @param {Object} newState - the new state object
      */
-    function stateChangeSuccess(event, newState) {
-      vm.title        = newState.title;
-      vm.state        = newState;
+    function stateChangeStart(event, newState) {
+      vm.title = newState.title;
+      vm.state = newState;
 
       vm.headerOptions = newState.buttonData;
 
