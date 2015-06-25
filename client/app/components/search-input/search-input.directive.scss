@@ -1,5 +1,6 @@
 .search-input{
   border-bottom: solid 3px $lightGray;
+  position: relative;
   .rex-input{
     margin: 20px 0;
   }
@@ -12,6 +13,19 @@
     background-color: transparent;
     border: 0;
     @extend .icon-ic_search_48px;
+  }
+
+  .loader{
+    position: absolute;
+    bottom: -50px;
+    left: 48%;
+    z-index: 2;
+  }
+  .noResults{
+    position: absolute;
+    bottom: -150px;
+    left: 42%;
+    z-index: 2;
   }
 }
 
