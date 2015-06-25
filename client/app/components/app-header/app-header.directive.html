@@ -7,8 +7,7 @@
 
       <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
     </a>
-    <div plus-button ng-show="user.data" open="buttonOpen" ng-click="goToSearch()"></div>
-  </section>
-  <!--<button ng-click="goToSearch()">Search</button>-->
 
+    <plus-button open="headerOptions.open" ng-click="goTo()" ng-if="headerOptions.display"></plus-button>
+  </section>
 </app-section>

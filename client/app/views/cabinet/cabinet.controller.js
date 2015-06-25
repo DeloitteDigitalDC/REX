@@ -14,12 +14,18 @@
     .module('rex')
     .controller('CabinetCtrl', CabinetCtrl);
 
-  function CabinetCtrl(drug, util, user) {
+  function CabinetCtrl(drug, util, user, $state) {
     var vm = this;
+
+    vm.search = search;
 
     var recalls;
 
     init();
+
+    function search() {
+      $state.go('main.search');
+    }
 
     /**
      * @memberof CabinetCtrl

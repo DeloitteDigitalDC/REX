@@ -19,16 +19,17 @@
       restrict: 'EA',
       templateUrl: 'app/components/app-header/app-header.directive.html',
       scope: {
-        state: '=',
+        headerOptions: '=',
         user: '='
       },
       link: link
     };
 
     function link(scope) {
-      scope.goHome = goHome;
-      scope.goToSearch = goToSearch;
       scope.buttonOpen = false;
+
+      scope.goHome = goHome;
+      scope.goTo = goTo;
 
       /**
        * If the user is logged in take them to the cabinet else go to the home page.
@@ -44,8 +45,13 @@
         }
       }
 
-      function goToSearch() {
-        $state.go('main.search');
+      /**
+       * Go to the specified link
+       *
+       * @memberof appHeader
+       */
+      function goTo() {
+        $state.go(scope.headerOptions.link);
       }
     }
   }
