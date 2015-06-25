@@ -17,17 +17,7 @@
   function UserProfileCtrl(user) {
     var vm = this;
 
-    vm.fmlyBtnState = false;
-
-    vm.fmlyBtnToggle = fmlyBtnToggle;
-
-    function fmlyBtnToggle() {
-      vm.fmlyBtnState = !vm.fmlyBtnState;
-    }
-
-    user.details().then(function(data) {
-      console.log(data);
-    });
+    vm.logout = user.logout;
   }
 
 })();

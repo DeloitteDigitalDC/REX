@@ -3,6 +3,7 @@
 var fb      = require('../../firebase'),
     request = require('request'),
     config  = require('../../config'),
+    md5     = require('MD5'),
     url     = config.firebase;
 
 var user = {};
@@ -95,19 +96,21 @@ user.createUser = function (req, res) {
   };
 
   var details = {
-    nickName: data.firstName,
+    nickName    : data.firstName,
+    email       : data.username,
+    gravatarHash: md5(data.username.toLowerCase()),
     //Sample Seed Data
-    drugs: {
+    drugs       : {
       0: {
-        name: 'Advil',
+        name          : 'Advil',
         expirationDate: '1/1/2015'
       },
       1: {
-        name: 'Niacin',
+        name          : 'Niacin',
         expirationDate: '1/1/2018'
       },
       3: {
-        name: 'Acetaminophen',
+        name          : 'Acetaminophen',
         expirationDate: '5/10/2018'
       }
     }
@@ -126,7 +129,7 @@ user.createUser = function (req, res) {
     function __success(authData) {
       request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, {json: details}, function (err, data, body) {
         authData.success = 'USER_CREATED';
-        authData.data = body;
+        authData.data    = body;
 
         res.send(authData);
       });
@@ -147,7 +150,7 @@ user.createUser = function (req, res) {
  * @param res
  */
 user.getCabinetDrugs = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '/cabinet/.json?auth=' + req.cookies.jwt).pipe(res);
+  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
 };
 
 /**
@@ -159,7 +162,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  request.post(config.firebase + '/users/' + req.params.uid + '/cabinet/.json?auth=' + req.cookies.jwt, req.body).pipe(res);
+  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, req.body).pipe(res);
 };
 
 module.exports = user;

@@ -3,10 +3,15 @@
 
   .plus-button{
     position: absolute;
-    right: 10%;
-    bottom: -40px;
+    top: 115px;
+    bottom: -43px;
     z-index: 2;
+    height: 60px;
+    width: 60px;
+    border: solid 4px white;
+    right: 10%;
   }
+
   // Default header styles
   height: 130px;
 

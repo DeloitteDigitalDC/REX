@@ -11,7 +11,12 @@
           templateUrl : 'app/views/search/search.view.html',
           controller  : 'SearchCtrl',
           controllerAs: 'search',
-          title       : 'Search'
+          title       : 'Search',
+          buttonData  : {
+            display: true,
+            open   : true,
+            link   : 'main.cabinet'
+          }
         });
     });
 

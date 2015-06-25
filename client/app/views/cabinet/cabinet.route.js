@@ -11,7 +11,12 @@
           templateUrl : 'app/views/cabinet/cabinet.view.html',
           controller  : 'CabinetCtrl',
           controllerAs: 'cabinet',
-          title       : 'Cabinet'
+          title       : 'Cabinet',
+          buttonData  : {
+            display: true,
+            open   : false,
+            link   : 'main.search'
+          }
         });
     });
 

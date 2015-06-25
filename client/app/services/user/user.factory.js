@@ -14,7 +14,7 @@
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, $location, notify, CONST, $cookies, $q, $rootScope) {
+  function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
         cookies  = ['uid', 'token'],
         userObj  = {};
@@ -24,7 +24,8 @@
       logout         : logout,
       createUser     : createUser,
       details        : details,
-      getCabinetDrugs: getCabinetDrugs
+      getCabinetDrugs: getCabinetDrugs,
+      addCabinetDrug : addCabinetDrug
     };
 
     /**
@@ -56,6 +57,8 @@
       _.forEach(cookies, function (cookie) {
         $cookies.remove(cookie);
       });
+
+      $state.go('main.home', {}, {reload: true});
     }
 
     /**
@@ -106,7 +109,7 @@
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          user.data = data;
+          userObj.data = data.data;
         });
 
         return deferred;
@@ -123,6 +126,19 @@
     function getCabinetDrugs() {
       return userObj.data.drugs;
     }
+
+    /**
+     * Add a drug to your drug cabinet.
+     *
+     * @memberof user
+     *
+     * @param {Object} drug - the drug to add to your cabinet
+     * @param {String} drug.name - the name of the drug
+     */
+    function addCabinetDrug(drug) {
+      return $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+    }
+
 
     /**
      * Authenticate the user with the browser.
@@ -166,8 +182,6 @@
       });
 
       userObj = data;
-
-      //$location.path('/cabinet');
 
       $state.go('main.cabinet', {}, {reload: true});
     }
