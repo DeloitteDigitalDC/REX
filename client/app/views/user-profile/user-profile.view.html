@@ -7,16 +7,16 @@
 
   <app-section class="bg-lighter-gray">
     <card-fade class="overlap clearfix">
-      <img class="icon pull-left" src="http://www.gravatar.com/avatar/{{MainCtrl.user.data.gravatarHash}}?s=175"/>
+      <rex-icon hash="MainCtrl.user.data.gravatarHash" size="175"></rex-icon>
 
-      <div class="my-profile pull-left">
+      <div class="my-profile">
         <h2>{{MainCtrl.user.data.nickName}}</h2>
 
         <p>{{MainCtrl.user.data.email}}</p>
 
         <br>
 
-        <p><button class="form-control bg-lava" ng-click="userProfile.logout()">Logout</button></p>
+        <p><button class="form-control bg-lava logout" ng-click="userProfile.logout()">Logout</button></p>
       </div>
     </card-fade>
 
