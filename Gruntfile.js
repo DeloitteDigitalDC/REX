@@ -58,7 +58,7 @@ module.exports = function (grunt) {
           '<%= appSettings.app %>/styles/**/*.scss',
           '<%= appSettings.app %>/app/{views,components}/**/*.scss'
         ],
-        tasks: ['autoprefixer', 'injector:sass', 'sass']
+        tasks: ['injector:sass', 'sass', 'autoprefixer']
       },
       livereload: {
         options: {
@@ -199,15 +199,12 @@ module.exports = function (grunt) {
     autoprefixer: {
       options: {
         map: true,
-        browsers: ['last 1 version']
+        browsers: ['last 8 versions']
       },
       dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp',
-          src: '{,*/}*.css',
-          dest: '.tmp'
-        }]
+        files: {
+          '.tmp/styles/app.css': '.tmp/styles/app.css'
+        }
       }
     },
 
