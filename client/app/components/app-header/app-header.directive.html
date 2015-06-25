@@ -3,12 +3,11 @@
     <a class="icon-logo-Rex" ng-click="goHome()" href="#"></a>
 
     <a class="user-account" ui-sref="main.userProfile">
-      <span class="icon-ic-account-circle"></span>
+      <img class="icon" src="http://www.gravatar.com/avatar/{{user.data.gravatarHash}}?s=48"/>
 
       <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
     </a>
-    <div plus-button ng-show="user.data" open="buttonOpen" ng-click="goToSearch()"></div>
-  </section>
-  <!--<button ng-click="goToSearch()">Search</button>-->
 
+    <plus-button open="headerOptions.open" ng-click="goTo()" ng-if="headerOptions.display"></plus-button>
+  </section>
 </app-section>

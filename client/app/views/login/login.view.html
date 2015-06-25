@@ -6,12 +6,14 @@
   </app-section>
 
   <app-section class="bg-lighter-gray">
+    <alert type="warning" ng-if="LoginCtrl.userInfo.username.$invalid">Username required</alert>
+
     <form class="form" name="LoginCtrl.userInfo" ng-submit="LoginCtrl.login()" novalidate>
       <div class="row">
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="username">Username</label>
 
-          <input ng-minlength="3" type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username" ng-required="true">
+          <input ng-minlength="3" type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username" required>
         </div>
       </div>
 
@@ -19,13 +21,13 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="inputPassword">Password</label>
 
-          <input ng-minlength="3" type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password" ng-required="true">
+          <input ng-minlength="3" type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password" required>
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
-          <button type="submit" class="btn rex-button">SIGN IN</button>
+          <button type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">SIGN IN</button>
         </div>
 
         <div class="col-sm-3 text-right">

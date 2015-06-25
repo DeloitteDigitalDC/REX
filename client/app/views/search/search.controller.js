@@ -18,6 +18,7 @@
     var vm = this;
 
     vm.results = [];
+    vm.noResults = false;
 
   }
 

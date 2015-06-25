@@ -7,25 +7,27 @@
 
   <app-section class="bg-lighter-gray">
     <card-fade class="overlap clearfix">
-      <span class="icon-ic-account-gray pull-left"></span>
+      <img class="icon pull-left" src="http://www.gravatar.com/avatar/{{MainCtrl.user.data.gravatarHash}}?s=175"/>
 
       <div class="my-profile pull-left">
         <h2>{{MainCtrl.user.data.nickName}}</h2>
 
-        <p>Male</p>
-        <p>Washington, DC</p>
-        <p>dblue@deloitte.com</p>
+        <p>{{MainCtrl.user.data.email}}</p>
+
+        <br>
+
+        <p><button class="form-control bg-lava" ng-click="userProfile.logout()">Logout</button></p>
       </div>
     </card-fade>
 
-    <div class="clearfix">
-      <h3 class="pull-left">My Family</h3>
+    <!--<div class="clearfix">-->
+      <!--<h3 class="pull-left">My Family</h3>-->
 
-      <plus-button class="pull-right" open="userProfile.fmlyBtnState" ng-click="userProfile.fmlyBtnToggle()"></plus-button>
-    </div>
-    <card>
+      <!--<plus-button class="pull-right" open="userProfile.fmlyBtnState" ng-click="userProfile.fmlyBtnToggle()"></plus-button>-->
+    <!--</div>-->
+    <!--<card>-->
 
-    </card>
+    <!--</card>-->
 
     <br>
 
