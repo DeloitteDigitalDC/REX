@@ -17,8 +17,14 @@
 
   .loader{
     position: absolute;
-    bottom: -150px;
+    bottom: -50px;
     left: 48%;
+    z-index: 2;
+  }
+  .noResults{
+    position: absolute;
+    bottom: -150px;
+    left: 42%;
     z-index: 2;
   }
 }
