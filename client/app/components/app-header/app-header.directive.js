@@ -26,8 +26,6 @@
     };
 
     function link(scope) {
-      scope.buttonOpen = false;
-
       scope.goHome = goHome;
       scope.goTo = goTo;
 

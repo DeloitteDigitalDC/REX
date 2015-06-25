@@ -8,6 +8,6 @@
       <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
     </a>
 
-    <plus-button open="headerOptions.open" ng-click="goTo()" ng-if="headerOptions.display"></plus-button>
+    <button class="plus-button" ng-class="{'open': headerOptions.open}" ng-click="goTo()" ng-if="headerOptions.display"></button>
   </section>
 </app-section>
