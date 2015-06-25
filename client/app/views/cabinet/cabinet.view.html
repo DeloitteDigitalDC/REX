@@ -13,9 +13,12 @@
   </app-section>
 
   <app-section class="bg-lighter-gray drugs">
-    <div class="loader" ng-show="!cabinet.drugs.length"></div>
+    <div class="loader" ng-show="!cabinet.drugs.length && !cabinet.stopLoading"></div>
 
     <div class="row">
+      <div class="col-sm-6 col-md-4">
+        <card><a ui-sref="main.search">Add a drug!</a></card>
+      </div>
       <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
         <drug-card drug="drug"></drug-card>
       </div>

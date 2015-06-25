@@ -32,13 +32,13 @@
      */
     function init() {
       vm.drugs = [];
-      vm.noResults = false;
+      vm.stopLoading = false;
 
       user.details().then(function(data) {
         vm.drugs = data.data.drugs;
 
-        if(vm.drugs.length === 0){
-          vm.noResults = false;
+        if(!vm.drugs){
+          vm.stopLoading = true;
           return;
         } else{
           _queryRecalls();
