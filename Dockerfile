@@ -7,6 +7,6 @@ COPY package.json /usr/src/app/
 RUN npm install
 ADD dist /usr/src/app
 
-ENTRYPOINT ["/run_rex.sh"]
+ENTRYPOINT ["./run_rex.sh"]
 
 EXPOSE 3000
