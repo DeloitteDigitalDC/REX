@@ -14,12 +14,18 @@
     .module('rex')
     .controller('CabinetCtrl', CabinetCtrl);
 
-  function CabinetCtrl(drug, util, user) {
+  function CabinetCtrl(drug, util, user, $state) {
     var vm = this;
+
+    vm.search = search;
 
     var recalls;
 
     init();
+
+    function search() {
+      $state.go('main.search');
+    }
 
     /**
      * @memberof CabinetCtrl
@@ -31,15 +37,12 @@
       user.details().then(function(data) {
         vm.drugs = data.data.drugs;
 
-        console.log('drugs', vm.drugs);
-
         if(vm.drugs.length === 0){
           vm.noResults = false;
           return;
         } else{
           _queryRecalls();
         }
-
       });
     }
 

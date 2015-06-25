@@ -8,7 +8,7 @@
  * @description
  * The main application Controller for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -29,21 +29,20 @@
      * @param {Object} newState - the new state object
      */
     function stateChangeSuccess(event, newState) {
-      vm.title = newState.title;
+      vm.title        = newState.title;
+      vm.state        = newState;
 
-      vm.headerState = newState.headerState;
+      vm.headerOptions = newState.buttonData;
 
-      vm.state = newState;
-
-      if(!newState.public) {
-        if(!$cookies.get('token')) {
+      if (!newState.public) {
+        if (!$cookies.get('token')) {
           event.preventDefault();
 
           $state.go('main.home');
         }
       }
       else {
-        if($cookies.get('token')) {
+        if ($cookies.get('token')) {
           event.preventDefault();
 
           $state.go('main.cabinet');
