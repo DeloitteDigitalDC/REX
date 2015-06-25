@@ -56,9 +56,8 @@
      * @returns {String}
      */
     function createlabelSearchQry(searchTerms) {
-      var words = _.words(searchTerms);
       var qry   = '';
-      
+
       qry = qry + 'openfda.brand_name:"' +searchTerms+ '"+';
 
       qry = _.trimRight(qry, '+');
