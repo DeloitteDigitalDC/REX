@@ -40,7 +40,7 @@
        * user moment.js to determine if drug is expired and set $scope variable to we can assign a class in the view
        */
       function checkExpired(exprDate) {
-        return moment(exprDate).isBefore(moment());
+        return moment(exprDate, 'mm/dd/YYYY').isBefore(moment());
       }
 
       /**
