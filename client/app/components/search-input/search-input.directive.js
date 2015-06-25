@@ -19,34 +19,43 @@
       restrict   : 'EA',
       templateUrl: 'app/components/search-input/search-input.directive.html',
       scope      : {
-        searchResults: '='
+        searchResults: '=',
+        noResults : '='
       },
       link       : link
     };
 
-    function link($scope) {
-      $scope.search     = {};
-      $scope.showLoader = false;
-      $scope.noResults = false;
+    function link(scope) {
+      scope.search     = {};
+      scope.showLoader = false;
+      scope.noResults  = false;
 
 
-      $scope.searchByName = function () {
+      scope.searchByName = function () {
 
-        $scope.searchResults = [];
+        scope.noResults     = false;
+        scope.searchResults = [];
         $state.go('main.search.searchResults');
-        $scope.showLoader    = true;
-        var query            = util.createUnionQry($scope.search.searchTerms);
+        scope.showLoader    = true;
+
+
+        var query = util.createlabelSearchQry(scope.search.searchTerms);
 
         //TODO: save search results in factory and look in there before searching
         //search.searchDrugName(query);
-        drug.enforce({search: query, limit: 100}).success(function (data) {
-          console.log('data', data.results);
-          $scope.searchResults = data.results;
-          $scope.showLoader    = false;
 
-        }).error(function (){
-          $scope.noResults = true;
-          $scope.showLoader    = false;
+        drug.labelsSearch({search: query, limit: 100}).then(function (data) {
+
+          scope.searchResults = data.data.results;
+          if(data.data.results.length === 0){
+            scope.noResults  = true;
+          }
+          scope.showLoader    = false;
+
+        }, function () {
+
+          scope.noResults  = true;
+          scope.showLoader = false;
         });
       };
     }

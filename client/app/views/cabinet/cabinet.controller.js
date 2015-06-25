@@ -32,11 +32,17 @@
      */
     function init() {
       vm.drugs = [];
+      vm.noResults = false;
 
       user.details().then(function(data) {
         vm.drugs = data.data.drugs;
 
-        _queryRecalls();
+        if(vm.drugs.length === 0){
+          vm.noResults = false;
+          return;
+        } else{
+          _queryRecalls();
+        }
       });
     }
 
