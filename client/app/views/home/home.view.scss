@@ -26,13 +26,13 @@
 
   .card {
     margin: 20px auto;
-    height: 280px;
+    height: 240px;
       p{
       margin-top: 20px;
     }
     .rex-button{
-      float: right;
       width: 60%;
+      float: right;
       margin-top: 20px;
     }
   }
@@ -40,7 +40,8 @@
 @media #{$lessThanBigScreen} {
   .home {
     .card{
-      height: 300px;
+      height: 260px;
+
     }
   }
 }
@@ -48,7 +49,10 @@
 @media #{$lessThanDesktop} {
   .home {
     .card{
-      height: 400px;
+      height: 320px;
+      .rex-button {
+        width: 100%;
+      }
     }
   }
 }
@@ -56,7 +60,7 @@
 @media #{$lessThanTablet} {
   .home {
     .card{
-      height: 240px;
+      height: 230px;
     }
   }
 }
@@ -64,7 +68,7 @@
 @media #{$lessThanSmall} {
   .home {
     .card{
-      height: 280px;
+      height: 240px;
 
       .rex-button {
         width: 100%;
