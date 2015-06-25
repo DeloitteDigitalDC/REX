@@ -1,0 +1,15 @@
+<div class="loader" ng-show="!uses.fieldsLoaded"></div>
+
+<section class="uses" ng-show="uses.fieldsLoaded">
+  <h3>Indications and Usage</h3>
+
+  <p>{{ uses.drugData.indications_and_usage ? uses.drugData.indications_and_usage[0] : 'No data available.' }}</p>
+
+  <h3>Dosage and Administration</h3>
+
+  <p>{{ uses.drugData.dosage_and_administration ? uses.drugData.dosage_and_administration[0] : 'No data available.' }}</p>
+
+  <h3>Purpose</h3>
+
+  <p>{{ uses.drugData.purpose ? uses.drugData.purpose[0] : 'No data available.' }}</p>
+</section>

@@ -11,6 +11,7 @@
 
 (function () {
 
+  // fda api paths
   var base            = '/fda',
       drug            = base + '/drug',
       drugEvents      = drug + '/event.json/',
@@ -18,10 +19,19 @@
       drugEnforcement = drug + '/enforcement.json/';
 
   angular.module('rex').constant('CONST', {
+
     drug: {
       event      : drugEvents,
       label      : drugLabel,
       enforcement: drugEnforcement
+    },
+
+    messages: {
+      'INVALID_USER'    : 'Incorrect username',
+      'INVALID_PASSWORD': 'Invalid password',
+      'EMAIL_TAKEN'     : 'There is already an account with this email',
+      'USER_CREATED'    : 'Successfully created account ',
+      'LOGGED_IN'       : 'Logged in as '
     }
   });
 

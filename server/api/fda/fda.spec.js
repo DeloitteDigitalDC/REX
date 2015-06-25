@@ -1,5 +1,5 @@
 'use strict';
-
+/* istanbul ignore */
 var assert  = require('assert'),
     request = require('supertest'),
     app     = require('../../app');

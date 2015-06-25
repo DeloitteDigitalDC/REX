@@ -1,0 +1,48 @@
+.alert {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  z-index: 1000;
+  top: 0;
+
+  &.alert-danger {
+    color: $scarlet;
+    background: rgb(236,202,202);
+    border-color: lighten($scarlet, 40%);
+  }
+
+  &.alert-success {
+    color: #036A20; //persimmon complementary color!
+  }
+
+  &.alert-warning {
+    color: $scarlet;
+    background-color: rgb(252,238,201);
+  }
+
+  &.alert-info {
+    color: #115884;
+    background: lighten(#115884, 65%);
+    border-color: lighten(#115884, 55%);
+  }
+
+  &.ng-enter,
+  &.ng-leave {
+    transition: top .2s ease-in-out;
+  }
+
+  &.ng-enter,
+  &.ng-leave.ng-leave-active {
+    top: -55px;
+  }
+
+  &.ng-leave,
+  &.ng-enter.ng-enter-active  {
+    top: 0;
+  }
+}
+
+.error-container{
+  color: $scarlet;
+  text-align: center;
+}

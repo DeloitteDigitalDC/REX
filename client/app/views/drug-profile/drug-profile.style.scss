@@ -1,0 +1,21 @@
+.drug-profile {
+  .card-fade {
+    padding: 20px 40px 100px 40px;
+  }
+
+  .loader {
+    margin-top: 9%;
+  }
+}
+
+@media #{$lessThanSmall} {
+  .drug-profile {
+    h1{
+      text-align: center;
+    }
+
+    .card-fade {
+      padding: 20px 20px 100px 20px;
+    }
+  }
+}

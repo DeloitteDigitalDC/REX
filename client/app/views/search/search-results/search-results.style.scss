@@ -1,0 +1,22 @@
+.search-results {
+
+  .bg-lighter-gray{
+    padding: 50px 0 0 0;
+    min-height: 100px;
+  }
+
+  .result{
+    margin: 10px 0;
+    a{
+      color: $teal;
+      font-weight: 500;
+      cursor: pointer;
+      &:active,
+      &:focus,
+      &:hover{
+        color: $darkTeal;
+        text-decoration: none;
+      }
+    }
+  }
+}

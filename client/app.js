@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($urlRouterProvider, $locationProvider) {
+  .config(function ($httpProvider, $urlRouterProvider, $locationProvider) {
+    $httpProvider.defaults.withCredentials = true;
+
     $locationProvider.html5Mode(true);
 
     $urlRouterProvider.when('', '/'); // redirect to root if the state is ''

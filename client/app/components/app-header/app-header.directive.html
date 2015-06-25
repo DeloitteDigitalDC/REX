@@ -1,0 +1,13 @@
+<app-section class="bg-teal">
+  <section class="app-header" ng-class="{'logged-in': user.data}">
+    <a class="icon-logo-Rex" ng-click="goHome()" href="#"></a>
+
+    <a class="user-account" ui-sref="main.userProfile">
+      <img class="icon" src="http://www.gravatar.com/avatar/{{user.data.gravatarHash}}?s=48"/>
+
+      <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
+    </a>
+
+    <plus-button open="headerOptions.open" ng-click="goTo()" ng-if="headerOptions.display"></plus-button>
+  </section>
+</app-section>

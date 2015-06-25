@@ -1,0 +1,61 @@
+body {
+  background: $lightGray;
+  font-family: 'Roboto', sans-serif;
+  color: $fontGray;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 3em;
+  font-weight: 300;
+  color: $teal;
+}
+
+h2 {
+  font-size: 2.75em;
+  font-weight: 300;
+  margin: 8px 0;
+}
+
+h3 {
+  font-size: 2em;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+.light-weight{
+  font-weight: 300;
+}
+.bold {
+  font-weight: 500;
+}
+
+.bolder {
+  font-weight: 600;
+}
+
+.boldest {
+  font-weight: 700;
+}
+
+/** text colors **/
+.text-teal {
+  color: $teal;
+}
+
+.text-gray {
+  color: $gray;
+}
+
+.text-font-gray {
+  color: $fontGray;
+}
+
+.text-white{
+  color: white;
+}
+
+/** text helper classes **/
+
+.text-left {
+  text-align: left;
+}

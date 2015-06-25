@@ -1,0 +1,24 @@
+<div class="cabinet">
+  <app-section class="text-center bg-white">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2 class="text-teal">My Drug Cabinet</h2>
+      </div>
+
+      <div class="col-sm-6">
+        <label for="filterDrugName" class="sr-only">Filter by drug name</label>
+        <input id="filterDrugName" class="form-control rex-input" ng-model="cabinet.filter" placeholder="Filter by Drug Name">
+      </div>
+    </div>
+  </app-section>
+
+  <app-section class="bg-lighter-gray drugs">
+    <div class="loader" ng-show="!cabinet.drugs.length"></div>
+
+    <div class="row">
+      <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
+        <drug-card drug="drug"></drug-card>
+      </div>
+    </div>
+  </app-section>
+</div>

@@ -1,0 +1,23 @@
+<section class="drug-profile profile-shared">
+  <app-section class="bg-white page-top">
+    <div back-button></div>
+    <h1>{{drugProfile.drugName}}</h1>
+
+    <div drug-tabs drug-name="drugProfile.drugName"></div>
+  </app-section>
+
+  <!--<hr class="standard">-->
+
+  <app-section class="bg-lighter-gray">
+    <card-fade class="overlap clearfix">
+      <div ui-view></div>
+    </card-fade>
+
+    <div class="clearfix">
+    </div>
+
+    <br>
+
+    <!--<hr class="thickest small">-->
+  </app-section>
+</section>

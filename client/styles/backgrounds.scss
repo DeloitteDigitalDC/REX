@@ -1,0 +1,39 @@
+/** backgrounds **/
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-lighter-gray {
+  background-color: $lighterGray;
+}
+
+.bg-coral {
+  background-color: $coral;
+}
+
+.bg-lava {
+  background-color: $lava;
+  color: #fff;
+}
+
+.bg-light-gray {
+  background-color: $lightGray;
+}
+
+.bg-gray {
+  background-color: $gray;
+}
+
+.bg-dark-gray {
+  background-color: $darkGray;
+}
+
+.bg-teal {
+  background-color: $teal;
+}
+
+.bg-image {
+  background: url('../images/father-child-laughing.jpg') no-repeat scroll 0% 50%;
+  background-size: 100%;
+  width: 100%;
+}
