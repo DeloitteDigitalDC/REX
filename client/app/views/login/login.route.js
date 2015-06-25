@@ -12,8 +12,7 @@
           controller    : 'LoginCtrl',
           controllerAs  : 'LoginCtrl',
           title         : 'Login',
-          public        : true,
-          loginAvailable: false
+          public        : true
         });
     });
 

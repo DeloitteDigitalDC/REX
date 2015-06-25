@@ -20,7 +20,12 @@
           controller  : 'UsesCtrl',
           controllerAs: 'uses',
           title       : 'Uses',
-          headerState : 'loggedIn'
+          headerState : 'loggedIn',
+          buttonData  : {
+            display: true,
+            open   : true,
+            link   : 'main.cabinet'
+          }
         });
     });
 

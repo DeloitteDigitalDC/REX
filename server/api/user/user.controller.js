@@ -24,7 +24,12 @@ user.login = function (req, res) {
 
   function __success(auth) {
     request(url + 'users/' + auth.uid + '/.json?auth=' + auth.token, function (err, reslt, body) {
-      auth.data = JSON.parse(body);
+      try {
+        auth.data = JSON.parse(body);
+      }
+      catch(e) {
+        auth.data = body;
+      }
 
       auth.success = 'LOGGED_IN';
 
