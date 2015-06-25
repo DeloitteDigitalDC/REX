@@ -26,6 +26,12 @@ button {
   color: $teal;
   width: 100%;
   font-weight: 700;
+
+  &:disabled {
+    border-color: $gray;
+    color: $gray;
+  }
+
   &:hover,
   &:focus,
   &:active {
