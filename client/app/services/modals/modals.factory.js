@@ -37,12 +37,7 @@
       return $modal.open({
         templateUrl: 'app/views/remove-drug-modal/remove-drug-modal.view.html',
         controller: 'RemoveDrugModalCtrl',
-        controllerAs: 'RemoveDrug',
-        resolve: {
-          drugToRemove: function() {
-            return drug;
-          }
-        }
+        controllerAs: 'RemoveDrug'
       });
     }
   }

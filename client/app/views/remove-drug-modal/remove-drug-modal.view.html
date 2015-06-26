@@ -5,11 +5,11 @@
   </section>
 
   <section class="rex-modal-body add-drug-modal">
-    <form ng-submit="submitDrugForm()">
+    <form ng-submit="RemoveDrug.submitDrugForm()">
 
       <div class="form-group">
         <button type="submit" class="rex-button danger">Delete</button>
-        <a class="text-right bold">Cancel</a>
+        <a class="text-right bold" ng-click="RemoveDrug.cancel()">Cancel</a>
       </div>
     </form>
   </section>

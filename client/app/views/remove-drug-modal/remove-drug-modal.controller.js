@@ -14,16 +14,18 @@
     .module('rex')
     .controller('RemoveDrugModalCtrl', RemoveDrugModalCtrl);
 
-  function RemoveDrugModalCtrl( $modalInstance, $scope) {
+  function RemoveDrugModalCtrl( $modalInstance) {
     var vm = this;
-
-    //vm.drug = drugToRemove;
 
     vm.modal = $modalInstance;
 
-    $scope.submitDrugForm = function() {
+    vm.submitDrugForm = function() {
       $modalInstance.close();
     };
+
+    vm.cancel = function(){
+      $modalInstance.dismiss();
+    }
 
   }
 
