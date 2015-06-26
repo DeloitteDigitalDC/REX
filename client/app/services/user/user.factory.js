@@ -8,16 +8,27 @@
  * @description
  * Factory for managing users.
  */
+
+
+/**
+ * @typedef {Object} Drug
+ *
+ * A drug in the user cabinet
+ *
+ * @property {String} name - the name of the drug
+ * @property {String} [notes] - notes to be added with the drug
+ * @property {Date} [expirationDate] - the expiration date of the drug
+ */
 (function () {
 
   angular
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
+  function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies = ['uid', 'token'],
-        userObj = {};
+        cookies  = ['uid', 'token'],
+        userObj  = {};
 
     return {
       login          : login,
@@ -25,7 +36,8 @@
       createUser     : createUser,
       details        : details,
       getCabinetDrugs: getCabinetDrugs,
-      addCabinetDrug : addCabinetDrug
+      addCabinetDrug : addCabinetDrug,
+      addDrug        : addDrug
     };
 
     /**
@@ -130,16 +142,32 @@
     }
 
     /**
-     * Add a drug to your drug cabinet.
+     * Add a drug to your drug cabinet. Launches a modal.
      *
      * @memberof user
      *
-     * @param {Object} drug - the drug to add to your cabinet
-     * @param {String} drug.name - the name of the drug
+     * @param {Drug} drug - the drug to add to your cabinet
      */
     function addCabinetDrug(drug) {
-      $rootScope.loading = true;
+      var modal = modals.addDrug(drug).result;
 
+      modal.then(function () {
+        addDrug(drug);
+
+        modal.close();
+      });
+
+      return modal;
+    }
+
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     *
+     * @return {IHttpPromise<T>|*|{}}
+     */
+    function addDrug(drug) {
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
 
       userObj.data.drugs = userObj.data.drugs || {};
@@ -148,20 +176,14 @@
         userObj.data.drugs[res.name] = drug;
 
         notify.showAlert('Drug successfully added to you cabinet', 'success');
-
-        $rootScope.loading = false;
       });
 
       promise.error(function () {
         notify.showAlert('Error adding drug', 'danger');
-
-        $rootScope.loading = false;
       });
-
 
       return promise;
     }
-
 
     /**
      * Authenticate the user with the browser.

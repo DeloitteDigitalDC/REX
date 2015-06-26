@@ -40,7 +40,7 @@
      * @memberof DrugProfileCtrl
      */
     function addCabinetDrug(drug) {
-      user.addCabinetDrug(drug).success(function() {
+      user.addCabinetDrug(drug).then(function() {
         checkCabinet();
       });
     }
