@@ -12,11 +12,6 @@
           controller  : 'UserProfileCtrl',
           controllerAs: 'userProfile',
           title       : 'User profile'
-          //buttonData  : {
-          //  display: true,
-          //  open   : false,
-          //  link   : 'main.search'
-          //}
         });
     });
 
