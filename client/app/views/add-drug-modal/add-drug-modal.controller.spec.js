@@ -12,7 +12,8 @@ describe('Controller:AddDrugModalCtrl', function () {
     AddDrugModalCtrl = $injector.get('$controller')('AddDrugModalCtrl', {
       drugToAdd: {
         name: 'Advil'
-      }
+      },
+      $modalInstance: {}
     });
   }));
 

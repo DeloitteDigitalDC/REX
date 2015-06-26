@@ -9,7 +9,6 @@
  * Factory for managing users.
  */
 
-
 /**
  * @typedef {Object} Drug
  *
@@ -37,8 +36,8 @@
       details          : details,
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
-      deleteCabinetDrug: deleteCabinetDrug,
-      addDrug        : addDrug
+      addDrug          : addDrug,
+      deleteCabinetDrug: deleteCabinetDrug
     };
 
     /**
@@ -149,14 +148,13 @@
      * @memberof user
      *
      * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug) {
+    function addCabinetDrug(drug, cb) {
       var modal = modals.addDrug(drug).result;
 
-      modal.then(function () {
-        addDrug(drug);
-
-        modal.close();
+      modal.then(function (data) {
+        addDrug(data, cb);
       });
 
       return modal;
@@ -166,16 +164,25 @@
      * Saves the drug to the user's cabinet
      *
      * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
      *
      * @return {IHttpPromise<T>|*|{}}
      */
-    function addDrug(drug) {
+    function addDrug(drug, cb) {
+      $rootScope.loading = true;
+
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
 
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function (res) {
         userObj.data.drugs[res.name] = drug;
+
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully added to you cabinet', 'success');
       });
@@ -193,22 +200,21 @@
      * @memberof user
      *
      * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
-     * @param {Object} cb - callback function
+     * @param {Function} [cb] - callback function
      *
-     * @todo remove $rootscope loading and do something not on the $rootscope
+     * @todo remove $rootScope loading and do something not on the $rootScope
      */
     function deleteCabinetDrug(drugId, cb) {
       $rootScope.loading = true;
 
-     var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);
+      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
 
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function () {
-
         delete userObj.data.drugs[drugId];
 
-        cb();
+        if(cb) { cb(); }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 
@@ -221,10 +227,8 @@
         $rootScope.loading = false;
       });
 
-
       return promise;
     }
-
 
     /**
      * Authenticate the user with the browser.
@@ -266,7 +270,6 @@
       });
 
       userObj = data;
-      console.log(userObj);
 
       $state.go('main.cabinet', {}, {reload: true});
     }

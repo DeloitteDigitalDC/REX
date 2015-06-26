@@ -20,10 +20,6 @@
     vm.drug = drugToAdd;
 
     vm.modal = $modalInstance;
-
-    vm.submitDrugForm = function() {
-      $modalInstance.close(vm.drug);
-    };
   }
 
 })();

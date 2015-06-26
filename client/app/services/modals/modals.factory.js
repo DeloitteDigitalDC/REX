@@ -25,6 +25,7 @@
         templateUrl: 'app/views/add-drug-modal/add-drug-modal.view.html',
         controller: 'AddDrugModalCtrl',
         controllerAs: 'AddDrug',
+        size: 'md',
         resolve: {
           drugToAdd: function() {
             return drug;
