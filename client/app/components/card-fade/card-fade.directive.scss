@@ -1,5 +1,15 @@
 card-fade {
   display: block;
+  animation: slide-up .2s;
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(55px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
   .card-fade {
     background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0));

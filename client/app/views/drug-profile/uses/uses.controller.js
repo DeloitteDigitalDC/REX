@@ -33,12 +33,10 @@
      * @memberof UsesCtrl
      *
      * @private
-     *
      */
     function _getDrugData() {
-      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName).then(function (data) {
-        vm.drugData = data.data.results[0];
-        console.log(vm.drugData);
+      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName).then(function (res) {
+        vm.drugData = res.data[0];
         vm.fieldsLoaded = true;
       });
     }

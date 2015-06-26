@@ -20,7 +20,7 @@
       templateUrl: 'app/components/search-input/search-input.directive.html',
       scope      : {
         searchResults: '=',
-        noResults : '='
+        noResults    : '='
       },
       link       : link
     };
@@ -40,13 +40,14 @@
 
         var query = util.createSingleSearchQry(scope.search.searchTerms);
 
-        drug.labelsSearch({search: query, limit: 100}).then(function (data) {
+        drug.labelsSearch({search: query, limit: 100}).then(function (res) {
+          scope.searchResults = res.data;
 
-          scope.searchResults = data.data.results;
-          if(data.data.results.length === 0){
-            scope.noResults  = true;
+          if (scope.searchResults.length === 0) {
+            scope.noResults = true;
           }
-          scope.showLoader    = false;
+
+          scope.showLoader = false;
 
         }, function () {
 

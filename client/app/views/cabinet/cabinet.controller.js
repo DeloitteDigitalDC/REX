@@ -31,18 +31,9 @@
      * @memberof CabinetCtrl
      */
     function init() {
-      vm.drugs       = [];
-      vm.stopLoading = false;
+      vm.drugs = user.getCabinetDrugs();
 
-      user.details().then(function (data) {
-        vm.drugs = data.data.drugs;
-
-        if (!vm.drugs) {
-          vm.stopLoading = true;
-        } else {
-          _queryRecalls();
-        }
-      });
+      _queryRecalls();
     }
 
     /**
@@ -58,9 +49,9 @@
       //TODO: add status:ongoing -- this isnt working with our API right now
       // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
 
-      drug.enforce({search: query, limit: 100}).success(function (data) {
-        recalls        = data.results;
-        vm.stopLoading = true;
+      drug.enforce({search: query, limit: 100}).success(function (res) {
+        recalls = res;
+
         _compareRecalls();
       });
     }

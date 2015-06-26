@@ -16,7 +16,7 @@ describe('GET /fda/drug/event.json', function () {
           return done(err);
         }
 
-        assert(res.body.results.length > 0);
+        assert(res.body.length > 0);
 
         done();
       });

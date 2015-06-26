@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name DrugProfile
+ * @name DrugProfileCtrl
  *
  * @description
  * Controller for rex
@@ -14,10 +14,53 @@
     .module('rex')
     .controller('DrugProfileCtrl', DrugProfileCtrl);
 
-  function DrugProfileCtrl($stateParams) {
-    var vm = this;
+  function DrugProfileCtrl($stateParams, user, $state) {
+    var vm = this, cabinetDrugs;
 
     vm.drugName = $stateParams.name;
+    vm.isSearch = $state.includes('main.search.**');
+    vm.inCabinet = false;
+
+
+    vm.addCabinetDrug = addCabinetDrug;
+    vm.checkCabinet = checkCabinet;
+
+    init();
+
+    /**
+     * @memberof DrugProfileCtrl
+     */
+    function init() {
+      checkCabinet();
+    }
+
+    /**
+     * Add a drug to your drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     */
+    function addCabinetDrug(drug) {
+      user.addCabinetDrug(drug).success(function() {
+        checkCabinet();
+      });
+    }
+
+    /**
+     * Determine if the current drug is in the users drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     *
+     * @return {boolean}
+     */
+    function checkCabinet() {
+      cabinetDrugs = user.getCabinetDrugs();
+
+      _.forEach(cabinetDrugs, function(drug) {
+        if(drug.name === vm.drugName) {
+          vm.inCabinet = true;
+        }
+      });
+    }
   }
 
 })();

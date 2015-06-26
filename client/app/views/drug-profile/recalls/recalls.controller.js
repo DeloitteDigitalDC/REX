@@ -8,7 +8,7 @@
  * @description
  * Controller for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -18,9 +18,9 @@
     var vm = this;
 
     vm.fieldsLoaded = false;
-    vm.drugName = $stateParams.name;
-    vm.recallData = [];
-    vm.noData = false;
+    vm.drugName     = $stateParams.name;
+    vm.recallData   = [];
+    vm.noData       = false;
 
     init();
 
@@ -35,20 +35,18 @@
      *
      * @private
      */
-    function _getRecallData(){
-     var query = util.createSingleSearchQry(vm.drugName);
+    function _getRecallData() {
+      var query = util.createSingleSearchQry(vm.drugName);
 
       drug.enforce({search: query, limit: 100}).success(function (data) {
-        vm.recallData = _.forEach(data.results, function(el){
+        vm.recallData = _.forEach(data, function (el) {
           el.report_date = _dateFormatter(el.report_date);
         });
-
-        console.log(vm.recallData );
 
         vm.fieldsLoaded = true;
       }).error(function () {
         vm.fieldsLoaded = true;
-        vm.noData = true;
+        vm.noData       = true;
       });
     }
 
@@ -63,7 +61,7 @@
      *
      * @private
      */
-    function _dateFormatter(badDate){
+    function _dateFormatter(badDate) {
       var formattedDate = moment(badDate, 'YYYYMMDD');
       return formattedDate.toDate();
     }

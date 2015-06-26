@@ -15,7 +15,8 @@
     .factory('user', user);
 
   function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
-    var cookies = ['uid', 'token'],
+    var messages = CONST.messages,
+        cookies = ['uid', 'token'],
         userObj = {};
 
     return {
@@ -75,8 +76,6 @@
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
-        console.log(data);
-
         _authenticate(data);
       });
 
@@ -108,7 +107,7 @@
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj.data = data.data;
+          userObj.data = data;
         });
 
         return deferred;
@@ -135,7 +134,28 @@
      * @param {String} drug.name - the name of the drug
      */
     function addCabinetDrug(drug) {
-      return $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+      $rootScope.loading = true;
+
+      var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+
+      userObj.data.drugs = userObj.data.drugs || {};
+
+      promise.success(function (res) {
+        userObj.data.drugs[res.name] = drug;
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+
+        $rootScope.loading = false;
+      });
+
+      promise.error(function () {
+        notify.showAlert('Error adding drug', 'danger');
+
+        $rootScope.loading = false;
+      });
+
+
+      return promise;
     }
 
 
@@ -150,9 +170,8 @@
      * @private
      */
     function _authenticate(data) {
-      console.log(data.code);
       if (data.code) {
-        //notify.showAlert(messages[data.code], 'danger');
+        notify.showAlert(messages[data.code], 'danger');
 
         $rootScope.loading = false;
       }
