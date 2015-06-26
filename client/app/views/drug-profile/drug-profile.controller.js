@@ -62,7 +62,7 @@
      *
      * @memberof DrugProfileCtrl
      */
-    function removeDrug(drug) {
+    function removeDrug() {
        user.deleteCabinetDrug(vm.cabinetId, function (){
          checkCabinet();
        });
