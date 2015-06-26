@@ -7,10 +7,10 @@
  * @example
  * var server = require('http').createServer(require('./app'));
  */
-var express      = require('express'),
-    bodyParser   = require('body-parser'),
-    cookieParser = require('cookie-parser'),
-    config       = require('./config');
+var express       = require('express'),
+    bodyParser    = require('body-parser'),
+    cookieParser  = require('cookie-parser'),
+    config        = require('./config');
 
 var app = express(); // create the express app
 
@@ -18,6 +18,12 @@ app.use(express.static(config.appDir)); // use the static app directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+var auth = require('./auth')(app);
+
+app.get('/authed', auth.ensureAuthenticated, function (req, res) {
+  res.send("AUTHED!!!");
+});
 
 require('./router')(app); // include the router
 
