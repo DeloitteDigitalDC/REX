@@ -64,9 +64,9 @@
      * @memberof DrugProfileCtrl
      */
     function removeDrug(drug) {
-      user.deleteCabinetDrug(drug, vm.cabinetId).success(function() {
-        vm.inCabinet = false;
-      });
+       user.deleteCabinetDrug(drug, vm.cabinetId, function (){
+         checkCabinet();
+       });
     }
 
     /**
@@ -78,7 +78,7 @@
      */
     function checkCabinet() {
       cabinetDrugs = user.getCabinetDrugs();
-
+      vm.inCabinet = false;
       _.forEach(cabinetDrugs, function(drug) {
         if(drug.name === vm.drugName) {
           vm.inCabinet = true;

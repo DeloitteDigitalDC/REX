@@ -197,7 +197,7 @@
      *
      * @todo remove $rootscope loading and do something not on the $rootscope
      */
-    function deleteCabinetDrug(drug, drugId) {
+    function deleteCabinetDrug(drug, drugId, cb) {
       $rootScope.loading = true;
 
      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);
@@ -207,6 +207,8 @@
       promise.success(function () {
 
         delete userObj.data.drugs[drugId];
+
+        cb();
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 
