@@ -9,7 +9,6 @@
  * Factory for managing users.
  */
 
-
 /**
  * @typedef {Object} Drug
  *
@@ -149,14 +148,13 @@
      * @memberof user
      *
      * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug) {
+    function addCabinetDrug(drug, cb) {
       var modal = modals.addDrug(drug).result;
 
-      modal.then(function () {
-        addDrug(drug);
-
-        modal.close();
+      modal.then(function (data) {
+        addDrug(data, cb);
       });
 
       return modal;
@@ -166,16 +164,23 @@
      * Saves the drug to the user's cabinet
      *
      * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
      *
      * @return {IHttpPromise<T>|*|{}}
      */
-    function addDrug(drug) {
+    function addDrug(drug, cb) {
+      $rootScope.loading = true;
+
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
 
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function (res) {
         userObj.data.drugs[res.name] = drug;
+
+        $rootScope.loading = false;
+
+        if(cb) { cb(); }
 
         notify.showAlert('Drug successfully added to you cabinet', 'success');
       });
@@ -186,14 +191,13 @@
 
       return promise;
     }
-    
+
     /**
      * Delete a drug from your drug cabinet.
      *
      * @memberof user
      *
      * @param {Object} drug - the drug to delete from your cabinet
-     * @param {String} drug.name - the name of the drug
      */
     function deleteCabinetDrug(drug, drugId) {
       $rootScope.loading = true;
@@ -202,8 +206,7 @@
 
       userObj.data.drugs = userObj.data.drugs || {};
 
-      promise.success(function (res) {
-
+      promise.success(function () {
         delete userObj.data.drugs[drugId];
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
@@ -216,7 +219,6 @@
 
         $rootScope.loading = false;
       });
-
 
       return promise;
     }
@@ -261,7 +263,6 @@
       });
 
       userObj = data;
-      console.log(userObj);
 
       $state.go('main.cabinet', {}, {reload: true});
     }

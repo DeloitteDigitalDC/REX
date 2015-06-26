@@ -4,7 +4,7 @@
   </section>
 
   <section class="rex-modal-body add-drug-modal">
-    <form ng-submit="AddDrug.submitDrugForm()">
+    <form ng-submit="AddDrug.modal.close(AddDrug.drug)">
       <div class="form-group">
         <label for="expirationDate" class="sr-only"></label>
         <input class="form-control" id="expirationDate" type="text" ng-model="AddDrug.drug.expirationDate" placeholder="Expiration Date (optional)">
