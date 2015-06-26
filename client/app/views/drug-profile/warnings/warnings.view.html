@@ -2,16 +2,16 @@
 
 <section class="warnings" ng-show="warnings.fieldsLoaded">
   <div ng-if="warnings.otc">
-    <h3>Indications and Usage</h3>
+    <h3>Do Not Use</h3>
 
     <p>{{ warnings.drugData.do_not_use ? warnings.drugData.do_not_use[0] : 'No data available.' }}</p>
 
-    <h3>Dosage and Administration</h3>
+    <h3>Warnings</h3>
 
     <p>{{ warnings.drugData.warnings ? warnings.drugData.warnings[0] : 'No data available.'
       }}</p>
 
-    <h3>Purpose</h3>
+    <h3>Ask a Doctor</h3>
 
     <p>{{ warnings.drugData.ask_doctor ? warnings.drugData.ask_doctor[0] : 'No data available.' }}</p>
 
