@@ -1,0 +1,53 @@
+.cabinet {
+  .bg-white{
+    padding-top: 40px;
+    h2 {
+      text-align: left;
+    }
+  }
+
+  .plus-button{
+    margin: 25px auto;
+    background-color: $darkGray;
+  }
+
+  input.rex-input {
+    display: inline-block;
+  }
+
+  .drugs {
+    min-height: 390px;
+  }
+
+  .loader {
+    margin-top: 9%;
+  }
+
+  .drug-card.no-drug .card{
+    background: $lightGray;
+    border-color: $lightGray;
+    color: $gray;
+    h2{
+      margin-top: 50px;
+      line-height: 55px;
+    }
+
+  }
+}
+
+@media #{$lessThanSmall} {
+  .cabinet {
+    h2 {
+      text-align: center;
+    }
+
+    input.form-control {
+      width: 100%;
+      margin: 10px 0;
+    }
+
+    .filter-label {
+      display: none;
+    }
+  }
+}

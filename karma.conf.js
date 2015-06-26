@@ -5,7 +5,7 @@
 // Generated on 2014-12-18 using
 // generator-karma 0.8.3
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
@@ -25,9 +25,12 @@ module.exports = function(config) {
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/fastclick/lib/fastclick.js',
+      'bower_components/lodash/lodash.js',
+      'bower_components/angular-bootstrap/ui-bootstrap.js',
+      'client/*.html',
       'client/*.js',
-      'client/app/components/**/*.js',
-      'client/app/views/**/*.js',
+      'client/app/{views,components}/**/*.{js,html}',
       'client/app/services/**/*.js'
     ],
 
@@ -43,21 +46,26 @@ module.exports = function(config) {
     plugins: [
       'karma-phantomjs-launcher',
       'karma-jasmine',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-ng-html2js-preprocessor'
     ],
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'client/',
+      moduleName: 'templates'
+    },
+
     preprocessors: {
-      'app/*.html': 'html2js',
-      'app/components/**/!(*spec).js': ['coverage'],
-      'app/services/**/!(*spec).js': ['coverage'],
-      'app/views/**/!(*spec).js': ['coverage']
+      'client/*.html': 'ng-html2js',
+      'client/app/{components,views}/**/*.html': 'ng-html2js',
+      'client/app/{components,services,views}/**/!(*spec).js': ['coverage']
     },
 
     reporters: ['coverage', 'progress'],
 
     coverageReporter: {
-      type : 'html',
-      dir : '../coverage/'
+      type: 'html',
+      dir : 'coverage/'
     },
 
     // Continuous Integration mode

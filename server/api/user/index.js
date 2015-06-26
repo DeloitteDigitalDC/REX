@@ -11,8 +11,16 @@
 var router = require('express').Router(),
     ctrl   = require('./user.controller');
 
+// account
+router.get('/:uid/details/', ctrl.getDetails);
+router.put('/:email/password/reset', ctrl.resetPassword);
 router.post('/login', ctrl.login);
 router.post('/create', ctrl.createUser);
+
+// drug cabinet
+router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);
+router.post('/:uid/cabinet/', ctrl.addCabinetDrug);
+router.delete('/:uid/cabinet/:drugId', ctrl.deleteCabinetDrug);
 
 module.exports = router;
 

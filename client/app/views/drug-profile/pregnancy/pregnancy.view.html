@@ -1,0 +1,12 @@
+<div class="loader" ng-show="!pregnancy.fieldsLoaded"></div>
+
+<section class="pregnancy" ng-show="pregnancy.fieldsLoaded">
+  <h3>Pregnancy</h3>
+
+  <p>{{ pregnancy.drugData.pregnancy ? pregnancy.drugData.pregnancy[0] : 'No data available.' }}</p>
+
+  <h3>Pregnancy or Breastfeeding</h3>
+
+  <p>{{ pregnancy.drugData.pregnancy_or_breast_feeding ? pregnancy.drugData.pregnancy_or_breast_feeding[0] : 'No data available.' }}</p>
+
+</section>

@@ -20,6 +20,8 @@
   "globals": {
     "angular": true,
     "describe": true,
-    "it": true
+    "it": true,
+    "_": true,
+    "moment": true
   }
 }

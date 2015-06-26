@@ -1,0 +1,36 @@
+<section class="user-profile profile-shared">
+  <app-section class="bg-white page-top">
+    <h1>My Profile</h1>
+  </app-section>
+
+  <hr class="standard">
+
+  <app-section class="bg-lighter-gray">
+    <card-fade class="overlap clearfix">
+      <rex-icon hash="MainCtrl.user.data.gravatarHash" size="175"></rex-icon>
+
+      <div class="my-profile">
+        <h2>{{MainCtrl.user.data.nickName}}</h2>
+
+        <p>{{MainCtrl.user.data.email}}</p>
+
+        <br>
+
+        <p><button class="form-control bg-lava logout" ng-click="userProfile.logout()">Logout</button></p>
+      </div>
+    </card-fade>
+
+    <!--<div class="clearfix">-->
+      <!--<h3 class="pull-left">My Family</h3>-->
+
+      <!--<plus-button class="pull-right" open="userProfile.fmlyBtnState" ng-click="userProfile.fmlyBtnToggle()"></plus-button>-->
+    <!--</div>-->
+    <!--<card>-->
+
+    <!--</card>-->
+
+    <br>
+
+    <hr class="thickest small">
+  </app-section>
+</section>

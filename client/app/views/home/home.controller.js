@@ -14,12 +14,7 @@
     .module('rex')
     .controller('HomeCtrl', HomeCtrl);
 
-  function HomeCtrl(drug) {
-
-    drug.events({ search: 'patient.patientonsetage:56', limit: 25 }).success(function (data) {
-      console.log(data);
-    });
-
+  function HomeCtrl() {
   }
 
 })();

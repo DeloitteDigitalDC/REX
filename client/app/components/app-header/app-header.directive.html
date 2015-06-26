@@ -1,0 +1,13 @@
+<app-section class="bg-teal">
+  <section class="app-header" ng-class="{'logged-in': user.data}">
+    <a class="icon-logo-Rex" ng-click="goHome()" href="#"></a>
+
+    <a class="user-account" ui-sref="main.userProfile">
+      <rex-icon hash="user.data.gravatarHash" size="48"></rex-icon>
+
+      <span class="username hidden-xs">Hi {{user.data.nickName}}!</span>
+    </a>
+
+    <button class="plus-button" ng-class="{'open': headerOptions.open}" ng-click="goTo()" ng-if="headerOptions.display"></button>
+  </section>
+</app-section>

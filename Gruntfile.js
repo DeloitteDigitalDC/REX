@@ -55,11 +55,10 @@ module.exports = function (grunt) {
       },
       sass: {
         files: [
-          '<%= appSettings.app %>/styles/*.scss',
-          '<%= appSettings.app %>/app/views/**/*.scss',
-          '<%= appSettings.app %>/app/components/**/*.scss'
+          '<%= appSettings.app %>/styles/**/*.scss',
+          '<%= appSettings.app %>/app/{views,components}/**/*.scss'
         ],
-        tasks: ['autoprefixer', 'injector:sass', 'sass']
+        tasks: ['injector:sass', 'sass', 'autoprefixer']
       },
       livereload: {
         options: {
@@ -80,14 +79,13 @@ module.exports = function (grunt) {
      */
     connect: {
       options: {
-        port: 9000,
+        port: require('./server/config.js').port,
         hostname: '*',
         livereload: 35729
       },
       proxies: appConfig.proxy ? appConfig.proxyConfig : [],
       livereload: {
         options: {
-          open: grunt.option('open'),
           middleware: function (connect) {
             var middleware = [
               connect.static('.tmp'),
@@ -200,15 +198,13 @@ module.exports = function (grunt) {
      */
     autoprefixer: {
       options: {
-        browsers: ['last 1 version']
+        map: true,
+        browsers: ['last 8 versions']
       },
       dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp',
-          src: '{,*/}*.css',
-          dest: '.tmp'
-        }]
+        files: {
+          '.tmp/styles/app.css': '.tmp/styles/app.css'
+        }
       }
     },
 
@@ -280,24 +276,8 @@ module.exports = function (grunt) {
     sass: {
       options: {
         imagePath: '<%= appSettings.app %>/images',
-        outputStyle: (function() {
-          var outputStyle = grunt.option('output-style');
-          if(outputStyle !== undefined) {
-            return outputStyle;
-          }
-          else {
-            return 'nested';
-          }
-        }()),
-        sourceMap: (function() {
-          var sourcemap = grunt.option('sourcemap');
-          if(sourcemap !== undefined) {
-            return sourcemap;
-          }
-          else {
-            return true;
-          }
-        }())
+        outputStyle: 'expanded',
+        sourceMap: true
       },
       dist: {
         files: {
@@ -524,9 +504,9 @@ module.exports = function (grunt) {
     'useminPrepare',
     'ngtemplates',
     'concurrent:dist',
-    'autoprefixer',
     'concat',
     'ngAnnotate',
+    'autoprefixer',
     'copy:dist',
     'cdnify',
     'cssmin',

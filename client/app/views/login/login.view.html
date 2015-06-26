@@ -1,27 +1,43 @@
-<div class="container">
+<div class="login access-shared">
+  <app-section class="text-center bg-white">
+    <h3>What's in your medicine cabinet?</h3>
+    <h2 class="boldest text-teal">Ask Rex.</h2>
+    <hr class="thickest">
+  </app-section>
 
-  <form class="form-horizontal" ng-submit="LoginCtrl.login()">
-    <div class="form-group">
-      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+  <app-section class="bg-lighter-gray">
+    <alert type="warning" ng-if="LoginCtrl.userInfo.username.$invalid">Username required</alert>
 
-      <div class="col-sm-6">
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="LoginCtrl.userInfo.username">
+    <form class="form" name="LoginCtrl.userInfo" ng-submit="LoginCtrl.login()" novalidate>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <label class="sr-only" for="username">Username</label>
+
+          <input type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username" required>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-6">
+          <label class="sr-only" for="inputPassword">Password</label>
 
-      <div class="col-sm-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password">
+          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password" required>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Sign in</button>
+      <div class="row">
+        <div class="col-sm-offset-3 col-sm-3">
+          <button type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In</button>
+        </div>
+
+        <div class="col-sm-3 text-right">
+          <a href="#" class="text-teal forgot">Forgot Password</a>
+        </div>
       </div>
-    </div>
-  </form>
 
+      <div class="row text-right sign-up">
+        <div class="col-sm-offset-3 col-sm-6">Don't have an account yet? <a ui-sref="main.signUp" class="text-teal bolder">Sign up</a></div>
+      </div>
+    </form>
+  </app-section>
 </div>

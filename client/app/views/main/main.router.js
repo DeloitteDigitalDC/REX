@@ -1,18 +1,32 @@
 'use strict';
 
-(function() {
+(function () {
 
   angular
     .module('rex')
     .config(function ($stateProvider) {
       $stateProvider
         .state('main', {
-          url: '',
-          templateUrl: 'app/views/main/main.view.html',
-          controller: 'MainCtrl',
+          url         : '',
+          templateUrl : 'app/views/main/main.view.html',
+          controller  : 'MainCtrl',
           controllerAs: 'MainCtrl',
-          title: 'main'
+          title       : 'Main',
+          resolve     : {
+            userDetails: function (user, $cookies, $q) {
+              if (!$cookies.get('token')) {
+                var deferred = $q.defer();
+
+                deferred.resolve({});
+
+                return deferred.promise;
+              }
+              else {
+                return user.details();
+              }
+            }
+          }
         });
     });
 
-}());
+})();

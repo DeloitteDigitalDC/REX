@@ -1,0 +1,16 @@
+<div class="rex-modal remove-drug-modal">
+  <section class="rex-modal-header add-drug-modal">
+    <h3 class="text-center text-teal bold">Delete Drug</h3>
+    <p class="text-center bold text-gray ">Are you sure you want to remove this drug from your cabinet?</p>
+  </section>
+
+  <section class="rex-modal-body add-drug-modal">
+    <form ng-submit="RemoveDrug.submitDrugForm()">
+
+      <div class="form-group">
+        <button type="submit" class="rex-button danger">Delete</button>
+        <a class="text-right bold" ng-click="RemoveDrug.cancel()">Cancel</a>
+      </div>
+    </form>
+  </section>
+</div>

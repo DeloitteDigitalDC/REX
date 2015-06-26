@@ -6,7 +6,7 @@
  * @name drugs
  *
  * @description
- * Factory for vmc
+ * Factory for querying the fda api for information about drugs.
  */
 (function () {
 
@@ -14,44 +14,108 @@
     .module('rex')
     .factory('drug', drug);
 
-  function drug($http, CONST) {
+  function drug($http, CONST, $q) {
+    var path = CONST.drug;
+    var cachedDrugLabel, cachedDrugName, labelPromise;
+
     return {
-      events      : events,
-      labels      : labels,
-      enforcements: enforcements
+      events : events,
+      labels : labels,
+      enforce: enforce,
+      labelsSearch: labelsSearch
     };
 
     /**
-     * @name events
+     * Query the
      *
      * @memberof drugs
      *
      * @param {Object} qs
+     *
+     * @example
+     * drug.events({ search: 'patient.patientonsetage:56', limit: 25 }).success(function (data) {
+     *   console.log(data);
+     * });
      */
     function events(qs) {
-      return $http.get(CONST.drug.event, {params: qs});
+      return $http.get(path.event, {params: qs});
     }
 
     /**
-     * @name labels
+     * @memberof drugs
      *
+     * @param {Object} qs
+     * @param {String} drugName
+     *
+     * @TODO check for best result when more than one is returned? not sure if they are always identical for the fields we care about
+     *
+     */
+    function labels(qs, drugName) {
+      if (drugName === cachedDrugName) {
+        labelPromise = _returnCachedLabel();
+      } else {
+        labelPromise = _returnHttpPromise(qs, drugName);
+      }
+
+      return labelPromise;
+    }
+
+    /**
+     * Simple search of the API
+     *
+     * @memberof drugs
+     *
+     * @param qs
+     *
+     * @return {*}
+     */
+    function labelsSearch(qs){
+      return $http.get(path.label, {params: qs});
+    }
+
+    /**
      * @memberof drugs
      *
      * @param {Object} qs
      */
-    function labels(qs) {
-      return $http.get(CONST.drug.drugLabel, {params: qs});
+    function enforce(qs) {
+      return $http.get(path.enforcement, {params: qs});
     }
 
     /**
-     * @name enforcements
+     * returns already cached label info
      *
      * @memberof drugs
      *
-     * @param {Object} qs
+     * @returns {Object} labelPromise
+     *
+     * @private
      */
-    function enforcements(qs) {
-      return $http.get(CONST.drug.drugEnforcement, {params: qs});
+    function _returnCachedLabel() {
+      labelPromise = $q.defer();
+      labelPromise.resolve(cachedDrugLabel);
+
+      return labelPromise.promise;
+    }
+
+    /**
+     * calls api for label info
+     *
+     * @memberof drugs
+     *
+     * @returns {Object} labelPromise
+     *
+     * @private
+     */
+    function _returnHttpPromise(qs, drugName) {
+      labelPromise  = $http.get(path.label, {params: qs});
+
+      labelPromise.then(function (data) {
+        cachedDrugName  = drugName;
+        cachedDrugLabel = data;
+      });
+
+      return labelPromise;
     }
   }
 

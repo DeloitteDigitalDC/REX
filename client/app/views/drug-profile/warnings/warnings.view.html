@@ -1,0 +1,39 @@
+<div class="loader" ng-show="!warnings.fieldsLoaded"></div>
+
+<section class="warnings" ng-show="warnings.fieldsLoaded">
+  <div ng-if="warnings.otc">
+    <h3>Indications and Usage</h3>
+
+    <p>{{ warnings.drugData.do_not_use ? warnings.drugData.do_not_use[0] : 'No data available.' }}</p>
+
+    <h3>Dosage and Administration</h3>
+
+    <p>{{ warnings.drugData.warnings ? warnings.drugData.warnings[0] : 'No data available.'
+      }}</p>
+
+    <h3>Purpose</h3>
+
+    <p>{{ warnings.drugData.ask_doctor ? warnings.drugData.ask_doctor[0] : 'No data available.' }}</p>
+
+  </div>
+  <div ng-if="!warnings.otc">
+    <h3>Warnings and Cautions</h3>
+
+    <p>{{ warnings.drugData.warnings_and_cautions ? warnings.drugData.warnings_and_cautions[0] : 'No data available.' }}</p>
+
+    <h3>Adverse Reactions</h3>
+
+    <p>{{ warnings.drugData.adverse_reactions ? warnings.drugData.adverse_reactions[0] : 'No data available.'
+      }}</p>
+
+    <h3>Box Warning</h3>
+
+    <p>{{ warnings.drugData.box_warning ? warnings.drugData.box_warning[0] : 'No data available.' }}</p>
+    <h3>Overdosage</h3>
+
+    <p>{{ warnings.drugData.overdosage ? warnings.drugData.overdosage[0] : 'No data available.' }}</p>
+
+  </div>
+
+</section>
+

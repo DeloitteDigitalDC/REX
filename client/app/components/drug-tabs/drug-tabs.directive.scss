@@ -1,0 +1,24 @@
+.drug-tabs {
+  div {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  a {
+    font-weight: 500;
+    color: $teal;
+  }
+
+  a.pregnancy{
+    content: 'Pregnancy & BreastFeeding';
+  }
+
+  .active a {
+    color: $darkTeal;
+  }
+}
+
+@media #{$lessThanSmall} {
+  .drug-tabs {
+    margin-left: 15px;
+  }
+}
