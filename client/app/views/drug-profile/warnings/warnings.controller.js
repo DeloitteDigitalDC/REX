@@ -42,7 +42,7 @@
       }, vm.drugName);
 
       drugs.then(function (drugs) {
-        vm.drugData = drugs.data[0];
+        vm.drugData = drugs.data.results[0];
 
         if (vm.drugData.openfda.product_type[0] === 'HUMAN PRESCRIPTION DRUG') {
           vm.otc = false;

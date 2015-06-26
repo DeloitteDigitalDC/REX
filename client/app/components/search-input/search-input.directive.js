@@ -41,7 +41,9 @@
         var query = util.createSingleSearchQry(scope.search.searchTerms);
 
         drug.labelsSearch({search: query, limit: 100}).then(function (res) {
-          scope.searchResults = res.data;
+          scope.searchResults = res.data.results;
+
+          console.log(scope.searchResults);
 
           if (scope.searchResults.length === 0) {
             scope.noResults = true;

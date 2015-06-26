@@ -55,7 +55,7 @@
       // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
 
       drug.enforce({search: query, limit: 100}).success(function (res) {
-        recalls = res;
+        recalls = res.results;
 
         _compareRecalls();
       });

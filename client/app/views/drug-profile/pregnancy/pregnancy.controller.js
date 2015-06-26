@@ -35,8 +35,8 @@
      * @private
      */
     function _getDrugData() {
-      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName).then(function (data) {
-        vm.drugData = data.data[0];
+      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"'}, vm.drugName).then(function (labels) {
+        vm.drugData = labels.data.results[0];
 
         vm.fieldsLoaded = true;
       });

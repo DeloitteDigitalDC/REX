@@ -64,7 +64,9 @@ fda.getFDA = function getFDA(req, res) {
 
     }(0));
 
-    res.send(uniqueResults);
+    data.results = uniqueResults;
+
+    res.send(data);
   });
 };
 

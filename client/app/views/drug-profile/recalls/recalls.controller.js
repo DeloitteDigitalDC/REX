@@ -38,13 +38,17 @@
     function _getRecallData() {
       var query = util.createSingleSearchQry(vm.drugName);
 
-      drug.enforce({search: query, limit: 100}).success(function (data) {
-        vm.recallData = _.forEach(data, function (el) {
+      var promise = drug.enforce({search: query, limit: 100});
+
+      promise.success(function (data) {
+        vm.recallData = _.forEach(data.results, function (el) {
           el.report_date = _dateFormatter(el.report_date);
         });
 
         vm.fieldsLoaded = true;
-      }).error(function () {
+      });
+
+      promise.error(function () {
         vm.fieldsLoaded = true;
         vm.noData       = true;
       });
