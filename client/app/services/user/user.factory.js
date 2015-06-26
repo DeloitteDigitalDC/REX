@@ -30,13 +30,13 @@
         userObj  = {};
 
     return {
-      login          : login,
-      logout         : logout,
-      createUser     : createUser,
-      details        : details,
-      getCabinetDrugs: getCabinetDrugs,
-      addCabinetDrug : addCabinetDrug,
-      addDrug        : addDrug,
+      login            : login,
+      logout           : logout,
+      createUser       : createUser,
+      details          : details,
+      getCabinetDrugs  : getCabinetDrugs,
+      addCabinetDrug   : addCabinetDrug,
+      addDrug          : addDrug,
       deleteCabinetDrug: deleteCabinetDrug
     };
 
@@ -180,7 +180,9 @@
 
         $rootScope.loading = false;
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully added to you cabinet', 'success');
       });
@@ -198,16 +200,21 @@
      * @memberof user
      *
      * @param {Object} drug - the drug to delete from your cabinet
+     * @param {Function} cb - optional callback function
+     *
+     * @todo remove $rootScope loading and do something not on the $rootScope
      */
-    function deleteCabinetDrug(drug, drugId) {
+    function deleteCabinetDrug(drug, drugId, cb) {
       $rootScope.loading = true;
 
-     var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);
+      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
 
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function () {
         delete userObj.data.drugs[drugId];
+
+        if(cb) { cb(); }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 
