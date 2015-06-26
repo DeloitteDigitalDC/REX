@@ -1,0 +1,23 @@
+<div class="rex-modal">
+  <section class="rex-modal-header add-drug-modal">
+    <h3>Add <span class="text-teal" ng-bind="AddDrug.drug.name"></span></h3>
+  </section>
+
+  <section class="rex-modal-body add-drug-modal">
+    <form ng-submit="AddDrug.submitDrugForm()">
+      <div class="form-group">
+        <label for="expirationDate" class="sr-only"></label>
+        <input class="form-control" id="expirationDate" type="text" ng-model="AddDrug.drug.expirationDate" placeholder="Expiration Date (optional)">
+      </div>
+
+      <div class="form-group">
+        <label for="notes" class="sr-only"></label>
+        <textarea id="notes" rows="4" class="form-control" ng-model="AddDrug.drug.notes" placeholder="Notes (optional)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="rex-button">ADD DRUG</button>
+      </div>
+    </form>
+  </section>
+</div>
