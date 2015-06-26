@@ -30,6 +30,12 @@ button {
   &:disabled {
     border-color: $gray;
     color: $gray;
+    cursor: not-allowed;
+  }
+
+  &:disabled:hover {
+    background: none;
+    color: $gray;
   }
 
   &:hover,

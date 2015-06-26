@@ -1,9 +1,16 @@
 <section class="drug-profile profile-shared">
   <app-section class="bg-white page-top">
-    <div back-button></div>
+    <back-button></back-button>
+
+    <div ng-if="drugProfile.isSearch" class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
+      <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug({ name: drugProfile.drugName })">ADD TO MY CABINET</button>
+
+      <button class="rex-button pull-right in" disabled>IN CABINET</button>
+    </div>
+
     <h1>{{drugProfile.drugName}}</h1>
 
-    <div drug-tabs drug-name="drugProfile.drugName"></div>
+    <drug-tabs drug-name="drugProfile.drugName"></drug-tabs>
   </app-section>
 
   <!--<hr class="standard">-->

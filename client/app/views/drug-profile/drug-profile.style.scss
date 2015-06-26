@@ -6,6 +6,30 @@
   .loader {
     margin-top: 9%;
   }
+
+  .rex-button {
+    width: 250px;
+  }
+
+  .cabinet-buttons {
+    .add {
+      display: inline-block;
+    }
+
+    .in {
+      display: none;
+    }
+
+    &.in-cabinet {
+      .add {
+        display: none;
+      }
+
+      .in {
+        display: inline-block;
+      }
+    }
+  }
 }
 
 @media #{$lessThanSmall} {
@@ -16,6 +40,11 @@
 
     .card-fade {
       padding: 20px 20px 100px 20px;
+    }
+
+    .rex-button {
+      width: 100%;
+      margin: 25px 0;
     }
   }
 }
