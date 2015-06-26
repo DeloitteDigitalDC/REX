@@ -16,16 +16,17 @@
 
   function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies = ['uid', 'token'],
-        userObj = {};
+        cookies  = ['uid', 'token'],
+        userObj  = {};
 
     return {
-      login          : login,
-      logout         : logout,
-      createUser     : createUser,
-      details        : details,
-      getCabinetDrugs: getCabinetDrugs,
-      addCabinetDrug : addCabinetDrug
+      login            : login,
+      logout           : logout,
+      createUser       : createUser,
+      details          : details,
+      getCabinetDrugs  : getCabinetDrugs,
+      addCabinetDrug   : addCabinetDrug,
+      deleteCabinetDrug: deleteCabinetDrug
     };
 
     /**
@@ -115,7 +116,6 @@
     }
 
     /**
-     * @TODO need to try to get this data from firebase
      *
      * return just the drug data from the cached user object.
      *
@@ -125,6 +125,8 @@
       userObj = userObj || {};
 
       userObj.data = userObj.data || {};
+
+      console.log(userObj);
 
       return userObj.data.drugs;
     }
@@ -154,6 +156,40 @@
 
       promise.error(function () {
         notify.showAlert('Error adding drug', 'danger');
+
+        $rootScope.loading = false;
+      });
+
+
+      return promise;
+    }
+
+    /**
+     * Delete a drug from your drug cabinet.
+     *
+     * @memberof user
+     *
+     * @param {Object} drug - the drug to delete from your cabinet
+     * @param {String} drug.name - the name of the drug
+     */
+    function deleteCabinetDrug(drug, drugId) {
+      $rootScope.loading = true;
+
+     var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);
+
+      userObj.data.drugs = userObj.data.drugs || {};
+
+      promise.success(function (res) {
+
+        delete userObj.data.drugs[drugId];
+
+        notify.showAlert('Drug successfully removed from you cabinet', 'success');
+
+        $rootScope.loading = false;
+      });
+
+      promise.error(function () {
+        notify.showAlert('Error deleting drug', 'danger');
 
         $rootScope.loading = false;
       });
@@ -203,6 +239,7 @@
       });
 
       userObj = data;
+      console.log(userObj);
 
       $state.go('main.cabinet', {}, {reload: true});
     }
