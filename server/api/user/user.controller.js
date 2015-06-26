@@ -102,18 +102,7 @@ user.createUser = function (req, res) {
   var details = {
     nickName    : data.firstName,
     email       : data.username,
-    gravatarHash: md5(data.username.toLowerCase()),
-    //Sample Seed Data
-    drugs       : {
-      0: {
-        name          : 'Childrens Advil',
-        expirationDate: '1/1/2015'
-      },
-      1: {
-        name          : 'Niacin',
-        expirationDate: '1/1/2018'
-      }
-    }
+    gravatarHash: md5(data.username.toLowerCase())
   };
 
   // create user

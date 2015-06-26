@@ -7,11 +7,16 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.userProfile', {
-          url           : '/user-profile',
-          templateUrl   : 'app/views/user-profile/user-profile.view.html',
-          controller    : 'UserProfileCtrl',
-          controllerAs  : 'userProfile',
-          title         : 'User profile'
+          url         : '/user-profile',
+          templateUrl : 'app/views/user-profile/user-profile.view.html',
+          controller  : 'UserProfileCtrl',
+          controllerAs: 'userProfile',
+          title       : 'User profile'
+          //buttonData  : {
+          //  display: true,
+          //  open   : false,
+          //  link   : 'main.search'
+          //}
         });
     });
 

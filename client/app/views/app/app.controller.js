@@ -22,7 +22,6 @@
     $rootScope.$on('$stateChangeStart', stateChangeStart); // Listen for state change
 
     /**
-     *
      * @memberof AppCtrl
      *
      * @param {Object} event - the event object
@@ -48,8 +47,6 @@
           $state.go('main.cabinet');
         }
       }
-
-      document.body.scrollTop = document.documentElement.scrollTop = 0;
     }
   }
 

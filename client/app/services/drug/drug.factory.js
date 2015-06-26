@@ -60,6 +60,15 @@
       return labelPromise;
     }
 
+    /**
+     * Simple search of the API
+     *
+     * @memberof drugs
+     *
+     * @param qs
+     *
+     * @return {*}
+     */
     function labelsSearch(qs){
       return $http.get(path.label, {params: qs});
     }
@@ -74,9 +83,9 @@
     }
 
     /**
-     * @memberof drugs
+     * returns already cached label info
      *
-     * @description returns already cached label info
+     * @memberof drugs
      *
      * @returns {Object} labelPromise
      *

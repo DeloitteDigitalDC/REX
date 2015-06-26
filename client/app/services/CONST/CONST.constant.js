@@ -14,9 +14,9 @@
   // fda api paths
   var base            = '/fda',
       drug            = base + '/drug',
-      drugEvents      = drug + '/event.json/',
-      drugLabel       = drug + '/label.json/',
-      drugEnforcement = drug + '/enforcement.json/';
+      drugEvents      = drug + '/event/',
+      drugLabel       = drug + '/label/',
+      drugEnforcement = drug + '/enforcement/';
 
   angular.module('rex').constant('CONST', {
 

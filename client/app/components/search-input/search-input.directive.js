@@ -30,33 +30,41 @@
       scope.showLoader = false;
       scope.noResults  = false;
 
-      scope.searchByName = function () {
+      scope.searchByName = searchByName;
+
+      /**
+       * Search for a drug by its name
+       *
+       * @memberof searchInput
+       */
+      function searchByName() {
+        $state.go('main.search.searchResults');
 
         scope.noResults     = false;
         scope.searchResults = [];
-        $state.go('main.search.searchResults');
         scope.showLoader    = true;
 
+        var query;
 
-        var query = util.createSingleSearchQry(scope.search.searchTerms);
+        try {
+          query = util.createSingleSearchQry(scope.search.searchTerms);
+        }
+        catch (e) {
+          query = '';
+        }
 
-        drug.labelsSearch({search: query, limit: 100}).then(function (res) {
-          scope.searchResults = res.data.results;
+        var drugSearch = drug.labelsSearch({search: query, limit: 100});
 
-          console.log(scope.searchResults);
+        drugSearch.success(function (res) {
+          scope.searchResults = res.results;
 
           if (scope.searchResults.length === 0) {
             scope.noResults = true;
           }
 
           scope.showLoader = false;
-
-        }, function () {
-
-          scope.noResults  = true;
-          scope.showLoader = false;
         });
-      };
+      }
     }
   }
 
