@@ -122,6 +122,10 @@
      * @memberof user
      */
     function getCabinetDrugs() {
+      userObj = userObj || {};
+
+      userObj.data = userObj.data || {};
+
       return userObj.data.drugs;
     }
 

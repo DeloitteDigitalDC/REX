@@ -23,6 +23,11 @@
 
     init();
 
+    /**
+     * go to the search page
+     *
+     * @memberof CabinetCtrl
+     */
     function search() {
       $state.go('main.search');
     }
