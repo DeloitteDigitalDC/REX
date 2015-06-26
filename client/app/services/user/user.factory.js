@@ -37,7 +37,8 @@
       details        : details,
       getCabinetDrugs: getCabinetDrugs,
       addCabinetDrug : addCabinetDrug,
-      addDrug        : addDrug
+      addDrug        : addDrug,
+      deleteCabinetDrug: deleteCabinetDrug
     };
 
     /**
@@ -127,7 +128,6 @@
     }
 
     /**
-     * @TODO need to try to get this data from firebase
      *
      * return just the drug data from the cached user object.
      *
@@ -137,6 +137,8 @@
       userObj = userObj || {};
 
       userObj.data = userObj.data || {};
+
+      console.log(userObj);
 
       return userObj.data.drugs;
     }
@@ -184,6 +186,40 @@
 
       return promise;
     }
+    
+    /**
+     * Delete a drug from your drug cabinet.
+     *
+     * @memberof user
+     *
+     * @param {Object} drug - the drug to delete from your cabinet
+     * @param {String} drug.name - the name of the drug
+     */
+    function deleteCabinetDrug(drug, drugId) {
+      $rootScope.loading = true;
+
+     var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);
+
+      userObj.data.drugs = userObj.data.drugs || {};
+
+      promise.success(function (res) {
+
+        delete userObj.data.drugs[drugId];
+
+        notify.showAlert('Drug successfully removed from you cabinet', 'success');
+
+        $rootScope.loading = false;
+      });
+
+      promise.error(function () {
+        notify.showAlert('Error deleting drug', 'danger');
+
+        $rootScope.loading = false;
+      });
+
+
+      return promise;
+    }
 
     /**
      * Authenticate the user with the browser.
@@ -225,6 +261,7 @@
       });
 
       userObj = data;
+      console.log(userObj);
 
       $state.go('main.cabinet', {}, {reload: true});
     }

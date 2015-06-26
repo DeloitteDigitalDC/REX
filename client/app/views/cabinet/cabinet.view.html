@@ -14,8 +14,8 @@
 
   <app-section class="bg-lighter-gray drugs">
     <div class="row">
-      <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs">
-        <drug-card drug="drug"></drug-card>
+      <div class="col-sm-6 col-md-4" ng-repeat="(key,drug) in cabinet.drugs">
+        <drug-card drug="drug" key="key"></drug-card>
       </div>
 
       <div class="col-sm-6 col-md-4" ui-sref="main.search">

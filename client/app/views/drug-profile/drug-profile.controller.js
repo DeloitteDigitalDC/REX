@@ -19,11 +19,13 @@
 
     vm.drugName = $stateParams.name;
     vm.isSearch = $state.includes('main.search.**');
+    vm.cabinetId = $stateParams.cabinetId || 0;
     vm.inCabinet = false;
 
 
     vm.addCabinetDrug = addCabinetDrug;
     vm.checkCabinet = checkCabinet;
+    vm.removeCabinetDrug = removeCabinetDrug;
 
     init();
 
@@ -41,6 +43,17 @@
      */
     function addCabinetDrug(drug) {
       user.addCabinetDrug(drug).then(function() {
+        checkCabinet();
+      });
+    }
+
+    /**
+     * Remove a drug from your drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     */
+    function removeCabinetDrug(drug) {
+      user.deleteCabinetDrug(drug, vm.cabinetId).success(function() {
         checkCabinet();
       });
     }
