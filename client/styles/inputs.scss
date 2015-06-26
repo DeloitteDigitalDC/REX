@@ -44,4 +44,11 @@ button {
     color: white;
     background-color: $teal;
   }
+
+  &.danger {
+    background-color: $lava;
+    border: solid 4px $lava;
+    color: #fff;
+
+  }
 }

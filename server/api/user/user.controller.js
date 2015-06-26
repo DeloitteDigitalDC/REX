@@ -27,7 +27,7 @@ user.login = function (req, res) {
       try {
         auth.data = JSON.parse(body);
       }
-      catch(e) {
+      catch (e) {
         auth.data = body;
       }
 
@@ -55,7 +55,6 @@ user.getDetails = function (req, res) {
 };
 
 /**
- * @name getDetails
  *
  * @memberof user.controller
  *
@@ -131,7 +130,7 @@ user.createUser = function (req, res) {
 };
 
 /**
- * @name getCabinetDrugs
+ * get cabinet drugs
  *
  * @memberof user.controller
  *
@@ -143,7 +142,6 @@ user.getCabinetDrugs = function (req, res) {
 };
 
 /**
- * @name addCabinetDrug
  *
  * @memberof user.controller
  *
@@ -152,6 +150,21 @@ user.getCabinetDrugs = function (req, res) {
  */
 user.addCabinetDrug = function (req, res) {
   request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
+};
+
+/**
+ * add drug to your cabinet
+ *
+ * @memberof user.controller
+ *
+ * @param req
+ * @param res
+ */
+user.deleteCabinetDrug = function (req, res) {
+
+  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/'+ req.params.drugId +'.json?auth=' + req.cookies.token).pipe(res);
+
+
 };
 
 module.exports = user;

@@ -15,7 +15,6 @@
     .controller('HomeCtrl', HomeCtrl);
 
   function HomeCtrl() {
-
   }
 
 })();

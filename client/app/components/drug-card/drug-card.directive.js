@@ -19,14 +19,18 @@
       restrict   : 'EA',
       templateUrl: 'app/components/drug-card/drug-card.directive.html',
       scope      : {
-        drug: '='
+        drug: '=',
+        key: '='
       },
       link       : link
     };
 
     function link($scope) {
 
-      $scope.expired = checkExpired($scope.drug.expirationDate);
+      if($scope.drug){
+        $scope.expired = checkExpired($scope.drug.expirationDate);
+      }
+
 
       /**
        * @name checkExpired
@@ -53,9 +57,9 @@
        */
       $scope.goToDetails = function () {
         if($scope.drug.recalled){
-          $state.go('main.drugProfile.recalls', {name: $scope.drug.name});
+          $state.go('main.drugProfile.recalls', {name: $scope.drug.name, cabinetId: $scope.key});
         } else {
-          $state.go('main.drugProfile.uses', {name: $scope.drug.name});
+          $state.go('main.drugProfile.uses', {name: $scope.drug.name, cabinetId: $scope.key});
         }
 
       };

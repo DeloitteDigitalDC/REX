@@ -1,19 +1,20 @@
 /* ------ Imports -----*/
-@import '../../bower_components/bootstrap/dist/css/bootstrap.css';
-@import url('http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700');
+@import "../../bower_components/bootstrap/dist/css/bootstrap.css";
+@import url("http://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700");
 
-@import 'mediaQueries';
-@import 'colors';
-@import 'inputs';
-@import 'backgrounds';
-@import 'sprites';
-@import 'mixins';
-@import 'alerts';
-@import 'layouts';
-@import 'text';
-@import 'shared/access-shared';
-@import 'shared/cards-shared';
-@import 'shared/profile-shared';
+@import "mediaQueries";
+@import "colors";
+@import "inputs";
+@import "backgrounds";
+@import "sprites";
+@import "mixins";
+@import "alerts";
+@import "layouts";
+@import "text";
+@import "shared/access-shared";
+@import "shared/cards-shared";
+@import "shared/profile-shared";
+@import "modals";
 
 // injector
 @import '../app/components/app-footer/app-footer.directive.scss';
@@ -27,6 +28,7 @@
 @import '../app/components/plus-button/plus-button.directive.scss';
 @import '../app/components/search-input/search-input.directive.scss';
 @import '../app/components/user-icon/user-icon.directive.scss';
+@import '../app/views/add-drug-modal/add-drug-modal.style.scss';
 @import '../app/views/cabinet/cabinet.style.scss';
 @import '../app/views/drug-profile/drug-profile.style.scss';
 @import '../app/views/drug-profile/pregnancy/pregnancy.style.scss';
@@ -36,6 +38,7 @@
 @import '../app/views/home/home.view.scss';
 @import '../app/views/login/login.style.scss';
 @import '../app/views/main/main.view.scss';
+@import '../app/views/remove-drug-modal/remove-drug-modal.style.scss';
 @import '../app/views/search/search-results/search-results.style.scss';
 @import '../app/views/search/search.style.scss';
 @import '../app/views/sign-up/sign-up.style.scss';

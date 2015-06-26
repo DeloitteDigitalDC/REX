@@ -7,7 +7,7 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.drugProfile', {
-          url         : '/drug-profile/:name',
+          url         : '/drug-profile/:name/:cabinetId',
           templateUrl : 'app/views/drug-profile/drug-profile.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
