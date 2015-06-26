@@ -8,7 +8,7 @@
     height: 60px;
     width: 60px;
     border: solid 4px white;
-    right: 10%;
+    right: 0;
 
     &.ng-enter, &.ng-leave {
       transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
@@ -57,7 +57,7 @@
       //transition: all .3s;
 
       left: 0;
-      margin-left: 0;
+      margin-left: 30px;
     }
 
     .user-account {

@@ -1,13 +1,14 @@
 <div class="cabinet">
   <app-section class="text-center bg-white">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <h2 class="text-teal">My drug cabinet</h2>
       </div>
-
-      <div class="col-sm-6">
+    </div>
+    <div class="row">
+      <div class="col-sm-offset-9 col-sm-3 col-xs-12">
         <label for="filterDrugName" class="sr-only">Filter by drug name</label>
-        <input id="filterDrugName" class="form-control rex-input" placeholder="Filter by Drug Brand Name">
+        <input id="filterDrugName" class="form-control rex-input" placeholder="Filter by Brand Name">
       </div>
     </div>
   </app-section>
@@ -20,7 +21,10 @@
 
       <div class="col-sm-6 col-md-4" ui-sref="main.search">
         <div class="drug-card no-drug">
-          <card ><h2 class="text-center bold">Add a Drug</h2><div class="plus-button"></div></card>
+          <card><h2 class="text-center bold">Add a Drug</h2>
+
+            <div class="plus-button"></div>
+          </card>
         </div>
       </div>
     </div>

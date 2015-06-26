@@ -5,14 +5,15 @@ button {
 }
 
 .rex-input, .rex-button {
-  border-radius: 45px;
+  border-radius: 6px;
   font-size: 1.2em;
-  border: solid 3px $lightGray;
+  border: solid 1px $lightGray ;
 }
 
 .rex-input {
   padding: 18px 30px;
   height: auto;
+  font-weight: 300;
 
   &::-webkit-input-placeholder {
     color: $placeholderColor;
@@ -21,15 +22,16 @@ button {
 
 .rex-button {
   padding: 10px;
-  background-color: #fff;
+  background-color: $teal;
   border: solid 4px $teal;
-  color: $teal;
+  color: #fff;
   width: 100%;
   font-weight: 700;
 
   &:disabled {
     border-color: $gray;
-    color: $gray;
+    background-color: $gray;
+    color: #fff;
     cursor: not-allowed;
   }
 
@@ -42,7 +44,8 @@ button {
   &:focus,
   &:active {
     color: white;
-    background-color: $teal;
+    background-color: $darkTeal;
+    border-color: $darkTeal;
   }
 
   &.danger {

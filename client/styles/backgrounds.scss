@@ -29,7 +29,7 @@
 }
 
 .bg-teal {
-  background-color: $teal;
+  background: linear-gradient($teal 10%, $darkTeal);
 }
 
 .bg-image {
