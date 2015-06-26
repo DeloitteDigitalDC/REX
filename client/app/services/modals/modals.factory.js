@@ -16,7 +16,8 @@
 
   function modals($modal) {
     return {
-      addDrug: addDrug
+      addDrug: addDrug,
+      removeDrug: removeDrug
     };
 
     function addDrug(drug) {
@@ -26,6 +27,19 @@
         controllerAs: 'AddDrug',
         resolve: {
           drugToAdd: function() {
+            return drug;
+          }
+        }
+      });
+    }
+
+    function removeDrug(drug) {
+      return $modal.open({
+        templateUrl: 'app/views/remove-drug-modal/remove-drug-modal.view.html',
+        controller: 'RemoveDrugModalCtrl',
+        controllerAs: 'RemoveDrug',
+        resolve: {
+          drugToRemove: function() {
             return drug;
           }
         }

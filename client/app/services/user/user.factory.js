@@ -37,7 +37,7 @@
       details          : details,
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
-      deleteCabinetDrug: deleteCabinetDrug
+      deleteCabinetDrug: deleteCabinetDrug,
       addDrug        : addDrug
     };
 
@@ -194,6 +194,8 @@
      *
      * @param {Object} drug - the drug to delete from your cabinet
      * @param {String} drug.name - the name of the drug
+     *
+     * @todo remove $rootscope loading and do something not on the $rootscope
      */
     function deleteCabinetDrug(drug, drugId) {
       $rootScope.loading = true;
@@ -202,7 +204,7 @@
 
       userObj.data.drugs = userObj.data.drugs || {};
 
-      promise.success(function (res) {
+      promise.success(function () {
 
         delete userObj.data.drugs[drugId];
 

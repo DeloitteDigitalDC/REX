@@ -14,7 +14,7 @@
     .module('rex')
     .controller('DrugProfileCtrl', DrugProfileCtrl);
 
-  function DrugProfileCtrl($stateParams, user, $state) {
+  function DrugProfileCtrl($stateParams, user, $state, modals) {
     var vm = this, cabinetDrugs;
 
     vm.drugName = $stateParams.name;
@@ -36,6 +36,17 @@
       checkCabinet();
     }
 
+    function removeCabinetDrug(drug) {
+      var modal = modals.removeDrug(drug).result;
+
+      modal.then(function () {
+        removeDrug(drug);
+
+      });
+
+      return modal;
+    }
+
     /**
      * Add a drug to your drug cabinet
      *
@@ -52,9 +63,9 @@
      *
      * @memberof DrugProfileCtrl
      */
-    function removeCabinetDrug(drug) {
+    function removeDrug(drug) {
       user.deleteCabinetDrug(drug, vm.cabinetId).success(function() {
-        checkCabinet();
+        vm.inCabinet = false;
       });
     }
 
