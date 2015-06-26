@@ -9,7 +9,9 @@ describe('Controller:RemoveDrugModalCtrl', function () {
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($injector) {
-    RemoveDrugModalCtrl = $injector.get('$controller')('RemoveDrugModalCtrl');
+    RemoveDrugModalCtrl = $injector.get('$controller')('RemoveDrugModalCtrl', {
+      $modalInstance: {}
+    });
   }));
 
   it('condition of test', function () {
