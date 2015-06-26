@@ -192,12 +192,12 @@
      *
      * @memberof user
      *
-     * @param {Object} drug - the drug to delete from your cabinet
-     * @param {String} drug.name - the name of the drug
+     * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
+     * @param {Object} cb - callback function
      *
      * @todo remove $rootscope loading and do something not on the $rootscope
      */
-    function deleteCabinetDrug(drug, drugId, cb) {
+    function deleteCabinetDrug(drugId, cb) {
       $rootScope.loading = true;
 
      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/'+ drugId);

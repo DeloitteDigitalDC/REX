@@ -33,7 +33,7 @@
       });
     }
 
-    function removeDrug(drug) {
+    function removeDrug() {
       return $modal.open({
         templateUrl: 'app/views/remove-drug-modal/remove-drug-modal.view.html',
         controller: 'RemoveDrugModalCtrl',
