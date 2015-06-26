@@ -1,6 +1,6 @@
 // header styles
 .app-header {
-  .plus-button{
+  .plus-button {
     position: absolute;
     top: 115px;
     bottom: -43px;
@@ -9,6 +9,21 @@
     width: 60px;
     border: solid 4px white;
     right: 10%;
+
+    &.ng-enter, &.ng-leave {
+      transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    }
+
+    &.ng-enter,
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
   }
 
   height: 130px;
@@ -39,7 +54,7 @@
   // start custom state styles
   &.logged-in {
     .icon-logo-Rex {
-      transition: all .3s;
+      //transition: all .3s;
 
       left: 0;
       margin-left: 0;

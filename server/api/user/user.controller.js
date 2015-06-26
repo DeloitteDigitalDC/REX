@@ -102,18 +102,7 @@ user.createUser = function (req, res) {
   var details = {
     nickName    : data.firstName,
     email       : data.username,
-    gravatarHash: md5(data.username.toLowerCase()),
-    //Sample Seed Data
-    drugs       : {
-      0: {
-        name          : 'Childrens Advil',
-        expirationDate: '1/1/2015'
-      },
-      1: {
-        name          : 'Niacin',
-        expirationDate: '1/1/2018'
-      }
-    }
+    gravatarHash: md5(data.username.toLowerCase())
   };
 
   // create user
@@ -162,7 +151,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, req.body).pipe(res);
+  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
 };
 
 module.exports = user;

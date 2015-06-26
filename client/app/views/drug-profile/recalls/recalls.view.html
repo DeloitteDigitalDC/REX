@@ -4,8 +4,8 @@
 <div class="recalls" ng-show="recalls.fieldsLoaded">
   <h3>Related Recalls</h3>
   <section ng-repeat="recall in recalls.recallData">
-    <h4 ><a ng-click="recall.expanded = !recall.expanded">{{recall.openfda.brand_name[0]}}</a></h4>
-    <hr>
+    <h4><a ng-click="recall.expanded = !recall.expanded">{{recall.openfda.brand_name[0]}}</a></h4>
+
     <div ng-show="recall.expanded">
       <h4>Report Date</h4>
 

@@ -11,6 +11,10 @@
 var router = require('express').Router(),
     ctrl   = require('./fda.controller');
 
-router.get('/:type/:cat', ctrl.getFDA);
+router.get('/:type/event', ctrl.getEvent);
+
+router.get('/:type/label', ctrl.getLabel);
+
+router.get('/:type/enforcement', ctrl.getEnforcement);
 
 module.exports = router;

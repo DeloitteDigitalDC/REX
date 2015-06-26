@@ -7,19 +7,18 @@
 
       <div class="col-sm-6">
         <label for="filterDrugName" class="sr-only">Filter by drug name</label>
-        <input id="filterDrugName" class="form-control rex-input" ng-model="cabinet.filter" placeholder="Filter by Drug Brand Name">
+        <input id="filterDrugName" class="form-control rex-input" placeholder="Filter by Drug Brand Name">
       </div>
     </div>
   </app-section>
 
   <app-section class="bg-lighter-gray drugs">
-    <div class="loader" ng-show="!cabinet.drugs.length && !cabinet.stopLoading"></div>
-
     <div class="row">
-      <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs | filter : {name : cabinet.filter}">
+      <div class="col-sm-6 col-md-4" ng-repeat="drug in cabinet.drugs">
         <drug-card drug="drug"></drug-card>
       </div>
-      <div ng-show="cabinet.stopLoading" class="col-sm-6 col-md-4" ui-sref="main.search">
+
+      <div class="col-sm-6 col-md-4" ui-sref="main.search">
         <div class="drug-card no-drug">
           <card ><h2 class="text-center bold">Add a Drug</h2><div class="plus-button"></div></card>
         </div>
