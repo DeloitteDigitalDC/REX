@@ -4,21 +4,28 @@ describe('directive:search-input', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
-  // Uncomment if template used
-  // beforeEach(module('templates'));
+  beforeEach(module('templates'));
 
-  var element, scope;
+  var element, scope, $state, $httpBackend;
 
   // Initialize a mock scope
   beforeEach(inject(function ($injector) {
     scope = $injector.get('$rootScope').$new();
+    $state = $injector.get('$state');
+    $httpBackend = $injector.get('$httpBackend');
   }));
 
   // compile the element to be tested
   it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<search-input></search-input>');
-    // element = $compile(element)(scope);
+    element = angular.element('<search-input></search-input>');
+    element = $compile(element)(scope);
 
-    // scope.$apply();
+    scope.$apply();
+
+    var elScope = element.isolateScope();
+
+    elScope.search.searchTerms = 'Advil';
+
+    elScope.searchByName();
   }));
 });

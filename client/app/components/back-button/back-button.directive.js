@@ -23,14 +23,22 @@
       link: link
     };
 
-    function link($scope) {
-      $scope.goBack = function(){
+    function link(scope) {
+      scope.goBack = goBack;
+
+      /**
+       * Go back based on the current state
+       *
+       * @memberof backButton
+       */
+      function goBack(){
         if ($state.includes('main.search.**')) {
           $state.go('main.search.searchResults');
-        } else {
+        }
+        else {
           $state.go('main.cabinet');
         }
-      };
+      }
     }
   }
 

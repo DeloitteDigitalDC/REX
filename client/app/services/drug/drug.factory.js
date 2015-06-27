@@ -25,6 +25,7 @@
       labelsSearch: labelsSearch
     };
 
+    /* istanbul ignore next */
     /**
      * Query the
      *
@@ -41,6 +42,7 @@
       return $http.get(path.event, {params: qs});
     }
 
+    /* istanbul ignore next */
     /**
      * @memberof drugs
      *

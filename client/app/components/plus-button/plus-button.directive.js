@@ -12,9 +12,9 @@
 
   angular
     .module('rex')
-    .directive('aPlusButton', aPlusButton);
+    .directive('plusButton', plusButton);
 
-  function aPlusButton() {
+  function plusButton() {
     return {
       restrict: 'EA',
       templateUrl: 'app/components/plus-button/plus-button.directive.html',
@@ -25,5 +25,3 @@
   }
 
 })();
-
-
