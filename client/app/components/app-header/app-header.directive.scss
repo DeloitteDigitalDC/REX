@@ -17,7 +17,7 @@
     &.ng-enter,
     &.ng-leave.ng-leave-active {
       opacity: 0;
-      transform: translateX(50px);
+      transform: scale(.85);
     }
 
     &.ng-leave,
