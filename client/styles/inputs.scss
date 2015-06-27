@@ -36,8 +36,8 @@ button {
   }
 
   &:disabled:hover {
-    background: none;
-    color: $gray;
+    background: $gray;
+    border-color: $gray;
   }
 
   &:hover,

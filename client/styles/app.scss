@@ -15,35 +15,30 @@
 @import "shared/profile-shared";
 @import "modals";
 
-//[ui-view].ng-enter, [ui-view].ng-leave {
-//  position: absolute;
-//  left: 0;
-//  right: 0;
-//  -webkit-transition:all .5s ease-in-out;
-//  -moz-transition:all .5s ease-in-out;
-//  -o-transition:all .5s ease-in-out;
-//  transition:all .5s ease-in-out;
-//}
-//
-//[ui-view].ng-enter {
-//  opacity: 0;
-//  transform:translateX(-100%);
-//}
-//
-//[ui-view].ng-enter-active {
-//  opacity: 1;
-//  transform:translateX(0);
-//}
-//
-//[ui-view].ng-leave {
-//  opacity: 1;
-//  transform:translateX(0);
-//}
-//
-//[ui-view].ng-leave-active {
-//  opacity: 0;
-//  transform:translateX(100%);
-//}
+[ui-view].ng-enter, [ui-view].ng-leave {
+  transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+  //transform:translateX(-100%);
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+  //transform:translateX(0);
+}
+
+[ui-view].ng-leave {
+  opacity: 1;
+  //transform:translateX(0);
+  display: none;
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+  //transform:translateX(100%);
+}
 
 // injector
 @import '../app/components/app-footer/app-footer.directive.scss';

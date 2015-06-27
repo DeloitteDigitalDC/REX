@@ -1,5 +1,14 @@
+app-header {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
 // header styles
 .app-header {
+  position: relative;
+  z-index: 100;
+
   .plus-button {
     position: absolute;
     top: 115px;
@@ -57,7 +66,7 @@
       //transition: all .3s;
 
       left: 0;
-      margin-left: 30px;
+      margin-left: 0;
     }
 
     .user-account {
