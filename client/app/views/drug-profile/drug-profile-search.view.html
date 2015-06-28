@@ -5,7 +5,7 @@
     <card class="clearfix">
       <section class="card-section">
         <div class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
-          <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug({ name: drugProfile.drugName })">
+          <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug($event, { name: drugProfile.drugName })">
             ADD TO MY CABINET
           </button>
 

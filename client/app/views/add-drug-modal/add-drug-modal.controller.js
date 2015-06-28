@@ -19,10 +19,6 @@
 
     vm.drug = drugToAdd;
 
-    vm.drugForm = {};
-
-    _.extend(vm.drugForm, vm.drug);
-
     vm.submit = function () {
       $mdDialog.hide(vm.drug);
     };
