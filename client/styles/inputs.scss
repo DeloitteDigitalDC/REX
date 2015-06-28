@@ -28,6 +28,10 @@ button {
   width: 100%;
   font-weight: 700;
 
+  &.ng-click-active {
+    background-color: $darkTeal;
+  }
+
   &:disabled {
     border-color: $gray;
     background-color: $gray;

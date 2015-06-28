@@ -38,4 +38,8 @@ $plus-button-cross-size: 28%;
   &.open {
     transform: rotate(45deg);
   }
+
+  &.ng-click-active {
+    background: $scarlet - 20;
+  }
 }
