@@ -21,7 +21,8 @@
     };
 
     /**
-     * Create string for drug query.  Intended for use when you are doing a search on all drugs in your cabinet (or future features that use lists of drugs)
+     * Create string for drug query.
+     * Intended for use when you are doing a search on all drugs in your cabinet (or future features that use lists of drugs)
      *
      * @memberof util
      *
@@ -56,10 +57,7 @@
      * @returns {String}
      */
     function createSingleSearchQry(searchTerms) {
-
-      var qry = '(' + 'openfda.brand_name:"' +searchTerms+ '")';
-
-      return qry;
+      return '(' + 'openfda.brand_name:"' +searchTerms+ '")';
     }
   }
 

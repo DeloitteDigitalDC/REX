@@ -1,12 +1,12 @@
-$plus-button-cross-size: 28%;
+$plus-button-cross-size: 32%;
 
 .plus-button {
   transition: transform .2s;
   transform: rotate(0deg);
 
   background-color: $scarlet;
-  height: 48px;
-  width: 48px;
+  height: 54px;
+  width: 54px;
   border-radius: 50%;
   border-width: 0;
   position: relative;
