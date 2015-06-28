@@ -56,8 +56,16 @@
       font-weight: 400;
 
       &.gray-button{
-        background-color: $gray;
-        border-color: $gray;
+        background-color: $medGray;
+        border-color: $medGray;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $gray;
+          border-color: $gray;
+        }
+
       }
     }
   }
