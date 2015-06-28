@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 COPY dist /usr/src/app
-COPY deploy/run_rex.sh /usr/src/app/run_rex.sh
+COPY deploy/run_rex.sh /usr/src/app/
 RUN chmod 777 run_rex.sh
 
 ENTRYPOINT ["sh", "run_rex.sh"]
