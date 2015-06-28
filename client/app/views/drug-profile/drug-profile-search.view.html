@@ -3,18 +3,26 @@
   <app-section class="bg-pills">
     <back-button></back-button>
     <card class="clearfix">
-      <div class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
-        <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug($event, { name: drugProfile.drugName })">
-          ADD TO MY CABINET
-        </button>
+      <section class="card-section">
+        <div class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
+          <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug({ name: drugProfile.drugName })">
+            ADD TO MY CABINET
+          </button>
 
-        <button class="rex-button pull-right in" disabled>IN CABINET</button>
-      </div>
+          <button class="rex-button pull-right in" disabled>IN CABINET</button>
+        </div>
 
-      <h1>{{drugProfile.drugName}}</h1>
+        <h1>{{drugProfile.drugName}}</h1>
 
-      <drug-tabs drug-name="drugProfile.drugName"></drug-tabs>
-      <div ui-view></div>
+        <drug-tabs drug-name="drugProfile.drugName"></drug-tabs>
+
+      </section>
+      <hr>
+      <section class="card-section">
+        <div ui-view></div>
+      </section>
+
+
     </card>
 
     <div class="clearfix">

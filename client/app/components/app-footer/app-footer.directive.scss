@@ -1,4 +1,11 @@
 // header styles
 .app-footer {
-  height: 50px;
+  hr{
+    width: 150px;
+    margin: 70px auto 50px auto;
+  }
+
+  .app-footer-bottom{
+    height: 50px;
+  }
 }

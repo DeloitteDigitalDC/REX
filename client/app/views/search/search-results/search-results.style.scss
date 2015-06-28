@@ -1,8 +1,15 @@
 .search-results {
 
   .bg-lighter-gray, .bg-pills{
-    padding: 20px 0 0 0;
     min-height: 100px;
+  }
+
+  .bg-pills{
+    min-height: 400px;
+  }
+
+  .results-card{
+    margin-top: 20px;
   }
 
   .result{
