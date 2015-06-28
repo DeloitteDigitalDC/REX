@@ -4,14 +4,14 @@
     margin: 20px 0;
   }
   button.search-icon{
-    width: 65px;
-    height: 72px;
+    width: 55px;
+    height: 55px;
     position: absolute;
-    right: 26px;
-    top: 22px;
+    right: 20px;
+    top: 26px;
     background-color: transparent;
     border: 0;
-    @extend .icon-ic_search_48px;
+    @extend .ic-searchbtn-55px;
   }
 
   .loader{
