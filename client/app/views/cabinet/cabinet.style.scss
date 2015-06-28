@@ -1,11 +1,5 @@
 .cabinet {
-  .bg-white{
-    h2 {
-      text-align: left;
-    }
-  }
-
-  .plus-button{
+  .plus-button {
     margin: 25px auto;
     background-color: $medGray;
   }
@@ -24,11 +18,12 @@
     margin-top: 9%;
   }
 
-  .drug-card.no-drug .card{
+  .drug-card.no-drug .card {
     background: $lightGray;
     border-color: $lightGray;
     color: $gray;
-    h2{
+
+    h2 {
       margin-top: 50px;
       line-height: 55px;
     }
@@ -39,7 +34,7 @@
 @media #{$lessThanSmall} {
   .cabinet {
     h2 {
-      text-align: center;
+      font-size: 2em;
     }
 
     input.form-control {
