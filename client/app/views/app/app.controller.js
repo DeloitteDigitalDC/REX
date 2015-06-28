@@ -19,6 +19,18 @@
 
     vm.title = 'REX'; // Default Title
 
+    $rootScope.$on('$viewContentLoaded', function() {
+
+      var interval = setInterval(function () {
+        if (document.readyState === 'complete') {
+          window.scrollTo(0, 0);
+
+          clearInterval(interval);
+        }
+      });
+
+    });
+
     $rootScope.$on('$stateChangeStart', stateChangeStart); // Listen for state change
 
     /**

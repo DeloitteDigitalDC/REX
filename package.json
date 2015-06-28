@@ -51,7 +51,7 @@
     "linter": "node node_modules/grunt-cli/bin/grunt jshint",
     "test": "npm run test-client && npm run test-server",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
-    "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js -R spec",
+    "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js",
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",

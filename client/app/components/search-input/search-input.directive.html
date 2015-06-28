@@ -5,16 +5,18 @@
         <h2 class="text-teal">Add Drug</h2>
       </div>
     </div>
+
     <div class="row">
       <div class="col-sm-12">
         <form name="searchForm" ng-submit="searchByName()">
           <label for="searchDrugName" class="sr-only">Search by drug name</label>
 
-          <input id="searchDrugName" class="form-control rex-input" ng-model="search.searchTerms" placeholder="Search by Brand Name" ng-autofocus>
+          <input id="searchDrugName" class="form-control rex-input" ng-model="search.searchTerms" placeholder="Search by Brand Name">
           <button type="submit" class="search-icon"></button>
         </form>
       </div>
     </div>
   </app-section>
+
   <div class="loader" ng-show="showLoader"></div>
 </section>
