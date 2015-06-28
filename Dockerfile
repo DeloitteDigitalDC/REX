@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 RUN npm install
 ADD dist /usr/src/app
+ADD deploy/run_rex.sh /usr/src/app
 
 ENTRYPOINT ["./run_rex.sh"]
 
