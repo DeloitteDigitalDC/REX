@@ -29,6 +29,12 @@
     }
 
   }
+  .no-drug.ng-click-active {
+    .card {
+      background-color: $gray;
+      color: #fff;
+    }
+  }
 }
 
 @media #{$lessThanSmall} {

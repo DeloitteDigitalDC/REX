@@ -13,16 +13,15 @@
     </div>
   </app-section>
 
-  <app-section class="bg-lighter-gray drugs">
+  <app-section class="bg-pills drugs">
     <div class="row">
       <div class="col-sm-6 col-md-4" ng-repeat="(key,drug) in cabinet.drugs">
         <drug-card drug="drug" key="key"></drug-card>
       </div>
 
-      <div class="col-sm-6 col-md-4" ui-sref="main.search">
-        <div class="drug-card no-drug">
+      <div class="col-sm-6 col-md-4">
+        <div class="drug-card no-drug" ng-click="cabinet.search()">
           <card><h2 class="text-center bold">Add a Drug</h2>
-
             <div class="plus-button"></div>
           </card>
         </div>

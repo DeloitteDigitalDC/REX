@@ -57,4 +57,38 @@
       }
     }
   }
+
+  .ng-click-active .card{
+    background-color: $gray;
+  }
+
+
+
+
+}
+
+
+
+@media #{$lessThanSmall} {
+  .drug-card {
+    .card {
+      height: auto;
+      .card-icon{
+        display: none;
+      }
+    }
+
+    card {
+      &.recalled {
+        .card {
+          .card-icon {
+            width: 180px;
+            position: relative;
+            display: block;
+          }
+        }
+      }
+    }
+
+  }
 }
