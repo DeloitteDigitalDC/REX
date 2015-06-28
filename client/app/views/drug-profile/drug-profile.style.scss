@@ -3,10 +3,11 @@
     padding: 20px 40px 100px 40px;
   }
 
-  hr{
-    width: 150px;
-    margin: 50px auto;
+  h1{
+    color: $fontGray;
   }
+
+
 
   .loader {
     margin-top: 9%;
@@ -38,8 +39,24 @@
 
   &.search-results{
     .card{
-      padding: 20px 30px;
+      padding: 20px 0;
     }
+
+    hr{
+      width: 100%;
+      margin: 0;
+    }
+
+    .card-section{
+      padding: 0 30px 20px 30px;
+
+    }
+
+    .back-button {
+      margin: 15px 0;
+    }
+
+
 
   }
 }

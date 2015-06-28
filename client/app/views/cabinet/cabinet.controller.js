@@ -29,7 +29,7 @@
      * @memberof CabinetCtrl
      */
     function search() {
-      $state.go('main.search');
+      $state.go('main.search.searchResults');
     }
 
     /**

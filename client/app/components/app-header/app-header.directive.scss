@@ -56,6 +56,14 @@ app-header {
     }
   }
 
+  .sign-in{
+    display: inline-block;
+    right: 0;
+    margin-left: 0;
+  }
+
+
+
   // start custom state styles
   &.logged-in {
     .icon-logo-Rex {

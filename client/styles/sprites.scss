@@ -164,6 +164,14 @@ img.icon {
   }
 }
 
+.ic-signin-36px {
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMzYgMzYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDM2IDM2IiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjAsMGgtNHYyMGg0VjB6IE0yOS43LDQuM2wtMi44LDIuOEMzMCw5LjcsMzIsMTMuNiwzMiwxOGMwLDcuNy02LjMsMTQtMTQsMTRTNCwyNS43LDQsMThjMC00LjQsMi04LjMsNS4yLTEwLjhMNi4zLDQuM0MyLjUsNy42LDAsMTIuNSwwLDE4YzAsOS45LDguMSwxOCwxOCwxOHMxOC04LjEsMTgtMThDMzYsMTIuNSwzMy41LDcuNiwyOS43LDQuM3oiLz48L3N2Zz4=);
+
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0deg);

@@ -7,6 +7,12 @@
     position: relative;
     cursor: pointer;
 
+    &:hover,
+    &:focus,
+    &:active {
+      border-color:$teal;
+    }
+
     .card-icon {
       display: block;
       margin: 10px auto;
@@ -20,7 +26,7 @@
       position: absolute;
       bottom: 15px;
       left: 15px;
-      &.expired{
+      &.expired {
         color: $scarlet;
       }
     }
@@ -42,11 +48,11 @@
         .date, .drug-name {
           color: white;
         }
-        .date{
+        .date {
           font-weight: 300;
         }
 
-        .recalled-text{
+        .recalled-text {
           font-size: 4em;
           text-align: center;
           font-weight: 700;
@@ -58,22 +64,17 @@
     }
   }
 
-  .ng-click-active .card{
+  .ng-click-active .card {
     background-color: $gray;
   }
 
-
-
-
 }
-
-
 
 @media #{$lessThanSmall} {
   .drug-card {
     .card {
       height: auto;
-      .card-icon{
+      .card-icon {
         display: none;
       }
     }
