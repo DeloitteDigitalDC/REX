@@ -4,6 +4,11 @@ button {
   outline: none;
 }
 
+input[type="text"] {
+  font-size: 1.6em;
+  height: auto;
+}
+
 input[type="date"] {
   min-width: 250px;
 }
@@ -16,6 +21,10 @@ input[type="date"]:before {
 input[type="date"]:focus:before,
 input[type="date"]:valid:before {
   content: "";
+}
+
+input.ng-invalid-pattern {
+  border: solid 1px red;
 }
 
 .rex-input, .rex-button {

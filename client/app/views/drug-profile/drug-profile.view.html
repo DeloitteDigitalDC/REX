@@ -2,15 +2,8 @@
   <app-section class="bg-white page-top">
     <back-button></back-button>
 
-    <div  ng-if="drugProfile.isSearch" class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
-      <button class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug($event, { name: drugProfile.drugName })">ADD TO MY CABINET</button>
-
-      <button  class="rex-button pull-right in" disabled>IN CABINET</button>
-    </div>
-
-    <div ng-if="!drugProfile.isSearch && drugProfile.inCabinet" class="cabinet-buttons">
+    <div class="cabinet-buttons">
       <button class="rex-button pull-right remove" ng-click="drugProfile.removeCabinetDrug($event, { name: drugProfile.drugName })">REMOVE FROM CABINET</button>
-
     </div>
 
     <h1>{{drugProfile.drugName}}</h1>
