@@ -120,6 +120,18 @@
 
         deferred.success(function (data) {
           userObj.data = data;
+
+          //var parsed = JSON.parse(data);
+          var obj    = data.drugs;
+          var arr1   = Object.keys(data.drugs);
+          var arr    = Object.keys(obj).map(function (k) {
+            var rObj = {};
+            rObj[k]
+
+
+            return obj[k]
+          });
+
         });
 
         return deferred;
@@ -214,7 +226,9 @@
       promise.success(function () {
         delete userObj.data.drugs[drugId];
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 

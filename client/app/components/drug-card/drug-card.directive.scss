@@ -10,7 +10,7 @@
     &:hover,
     &:focus,
     &:active {
-      border-color:$teal;
+      border-color: $teal;
     }
 
     .card-icon {
@@ -77,15 +77,19 @@
       .card-icon {
         display: none;
       }
+      .date{
+        position: relative;
+        left: 0;
+        bottom: 0;
+      }
     }
 
     card {
       &.recalled {
         .card {
           .card-icon {
-            width: 180px;
-            position: relative;
             display: block;
+            background: transparent;
           }
         }
       }

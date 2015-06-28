@@ -51,8 +51,23 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  //request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function(err, data, body){
+    convertToArray(body);
+  }).pipe(res);
 };
+
+function convertToArray(object){
+  console.log(object);
+
+  var parsed = JSON.parse(object);
+  var obj = parsed.drugs;
+
+
+  var arr = Object.keys(obj).map(function(k) { return obj[k] });
+  console.log(arr);
+
+}
 
 /**
  *
