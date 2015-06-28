@@ -14,17 +14,15 @@
     .module('rex')
     .controller('RemoveDrugModalCtrl', RemoveDrugModalCtrl);
 
-  function RemoveDrugModalCtrl( $modalInstance) {
+  function RemoveDrugModalCtrl($mdDialog) {
     var vm = this;
 
-    vm.modal = $modalInstance;
-
     vm.submitDrugForm = function() {
-      $modalInstance.close();
+      $mdDialog.hide('confirm');
     };
 
     vm.cancel = function(){
-      $modalInstance.dismiss();
+      $mdDialog.cancel();
     };
 
   }

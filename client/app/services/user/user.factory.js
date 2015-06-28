@@ -137,7 +137,6 @@
 
       userObj.data = userObj.data || {};
 
-      console.log(userObj);
 
       return userObj.data.drugs;
     }
@@ -147,11 +146,12 @@
      *
      * @memberof user
      *
+     * @param {Object} evt - the click event
      * @param {Drug} drug - the drug to add to your cabinet
      * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug, cb) {
-      var modal = modals.addDrug(drug).result;
+    function addCabinetDrug(evt, drug, cb) {
+      var modal = modals.addDrug(evt, drug);
 
       modal.then(function (data) {
         addDrug(data, cb);
@@ -188,6 +188,8 @@
       });
 
       promise.error(function () {
+        $rootScope.loading = false;
+
         notify.showAlert('Error adding drug', 'danger');
       });
 

@@ -15,8 +15,8 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'ngTouch',
-    'ui.bootstrap'
+    'ngMaterial',
+    'ngTouch'
   ])
   .config(function ($httpProvider, $urlRouterProvider, $locationProvider) {
     $httpProvider.defaults.withCredentials = true;

@@ -4,6 +4,10 @@ button {
   outline: none;
 }
 
+input[type=date] {
+  min-width: 250px;
+}
+
 .rex-input, .rex-button {
   border-radius: 6px;
   font-size: 1.2em;

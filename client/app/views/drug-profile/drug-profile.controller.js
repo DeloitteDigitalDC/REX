@@ -36,11 +36,13 @@
       checkCabinet();
     }
 
-    function removeCabinetDrug() {
-      var modal = modals.removeDrug().result;
+    function removeCabinetDrug(evt) {
+      var modal = modals.removeDrug(evt);
 
       modal.then(function () {
         removeDrug();
+
+        $state.go('main.cabinet');
       });
 
       return modal;
@@ -51,8 +53,8 @@
      *
      * @memberof DrugProfileCtrl
      */
-    function addCabinetDrug(drug) {
-      user.addCabinetDrug(drug, function () {
+    function addCabinetDrug(evt, drug) {
+      user.addCabinetDrug(evt, drug, function () {
         checkCabinet();
       });
     }

@@ -14,18 +14,18 @@
     .module('rex')
     .factory('modals', modals);
 
-  function modals($modal) {
+  function modals($mdDialog) {
     return {
       addDrug: addDrug,
       removeDrug: removeDrug
     };
 
-    function addDrug(drug) {
-      return $modal.open({
-        templateUrl: 'app/views/add-drug-modal/add-drug-modal.view.html',
+    function addDrug(evt, drug) {
+      return $mdDialog.show({
         controller: 'AddDrugModalCtrl',
         controllerAs: 'AddDrug',
-        size: 'md',
+        templateUrl: 'app/views/add-drug-modal/add-drug-modal.view.html',
+        targetEvent: evt,
         resolve: {
           drugToAdd: function() {
             return drug;
@@ -34,11 +34,12 @@
       });
     }
 
-    function removeDrug() {
-      return $modal.open({
+    function removeDrug(evt) {
+      return $mdDialog.show({
         templateUrl: 'app/views/remove-drug-modal/remove-drug-modal.view.html',
         controller: 'RemoveDrugModalCtrl',
-        controllerAs: 'RemoveDrug'
+        controllerAs: 'RemoveDrug',
+        targetEvent: evt
       });
     }
   }

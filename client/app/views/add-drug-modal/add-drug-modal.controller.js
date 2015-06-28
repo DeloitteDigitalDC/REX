@@ -14,12 +14,14 @@
     .module('rex')
     .controller('AddDrugModalCtrl', AddDrugModalCtrl);
 
-  function AddDrugModalCtrl(drugToAdd, $modalInstance) {
+  function AddDrugModalCtrl(drugToAdd, $mdDialog) {
     var vm = this;
 
     vm.drug = drugToAdd;
 
-    vm.modal = $modalInstance;
+    vm.submit = function () {
+      $mdDialog.hide(vm.drug);
+    };
   }
 
 })();

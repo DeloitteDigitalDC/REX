@@ -1,7 +1,8 @@
 .rex-modal {
-  .rex-modal-body,
-  .rex-modal-header,
-  .rex-modal-footer {
-    padding: 15px;
+  padding: 15px;
+  width: 400px;
+
+  .form-group:last-child {
+    margin-bottom: 0;
   }
 }
