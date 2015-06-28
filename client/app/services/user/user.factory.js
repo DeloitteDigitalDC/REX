@@ -216,7 +216,9 @@
       promise.success(function () {
         delete userObj.data.drugs[drugId];
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 

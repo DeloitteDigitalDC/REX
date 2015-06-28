@@ -51,8 +51,31 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  //request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
+    convertToArray(body);
+  }).pipe(res);
 };
+
+function convertToArray(object) {
+
+  var obj = JSON.parse(object).drugs;
+
+  if (Array.isArray(obj)) {
+    return obj;
+  } else {
+    var arr = Object.keys(obj).map(function (k) {
+      var rObj   = {};
+      rObj       = obj[k];
+      rObj.fbKey = k;
+      return rObj
+    });
+    return arr;
+  }
+
+  console.log(arr);
+
+}
 
 /**
  *
@@ -162,7 +185,7 @@ user.addCabinetDrug = function (req, res) {
  */
 user.deleteCabinetDrug = function (req, res) {
 
-  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/'+ req.params.drugId +'.json?auth=' + req.cookies.token).pipe(res);
+  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/' + req.params.drugId + '.json?auth=' + req.cookies.token).pipe(res);
 
 
 };
