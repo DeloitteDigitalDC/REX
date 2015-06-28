@@ -4,8 +4,18 @@ button {
   outline: none;
 }
 
-input[type=date] {
+input[type="date"] {
   min-width: 250px;
+}
+
+input[type="date"]:before {
+  content: 'Expiration Date' !important;
+  color: #aaa;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
 }
 
 .rex-input, .rex-button {
