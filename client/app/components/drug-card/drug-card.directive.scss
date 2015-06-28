@@ -15,10 +15,6 @@
       position: relative;
     }
 
-    .drug-name {
-      word-spacing: 99999999px;
-    }
-
     .date {
       margin-top: 20px;
       position: absolute;
@@ -60,5 +56,39 @@
         }
       }
     }
+  }
+
+  .ng-click-active .card{
+    background-color: $gray;
+  }
+
+
+
+
+}
+
+
+
+@media #{$lessThanSmall} {
+  .drug-card {
+    .card {
+      height: auto;
+      .card-icon{
+        display: none;
+      }
+    }
+
+    card {
+      &.recalled {
+        .card {
+          .card-icon {
+            width: 180px;
+            position: relative;
+            display: block;
+          }
+        }
+      }
+    }
+
   }
 }

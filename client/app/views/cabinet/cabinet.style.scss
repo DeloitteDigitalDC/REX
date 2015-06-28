@@ -1,7 +1,7 @@
 .cabinet {
   .plus-button {
     margin: 25px auto;
-    background-color: $darkGray;
+    background-color: $medGray;
   }
 
   input.rex-input {
@@ -28,6 +28,12 @@
       line-height: 55px;
     }
 
+  }
+  .no-drug.ng-click-active {
+    .card {
+      background-color: $gray;
+      color: #fff;
+    }
   }
 }
 

@@ -5,6 +5,14 @@
 
 .bg-lighter-gray {
   background-color: $lighterGray;
+
+  //background-size: 100%;
+  //width: 100%;
+}
+.bg-pills {
+  background-color: $lighterGray;
+  background: url('../images/ReX-pillpattern.png') no-repeat; /* fallback */
+  background-image: url('../images/ReX-pillpattern.png'), linear-gradient(to bottom, $lightGray 10%, $lighterGray); /* W3C */
 }
 
 .bg-coral {
@@ -25,7 +33,7 @@
 }
 
 .bg-dark-gray {
-  background-color: $darkGray;
+  background-color: $medGray;
 }
 
 .bg-teal {
