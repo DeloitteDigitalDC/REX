@@ -1,5 +1,6 @@
 <md-dialog class="rex-modal">
   <md-content>
+    <h2>Add <span class="text-teal" ng-bind="AddDrug.drug.name"></span></h2>
     <form ng-submit="AddDrug.submit()" novalidate>
       <div class="form-group">
         <label for="expirationDate" class="sr-only"></label>
@@ -9,6 +10,10 @@
 
       <div class="form-group">
         <button type="submit" class="rex-button">ADD DRUG</button>
+
+        <br><br>
+
+        <a href="#" class="pull-right bold" ng-click="AddDrug.cancel()">Cancel</a>
       </div>
     </form>
   </md-content>

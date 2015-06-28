@@ -22,6 +22,10 @@
     vm.submit = function () {
       $mdDialog.hide(vm.drug);
     };
+
+    vm.cancel = function () {
+      $mdDialog.cancel();
+    };
   }
 
 })();

@@ -14,7 +14,7 @@
     .module('rex')
     .controller('AppCtrl', AppCtrl);
 
-  function AppCtrl($rootScope, $cookies, $state) {
+  function AppCtrl($rootScope, $cookies, $state, $mdDialog) {
     var vm = this;
 
     vm.title = 'REX'; // Default Title
@@ -40,6 +40,8 @@
      * @param {Object} newState - the new state object
      */
     function stateChangeStart(event, newState) {
+      $mdDialog.cancel();
+
       vm.title = newState.title;
       vm.state = newState;
 
