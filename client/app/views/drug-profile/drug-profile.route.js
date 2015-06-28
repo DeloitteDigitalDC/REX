@@ -16,7 +16,7 @@
         })
         .state('main.search.drugProfile', {
           url         : '/drug-profile/:name',
-          templateUrl : 'app/views/drug-profile/drug-profile.view.html',
+          templateUrl : 'app/views/drug-profile/drug-profile-search.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
           title       : 'Drug profile',

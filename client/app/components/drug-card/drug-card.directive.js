@@ -27,7 +27,6 @@
 
     function link(scope) {
       scope.goToDetails = goToDetails;
-
       if (scope.drug) {
         scope.expired = _checkExpired(scope.drug.expirationDate);
       }
