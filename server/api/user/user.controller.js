@@ -58,33 +58,33 @@ user.getDetails = function (req, res) {
   //})
 };
 
-function convertToArray(object) {
-  var data, arr;
-
-  try{
-    data = JSON.parse(object);
-  } catch(e){
-    data = object;
-  }
-
-  var obj = data.drugs;
-
-  if (Array.isArray(obj)) {
-    return data;
-  } else {
-    arr = Object.keys(obj).map(function (k) {
-      var rObj   = {};
-      rObj       = obj[k];
-      rObj.fbKey = k;
-      return rObj
-    });
-    data.drugs = arr;
-    return data;
-  }
-
-  console.log(data);
-
-}
+//function convertToArray(object) {
+//  var data, arr;
+//
+//  try{
+//    data = JSON.parse(object);
+//  } catch(e){
+//    data = object;
+//  }
+//
+//  var obj = data.drugs;
+//
+//  if (Array.isArray(obj)) {
+//    return data;
+//  } else {
+//    arr = Object.keys(obj).map(function (k) {
+//      var rObj   = {};
+//      rObj       = obj[k];
+//      rObj.fbKey = k;
+//      return rObj;
+//    });
+//    data.drugs = arr;
+//    return data;
+//  }
+//
+//  console.log(data);
+//
+//}
 
 /**
  *
