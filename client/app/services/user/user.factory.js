@@ -58,6 +58,13 @@
         _authenticate(data);
       });
 
+      promise.error(function(data, status) {
+        if(status === 401) {
+          notify.showAlert('Incorrect password', 'danger');
+        }
+        $rootScope.loading = false;
+      })
+
       return promise;
     }
 
@@ -92,8 +99,15 @@
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
-        _authenticate(data);
+        login(username, password);
       });
+
+      promise.error(function(data, status) {
+        if(status === 400) {
+          notify.showAlert('Username already exists', 'danger');
+          $rootScope.loading = false;
+        }
+      })
 
       return promise;
     }

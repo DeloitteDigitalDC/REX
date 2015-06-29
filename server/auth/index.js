@@ -7,7 +7,7 @@ module.exports = function (app) {
       LocalStrategy = require('passport-local').Strategy,
       bcrypt        = require('bcrypt'),
       sqlite3       = require('sqlite3'),
-      //TODO: create table if does not exist yet
+      $q            = require('q'),
       //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
       //Drugs table Created with: CREATE TABLE "drugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "application_id" TEXT);
       db            = new sqlite3.Database('./server/auth/database.sqlite3');
@@ -58,35 +58,59 @@ module.exports = function (app) {
 
   //Login Route
   app.post('/user/login', passport.authenticate('local'), function (req, res) {
-    console.log('in new auth - login');
     res.status(200).send();
   });
 
   app.get('/user/logout', function (req, res) {
     req.session.destroy(function (err) {
-      res.clearCookie('connect.sid', { path: '/' });
+      res.clearCookie('connect.sid', {path: '/'});
       res.redirect('/');
     });
   });
 
   //New User Route
   app.post('/user/create', function (req, res) {
-    console.log('in new auth');
-    //TODO Add check for existing username before doing blind insert.
-    bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash(req.body.password, salt, function (err, hash) {
-        db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash, salt, req.body.firstName);
-        res.status(201).send('User ' + req.body.username + ' Created');
-        //TODO: login after this
+    checkUserExists(req.body.username).then(function() {
+      bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(req.body.password, salt, function (err, hash) {
+          db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash,
+                 salt, req.body.firstName);
+          res.status(201).send('User ' + req.body.username + ' Created');
+          //TODO: login after this
+        });
       });
+    }, function(row) {
+      console.error("Duplicate User", row);
+      res.status(400).send();
     });
+
   });
 
-// Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
+  /**
+   * Checks to see if the username already exists in the database.
+   * @param id
+   * @returns promise
+   */
+  function checkUserExists(username) {
+    var usercheckPromise = $q.defer();
+    db.get('SELECT id, username FROM users WHERE username = ?', username, function (err, row) {
+      if(err) console.error(err);
+      if(row) {
+        usercheckPromise.reject(row);
+      } else {
+        usercheckPromise.resolve();
+      }
+    })
+    return usercheckPromise.promise;
+  }
+
+  /**
+   * Simple Route middleware to cehck for authentication
+   * @param req
+   * @param res
+   * @param next
+   * @returns {*}
+   */
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
