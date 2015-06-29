@@ -35,3 +35,17 @@
     }
   }
 }
+@media #{$lessThanSmall} {
+  .search-input {
+    .col-sm-12{
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .rex-input{
+      padding-left: 15px;
+    }
+    button.search-icon{
+      right: 5px;
+    }
+  }
+}
