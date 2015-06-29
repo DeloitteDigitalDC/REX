@@ -10,9 +10,15 @@ describe('Controller:LoginCtrl', function () {
   beforeEach(inject(function ($injector ) {
     $httpBackend = $injector.get('$httpBackend');
     LoginCtrl = $injector.get('$controller')('LoginCtrl');
+
+    $httpBackend.whenGET('/user/simpleLogin:1/details/').respond(200, {
+      data: {
+        nickName: 'Foo'
+      }
+    });
   }));
 
-  it('hits login enpoint', function () {
+  it('hits login endpoint', function () {
     $httpBackend.whenPOST('/user/login').respond(200, {
       data: {
         nickName: 'Foo'

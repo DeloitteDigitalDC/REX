@@ -29,7 +29,7 @@
      * @memberof CabinetCtrl
      */
     function search() {
-      $state.go('main.search');
+      $state.go('main.search.searchResults');
     }
 
     /**
@@ -56,7 +56,6 @@
 
       drug.enforce({search: query, limit: 100}).success(function (res) {
         recalls = res.results;
-
         _compareRecalls();
       });
     }

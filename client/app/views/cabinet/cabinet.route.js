@@ -15,7 +15,7 @@
           buttonData  : {
             display: true,
             open   : false,
-            link   : 'main.search'
+            link   : 'main.search.searchResults'
           }
         });
     });

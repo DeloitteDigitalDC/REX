@@ -2,10 +2,15 @@
   display: block;
 
   .card {
-    transition: all .5s linear;
     height: 320px;
     position: relative;
     cursor: pointer;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $teal;
+    }
 
     .card-icon {
       display: block;
@@ -15,16 +20,12 @@
       position: relative;
     }
 
-    .drug-name {
-      word-spacing: 99999999px;
-    }
-
     .date {
       margin-top: 20px;
       position: absolute;
       bottom: 15px;
       left: 15px;
-      &.expired{
+      &.expired {
         color: $scarlet;
       }
     }
@@ -46,11 +47,11 @@
         .date, .drug-name {
           color: white;
         }
-        .date{
+        .date {
           font-weight: 300;
         }
 
-        .recalled-text{
+        .recalled-text {
           font-size: 4em;
           text-align: center;
           font-weight: 700;
@@ -60,5 +61,38 @@
         }
       }
     }
+  }
+
+  .ng-click-active .card {
+    background-color: $gray;
+  }
+
+}
+
+@media #{$lessThanSmall} {
+  .drug-card {
+    .card {
+      height: auto;
+      .card-icon {
+        display: none;
+      }
+      .date{
+        position: relative;
+        left: 0;
+        bottom: 0;
+      }
+    }
+
+    card {
+      &.recalled {
+        .card {
+          .card-icon {
+            display: block;
+            background: transparent;
+          }
+        }
+      }
+    }
+
   }
 }

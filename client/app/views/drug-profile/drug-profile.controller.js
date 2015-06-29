@@ -20,6 +20,7 @@
     vm.drugName = $stateParams.name;
     vm.isSearch = $state.includes('main.search.**');
     vm.cabinetId = $stateParams.cabinetId || 0;
+    vm.id = $stateParams.id || 0;
     vm.inCabinet = false;
 
 
@@ -36,11 +37,13 @@
       checkCabinet();
     }
 
-    function removeCabinetDrug() {
-      var modal = modals.removeDrug().result;
+    function removeCabinetDrug(evt) {
+      var modal = modals.removeDrug(evt);
 
       modal.then(function () {
         removeDrug();
+
+        $state.go('main.cabinet');
       });
 
       return modal;
@@ -51,8 +54,10 @@
      *
      * @memberof DrugProfileCtrl
      */
-    function addCabinetDrug(drug) {
-      user.addCabinetDrug(drug, function () {
+    function addCabinetDrug(evt) {
+      var drug = {name : vm.drugName, id: vm.id};
+
+      user.addCabinetDrug(evt, drug, function () {
         checkCabinet();
       });
     }

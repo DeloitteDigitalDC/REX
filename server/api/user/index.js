@@ -13,7 +13,7 @@ var router = require('express').Router(),
 
 // account
 router.get('/:uid/details/', ctrl.getDetails);
-router.put('/:email/password/reset', ctrl.resetPassword);
+router.patch('/:uid/details/', ctrl.setDetails);
 router.post('/login', ctrl.login);
 router.post('/create', ctrl.createUser);
 

@@ -1,5 +1,7 @@
 .back-button {
   margin-top: 10px;
+  margin-bottom: 20px;
+
   .back-text {
     display: block;
     margin-left: 40px;
@@ -8,7 +10,7 @@
       content: '';
       position: absolute;
       margin-top: -8px;
-      margin-left: -40px;
+      margin-left: -49px;
       @extend .icon-ic_arrow_back_24px;
     }
   }

@@ -26,4 +26,16 @@ describe('Controller:SignUpCtrl', function () {
     $httpBackend.flush();
   });
 
+  it('should show an error message', function () {
+    $httpBackend.whenPOST('/user/create').respond(200, {
+      data: {
+        nickName: 'Danny'
+      }
+    });
+
+    SignUpCtrl.signUp('user@mail.com', 'helloWOrld@1');
+
+    $httpBackend.flush();
+  });
+
 });

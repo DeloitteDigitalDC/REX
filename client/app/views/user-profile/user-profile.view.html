@@ -5,32 +5,23 @@
 
   <hr class="standard">
 
-  <app-section class="bg-lighter-gray">
+  <app-section class="bg-pills">
     <card-fade class="overlap clearfix">
       <rex-icon hash="MainCtrl.user.data.gravatarHash" size="175"></rex-icon>
 
       <div class="my-profile">
-        <h2>{{MainCtrl.user.data.nickName}}</h2>
+        <h2>{{UserProfile.userDetails.nickName}}</h2>
 
-        <p>{{MainCtrl.user.data.email}}</p>
+        <p>{{UserProfile.userDetails.email}}</p>
 
-        <br>
+        <p>
+          <md-checkbox class="md-primary" ng-model="UserProfile.userDetails.pregnant" aria-label="pregnancy" ng-change="UserProfile.updateUser()">
+            Someone in my household is pregnant, breast feeding or may become pregnant.
+          </md-checkbox>
+        </p>
 
-        <p><button class="form-control bg-lava logout" ng-click="userProfile.logout()">Logout</button></p>
+        <md-button class="md-raised md-warn" ng-click="UserProfile.logout()">Logout</md-button>
       </div>
     </card-fade>
-
-    <!--<div class="clearfix">-->
-      <!--<h3 class="pull-left">My Family</h3>-->
-
-      <!--<plus-button class="pull-right" open="userProfile.fmlyBtnState" ng-click="userProfile.fmlyBtnToggle()"></plus-button>-->
-    <!--</div>-->
-    <!--<card>-->
-
-    <!--</card>-->
-
-    <br>
-
-    <hr class="thickest small">
   </app-section>
 </section>

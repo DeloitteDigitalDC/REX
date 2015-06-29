@@ -1,23 +1,26 @@
-<div class="rex-modal">
-  <section class="rex-modal-header add-drug-modal">
-    <h3>Add <span class="text-teal" ng-bind="AddDrug.drug.name"></span></h3>
-  </section>
+<md-dialog class="rex-modal">
+  <md-content>
+    <h2>Add <span class="text-teal">{{AddDrug.drug.name}}</span></h2>
 
-  <section class="rex-modal-body add-drug-modal">
-    <form ng-submit="AddDrug.modal.close(AddDrug.drug)">
+    <form name="AddDrug.drugForm" ng-submit="AddDrug.submit()" novalidate>
       <div class="form-group">
         <label for="expirationDate" class="sr-only"></label>
-        <input class="form-control" id="expirationDate" type="text" ng-model="AddDrug.drug.expirationDate" placeholder="Expiration Date (optional)">
+
+        <input class="form-control"
+               id="expirationDate"
+               type="date"
+               ng-model="AddDrug.drug.expirationDate"
+               ng-change="AddDrug.checkDate()"
+               placeholder="Exp Date: MM/DD/YYYY">
       </div>
 
       <div class="form-group">
-        <label for="notes" class="sr-only"></label>
-        <textarea id="notes" rows="4" class="form-control" ng-model="AddDrug.drug.notes" placeholder="Notes (optional)"></textarea>
-      </div>
+        <button type="submit" class="rex-button" ng-disabled="AddDrug.dateDirty && !AddDrug.dateValid">ADD DRUG</button>
 
-      <div class="form-group">
-        <button type="submit" class="rex-button">ADD DRUG</button>
+        <br><br>
+
+        <a href="#" class="pull-right bold" ng-click="AddDrug.cancel()">Cancel</a>
       </div>
     </form>
-  </section>
-</div>
+  </md-content>
+</md-dialog>

@@ -33,7 +33,8 @@
       login            : login,
       logout           : logout,
       createUser       : createUser,
-      details          : details,
+      getDetails       : getDetails,
+      setDetails       : setDetails,
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
       addDrug          : addDrug,
@@ -101,11 +102,11 @@
      * @memberof user
      *
      * @example
-     * user.details().then(function (data) {
+     * user.getDetails().then(function (data) {
      *   console.log(data);
      * })
      */
-    function details() {
+    function getDetails() {
       var deferred;
 
       if (userObj.data) {
@@ -127,7 +128,26 @@
     }
 
     /**
+     * set details for a given user
      *
+     * @memberof user
+     *
+     * @example
+     * user.setDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function setDetails(details) {
+      var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
+
+      deferred.success(function (data) {
+        _.extend(userObj.data, data); // attach the new data to the userObj
+      });
+
+      return deferred;
+    }
+
+    /**
      * return just the drug data from the cached user object.
      *
      * @memberof user
@@ -137,8 +157,6 @@
 
       userObj.data = userObj.data || {};
 
-      console.log(userObj);
-
       return userObj.data.drugs;
     }
 
@@ -147,11 +165,12 @@
      *
      * @memberof user
      *
+     * @param {Object} evt - the click event
      * @param {Drug} drug - the drug to add to your cabinet
      * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug, cb) {
-      var modal = modals.addDrug(drug).result;
+    function addCabinetDrug(evt, drug, cb) {
+      var modal = modals.addDrug(evt, drug);
 
       modal.then(function (data) {
         addDrug(data, cb);
@@ -173,10 +192,10 @@
 
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
 
-      userObj.data.drugs = userObj.data.drugs || {};
+      userObj.data.drugs = userObj.data.drugs || [];
 
-      promise.success(function (res) {
-        userObj.data.drugs[res.name] = drug;
+      promise.success(function () {
+        userObj.data.drugs.push(drug);
 
         $rootScope.loading = false;
 
@@ -188,6 +207,8 @@
       });
 
       promise.error(function () {
+        $rootScope.loading = false;
+
         notify.showAlert('Error adding drug', 'danger');
       });
 
@@ -201,8 +222,6 @@
      *
      * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
      * @param {Function} [cb] - callback function
-     *
-     * @todo remove $rootScope loading and do something not on the $rootScope
      */
     function deleteCabinetDrug(drugId, cb) {
       $rootScope.loading = true;
@@ -212,9 +231,13 @@
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function () {
-        delete userObj.data.drugs[drugId];
+        _.remove(userObj.data.drugs, function(drug){
+          return drug.fbKey === drugId;
+        });
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 

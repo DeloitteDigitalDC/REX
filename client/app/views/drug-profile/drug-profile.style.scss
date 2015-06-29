@@ -3,6 +3,16 @@
     padding: 20px 40px 100px 40px;
   }
 
+  h1{
+    color: $fontGray;
+  }
+
+  p{
+    font-weight: 300;
+  }
+
+
+
   .loader {
     margin-top: 9%;
   }
@@ -30,6 +40,29 @@
       }
     }
   }
+
+  &.search-results{
+    .card{
+      padding: 20px 0;
+    }
+
+    hr{
+      width: 100%;
+      margin: 0;
+    }
+
+    .card-section{
+      padding: 0 30px 20px 30px;
+
+    }
+
+    .back-button {
+      margin: 15px 0;
+    }
+
+
+
+  }
 }
 
 @media #{$lessThanSmall} {
@@ -40,6 +73,10 @@
 
     .card-fade {
       padding: 20px 20px 100px 20px;
+    }
+
+    .card{
+      padding: 20px;
     }
 
     .rex-button {

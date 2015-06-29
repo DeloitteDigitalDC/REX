@@ -18,9 +18,10 @@
     var vm = this;
 
     vm.fieldsLoaded = false;
-    vm.drugName     = $stateParams.name;
-    vm.drugData     = {};
-    vm.otc          = true;
+    vm.drugName = $stateParams.name;
+    vm.id = $stateParams.id || 0;
+    vm.drugData = {};
+    vm.otc = true;
 
     init();
 
@@ -36,10 +37,17 @@
      * @private
      */
     function _getDrugData() {
+      var searchKey = 'id:"';
+
+      if(vm.id === 0){
+        searchKey = 'openfda.brand_name.exact:"';
+      }
+
       var drugs = drug.labels({
-        search: 'openfda.brand_name.exact:"' + vm.drugName + '"',
-        limit : 5
-      }, vm.drugName);
+        search: searchKey + vm.id + '"',
+        limit : 25
+      }, vm.id);
+
 
       drugs.then(function (drugs) {
         vm.drugData = drugs.data.results[0];

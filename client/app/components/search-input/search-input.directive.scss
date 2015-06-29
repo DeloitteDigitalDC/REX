@@ -1,18 +1,17 @@
 .search-input{
-  border-bottom: solid 3px $lightGray;
   position: relative;
   .rex-input{
     margin: 20px 0;
   }
   button.search-icon{
-    width: 65px;
-    height: 72px;
+    width: 55px;
+    height: 55px;
     position: absolute;
-    right: 26px;
-    top: 22px;
+    right: 20px;
+    top: 26px;
     background-color: transparent;
     border: 0;
-    @extend .icon-ic_search_48px;
+    @extend .ic-searchbtn-55px;
   }
 
   .loader{
@@ -29,19 +28,24 @@
   }
 }
 
-@media #{$lessThanSmall} {
-  .search-input {
-    h2{
-      text-align: center;
-    }
-
-  }
-}
-
 @media #{$lessThanTablet} {
   .search-input {
     button.search-icon{
-      top: 0px;
+      top: 5px;
+    }
+  }
+}
+@media #{$lessThanSmall} {
+  .search-input {
+    .col-sm-12{
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .rex-input{
+      padding-left: 15px;
+    }
+    button.search-icon{
+      right: 5px;
     }
   }
 }

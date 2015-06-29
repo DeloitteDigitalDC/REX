@@ -22,7 +22,7 @@
                 return deferred.promise;
               }
               else {
-                return user.details();
+                return user.getDetails();
               }
             }
           }

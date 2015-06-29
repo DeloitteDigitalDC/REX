@@ -28,7 +28,7 @@ describe('factory:user', function () {
 
     var deferred = $q.defer();
     deferred.resolve(myUser); //  always resolved, you can do it from your spec
-    spyOn(user, 'details').and.returnValue(deferred.promise);
+    spyOn(user, 'getDetails').and.returnValue(deferred.promise);
   }));
 
   it('should login and get user details', function () {
@@ -36,7 +36,7 @@ describe('factory:user', function () {
 
     $httpBackend.flush();
 
-    user.details().then(function (data) {
+    user.getDetails().then(function (data) {
       expect(data.name).toBe('Ben');
     });
   });

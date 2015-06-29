@@ -14,10 +14,22 @@
     .module('rex')
     .controller('AppCtrl', AppCtrl);
 
-  function AppCtrl($rootScope, $cookies, $state) {
+  function AppCtrl($rootScope, $cookies, $state, $mdDialog) {
     var vm = this;
 
     vm.title = 'REX'; // Default Title
+
+    $rootScope.$on('$viewContentLoaded', function() {
+
+      var interval = setInterval(function () {
+        if (document.readyState === 'complete') {
+          window.scrollTo(0, 0);
+
+          clearInterval(interval);
+        }
+      });
+
+    });
 
     $rootScope.$on('$stateChangeStart', stateChangeStart); // Listen for state change
 
@@ -28,6 +40,8 @@
      * @param {Object} newState - the new state object
      */
     function stateChangeStart(event, newState) {
+      $mdDialog.cancel();
+
       vm.title = newState.title;
       vm.state = newState;
 
