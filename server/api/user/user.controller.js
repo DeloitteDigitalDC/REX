@@ -51,37 +51,12 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  //request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
-    var convertedData = convertToArray(body);
+    var convertedData = require('../../utils/convertToArray')(body);
+
     res.send(convertedData);
   });
 };
-
-function convertToArray(object) {
-  var data, arr;
-
-  try{
-    data = JSON.parse(object);
-  } catch(e){
-    data = object;
-  }
-
-  var obj = data.drugs;
-
-  if (Array.isArray(obj)) {
-    return data;
-  } else {
-    arr = Object.keys(obj).map(function (k) {
-      var rObj   = {};
-      rObj       = obj[k];
-      rObj.fbKey = k;
-      return rObj;
-    });
-    data.drugs = arr;
-    return data;
-  }
-}
 
 /**
  * set the details for the authenticated used;

@@ -33,7 +33,7 @@ fda.getEvent = function getEvent(req, res) {
     try {
       data = JSON.parse(body);
     }
-    catch(e) {
+    catch (e) {
       data = body;
     }
 
@@ -52,10 +52,11 @@ fda.getEvent = function getEvent(req, res) {
  */
 fda.getLabel = function getLabel(req, res) {
   var qs     = req.query,
-      params = req.params;
+      params = req.params,
+      flags = [];
 
   qs.search = decodeURI(qs.search);
-
+  qs.alerts = qs.alerts || '';
   qs.api_key = qs.api_key || apiKey;
 
   var opts = {
@@ -63,48 +64,28 @@ fda.getLabel = function getLabel(req, res) {
     keepAlive: true
   };
 
+  flags = opts.qs.alerts.split(':');
+
+  delete opts.qs.alerts;
+
   // Make the request for the label information
   request(fdaUrl + params.type + '/label.json', opts, function (err, response, body) {
-    var data, length, uniqueNames = [], uniqueResults = [], currentResult, currentName;
+    var data;
 
     // Make sure that the data coming back is JSON
     try {
       data = JSON.parse(body);
     }
-    catch(e) {
+    catch (e) {
       data = body;
     }
 
-    // Make sure a undefined does break the length
-    try {
-      length = data.results.length;
-    }
-    catch(e) {
-      length = 0;
-    }
-
-    // Dedupe the
-    (function unique(i) {
-      if(i < length) {
-        currentResult = data.results[i];
-
-        try {
-          currentName = currentResult.openfda.brand_name[0];
-        }
-        catch(e) {
-          currentName = null;
-        }
-
-        if(currentName && uniqueNames.indexOf(currentName) < 0) {
-          uniqueNames.push(currentName);
-          uniqueResults.push(currentResult);
-        }
-
-        unique(++i);
+    flags.forEach(function (flag) {
+      try {
+        require('./alerts/' + flag)(data.results);
       }
-    })(0);
-
-    data.results = uniqueResults;
+      catch(e) {}
+    });
 
     res.send(data);
   });
@@ -138,7 +119,7 @@ fda.getEnforcement = function getEnforcement(req, res) {
     try {
       data = JSON.parse(body);
     }
-    catch(e) {
+    catch (e) {
       data = body;
     }
 

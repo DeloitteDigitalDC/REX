@@ -37,22 +37,21 @@
      * @private
      */
     function _getDrugData() {
+      var searchKey = 'openfda.application_number:"';
 
-      if(vm.applicationId !== 0){
-          drug.labels({search: 'openfda.application_number:"' + vm.applicationId  + '"', limit: 25}, vm.applicationId).then(function (res) {
-          vm.drugData = res.data.results[0];
-          console.log('by aplicationID', vm.drugData);
-          vm.fieldsLoaded = true;
-        });
-      } else {
-        drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName).then(function (res) {
-          vm.drugData = res.data.results[0];
-          console.log(vm.drugData);
-          vm.fieldsLoaded = true;
-        });
+      if(vm.applicationId === 0){
+        searchKey = 'openfda.brand_name.exact:"';
       }
 
+      console.log(searchKey);
 
+      drug.labels({search: searchKey + vm.applicationId  + '"', limit: 25, alerts: 'pregnancy'}, vm.applicationId).then(function (res) {
+        console.log(res);
+
+        vm.drugData = res.data.results[0];
+
+        vm.fieldsLoaded = true;
+      });
     }
 
   }
