@@ -7,7 +7,9 @@ module.exports = function (app) {
       LocalStrategy = require('passport-local').Strategy,
       bcrypt        = require('bcrypt'),
       sqlite3       = require('sqlite3'),
+      //TODO: create table if does not exist yet
       //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
+      //Drugs table Created with: CREATE TABLE "drugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "application_id" TEXT);
       db            = new sqlite3.Database('./server/auth/database.sqlite3');
 
 //Session Storage
@@ -15,11 +17,12 @@ module.exports = function (app) {
     store            : new FileStore({
       path: './server/auth/sessions'  //Might want to move this somewhere else or use MemoryStore
     }),
-    secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86',
+    secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //change this for PROD
     resave           : false,
     saveUninitialized: false,
     cookie           : {
-      maxAge: 60000
+      maxAge: 60000,
+      httpOnly: false
     }
   }));
 
@@ -29,7 +32,7 @@ module.exports = function (app) {
 
   passport.use(new LocalStrategy(function (username, password, done) {
     db.get('SELECT id, username, password FROM users WHERE username = ?', username, function (err, row) {
-      if (!row) return done(null, false);
+      if (!row) return done(null, false); //TODO: user doesnt exist! Send message saying not found
       // Load hash from your password DB.
       bcrypt.compare(password, row.password, function (err, res) {
         if (res) {
@@ -53,8 +56,16 @@ module.exports = function (app) {
   });
 
   //Login Route
-  app.post('/login', passport.authenticate('local'), function (req, res) {
+  app.post('/user/login', passport.authenticate('local'), function (req, res) {
+    console.log('in new auth - login');
     res.status(200).send();
+  });
+
+  app.delete('/user/logout', function (req, res) {
+    console.log('logout');
+    req.logout();
+    req.session.destroy();
+    res.send();
   });
 
   //New User Route
@@ -63,8 +74,9 @@ module.exports = function (app) {
     //TODO Add check for existing username before doing blind insert.
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(req.body.password, salt, function (err, hash) {
-        db.run("INSERT INTO users (username, password, salt) VALUES(?, ?, ?)", req.body.username, hash, salt);
+        db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?)", req.body.username, hash, salt, req.body.firstName);
         res.status(201).send('User ' + req.body.username + ' Created');
+        //TODO: login after this
       });
     });
   });

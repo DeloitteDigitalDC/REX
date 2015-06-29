@@ -67,11 +67,15 @@
      * @memberof user
      */
     function logout() {
-      _.forEach(cookies, function (cookie) {
-        $cookies.remove(cookie);
-      });
 
-      $state.go('main.home', {}, {reload: true});
+      var logoutPromise = $http.delete('/user/logout');
+
+      logoutPromise.success(function(){
+        _.forEach(cookies, function (cookie) {
+          $cookies.remove(cookie);
+        });
+        $state.go('main.home', {}, {reload: true});
+      });
     }
 
     /**

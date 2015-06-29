@@ -24,7 +24,7 @@ app.use(cookieParser());
 var auth = require('./auth')(app);
 
 app.get('/authed', auth.ensureAuthenticated, function (req, res) {
-  res.send('AUTHED!!!');
+  res.send();
 });
 
 require('./router')(app); // include the router

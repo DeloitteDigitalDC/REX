@@ -9,13 +9,14 @@
  * Exposes user endpoints such as logging in and creating
  */
 var router = require('express').Router(),
-    ctrl   = require('./user.controller');
+    ctrl   = require('./user.controller'),
+    auth = require('../../auth');
 
+//TODO: authenticate all the routes
 // account
 router.get('/:uid/details/', ctrl.getDetails);
 router.patch('/:uid/details/', ctrl.setDetails);
-router.post('/login', ctrl.login);
-router.post('/createUser', ctrl.createUser);
+//router.post('/login', ctrl.login);
 //router.post('/create', ctrl.createUser);
 
 // drug cabinet
