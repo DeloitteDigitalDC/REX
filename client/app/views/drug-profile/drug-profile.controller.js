@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name DrugProfile
+ * @name DrugProfileCtrl
  *
  * @description
  * Controller for rex
@@ -14,10 +14,81 @@
     .module('rex')
     .controller('DrugProfileCtrl', DrugProfileCtrl);
 
-  function DrugProfileCtrl($stateParams) {
-    var vm = this;
+  function DrugProfileCtrl($stateParams, user, $state, modals) {
+    var vm = this, cabinetDrugs;
 
     vm.drugName = $stateParams.name;
+    vm.isSearch = $state.includes('main.search.**');
+    vm.cabinetId = $stateParams.cabinetId || 0;
+    vm.applicationId = $stateParams.applicationId || 0;
+    vm.inCabinet = false;
+
+
+    vm.addCabinetDrug = addCabinetDrug;
+    vm.checkCabinet = checkCabinet;
+    vm.removeCabinetDrug = removeCabinetDrug;
+
+    init();
+
+    /**
+     * @memberof DrugProfileCtrl
+     */
+    function init() {
+      checkCabinet();
+    }
+
+    function removeCabinetDrug(evt) {
+      var modal = modals.removeDrug(evt);
+
+      modal.then(function () {
+        removeDrug();
+
+        $state.go('main.cabinet');
+      });
+
+      return modal;
+    }
+
+    /**
+     * Add a drug to your drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     */
+    function addCabinetDrug(evt) {
+      var drug = {name : vm.drugName, application_id : vm.applicationId};
+
+      user.addCabinetDrug(evt, drug, function () {
+        checkCabinet();
+      });
+    }
+
+    /**
+     * Remove a drug from your drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     */
+    function removeDrug() {
+       user.deleteCabinetDrug(vm.cabinetId, function (){
+         checkCabinet();
+       });
+    }
+
+    /**
+     * Determine if the current drug is in the users drug cabinet
+     *
+     * @memberof DrugProfileCtrl
+     *
+     * @return {boolean}
+     */
+    function checkCabinet() {
+      cabinetDrugs = user.getCabinetDrugs();
+      vm.inCabinet = false;
+      _.forEach(cabinetDrugs, function(drug) {
+        if(drug.name === vm.drugName) {
+          vm.inCabinet = true;
+        }
+      });
+    }
   }
 
 })();

@@ -1,14 +1,17 @@
 <section class="drug-profile profile-shared">
   <app-section class="bg-white page-top">
-    <div back-button></div>
+    <back-button></back-button>
+
+    <div class="cabinet-buttons">
+      <button class="rex-button pull-right remove" ng-click="drugProfile.removeCabinetDrug($event, { name: drugProfile.drugName })">REMOVE FROM CABINET</button>
+    </div>
+
     <h1>{{drugProfile.drugName}}</h1>
 
-    <div drug-tabs drug-name="drugProfile.drugName"></div>
+    <drug-tabs drug-name="drugProfile.drugName"></drug-tabs>
   </app-section>
 
-  <!--<hr class="standard">-->
-
-  <app-section class="bg-lighter-gray">
+  <app-section class="bg-pills">
     <card-fade class="overlap clearfix">
       <div ui-view></div>
     </card-fade>
@@ -18,6 +21,5 @@
 
     <br>
 
-    <!--<hr class="thickest small">-->
   </app-section>
 </section>

@@ -27,7 +27,7 @@ user.login = function (req, res) {
       try {
         auth.data = JSON.parse(body);
       }
-      catch(e) {
+      catch (e) {
         auth.data = body;
       }
 
@@ -51,36 +51,48 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  //request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
+    var convertedData = convertToArray(body);
+    res.send(convertedData);
+  });
 };
 
+function convertToArray(object) {
+  var data, arr;
+
+  try{
+    data = JSON.parse(object);
+  } catch(e){
+    data = object;
+  }
+
+  var obj = data.drugs;
+
+  if (Array.isArray(obj)) {
+    return data;
+  } else {
+    arr = Object.keys(obj).map(function (k) {
+      var rObj   = {};
+      rObj       = obj[k];
+      rObj.fbKey = k;
+      return rObj;
+    });
+    data.drugs = arr;
+    return data;
+  }
+}
+
 /**
- * @name getDetails
+ * set the details for the authenticated used;
  *
  * @memberof user.controller
  *
  * @param req
  * @param res
- *
- * @description
- * reset a password
  */
-user.resetPassword = function (req, res) {
-  //{
-  //  email: "bobtony@firebase.com",
-  //  oldPassword: "correcthorsebatterystaple",
-  //  newPassword: "shinynewpassword"
-  //}
-
-  fb.ref.changePassword(req.body, __changedResponse);
-
-  function __changedResponse(err) {
-    if (err) {
-      res.send(err, 'Error changing password');
-    }
-
-    res.send('Password has been updated!');
-  }
+user.setDetails = function (req, res) {
+  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
 };
 
 /**
@@ -102,18 +114,7 @@ user.createUser = function (req, res) {
   var details = {
     nickName    : data.firstName,
     email       : data.username,
-    gravatarHash: md5(data.username.toLowerCase()),
-    //Sample Seed Data
-    drugs       : {
-      0: {
-        name          : 'Childrens Advil',
-        expirationDate: '1/1/2015'
-      },
-      1: {
-        name          : 'Niacin',
-        expirationDate: '1/1/2018'
-      }
-    }
+    gravatarHash: md5(data.username.toLowerCase())
   };
 
   // create user
@@ -142,7 +143,7 @@ user.createUser = function (req, res) {
 };
 
 /**
- * @name getCabinetDrugs
+ * get cabinet drugs
  *
  * @memberof user.controller
  *
@@ -154,7 +155,6 @@ user.getCabinetDrugs = function (req, res) {
 };
 
 /**
- * @name addCabinetDrug
  *
  * @memberof user.controller
  *
@@ -162,7 +162,19 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, req.body).pipe(res);
+  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
+};
+
+/**
+ * add drug to your cabinet
+ *
+ * @memberof user.controller
+ *
+ * @param req
+ * @param res
+ */
+user.deleteCabinetDrug = function (req, res) {
+  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/' + req.params.drugId + '.json?auth=' + req.cookies.token).pipe(res);
 };
 
 module.exports = user;

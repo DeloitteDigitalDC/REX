@@ -216,7 +216,7 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= appSettings.app %>/index.html'],
         ignorePath:  /\.\.\//,
-        exclude: [ /jquery/, 'bower_components/bootstrap/dist/js/bootstrap.js', 'bower_components/bootstrap/dist/css/bootstrap.css']
+        exclude: [ /jquery/, 'bower_components/bootstrap/dist/js/bootstrap.js']
       },
       sass: {
         src: ['<%= appSettings.app %>/styles/*.scss', '<%= appSettings.app %>/app/views/**/*.scss'],

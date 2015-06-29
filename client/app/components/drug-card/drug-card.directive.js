@@ -16,50 +16,52 @@
 
   function drugCard($state) {
     return {
-      restrict   : 'EA',
+      restrict   : 'E',
       templateUrl: 'app/components/drug-card/drug-card.directive.html',
       scope      : {
-        drug: '='
+        drug: '=',
+        key : '='
       },
       link       : link
     };
 
-    function link($scope) {
+    function link(scope) {
+      scope.goToDetails = goToDetails;
+      var application_id = scope.drug.application_id || 0;
 
-      $scope.expired = checkExpired($scope.drug.expirationDate);
+
+      if (scope.drug) {
+        scope.expired = _checkExpired(scope.drug.expirationDate);
+      }
 
       /**
-       * @name checkExpired
+       * when a user clicks on a drug card, go to that drug's detailed page
+       *
+       * @memberof drugCard
+       */
+      function goToDetails() {
+        if (scope.drug.recalled) {
+          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.drug.fbKey, applicationId : application_id});
+        }
+        else {
+          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.drug.fbKey, applicationId : application_id});
+        }
+      }
+
+      /**
+       * use moment.js to determine if drug is expired and set $scope variable to we can assign a class in the view
        *
        * @memberof drugCard
        *
        * @param {Date} exprDate - expiration date
+       *
        * @returns {Boolean} - returns true if expired
        *
-       * @description
-       * user moment.js to determine if drug is expired and set $scope variable to we can assign a class in the view
+       * @private
        */
-      function checkExpired(exprDate) {
+      function _checkExpired(exprDate) {
         return moment(exprDate, 'mm/dd/YYYY').isBefore(moment());
       }
-
-      /**
-       * @name login
-       *
-       * @memberof drugCard
-       *
-       * @description
-       * when a user clicks on a drug card, go to that drug's detailed page
-       */
-      $scope.goToDetails = function () {
-        if($scope.drug.recalled){
-          $state.go('main.drugProfile.recalls', {name: $scope.drug.name});
-        } else {
-          $state.go('main.drugProfile.uses', {name: $scope.drug.name});
-        }
-
-      };
-
     }
   }
 

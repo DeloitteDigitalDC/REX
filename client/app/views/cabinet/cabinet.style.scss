@@ -1,18 +1,13 @@
 .cabinet {
-  .bg-white{
-    padding-top: 40px;
-    h2 {
-      text-align: left;
-    }
-  }
-
-  .plus-button{
+  .plus-button {
     margin: 25px auto;
-    background-color: $darkGray;
+    background-color: $medGray;
   }
 
   input.rex-input {
     display: inline-block;
+    height: 40px;
+    padding-left: 15px;
   }
 
   .drugs {
@@ -23,22 +18,28 @@
     margin-top: 9%;
   }
 
-  .drug-card.no-drug .card{
-    background: $lightGray;
-    border-color: $lightGray;
+  .drug-card.no-drug .card {
+    background: #fff;
     color: $gray;
-    h2{
+
+    h2 {
       margin-top: 50px;
       line-height: 55px;
     }
 
+  }
+  .no-drug.ng-click-active {
+    .card {
+      background-color: $gray;
+      color: #fff;
+    }
   }
 }
 
 @media #{$lessThanSmall} {
   .cabinet {
     h2 {
-      text-align: center;
+      font-size: 2em;
     }
 
     input.form-control {

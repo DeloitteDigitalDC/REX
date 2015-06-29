@@ -1,6 +1,17 @@
+app-header {
+  position: relative;
+  z-index: 5;
+  display: block;
+}
+
 // header styles
 .app-header {
-  .plus-button{
+  height: 130px;
+  position: relative;
+  z-index: 100;
+
+  .plus-button {
+    transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
     position: absolute;
     top: 115px;
     bottom: -43px;
@@ -8,10 +19,19 @@
     height: 60px;
     width: 60px;
     border: solid 4px white;
-    right: 10%;
-  }
+    right: 0;
 
-  height: 130px;
+    &.ng-enter,
+    &.ng-leave.ng-leave-active {
+      opacity: 0;
+      transform: scale(.85);
+    }
+
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+      opacity: 1;
+    }
+  }
 
   .icon-logo-Rex {
     position: absolute;
@@ -36,6 +56,14 @@
     }
   }
 
+  .sign-in{
+    display: inline-block;
+    right: 0;
+    margin-left: 0;
+  }
+
+
+
   // start custom state styles
   &.logged-in {
     .icon-logo-Rex {
@@ -49,6 +77,23 @@
       display: inline-block;
       right: 0;
       margin-left: 0;
+    }
+  }
+}
+
+@media #{$lessThanTablet} {
+  .app-header {
+    height: 50px;
+
+    .icon-logo-Rex {
+      height: 50px;
+      width: 104px;
+      margin-top: -25px;
+      margin-left: -52px;
+    }
+
+    .plus-button {
+      top: 74px;
     }
   }
 }

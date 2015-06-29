@@ -1,6 +1,6 @@
 'use strict';
 
-describe('directive:plus-button', function () {
+describe('directive:ng-autofocus', function () {
 
   // load the directive's module and view
   beforeEach(module('rex'));
@@ -16,7 +16,7 @@ describe('directive:plus-button', function () {
 
   // compile the element to be tested
   it('should be a thing', inject(function ($compile) {
-    // element = angular.element('<plus-button></plus-button>');
+    // element = angular.element('<ng-autofocus></ng-autofocus>');
     // element = $compile(element)(scope);
 
     // scope.$apply();

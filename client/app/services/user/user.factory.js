@@ -8,23 +8,37 @@
  * @description
  * Factory for managing users.
  */
+
+/**
+ * @typedef {Object} Drug
+ *
+ * A drug in the user cabinet
+ *
+ * @property {String} name - the name of the drug
+ * @property {String} [notes] - notes to be added with the drug
+ * @property {Date} [expirationDate] - the expiration date of the drug
+ */
 (function () {
 
   angular
     .module('rex')
     .factory('user', user);
 
-  function user($http, $state, notify, CONST, $cookies, $q, $rootScope) {
-    var cookies = ['uid', 'token'],
-        userObj = {};
+  function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
+    var messages = CONST.messages,
+        cookies  = ['uid', 'token'],
+        userObj  = {};
 
     return {
-      login          : login,
-      logout         : logout,
-      createUser     : createUser,
-      details        : details,
-      getCabinetDrugs: getCabinetDrugs,
-      addCabinetDrug : addCabinetDrug
+      login            : login,
+      logout           : logout,
+      createUser       : createUser,
+      getDetails       : getDetails,
+      setDetails       : setDetails,
+      getCabinetDrugs  : getCabinetDrugs,
+      addCabinetDrug   : addCabinetDrug,
+      addDrug          : addDrug,
+      deleteCabinetDrug: deleteCabinetDrug
     };
 
     /**
@@ -75,8 +89,6 @@
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
-        console.log(data);
-
         _authenticate(data);
       });
 
@@ -90,11 +102,11 @@
      * @memberof user
      *
      * @example
-     * user.details().then(function (data) {
+     * user.getDetails().then(function (data) {
      *   console.log(data);
      * })
      */
-    function details() {
+    function getDetails() {
       var deferred;
 
       if (userObj.data) {
@@ -108,7 +120,7 @@
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj.data = data.data;
+          userObj.data = data;
         });
 
         return deferred;
@@ -116,28 +128,130 @@
     }
 
     /**
-     * @TODO need to try to get this data from firebase
+     * set details for a given user
      *
+     * @memberof user
+     *
+     * @example
+     * user.setDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function setDetails(details) {
+      var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
+
+      deferred.success(function (data) {
+        _.extend(userObj.data, data); // attach the new data to the userObj
+      });
+
+      return deferred;
+    }
+
+    /**
      * return just the drug data from the cached user object.
      *
      * @memberof user
      */
     function getCabinetDrugs() {
+      userObj = userObj || {};
+
+      userObj.data = userObj.data || {};
+
       return userObj.data.drugs;
     }
 
     /**
-     * Add a drug to your drug cabinet.
+     * Add a drug to your drug cabinet. Launches a modal.
      *
      * @memberof user
      *
-     * @param {Object} drug - the drug to add to your cabinet
-     * @param {String} drug.name - the name of the drug
+     * @param {Object} evt - the click event
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug) {
-      return $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+    function addCabinetDrug(evt, drug, cb) {
+      var modal = modals.addDrug(evt, drug);
+
+      modal.then(function (data) {
+        addDrug(data, cb);
+      });
+
+      return modal;
     }
 
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     *
+     * @return {IHttpPromise<T>|*|{}}
+     */
+    function addDrug(drug, cb) {
+      $rootScope.loading = true;
+
+      var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+
+      userObj.data.drugs = userObj.data.drugs || [];
+
+      promise.success(function () {
+        userObj.data.drugs.push(drug);
+
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+      });
+
+      promise.error(function () {
+        $rootScope.loading = false;
+
+        notify.showAlert('Error adding drug', 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * Delete a drug from your drug cabinet.
+     *
+     * @memberof user
+     *
+     * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
+     * @param {Function} [cb] - callback function
+     */
+    function deleteCabinetDrug(drugId, cb) {
+      $rootScope.loading = true;
+
+      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
+
+      userObj.data.drugs = userObj.data.drugs || {};
+
+      promise.success(function () {
+        _.remove(userObj.data.drugs, function(drug){
+          return drug.fbKey === drugId;
+        });
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully removed from you cabinet', 'success');
+
+        $rootScope.loading = false;
+      });
+
+      promise.error(function () {
+        notify.showAlert('Error deleting drug', 'danger');
+
+        $rootScope.loading = false;
+      });
+
+      return promise;
+    }
 
     /**
      * Authenticate the user with the browser.
@@ -150,9 +264,8 @@
      * @private
      */
     function _authenticate(data) {
-      console.log(data.code);
       if (data.code) {
-        //notify.showAlert(messages[data.code], 'danger');
+        notify.showAlert(messages[data.code], 'danger');
 
         $rootScope.loading = false;
       }

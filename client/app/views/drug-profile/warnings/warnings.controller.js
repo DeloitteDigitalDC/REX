@@ -19,8 +19,9 @@
 
     vm.fieldsLoaded = false;
     vm.drugName = $stateParams.name;
+    vm.applicationId = $stateParams.applicationId || 0;
     vm.drugData = {};
-    vm.otc      = true;
+    vm.otc = true;
 
     init();
 
@@ -36,14 +37,23 @@
      * @private
      */
     function _getDrugData() {
-      drug.labels({
-        search: 'openfda.brand_name.exact:"' + vm.drugName + '"',
-        limit : 5
-      }, vm.drugName).then(function (data) {
-        vm.drugData = data.data.results[0];
+      var drugs;
+      if (vm.applicationId !== 0) {
+        drugs = drug.labels({
+          search: 'openfda.application_number:"' + vm.applicationId + '"',
+          limit : 25
+        }, vm.applicationId);
+      } else {
+        drugs = drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName);
+      }
+
+      drugs.then(function (drugs) {
+        vm.drugData = drugs.data.results[0];
+
         if (vm.drugData.openfda.product_type[0] === 'HUMAN PRESCRIPTION DRUG') {
           vm.otc = false;
         }
+
         vm.fieldsLoaded = true;
       });
     }

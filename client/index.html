@@ -9,12 +9,14 @@
   <title ng-bind="AppCtrl.title">My App</title>
 
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -34,7 +36,7 @@
     ng-click="hideAlert()"
     ></div>
 
-  <div ui-view></div>
+  <div autoscroll="true" ui-view></div>
 
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
@@ -50,6 +52,7 @@
   <script src="bower_components/fastclick/lib/fastclick.js"></script>
   <script src="bower_components/lodash/lodash.js"></script>
   <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -57,7 +60,6 @@
   <script src="app.js"></script>
 
   <!-- injector:js -->
-  <script src="app/components/a-plus-button/a-plus-button.directive.js"></script>
   <script src="app/components/app-footer/app-footer.directive.js"></script>
   <script src="app/components/app-header/app-header.directive.js"></script>
   <script src="app/components/app-section/app-section.directive.js"></script>
@@ -66,14 +68,19 @@
   <script src="app/components/card/card.directive.js"></script>
   <script src="app/components/drug-card/drug-card.directive.js"></script>
   <script src="app/components/drug-tabs/drug-tabs.directive.js"></script>
+  <script src="app/components/ng-autofocus/ng-autofocus.directive.js"></script>
+  <script src="app/components/plus-button/plus-button.directive.js"></script>
   <script src="app/components/search-input/search-input.directive.js"></script>
   <script src="app/components/user-icon/user-icon.directive.js"></script>
   <script src="app/services/CONST/CONST.constant.js"></script>
   <script src="app/services/drug/drug.factory.js"></script>
   <script src="app/services/is-active/is-active.service.js"></script>
+  <script src="app/services/modals/modals.factory.js"></script>
   <script src="app/services/notify/notify.factory.js"></script>
   <script src="app/services/user/user.factory.js"></script>
   <script src="app/services/util/util.factory.js"></script>
+  <script src="app/views/add-drug-modal/add-drug-modal.controller.js"></script>
+  <script src="app/views/add-drug-modal/add-drug-modal.route.js"></script>
   <script src="app/views/app/app.controller.js"></script>
   <script src="app/views/cabinet/cabinet.controller.js"></script>
   <script src="app/views/cabinet/cabinet.route.js"></script>
@@ -93,6 +100,7 @@
   <script src="app/views/login/login.route.js"></script>
   <script src="app/views/main/main.controller.js"></script>
   <script src="app/views/main/main.router.js"></script>
+  <script src="app/views/remove-drug-modal/remove-drug-modal.controller.js"></script>
   <script src="app/views/search/search-results/search-results.controller.js"></script>
   <script src="app/views/search/search-results/search-results.route.js"></script>
   <script src="app/views/search/search.controller.js"></script>
