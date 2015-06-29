@@ -8,14 +8,14 @@
     <div class="row">
       <div class="col-sm-offset-7 col-sm-5 col-md-offset-8 col-md-4 col-xs-12">
         <label for="filterDrugName" class="sr-only">Filter by drug name</label>
-        <input id="filterDrugName" class="form-control rex-input" placeholder="Filter by Brand Name">
+        <input id="filterDrugName" class="form-control rex-input" placeholder="Filter by Brand Name" ng-model="cabinet.filterText">
       </div>
     </div>
   </app-section>
 
   <app-section class="bg-pills drugs">
     <div class="row">
-      <div class="col-sm-6 col-md-4" ng-repeat="(key,drug) in cabinet.drugs">
+      <div class="col-sm-6 col-md-4" ng-repeat="(key,drug) in cabinet.drugs | filter:cabinet.filterText">
         <drug-card drug="drug" key="key"></drug-card>
       </div>
 
