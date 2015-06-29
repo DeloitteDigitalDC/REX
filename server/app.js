@@ -12,7 +12,10 @@
 var express       = require('express'),
     bodyParser    = require('body-parser'),
     cookieParser  = require('cookie-parser'),
-    config        = require('./config');
+    config        = require('./config'),
+    sqlite3       = require('sqlite3'),
+    db            = new sqlite3.Database('./server/auth/database.sqlite3');
+
 
 var app = express(); // create the express app
 
@@ -21,12 +24,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-var auth = require('./auth')(app);
+var auth = require('./auth')(app, db);
 
 app.get('/authed', auth.ensureAuthenticated, function (req, res) {
   res.send();
 });
 
-require('./router')(app); // include the router
+require('./router')(app, db); // include the router
 
 module.exports = app;

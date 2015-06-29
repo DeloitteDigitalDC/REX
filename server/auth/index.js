@@ -1,16 +1,14 @@
 'use strict';
 
-module.exports = function (app) {
+module.exports = function (app, db) {
   var session       = require('express-session'),
       FileStore     = require('session-file-store')(session),
       passport      = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
       bcrypt        = require('bcrypt'),
-      sqlite3       = require('sqlite3'),
-      $q            = require('q'),
+      $q            = require('q');
       //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
-      //Drugs table Created with: CREATE TABLE "drugs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "application_id" TEXT);
-      db            = new sqlite3.Database('./server/auth/database.sqlite3');
+      //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
 
 //Session Storage
   app.use(session({
@@ -65,45 +63,6 @@ module.exports = function (app) {
     req.session.destroy(function (err) {
       res.clearCookie('connect.sid', {path: '/'});
       res.redirect('/');
-    });
-  });
-
-  app.get('/user/:uid/details/', function (req, res) {
-    var userObj = {data: {}};
-    db.all('SELECT id, application_id, username, name FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
-      if (err) {
-        res.send(err);
-        console.log(err);
-      } else {
-        userObj.uid = req.params.uid;
-        userObj.data.email = req.params.uid;
-        userObj.data.drugs = rows;
-        res.send(userObj);
-        console.log(userObj);
-      }
-    });
-  });
-
-  //todo: add authentication
-  app.get('/user/:uid/cabinet/', function (req, res) {
-    db.all('SELECT id, application_id, username, name FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
-      if (err) {
-        res.send(err);
-        console.log(err);
-      } else {
-        res.send(rows);
-        console.log(rows);
-      }
-    });
-  });
-
-  app.post('/user/:uid/cabinet/', ensureAuthenticated, function (req, res) {
-    db.run('INSERT INTO drugs (application_id, username, name) VALUES (?,?,?);', [req.body.application_id, req.params.uid, req.body.name], function (err, rows) {
-      if (err) {
-        res.send(err)
-      } else {
-        res.status(201).send('Drug ' + req.body.name + ' Created');
-      }
     });
   });
 

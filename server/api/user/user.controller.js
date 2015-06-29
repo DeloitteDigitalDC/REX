@@ -1,21 +1,21 @@
 'use strict';
 
-var fb      = require('../../firebase'),
-    request = require('request'),
-    config  = require('../../config'),
-    md5     = require('MD5'),
-    url     = config.firebase,
-    auth = require('../../auth');
+module.exports = function(db) {
+  var fb      = require('../../firebase'),
+      request = require('request'),
+      config  = require('../../config'),
+      md5     = require('MD5'),
+      url     = config.firebase;
 
 
-var user = {};
+  var user = {};
 
-/**
- * @memberof user.controller
- *
- * @description
- * login through firebase
- */
+  /**
+   * @memberof user.controller
+   *
+   * @description
+   * login through firebase
+   */
 //user.login = function (req, res) {
 //  var opts = {
 //    email   : req.body.username,
@@ -44,72 +44,52 @@ var user = {};
 //  }
 //};
 
-/**
- * get the details for the authenticated used;
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
-user.getDetails = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
-    var convertedData = require('../../utils/convertToArray')(body);
-
-    res.send(convertedData);
-  });
-};
-
-function convertToArray(object) {
-  var data, arr;
-
-  try{
-    data = JSON.parse(object);
-  } catch(e){
-    data = object;
-  }
-
-  var obj = data.drugs;
-
-  if (Array.isArray(obj)) {
-    return data;
-  } else {
-    try{
-      arr = Object.keys(obj).map(function (k) {
-        var rObj   = {};
-        rObj       = obj[k];
-        rObj.fbKey = k;
-        return rObj;
+  /**
+   * get the details for the authenticated used;
+   *
+   * @memberof user.controller
+   *
+   * @param req
+   * @param res
+   */
+  user.getDetails = function (req, res) {
+      var userObj = {data: {}};
+    console.log("getDetails", db);
+      db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+        if (err) {
+          res.send(err);
+          console.log(err);
+        } else {
+          userObj.uid = req.params.uid;
+          userObj.data.email = req.params.uid;
+          userObj.data.drugs = rows;
+          res.send(userObj);
+          console.log(userObj);
+        }
       });
-      data.drugs = arr;
-    } catch(err){
-      console.log('no drugs');
-    }
-    return data;
-  }
-}
+  };
 
 
-/**
- * set the details for the authenticated used;
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
-user.setDetails = function (req, res) {
-  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
-};
+  /**
+   * set the details for the authenticated used;
+   *
+   * @memberof user.controller
+   *
+   * @param req
+   * @param res
+   */
+  //user.setDetails = function (req, res) {
+  //  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
+  //};
 
-/**
- * @name createUser
- *
- * @memberof user.controller
- *
- * @description
- * create a new user
- */
+  /**
+   * @name createUser
+   *
+   * @memberof user.controller
+   *
+   * @description
+   * create a new user
+   */
 //user.createUser = function (req, res) {
 //  var data = req.body;
 //
@@ -149,45 +129,60 @@ user.setDetails = function (req, res) {
 //  });
 //};
 
-/**
- * get cabinet drugs
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
+  /**
+   * get cabinet drugs
+   *
+   * @memberof user.controller
+   *
+   * @param req
+   * @param res
+   */
 //user.getCabinetDrugs = function (req, res) {
 //  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
 //};
 
-user.getCabinetDrugs = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
+  user.getCabinetDrugs = function (req, res) {
+    request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
+    db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+      if (err) {
+        res.send(err);
+        console.log(err);
+      } else {
+        res.send(rows);
+        console.log(rows);
+      }
+    });
 
+  };
 
+  /**
+   *
+   * @memberof user.controller
+   *
+   * @param req
+   * @param res
+   */
+  user.addCabinetDrug = function (req, res) {
+    db.run('INSERT INTO drugs (id, username, name) VALUES (?,?,?);', [req.body.id, req.params.uid, req.body.name], function (err, rows) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.status(201).send('Drug ' + req.body.name + ' Created');
+      }
+    });
+  };
+
+  /**
+   * add drug to your cabinet
+   *
+   * @memberof user.controller
+   *
+   * @param req
+   * @param res
+   */
+  user.deleteCabinetDrug = function (req, res) {
+    //add delete function here
+  };
+
+  return user;
 };
-
-/**
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
-user.addCabinetDrug = function (req, res) {
-  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
-};
-
-/**
- * add drug to your cabinet
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
-user.deleteCabinetDrug = function (req, res) {
-  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/' + req.params.drugId + '.json?auth=' + req.cookies.token).pipe(res);
-};
-
-module.exports = user;
