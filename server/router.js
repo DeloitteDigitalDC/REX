@@ -10,9 +10,9 @@
  */
 var config = require('./config');
 
-module.exports = function router(app) {
-  app.use('/fda', require('./api/fda/'));
-  app.use('/user', require('./api/user/'));
+module.exports = function router(app, auth) {
+  app.use('/fda', require('./api/fda/')(auth));
+  app.use('/user', require('./api/user/')(auth));
 
   app.get('/*', function (req, res) {
     res.sendFile('index.html', { root: config.appDir });
