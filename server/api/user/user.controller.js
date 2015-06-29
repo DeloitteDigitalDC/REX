@@ -95,7 +95,7 @@ user.addCabinetDrug = function (req, res) {
   console.log('in add drug function', req.body);
   db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err, rows) {
     if (err) {
-      res.send(err)
+      res.send(err);
     } else {
       res.status(201).send('Drug ' + req.body.name + ' Created');
     }
@@ -112,6 +112,12 @@ user.addCabinetDrug = function (req, res) {
  */
 user.deleteCabinetDrug = function (req, res) {
   //add delete function here
+
+  console.log('drugID: ', req.params.drugId);
+
+  db.run('delete from drugs where drugs.id = ? ', req.params.drugId, function(err, row){
+    res.send();
+  });
 };
 
 module.exports = user;

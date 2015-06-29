@@ -130,14 +130,12 @@
         deferred = $q.defer();
 
         deferred.resolve(userObj);
-        debugger;
         return deferred.promise;
       }
       else {
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          debugger;
           userObj = data;
         });
 
@@ -250,7 +248,7 @@
 
       promise.success(function () {
         _.remove(userObj.data.drugs, function(drug){
-          return drug.fbKey === drugId;
+          return drug.id === drugId;
         });
 
         if (cb) {
