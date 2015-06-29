@@ -46,8 +46,6 @@
       drug.labels({search: searchKey + vm.id  + '"', limit: 25, alerts: 'pregnancy'}, vm.id).then(function (res) {
         vm.drugData = res.data.results[0];
 
-        console.log(vm.drugData);
-
         vm.fieldsLoaded = true;
       });
     }

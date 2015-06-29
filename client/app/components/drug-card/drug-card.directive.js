@@ -62,7 +62,6 @@
        * @private
        */
       function _checkExpired(exprDate) {
-        console.log(exprDate);
         return moment(exprDate).isBefore(moment());
       }
     }
