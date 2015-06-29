@@ -24,7 +24,10 @@
     vm.drug = drugToAdd;
 
     vm.checkDate = function () {
-      vm.dateDirty = vm.drug.expirationDate.length > 0;
+
+      if(vm.drug.expirationDate){
+        vm.dateDirty = vm.drug.expirationDate.length > 0;
+      }
 
       if(vm.drug.date instanceof Date) {
         vm.drug.date = moment(vm.drug.expirationDate, 'MM/DD/YYYY');

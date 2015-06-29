@@ -8,7 +8,7 @@
  * @description
  * Controller for rex
  */
-(function() {
+(function () {
 
   angular
     .module('rex')
@@ -18,8 +18,9 @@
     var vm = this;
 
     vm.fieldsLoaded = false;
-    vm.drugName = $stateParams.name;
-    vm.drugData = {};
+    vm.drugName     = $stateParams.name;
+    vm.applicationId = $stateParams.applicationId || 0;
+    vm.drugData     = {};
 
     init();
 
@@ -35,9 +36,19 @@
      * @private
      */
     function _getDrugData() {
-      drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"'}, vm.drugName).then(function (labels) {
-        vm.drugData = labels.data.results[0];
+      var drugs;
 
+      if (vm.applicationId !== 0) {
+        drugs = drug.labels({
+          search: 'openfda.application_number:"' + vm.applicationId + '"',
+          limit : 25
+        }, vm.applicationId);
+      } else {
+        drugs = drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName);
+      }
+
+      drugs.then(function (labels) {
+        vm.drugData     = labels.data.results[0];
         vm.fieldsLoaded = true;
       });
     }
