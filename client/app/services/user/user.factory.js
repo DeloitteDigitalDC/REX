@@ -33,7 +33,8 @@
       login            : login,
       logout           : logout,
       createUser       : createUser,
-      details          : details,
+      getDetails       : getDetails,
+      setDetails       : setDetails,
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
       addDrug          : addDrug,
@@ -101,11 +102,11 @@
      * @memberof user
      *
      * @example
-     * user.details().then(function (data) {
+     * user.getDetails().then(function (data) {
      *   console.log(data);
      * })
      */
-    function details() {
+    function getDetails() {
       var deferred;
 
       if (userObj.data) {
@@ -127,7 +128,26 @@
     }
 
     /**
+     * set details for a given user
      *
+     * @memberof user
+     *
+     * @example
+     * user.setDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function setDetails(details) {
+      var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
+
+      deferred.success(function (data) {
+        _.extend(userObj.data, data); // attach the new data to the userObj
+      });
+
+      return deferred;
+    }
+
+    /**
      * return just the drug data from the cached user object.
      *
      * @memberof user
@@ -136,7 +156,6 @@
       userObj = userObj || {};
 
       userObj.data = userObj.data || {};
-
 
       return userObj.data.drugs;
     }
@@ -203,8 +222,6 @@
      *
      * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
      * @param {Function} [cb] - callback function
-     *
-     * @todo remove $rootScope loading and do something not on the $rootScope
      */
     function deleteCabinetDrug(drugId, cb) {
       $rootScope.loading = true;
@@ -216,7 +233,9 @@
       promise.success(function () {
         delete userObj.data.drugs[drugId];
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 

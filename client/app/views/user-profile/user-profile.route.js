@@ -10,7 +10,7 @@
           url         : '/user-profile',
           templateUrl : 'app/views/user-profile/user-profile.view.html',
           controller  : 'UserProfileCtrl',
-          controllerAs: 'userProfile',
+          controllerAs: 'UserProfile',
           title       : 'User profile'
         });
     });

@@ -55,31 +55,15 @@ user.getDetails = function (req, res) {
 };
 
 /**
+ * set the details for the authenticated used;
  *
  * @memberof user.controller
  *
  * @param req
  * @param res
- *
- * @description
- * reset a password
  */
-user.resetPassword = function (req, res) {
-  //{
-  //  email: "bobtony@firebase.com",
-  //  oldPassword: "correcthorsebatterystaple",
-  //  newPassword: "shinynewpassword"
-  //}
-
-  fb.ref.changePassword(req.body, __changedResponse);
-
-  function __changedResponse(err) {
-    if (err) {
-      res.send(err, 'Error changing password');
-    }
-
-    res.send('Password has been updated!');
-  }
+user.setDetails = function (req, res) {
+  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
 };
 
 /**
@@ -161,10 +145,7 @@ user.addCabinetDrug = function (req, res) {
  * @param res
  */
 user.deleteCabinetDrug = function (req, res) {
-
   request.del(config.firebase + '/users/' + req.params.uid + '/drugs/'+ req.params.drugId +'.json?auth=' + req.cookies.token).pipe(res);
-
-
 };
 
 module.exports = user;
