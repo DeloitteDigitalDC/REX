@@ -194,8 +194,7 @@
 
       userObj.data.drugs = userObj.data.drugs || [];
 
-      promise.success(function (res) {
-        //userObj.data.drugs[res.name] = drug;
+      promise.success(function () {
         userObj.data.drugs.push(drug);
 
         $rootScope.loading = false;
