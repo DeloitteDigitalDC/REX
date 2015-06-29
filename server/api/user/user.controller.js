@@ -55,16 +55,25 @@ module.exports = function(db) {
   user.getDetails = function (req, res) {
       var userObj = {data: {}};
     console.log("getDetails", db);
-      db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+      db.get('SELECT * FROM users WHERE username = ?', req.params.uid, function (err, row) {
         if (err) {
           res.send(err);
           console.log(err);
         } else {
           userObj.uid = req.params.uid;
           userObj.data.email = req.params.uid;
-          userObj.data.drugs = rows;
-          res.send(userObj);
-          console.log(userObj);
+          userObj.data.nickName = row.nickName;
+          userObj.data.gravatarHash = row.gravatarHash;
+          db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+            if (err) {
+              res.send(err);
+              console.log(err);
+            } else {
+              userObj.data.drugs = rows;
+              res.send(userObj);
+              console.log(userObj);
+            }
+          });
         }
       });
   };
@@ -142,7 +151,6 @@ module.exports = function(db) {
 //};
 
   user.getCabinetDrugs = function (req, res) {
-    request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
     db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
       if (err) {
         res.send(err);
@@ -163,7 +171,8 @@ module.exports = function(db) {
    * @param res
    */
   user.addCabinetDrug = function (req, res) {
-    db.run('INSERT INTO drugs (id, username, name) VALUES (?,?,?);', [req.body.id, req.params.uid, req.body.name], function (err, rows) {
+    console.log('in add drug function', req.body);
+    db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err, rows) {
       if (err) {
         res.send(err)
       } else {

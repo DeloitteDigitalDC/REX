@@ -26,7 +26,7 @@
 
   function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies  = ['uid', 'token'],
+        cookies  = ['uid'],
         userObj  = {};
 
     return {
@@ -63,7 +63,7 @@
           notify.showAlert('Incorrect password', 'danger');
         }
         $rootScope.loading = false;
-      })
+      });
 
       return promise;
     }
@@ -107,7 +107,7 @@
           notify.showAlert('Username already exists', 'danger');
           $rootScope.loading = false;
         }
-      })
+      });
 
       return promise;
     }
@@ -305,7 +305,6 @@
       var expireDate = new Date();
 
       expireDate.setDate(expireDate.getDate() + 1);
-      debugger;
 
       _.forEach(cookies, function (cookie) {
         $cookies.put(cookie, data, {expires: expireDate});

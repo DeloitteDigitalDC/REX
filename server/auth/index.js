@@ -8,7 +8,7 @@ module.exports = function (app, db) {
       bcrypt        = require('bcrypt'),
       $q            = require('q');
       //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
-      //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
+      //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT, "expirationDate" TEXT);
 
 //Session Storage
   app.use(session({
@@ -74,8 +74,8 @@ module.exports = function (app, db) {
     checkUserExists(req.body.username).then(function () {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
-          db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash,
-            salt, req.body.firstName);
+          db.run("INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?)", req.body.username, hash,
+            salt, req.body.firstName, req.body.gravatarHash);
           res.status(201).send('User ' + req.body.username + ' Created');
           //TODO: login after this
         });

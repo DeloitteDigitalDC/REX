@@ -19,7 +19,6 @@
 
     vm.drugName = $stateParams.name;
     vm.isSearch = $state.includes('main.search.**');
-    vm.cabinetId = $stateParams.cabinetId || 0;
     vm.id = $stateParams.id || 0;
     vm.inCabinet = false;
 
@@ -68,7 +67,7 @@
      * @memberof DrugProfileCtrl
      */
     function removeDrug() {
-       user.deleteCabinetDrug(vm.cabinetId, function (){
+       user.deleteCabinetDrug(vm.id, function (){
          checkCabinet();
        });
     }
