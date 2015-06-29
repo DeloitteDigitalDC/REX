@@ -21,7 +21,7 @@ module.exports = function (app) {
     resave           : false,
     saveUninitialized: false,
     cookie           : {
-      maxAge: 60000,
+      maxAge  : 60000,
       httpOnly: false
     }
   }));
@@ -58,7 +58,8 @@ module.exports = function (app) {
   //Login Route
   app.post('/user/login', passport.authenticate('local'), function (req, res) {
     console.log('in new auth - login');
-    res.status(200).send();
+    console.log(req.body.username);
+    res.status(200).send(req.body.username);
   });
 
   app.delete('/user/logout', function (req, res) {
@@ -67,6 +68,29 @@ module.exports = function (app) {
     req.session.destroy();
     res.send();
   });
+
+  app.get('/user/:uid/drugs', ensureAuthenticated, function (req, res) {
+    db.all('SELECT id, application_id, username, name FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(rows);
+      }
+    });
+  });
+
+  app.post('/user/:uid/drugs', ensureAuthenticated, function (req, res) {
+    db.run('INSERT INTO drugs (application_id, username, name) VALUES (?,?,?);', [req.body.application_id ,req.params.uid, req.body.name], function (err, rows) {
+      if (err) {
+        res.send(err)
+      } else {
+        res.status(201).send('Drug ' + req.body.name + ' Created');
+      }
+    });
+  });
+
+  //delete drug function
+
 
   //New User Route
   app.post('/user/create', function (req, res) {
@@ -94,7 +118,7 @@ module.exports = function (app) {
   }
 
   return {
-    passport: passport,
+    passport           : passport,
     ensureAuthenticated: ensureAuthenticated
   };
 };

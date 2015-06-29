@@ -155,8 +155,14 @@ user.setDetails = function (req, res) {
  * @param req
  * @param res
  */
+//user.getCabinetDrugs = function (req, res) {
+//  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
+//};
+
 user.getCabinetDrugs = function (req, res) {
   request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
+
+
 };
 
 /**

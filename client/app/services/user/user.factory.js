@@ -288,6 +288,7 @@
      * @private
      */
     function _userLoggedIn(data) {
+      //TODO: set username cookie here
       var expireDate = new Date();
 
       expireDate.setDate(expireDate.getDate() + 1);
