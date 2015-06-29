@@ -11,7 +11,7 @@ describe('Controller:LoginCtrl', function () {
     $httpBackend = $injector.get('$httpBackend');
     LoginCtrl = $injector.get('$controller')('LoginCtrl');
 
-    $httpBackend.whenGET('/user/simpleLogin:1/details/').respond(200, {
+    $httpBackend.whenGET('/user/test@test.com/details/').respond(200, {
       data: {
         nickName: 'Foo'
       }
@@ -19,11 +19,7 @@ describe('Controller:LoginCtrl', function () {
   }));
 
   it('hits login endpoint', function () {
-    $httpBackend.whenPOST('/user/login').respond(200, {
-      data: {
-        nickName: 'Foo'
-      }
-    });
+    $httpBackend.whenPOST('/user/login').respond(200, 'foo');
 
     LoginCtrl.login('user@mail.com', 'helloWOrld@1');
 
