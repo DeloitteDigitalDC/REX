@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (app) {
   var session       = require('express-session'),
       FileStore     = require('session-file-store')(session),
@@ -82,4 +84,4 @@ module.exports = function (app) {
     passport: passport,
     ensureAuthenticated: ensureAuthenticated
   };
-}
+};
