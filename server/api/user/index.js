@@ -15,7 +15,7 @@ module.exports = function (db) {
 //TODO: authenticate all the routes
 // account
   router.get('/:uid/details/', ctrl.getDetails);
-  router.patch('/:uid/details/', ctrl.setDetails);
+  //router.patch('/:uid/details/', ctrl.setDetails);
 //router.post('/login', ctrl.login);
 //router.post('/create', ctrl.createUser);
 
