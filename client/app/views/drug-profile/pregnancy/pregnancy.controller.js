@@ -19,7 +19,7 @@
 
     vm.fieldsLoaded = false;
     vm.drugName     = $stateParams.name;
-    vm.applicationId = $stateParams.applicationId || 0;
+    vm.id = $stateParams.id || 0;
     vm.drugData     = {};
 
     init();
@@ -36,19 +36,14 @@
      * @private
      */
     function _getDrugData() {
-      var drugs;
+      var searchKey = 'id:"';
 
-      if (vm.applicationId !== 0) {
-        drugs = drug.labels({
-          search: 'openfda.application_number:"' + vm.applicationId + '"',
-          limit : 25
-        }, vm.applicationId);
-      } else {
-        drugs = drug.labels({search: 'openfda.brand_name.exact:"' + vm.drugName + '"', limit: 25}, vm.drugName);
+      if(vm.id === 0){
+        searchKey = 'openfda.brand_name.exact:"';
       }
 
-      drugs.then(function (labels) {
-        vm.drugData     = labels.data.results[0];
+      drug.labels({search: searchKey + vm.id  + '"', limit: 25, alerts: 'pregnancy'}, vm.id).then(function (res) {
+        vm.drugData = res.data.results[0];
         vm.fieldsLoaded = true;
       });
     }

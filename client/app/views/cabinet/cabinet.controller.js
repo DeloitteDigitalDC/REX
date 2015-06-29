@@ -37,7 +37,6 @@
      */
     function init() {
       vm.drugs = user.getCabinetDrugs();
-      console.log(vm.drugs);
 
       _queryRecalls();
     }
