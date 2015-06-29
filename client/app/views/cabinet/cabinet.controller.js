@@ -37,6 +37,7 @@
      */
     function init() {
       vm.drugs = user.getCabinetDrugs();
+      console.log(vm.drugs);
 
       _queryRecalls();
     }
@@ -56,7 +57,6 @@
 
       drug.enforce({search: query, limit: 100}).success(function (res) {
         recalls = res.results;
-
         _compareRecalls();
       });
     }

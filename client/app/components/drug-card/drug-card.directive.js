@@ -38,10 +38,10 @@
        */
       function goToDetails() {
         if (scope.drug.recalled) {
-          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.key});
+          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.drug.fbKey});
         }
         else {
-          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.key});
+          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.drug.fbKey});
         }
       }
 
