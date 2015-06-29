@@ -54,7 +54,8 @@ var user = {};
  */
 user.getDetails = function (req, res) {
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
-    var convertedData = convertToArray(body);
+    var convertedData = require('../../utils/convertToArray')(body);
+
     res.send(convertedData);
   });
 };
@@ -87,6 +88,7 @@ function convertToArray(object) {
     return data;
   }
 }
+
 
 /**
  * set the details for the authenticated used;

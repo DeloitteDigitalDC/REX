@@ -7,7 +7,7 @@
     .config(function ($stateProvider) {
       $stateProvider
         .state('main.drugProfile', {
-          url         : '/drug-profile/:name/:cabinetId/:applicationId',
+          url         : '/drug-profile/:name/:cabinetId/:id',
           templateUrl : 'app/views/drug-profile/drug-profile.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
@@ -15,7 +15,7 @@
           headerState : 'loggedIn'
         })
         .state('main.search.drugProfile', {
-          url         : '/drug-profile/:name/:applicationId',
+          url         : '/drug-profile/:name/:id',
           templateUrl : 'app/views/drug-profile/drug-profile-search.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',

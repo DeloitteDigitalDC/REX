@@ -56,7 +56,7 @@
         var drugSearch = drug.labelsSearch({search: query, limit: 100});
 
         drugSearch.success(function (res) {
-          scope.searchResults = res.results;
+          scope.searchResults = res.results || [];
 
           if (scope.searchResults.length === 0) {
             scope.noResults = true;

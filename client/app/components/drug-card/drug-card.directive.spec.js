@@ -15,7 +15,7 @@ describe('directive:drug-card', function () {
   }));
 
   it('should be marked as expired', inject(function ($compile) {
-    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2014\'}"></drug-card>');
+    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2014\', id:\'12345677\'}"></drug-card>');
     element = $compile(element)(scope);
 
     scope.$apply();
@@ -24,7 +24,7 @@ describe('directive:drug-card', function () {
   }));
 
   it('should not be marked as expired', inject(function ($compile) {
-    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\'}"></drug-card>');
+    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\', id:\'12345677\'}"></drug-card>');
     element = $compile(element)(scope);
 
     scope.$apply();
@@ -40,7 +40,7 @@ describe('directive:drug-card', function () {
   }));
 
   it('should go to the drug uses page', inject(function ($compile) {
-    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\'}"></drug-card>');
+    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\', id:\'12345677\'}"></drug-card>');
     element = $compile(element)(scope);
 
     scope.$apply();
@@ -53,7 +53,7 @@ describe('directive:drug-card', function () {
   }));
 
   it('should go to the drug recalls page', inject(function ($compile) {
-    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\', recalled: true}"></drug-card>');
+    element = angular.element('<drug-card drug="{ name: \'Tylenol\', expirationDate: \'10/10/2016\', recalled: true, id:\'12345677\'}"></drug-card>');
     element = $compile(element)(scope);
 
     scope.$apply();
