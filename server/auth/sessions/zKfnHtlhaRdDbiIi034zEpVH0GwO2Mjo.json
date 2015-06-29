@@ -1,0 +1,10 @@
+{
+  "cookie": {
+    "originalMaxAge": 60000,
+    "expires": "2015-06-29T02:18:45.137Z",
+    "httpOnly": true,
+    "path": "/"
+  },
+  "passport": {},
+  "__lastAccess": 1435544265138
+}

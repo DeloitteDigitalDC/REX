@@ -15,7 +15,8 @@ var router = require('express').Router(),
 router.get('/:uid/details/', ctrl.getDetails);
 router.patch('/:uid/details/', ctrl.setDetails);
 router.post('/login', ctrl.login);
-router.post('/create', ctrl.createUser);
+router.post('/createUser', ctrl.createUser);
+//router.post('/create', ctrl.createUser);
 
 // drug cabinet
 router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);

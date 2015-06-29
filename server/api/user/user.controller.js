@@ -51,7 +51,6 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  //request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
   request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, function (err, data, body) {
     var convertedData = convertToArray(body);
     res.send(convertedData);
@@ -72,13 +71,17 @@ function convertToArray(object) {
   if (Array.isArray(obj)) {
     return data;
   } else {
-    arr = Object.keys(obj).map(function (k) {
-      var rObj   = {};
-      rObj       = obj[k];
-      rObj.fbKey = k;
-      return rObj;
-    });
-    data.drugs = arr;
+    try{
+      arr = Object.keys(obj).map(function (k) {
+        var rObj   = {};
+        rObj       = obj[k];
+        rObj.fbKey = k;
+        return rObj;
+      });
+      data.drugs = arr;
+    } catch(err){
+      console.log('no drugs');
+    }
     return data;
   }
 }

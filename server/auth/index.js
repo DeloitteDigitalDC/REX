@@ -58,7 +58,8 @@ module.exports = function (app) {
   });
 
   //New User Route
-  app.post('/createUser', function (req, res) {
+  app.post('/user/create', function (req, res) {
+    console.log('in new auth');
     //TODO Add check for existing username before doing blind insert.
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(req.body.password, salt, function (err, hash) {
