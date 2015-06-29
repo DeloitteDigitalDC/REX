@@ -21,12 +21,10 @@ module.exports = function (app) {
       path: './server/auth/sessions'  //Might want to move this somewhere else or use MemoryStore
     }),
     secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //change this for PROD
-    resave           : false,
-    saveUninitialized: false,
-    unset            : 'destroy',
+    resave           : true,
+    saveUninitialized: true,
     cookie           : {
-      maxAge  : 60000,
-      httpOnly: false
+      maxAge  : null
     }
   }));
 

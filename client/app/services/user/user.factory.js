@@ -136,7 +136,7 @@
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj = data;
+          userObj = data.data;
         });
 
         return deferred;
@@ -169,11 +169,12 @@
      * @memberof user
      */
     function getCabinetDrugs() {
-      userObj = userObj || {};
 
-      userObj.data = userObj.data || {};
+      //userObj = userObj || {};
+      //
+      //userObj.data = userObj.data || {};
 
-      return userObj.data.drugs;
+      return userObj.drugs;
     }
 
     /**
@@ -207,11 +208,11 @@
       $rootScope.loading = true;
 
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
-
-      userObj.data.drugs = userObj.data.drugs || [];
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
 
       promise.success(function () {
-        userObj.data.drugs.push(drug);
+        userObj.drugs.push(drug);
 
         $rootScope.loading = false;
 
@@ -244,10 +245,10 @@
 
       var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
 
-      userObj.data.drugs = userObj.data.drugs || {};
+      userObj.drugs = userObj.drugs || {};
 
       promise.success(function () {
-        _.remove(userObj.data.drugs, function(drug){
+        _.remove(userObj.drugs, function(drug){
           return drug.id === drugId;
         });
 
@@ -308,7 +309,10 @@
         $cookies.put(cookie, data, {expires: expireDate});
       });
 
-      userObj = data;
+      getDetails();
+
+
+     // userObj = data;
 
       $state.go('main.cabinet', {}, {reload: true});
     }

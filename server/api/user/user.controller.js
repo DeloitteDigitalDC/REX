@@ -53,6 +53,7 @@ user.getDetails = function (req, res) {
  * @param req
  * @param res
  */
+//TODO: GOTTA DO THIS
 //user.setDetails = function (req, res) {
 //  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
 //};
@@ -74,7 +75,7 @@ user.getDetails = function (req, res) {
 user.getCabinetDrugs = function (req, res) {
   db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
       console.log(err);
     } else {
       res.send(rows);
@@ -95,7 +96,7 @@ user.addCabinetDrug = function (req, res) {
   console.log('in add drug function', req.body);
   db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err, rows) {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
     } else {
       res.status(201).send('Drug ' + req.body.name + ' Created');
     }
@@ -111,12 +112,12 @@ user.addCabinetDrug = function (req, res) {
  * @param res
  */
 user.deleteCabinetDrug = function (req, res) {
-  //add delete function here
-
-  console.log('drugID: ', req.params.drugId);
-
   db.run('delete from drugs where drugs.id = ? ', req.params.drugId, function(err, row){
-    res.send();
+    if(err){
+      res.status(500).send(err);
+    } else {
+      res.status(201).send('deleted: ' + row);
+    }
   });
 };
 

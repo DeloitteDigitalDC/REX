@@ -19,7 +19,7 @@
 
     vm.isActive = isActive;
 
-    vm.user = userDetails;
+    vm.user = userDetails.data;
   }
 
 })();

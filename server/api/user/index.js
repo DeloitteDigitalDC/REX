@@ -14,18 +14,20 @@ module.exports = function(auth) {
   var router = require('express').Router(),
       ctrl   = require('./user.controller');
 
-//TODO: authenticate all the routes
-// account
-
-  router.get('/:uid/details/', auth.ensureAuthenticated, ctrl.getDetails);
-//router.patch('/:uid/details/', ctrl.setDetails);
+//from before:
+  //router.patch('/:uid/details/', ctrl.setDetails);
 //router.post('/login', ctrl.login);
 //router.post('/create', ctrl.createUser);
 
-// drug cabinet
+  router.get('/:uid/details/', auth.ensureAuthenticated, ctrl.getDetails);
   router.get('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.getCabinetDrugs);
   router.post('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.addCabinetDrug);
   router.delete('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.deleteCabinetDrug);
+
+  //router.get('/:uid/details/', ctrl.getDetails);
+  //router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);
+  //router.post('/:uid/cabinet/', ctrl.addCabinetDrug);
+  //router.delete('/:uid/cabinet/:drugId', ctrl.deleteCabinetDrug);
 
   return router;
 };
