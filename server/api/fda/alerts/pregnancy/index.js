@@ -1,6 +1,14 @@
-module.exports = function (data, threshold) {
-  threshold = threshold || 1;
-  data    = data[0];
+'use strict';
+
+/**
+ * @name pregnancy
+ *
+ * @description
+ * Create an alert score for
+ * @param data
+ */
+module.exports = function (data) {
+  data = data[0];
 
   var alerts = 0,
       fields = ['pregnancy_or_breast_feeding', 'ask_doctor', 'do_not_use'],
@@ -9,11 +17,11 @@ module.exports = function (data, threshold) {
 
   if (data.pregnancy_or_breast_feeding[0] || data.pregnancy[0]) {
 
-    fields.forEach(function(field) {
+    fields.forEach(function (field) {
 
       keys.forEach(function (key) {
 
-        if(data[field]) {
+        if (data[field]) {
 
           string = data[field][0].split(' ');
 
@@ -34,5 +42,5 @@ module.exports = function (data, threshold) {
 
   data.alerts = data.alerts || {};
 
-  data.alerts = alerts >= threshold;
+  data.alerts['pregnancy'] = alerts;
 };

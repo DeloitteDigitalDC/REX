@@ -2,7 +2,7 @@
   <app-section class="bg-pills">
     <card class="results-card" ng-show="search.results.length > 0">
       <div class="result" ng-repeat="result in search.results"><a
-        ui-sref="main.search.drugProfile.uses({name : result.openfda.brand_name[0], applicationId : result.openfda.application_number[0]})">{{result.openfda.brand_name[0]}}</a>
+        ui-sref="main.search.drugProfile.uses({name : result.openfda.brand_name[0], id : result.id})">{{result.openfda.brand_name[0]}}</a>
       </div>
       <h3 class="text-teal text-center" ng-if="search.noResults">No Results.</h3>
     </card>
