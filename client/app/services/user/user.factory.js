@@ -58,6 +58,13 @@
         _authenticate(data);
       });
 
+      promise.error(function(data, status) {
+        if(status === 401) {
+          notify.showAlert('Incorrect password', 'danger');
+        }
+        $rootScope.loading = false;
+      })
+
       return promise;
     }
 
@@ -67,8 +74,7 @@
      * @memberof user
      */
     function logout() {
-
-      var logoutPromise = $http.delete('/user/logout');
+      var logoutPromise = $http.get('/user/logout');
 
       logoutPromise.success(function(){
         _.forEach(cookies, function (cookie) {
@@ -93,8 +99,15 @@
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function (data) {
-        _authenticate(data);
+        login(username, password);
       });
+
+      promise.error(function(data, status) {
+        if(status === 400) {
+          notify.showAlert('Username already exists', 'danger');
+          $rootScope.loading = false;
+        }
+      })
 
       return promise;
     }
@@ -288,7 +301,6 @@
      * @private
      */
     function _userLoggedIn(data) {
-      //TODO: set username cookie here
       var expireDate = new Date();
 
       expireDate.setDate(expireDate.getDate() + 1);

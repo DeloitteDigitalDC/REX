@@ -48,14 +48,14 @@
       vm.headerOptions = newState.buttonData;
 
       if (!newState.public) {
-        if (!$cookies.get('connect.sid')) {
+        if (!$cookies.get('uid')) {
           event.preventDefault();
 
           $state.go('main.home');
         }
       }
       else {
-        if ($cookies.get('connect.sid')) {
+        if ($cookies.get('uid')) {
           event.preventDefault();
 
           $state.go('main.cabinet');
