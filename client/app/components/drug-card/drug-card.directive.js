@@ -28,11 +28,10 @@
     function link(scope) {
       scope.goToDetails = goToDetails;
 
-
-      var id = scope.drug.id || 0;
-
+      var id;
 
       if (scope.drug) {
+        id = scope.drug.id || 0;
         scope.expired = _checkExpired(scope.drug.expirationDate);
       }
 

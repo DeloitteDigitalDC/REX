@@ -5,9 +5,12 @@
  *
  * @description
  * Create an alert score for
+ *
  * @param data
+ * @param threshold
  */
-module.exports = function (data) {
+module.exports = function (data, threshold) {
+  threshold = threshold || 1;
   data = data[0];
 
   var alerts = 0,
@@ -40,7 +43,8 @@ module.exports = function (data) {
 
   }
 
+
   data.alerts = data.alerts || {};
 
-  data.alerts['pregnancy'] = alerts;
+  data.alerts.pregnancy =  alerts >= threshold;
 };
