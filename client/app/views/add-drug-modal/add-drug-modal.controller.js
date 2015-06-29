@@ -62,12 +62,13 @@
      * @private
      */
     function _makeYearArray(iterations){
-      var currentYear = new Date().getFullYear(),
-        arr = [];
-      while(iter !== -1){
-        arr.push({id: iter, name: currentYear + iter});
-        iter = iter-1;
+      var currentYear = new Date().getFullYear(), arr = [];
+
+      while(iterations !== -1){
+        arr.push({id: iterations, name: currentYear + iterations});
+        iterations = iterations-1;
       }
+
       return arr;
     }
 
