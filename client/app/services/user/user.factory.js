@@ -29,6 +29,8 @@
         cookies  = ['uid'],
         userObj  = {};
 
+    //TODO: IF 401, DELETE COOKIE AND REDIRECT TO LANDING PAGE
+
     return {
       login            : login,
       logout           : logout,
@@ -157,7 +159,7 @@
       var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
 
       deferred.success(function (data) {
-        _.extend(userObj.data, data); // attach the new data to the userObj
+        _.extend(userObj.pregnant, details.pregnant); // attach the new data to the userObj
       });
 
       return deferred;
@@ -170,9 +172,9 @@
      */
     function getCabinetDrugs() {
 
-      //userObj = userObj || {};
-      //
-      //userObj.data = userObj.data || {};
+      userObj = userObj || {};
+
+      userObj.drugs = userObj.drugs || [];
 
       return userObj.drugs;
     }

@@ -27,9 +27,10 @@ user.getDetails = function (req, res) {
       console.log(err);
     } else {
       userObj.uid               = req.params.uid;
+      userObj.data = row;
       userObj.data.email        = req.params.uid;
-      userObj.data.nickName     = row.nickName;
-      userObj.data.gravatarHash = row.gravatarHash;
+      delete userObj.data['password'];
+      delete userObj.data['salt'];
       db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
         if (err) {
           res.send(err);
@@ -53,10 +54,18 @@ user.getDetails = function (req, res) {
  * @param req
  * @param res
  */
-//TODO: GOTTA DO THIS
-//user.setDetails = function (req, res) {
-//  request.patch(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
-//};
+user.setDetails = function (req, res) {
+  console.log(req.body);
+
+   db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid, function(err, row){
+      if(err){
+        res.status(500).send(err);
+      } else {
+        res.send('updated user');
+      }
+   })
+
+};
 
 
 

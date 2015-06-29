@@ -15,7 +15,7 @@ module.exports = function(auth) {
       ctrl   = require('./user.controller');
 
 //from before:
-  //router.patch('/:uid/details/', ctrl.setDetails);
+  //
 //router.post('/login', ctrl.login);
 //router.post('/create', ctrl.createUser);
 
@@ -23,6 +23,7 @@ module.exports = function(auth) {
   router.get('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.getCabinetDrugs);
   router.post('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.addCabinetDrug);
   router.delete('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.deleteCabinetDrug);
+  router.patch('/:uid/details/', auth.ensureAuthenticated, ctrl.setDetails);
 
   //router.get('/:uid/details/', ctrl.getDetails);
   //router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);

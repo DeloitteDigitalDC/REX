@@ -29,7 +29,11 @@
      */
     function init() {
       user.getDetails().then(function (userData) {
-        vm.userDetails = userData.data;
+        vm.userDetails = userData.data.data;
+        
+        if(vm.userDetails.pregnant === 1){
+          vm.userDetails.pregnant = true;
+        }
       });
     }
 
@@ -39,8 +43,8 @@
      * @memberof UserProfileCtrl
      */
     function updateUser() {
-      user.setDetails(vm.userDetails).then(function(res) {
-        vm.userDetails = res.data;
+      user.setDetails({pregnant : vm.userDetails.pregnant}).then(function(res) {
+        console.log(res.data);
       });
     }
   }
