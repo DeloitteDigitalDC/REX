@@ -27,6 +27,9 @@
 
     function link(scope) {
       scope.goToDetails = goToDetails;
+      var application_id = scope.drug.application_id || 0;
+
+
       if (scope.drug) {
         scope.expired = _checkExpired(scope.drug.expirationDate);
       }
@@ -38,10 +41,10 @@
        */
       function goToDetails() {
         if (scope.drug.recalled) {
-          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.drug.fbKey});
+          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.drug.fbKey, applicationId : application_id});
         }
         else {
-          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.drug.fbKey});
+          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.drug.fbKey, applicationId : application_id});
         }
       }
 

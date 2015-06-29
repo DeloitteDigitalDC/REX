@@ -173,10 +173,11 @@
 
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
 
-      userObj.data.drugs = userObj.data.drugs || {};
+      userObj.data.drugs = userObj.data.drugs || [];
 
       promise.success(function (res) {
-        userObj.data.drugs[res.name] = drug;
+        //userObj.data.drugs[res.name] = drug;
+        userObj.data.drugs.push(drug);
 
         $rootScope.loading = false;
 
@@ -214,7 +215,9 @@
       userObj.data.drugs = userObj.data.drugs || {};
 
       promise.success(function () {
-        delete userObj.data.drugs[drugId];
+        _.remove(userObj.data.drugs, function(drug){
+          return drug.fbKey === drugId;
+        });
 
         if (cb) {
           cb();

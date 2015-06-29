@@ -20,6 +20,7 @@
     vm.drugName = $stateParams.name;
     vm.isSearch = $state.includes('main.search.**');
     vm.cabinetId = $stateParams.cabinetId || 0;
+    vm.applicationId = $stateParams.applicationId || 0;
     vm.inCabinet = false;
 
 
@@ -53,7 +54,9 @@
      *
      * @memberof DrugProfileCtrl
      */
-    function addCabinetDrug(evt, drug) {
+    function addCabinetDrug(evt) {
+      var drug = {name : vm.drugName, application_id : vm.applicationId};
+
       user.addCabinetDrug(evt, drug, function () {
         checkCabinet();
       });
