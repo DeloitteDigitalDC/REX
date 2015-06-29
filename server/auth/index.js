@@ -1,15 +1,18 @@
 'use strict';
 
-module.exports = function (app, db) {
+module.exports = function (app) {
   var session       = require('express-session'),
       FileStore     = require('session-file-store')(session),
       passport      = require('passport'),
       LocalStrategy = require('passport-local').Strategy,
       bcrypt        = require('bcrypt'),
-      $q            = require('q');
-      //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
-      //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
+      $q            = require('q'),
+      db            = require('../db');
 
+  //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT);
+  //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
+
+  console.log("DB", db);
 //Session Storage
   app.use(session({
     store            : new FileStore({
@@ -68,14 +71,13 @@ module.exports = function (app, db) {
 
   //delete drug function
 
-
   //New User Route
   app.post('/user/create', function (req, res) {
     checkUserExists(req.body.username).then(function () {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
           db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash,
-            salt, req.body.firstName);
+                 salt, req.body.firstName);
           res.status(201).send('User ' + req.body.username + ' Created');
           //TODO: login after this
         });
