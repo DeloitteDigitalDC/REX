@@ -100,7 +100,7 @@
 
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
-      promise.success(function (data) {
+      promise.success(function () {
         login(username, password);
       });
 
@@ -158,7 +158,7 @@
     function setDetails(details) {
       var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
 
-      deferred.success(function (data) {
+      deferred.success(function () {
         _.extend(userObj.pregnant, details.pregnant); // attach the new data to the userObj
       });
 

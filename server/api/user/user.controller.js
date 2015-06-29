@@ -1,11 +1,7 @@
 'use strict';
 
 
-var fb      = require('../../firebase'),
-    request = require('request'),
-    config  = require('../../config'),
-    url     = config.firebase,
-    db      = require('../../db');
+var db     = require('../../db');
 
 
 var user = {};
@@ -20,25 +16,23 @@ var user = {};
  */
 user.getDetails = function (req, res) {
   var userObj = {data: {}};
-  console.log("getDetails", db);
+
   db.get('SELECT * FROM users WHERE username = ?', req.params.uid, function (err, row) {
     if (err) {
       res.send(err);
-      console.log(err);
     } else {
-      userObj.uid               = req.params.uid;
-      userObj.data = row;
-      userObj.data.email        = req.params.uid;
-      delete userObj.data['password'];
-      delete userObj.data['salt'];
+      userObj.uid        = req.params.uid;
+      userObj.data       = row;
+      userObj.data.email = req.params.uid;
+      delete userObj.data.password;
+      delete userObj.data.salt;
       db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
         if (err) {
           res.send(err);
-          console.log(err);
         } else {
           userObj.data.drugs = rows;
           res.send(userObj);
-          console.log(userObj);
+
         }
       });
     }
@@ -55,18 +49,16 @@ user.getDetails = function (req, res) {
  * @param res
  */
 user.setDetails = function (req, res) {
-  console.log(req.body);
 
-   db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid, function(err, row){
-      if(err){
-        res.status(500).send(err);
-      } else {
-        res.send('updated user');
-      }
-   })
+  db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid, function (err) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send('updated user');
+    }
+  });
 
 };
-
 
 
 /**
@@ -85,10 +77,10 @@ user.getCabinetDrugs = function (req, res) {
   db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
     if (err) {
       res.status(500).send(err);
-      console.log(err);
+
     } else {
       res.send(rows);
-      console.log(rows);
+
     }
   });
 
@@ -102,8 +94,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  console.log('in add drug function', req.body);
-  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err, rows) {
+  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -121,8 +112,8 @@ user.addCabinetDrug = function (req, res) {
  * @param res
  */
 user.deleteCabinetDrug = function (req, res) {
-  db.run('delete from drugs where drugs.id = ? ', req.params.drugId, function(err, row){
-    if(err){
+  db.run('delete from drugs where drugs.id = ? ', req.params.drugId, function (err, row) {
+    if (err) {
       res.status(500).send(err);
     } else {
       res.status(201).send('deleted: ' + row);

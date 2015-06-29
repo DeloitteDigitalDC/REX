@@ -13,7 +13,6 @@ module.exports = function (app) {
   //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT, "nickName" TEXT, "gravatarHash" TEXT, "pregnant" BOOLEAN);
   //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
 
-  console.log("DB", db);
 
 //Session Storage
   app.use(session({
@@ -24,7 +23,7 @@ module.exports = function (app) {
     resave           : true,
     saveUninitialized: true,
     cookie           : {
-      maxAge  : null
+      maxAge: null
     }
   }));
 
@@ -34,8 +33,9 @@ module.exports = function (app) {
 
   passport.use(new LocalStrategy(function (username, password, done) {
     db.get('SELECT id, username, password FROM users WHERE username = ?', username, function (err, row) {
-      if (!row) return done(null, false, {message: 'User not found.'}); //TODO: user doesnt exist! Send message saying not found
-      // Load hash from your password DB.
+      if (!row) {
+        return done(null, false, {message: 'User not found.'});
+      }
       bcrypt.compare(password, row.password, function (err, res) {
         if (res) {
           return done(null, row);
@@ -52,7 +52,9 @@ module.exports = function (app) {
 
   passport.deserializeUser(function (id, done) {
     db.get('SELECT id, username FROM users WHERE id = ?', id, function (err, row) {
-      if (!row) return done(null, false);
+      if (!row) {
+        return done(null, false);
+      }
       return done(null, row);
     });
   });
@@ -63,7 +65,7 @@ module.exports = function (app) {
   });
 
   app.get('/user/logout', function (req, res) {
-    req.session.destroy(function (err) {
+    req.session.destroy(function () {
       res.clearCookie('connect.sid', {path: '/'});
       res.redirect('/');
     });
@@ -76,15 +78,15 @@ module.exports = function (app) {
     checkUserExists(req.body.username).then(function () {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
-          db.run("INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?, ?)",
-                 req.body.username, hash,
-                 salt, req.body.firstName, md5(req.body.username.toLowerCase()));
+          db.run('INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?, ?)',
+            req.body.username, hash,
+            salt, req.body.firstName, md5(req.body.username.toLowerCase()));
           res.status(201).send('User ' + req.body.username + ' Created');
           //TODO: login after this
         });
       });
     }, function (row) {
-      console.error("Duplicate User", row);
+      console.error('Duplicate User', row);
       res.status(400).send();
     });
 
@@ -98,7 +100,9 @@ module.exports = function (app) {
   function checkUserExists(username) {
     var usercheckPromise = $q.defer();
     db.get('SELECT id, username FROM users WHERE username = ?', username, function (err, row) {
-      if (err) console.error(err);
+      if (err) {
+        console.error(err);
+      }
       if (row) {
         usercheckPromise.reject(row);
       } else {
