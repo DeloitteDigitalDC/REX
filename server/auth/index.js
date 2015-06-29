@@ -69,13 +69,17 @@ module.exports = function (app) {
   });
 
   app.get('/user/:uid/details/', function (req, res) {
+    var userObj = {data: {}};
     db.all('SELECT id, application_id, username, name FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
       if (err) {
         res.send(err);
         console.log(err);
       } else {
-        res.send(rows);
-        console.log(rows);
+        userObj.uid = req.params.uid;
+        userObj.data.email = req.params.uid;
+        userObj.data.drugs = rows;
+        res.send(userObj);
+        console.log(userObj);
       }
     });
   });
@@ -94,7 +98,7 @@ module.exports = function (app) {
   });
 
   app.post('/user/:uid/cabinet/', ensureAuthenticated, function (req, res) {
-    db.run('INSERT INTO drugs (application_id, username, name) VALUES (?,?,?);', [req.body.application_id ,req.params.uid, req.body.name], function (err, rows) {
+    db.run('INSERT INTO drugs (application_id, username, name) VALUES (?,?,?);', [req.body.application_id, req.params.uid, req.body.name], function (err, rows) {
       if (err) {
         res.send(err)
       } else {
@@ -108,16 +112,16 @@ module.exports = function (app) {
 
   //New User Route
   app.post('/user/create', function (req, res) {
-    checkUserExists(req.body.username).then(function() {
+    checkUserExists(req.body.username).then(function () {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
           db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash,
-                 salt, req.body.firstName);
+            salt, req.body.firstName);
           res.status(201).send('User ' + req.body.username + ' Created');
           //TODO: login after this
         });
       });
-    }, function(row) {
+    }, function (row) {
       console.error("Duplicate User", row);
       res.status(400).send();
     });
@@ -132,8 +136,8 @@ module.exports = function (app) {
   function checkUserExists(username) {
     var usercheckPromise = $q.defer();
     db.get('SELECT id, username FROM users WHERE username = ?', username, function (err, row) {
-      if(err) console.error(err);
-      if(row) {
+      if (err) console.error(err);
+      if (row) {
         usercheckPromise.reject(row);
       } else {
         usercheckPromise.resolve();

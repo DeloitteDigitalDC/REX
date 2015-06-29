@@ -130,14 +130,15 @@
         deferred = $q.defer();
 
         deferred.resolve(userObj);
-
+        debugger;
         return deferred.promise;
       }
       else {
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj.data = data;
+          debugger;
+          userObj = data;
         });
 
         return deferred;
@@ -304,9 +305,10 @@
       var expireDate = new Date();
 
       expireDate.setDate(expireDate.getDate() + 1);
+      debugger;
 
       _.forEach(cookies, function (cookie) {
-        $cookies.put(cookie, data[cookie], {expires: expireDate});
+        $cookies.put(cookie, data, {expires: expireDate});
       });
 
       userObj = data;

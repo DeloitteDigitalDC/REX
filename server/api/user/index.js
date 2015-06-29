@@ -14,7 +14,7 @@ var router = require('express').Router(),
 
 //TODO: authenticate all the routes
 // account
-router.get('/:uid/details/', ctrl.getDetails);
+//router.get('/:uid/details/', ctrl.getDetails);
 router.patch('/:uid/details/', ctrl.setDetails);
 //router.post('/login', ctrl.login);
 //router.post('/create', ctrl.createUser);
