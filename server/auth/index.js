@@ -20,8 +20,9 @@ module.exports = function (app) {
     secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //change this for PROD
     resave           : false,
     saveUninitialized: false,
+    unset            : 'destroy',
     cookie           : {
-      maxAge: 60000,
+      maxAge  : 60000,
       httpOnly: false
     }
   }));
@@ -32,7 +33,7 @@ module.exports = function (app) {
 
   passport.use(new LocalStrategy(function (username, password, done) {
     db.get('SELECT id, username, password FROM users WHERE username = ?', username, function (err, row) {
-      if (!row) return done(null, false); //TODO: user doesnt exist! Send message saying not found
+      if (!row) return done(null, false, {message: 'User not found.'}); //TODO: user doesnt exist! Send message saying not found
       // Load hash from your password DB.
       bcrypt.compare(password, row.password, function (err, res) {
         if (res) {
@@ -61,11 +62,11 @@ module.exports = function (app) {
     res.status(200).send();
   });
 
-  app.delete('/user/logout', function (req, res) {
-    console.log('logout');
-    req.logout();
-    req.session.destroy();
-    res.send();
+  app.get('/user/logout', function (req, res) {
+    req.session.destroy(function (err) {
+      res.clearCookie('connect.sid', { path: '/' });
+      res.redirect('/');
+    });
   });
 
   //New User Route
@@ -74,7 +75,7 @@ module.exports = function (app) {
     //TODO Add check for existing username before doing blind insert.
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(req.body.password, salt, function (err, hash) {
-        db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?)", req.body.username, hash, salt, req.body.firstName);
+        db.run("INSERT INTO users (username, password, salt, nickName) VALUES(?, ?, ?, ?)", req.body.username, hash, salt, req.body.firstName);
         res.status(201).send('User ' + req.body.username + ' Created');
         //TODO: login after this
       });
@@ -94,7 +95,7 @@ module.exports = function (app) {
   }
 
   return {
-    passport: passport,
+    passport           : passport,
     ensureAuthenticated: ensureAuthenticated
   };
 };

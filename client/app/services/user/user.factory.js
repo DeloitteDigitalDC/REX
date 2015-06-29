@@ -67,8 +67,7 @@
      * @memberof user
      */
     function logout() {
-
-      var logoutPromise = $http.delete('/user/logout');
+      var logoutPromise = $http.get('/user/logout');
 
       logoutPromise.success(function(){
         _.forEach(cookies, function (cookie) {
