@@ -12,7 +12,7 @@
   </app-section>
 
   <app-section class="bg-pills" ng-class="{'display-alert': drugProfile.displayAlert}">
-    <a ui-sref="main.drugProfile.pregnancy({name : drugName})" class="drug-alert">
+    <a ui-sref="main.drugProfile.pregnancy({name : drugProfile.drugName})" class="drug-alert">
       {{ drugProfile.drugData.pregnancy_or_breast_feeding ? drugProfile.drugData.pregnancy_or_breast_feeding[0] : 'No data available.' }}
     </a>
 

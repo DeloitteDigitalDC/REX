@@ -107,6 +107,7 @@
       promise.error(function(data, status) {
         if(status === 400) {
           notify.showAlert('Username already exists', 'danger');
+
           $rootScope.loading = false;
         }
       });
