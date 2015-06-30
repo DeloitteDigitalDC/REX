@@ -29,8 +29,6 @@
       scope.goHome = goHome;
       scope.goTo = goTo;
 
-      console.log(scope.user);
-
       /**
        * If the user is logged in take them to the cabinet else go to the home page.
        *

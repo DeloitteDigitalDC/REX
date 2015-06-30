@@ -12,7 +12,8 @@
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
           title       : 'Recalls',
-          headerState : 'loggedIn'
+          headerState : 'loggedIn',
+          noScroll    : true
         })
         .state('main.search.drugProfile.recalls', {
           url         : '/recalls',
@@ -20,6 +21,7 @@
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
           title       : 'Recalls',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,

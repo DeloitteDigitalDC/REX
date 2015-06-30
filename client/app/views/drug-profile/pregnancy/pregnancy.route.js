@@ -11,7 +11,8 @@
           templateUrl : 'app/views/drug-profile/pregnancy/pregnancy.view.html',
           controller  : 'PregnancyCtrl',
           controllerAs: 'pregnancy',
-          title       : 'Pregnancy'
+          title       : 'Pregnancy',
+          noScroll    : true
         })
         .state('main.search.drugProfile.pregnancy', {
           url         : '/pregnancy',
@@ -19,6 +20,7 @@
           controller  : 'PregnancyCtrl',
           controllerAs: 'pregnancy',
           title       : 'Pregnancy',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,

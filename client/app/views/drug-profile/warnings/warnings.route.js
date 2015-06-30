@@ -12,7 +12,8 @@
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
           title       : 'Warnings',
-          headerState : 'loggedIn'
+          headerState : 'loggedIn',
+          noScroll    : true
         })
         .state('main.search.drugProfile.warnings', {
           url         : '/warnings',
@@ -21,6 +22,7 @@
           controllerAs: 'warnings',
           title       : 'Warnings',
           headerState : 'loggedIn',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,
