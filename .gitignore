@@ -11,5 +11,5 @@ doc/server
 ._.DS_Store
 npm-debug.log
 server/settings.json
-server/auth/sessions
+server/auth/sessions/*.json
 server/db/database.sqllite3
