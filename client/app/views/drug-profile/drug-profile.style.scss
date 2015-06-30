@@ -4,7 +4,20 @@
   }
 
   .drug-alert {
+    background: $scarlet;
+    border-top-right-radius: $card-border-radius;
+    border-top-left-radius: $card-border-radius;
+    color: #fff;
     display: none;
+    padding: 8px 12px;
+    position: absolute;
+    z-index: 1;
+    top: -54px;
+    left: 15px;
+    right: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   
   .display-alert {
@@ -13,20 +26,7 @@
     }
 
     .drug-alert {
-      background: $scarlet;
-      border-top-right-radius: $card-border-radius;
-      border-top-left-radius: $card-border-radius;
-      color: #fff;
       display: block;
-      padding: 8px 12px;
-      position: absolute;
-      z-index: 1;
-      top: -54px;
-      left: 15px;
-      right: 15px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden;
     }
   }
 
@@ -67,6 +67,16 @@
   }
 
   &.search-results {
+    .display-alert {
+      .card {
+        padding-top: 40px;
+      }
+
+      .drug-alert {
+        top: 53px;
+      }
+    }
+
     .card {
       padding: 20px 0;
     }
