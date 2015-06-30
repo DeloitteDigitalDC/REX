@@ -4,6 +4,6 @@
     <div ng-if="!drug.recalled" class=" card-icon icon-ic_pillbottle"></div>
     <div class="text-teal bolder drug-name">{{drug.name}}</div>
 
-    <div class="text-gray date" ng-class="{'expired' : expired }" ng-if="drug.expirationDate">Exp: {{drug.expirationDate | date : 'shortDate'}}</div>
+    <div class="text-gray date" ng-class="{'expired' : expired }" ng-if="drug.expirationDate">Exp: {{drug.expirationDate | date : 'M/yyyy'}}</div>
   </card>
 </div>

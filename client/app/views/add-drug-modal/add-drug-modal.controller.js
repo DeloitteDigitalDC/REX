@@ -23,18 +23,18 @@
 
     vm.expiration.months =
     [
-      { id: '01', label: 'January' },
-      { id: '02', label: 'February' },
-      { id: '03', label: 'March' },
-      { id: '04', label: 'April' },
-      { id: '05', label: 'May' },
-      { id: '06', label: 'June' },
-      { id: '07', label: 'July' },
-      { id: '08', label: 'August' },
-      { id: '09', label: 'September' },
-      { id: '10', label: 'October' },
-      { id: '11', label: 'November' },
-      { id: '12', label: 'December' }
+      { id: '0', label: 'January' },
+      { id: '1', label: 'February' },
+      { id: '2', label: 'March' },
+      { id: '3', label: 'April' },
+      { id: '4', label: 'May' },
+      { id: '5', label: 'June' },
+      { id: '6', label: 'July' },
+      { id: '7', label: 'August' },
+      { id: '8', label: 'September' },
+      { id: '9', label: 'October' },
+      { id: '10', label: 'November' },
+      { id: '11', label: 'December' }
     ];
 
     vm.expirationMonth = vm.expiration.months[0];
@@ -46,7 +46,7 @@
     vm.expirationYear = vm.expiration.years[yearCount];
 
     vm.submit = function () {
-      vm.drug.expirationDate = vm.expirationMonth.id + '/' + vm.expirationYear.name;
+      vm.drug.expirationDate = makeDateFromMonthYear(vm.expirationMonth.id, vm.expirationYear.name);
       $mdDialog.hide(vm.drug);
     };
 
@@ -70,6 +70,16 @@
       }
 
       return arr;
+    }
+
+    /**
+     * Creates a JS date from a month/year tuple. Useful for manipulation and calculations.
+     * @param month
+     * @param year
+     * @returns {Date}
+     */
+    function makeDateFromMonthYear(month, year) {
+      return new Date(year, month, 1);
     }
 
   }
