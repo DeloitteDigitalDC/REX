@@ -1,5 +1,5 @@
-<md-dialog class="rex-modal">
-  <md-content>
+<md-dialog class="rex-modal add-drug-modal">
+  <md-dialog-content>
     <h2>Add <span class="text-teal">{{AddDrug.drug.name}}</span></h2>
 
     <form name="AddDrug.drugForm" ng-submit="AddDrug.submit()" novalidate>
@@ -42,5 +42,5 @@
         <a href="#" class="pull-right bold" ng-click="AddDrug.cancel()">Cancel</a>
       </div>
     </form>
-  </md-content>
+  </md-dialog-content>
 </md-dialog>
