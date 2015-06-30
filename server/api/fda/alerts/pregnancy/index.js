@@ -10,7 +10,7 @@
  * @param threshold
  */
 module.exports = function (data, threshold) {
-  threshold = threshold || 1;
+  threshold = threshold || 2;
   data = data[0];
 
   var alerts = 0,
