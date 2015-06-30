@@ -1,5 +1,5 @@
 <div class="drug-tabs">
-  <div ui-sref-active="active">
+  <div ui-sref-active="active" class="active">
     <a ng-if="!inSearch" ui-sref="main.drugProfile.uses({name : drugName})">Uses</a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.uses({name : drugName})">Uses</a>
   </div>
