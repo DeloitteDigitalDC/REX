@@ -87,7 +87,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?);', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
+  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?)', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
     if (err) {
       res.status(500).send(err);
     } else {

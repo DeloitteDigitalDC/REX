@@ -12,7 +12,7 @@ db.run('select * from users', function(err){
 
 db.run('select * from drugs', function(err){
   if(err){
-    db.run('CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT)');
+    db.run('CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT, "expirationDate" TEXT)');
   }
 });
 
