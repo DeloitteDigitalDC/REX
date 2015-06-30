@@ -9,12 +9,6 @@ Install Bower ```npm install -g bower```
 
 REX uses a SQlLite database which which is built with npm's internal version of node-gyp, and thus your system must meet [node-gyp's requirements](https://github.com/TooTallNate/node-gyp#installation).
 
-For example:
-  * On Mac OS X:
-    * `python` (`v2.7` recommended, `v3.x.x` is __*not*__ supported) (already installed on Mac OS X)
-    * [Xcode](https://developer.apple.com/xcode/downloads/)
-      * You also need to install the `Command Line Tools` via Xcode. You can find this under the menu `Xcode -> Preferences ->
-
 ### Installation
 
 Clone the repo
