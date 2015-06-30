@@ -340,9 +340,7 @@
      * @private
      */
     function _userLoggedIn(data) {
-      var expireDate = new Date();
-
-      expireDate.setDate(expireDate.getDate() + 1);
+      var expireDate = moment().add(30, 'minutes').toDate();
 
       $cookies.put('uid', data, {expires: expireDate});
 
