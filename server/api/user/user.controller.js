@@ -15,7 +15,7 @@ var user = {};
 user.getDetails = function (req, res) {
   var userObj = {data: {}};
 
-  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid, function (err, row) {
+  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid.toLowerCase(), function (err, row) {
     if (err) {
       res.status(500).send(err);
     } else {

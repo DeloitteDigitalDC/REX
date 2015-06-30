@@ -22,7 +22,9 @@ module.exports = function (app) {
     resave           : true,
     saveUninitialized: true,
     cookie           : {
-      maxAge: null //FIXME: set this and coordinate killing cookie in front-end (30 minutes)
+      maxAge: 1800000,
+      secure: false,
+      httpOnly: false
     }
   }));
 
