@@ -11,7 +11,8 @@
           templateUrl : 'app/views/drug-profile/uses/uses.view.html',
           controller  : 'UsesCtrl',
           controllerAs: 'uses',
-          title       : 'Uses'
+          title       : 'Uses',
+          noScroll    : true
         })
         .state('main.search.drugProfile.uses', {
           url         : '/uses',
@@ -19,6 +20,7 @@
           controller  : 'UsesCtrl',
           controllerAs: 'uses',
           title       : 'Uses',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,

@@ -19,21 +19,12 @@
 
     vm.title = 'REX'; // Default Title
 
-    //$rootScope.$on('$viewContentLoaded', function() {
-    //
-    //  var interval = setInterval(function () {
-    //    if (document.readyState === 'complete') {
-    //      window.scrollTo(0, 0);
-    //
-    //      clearInterval(interval);
-    //    }
-    //  });
-    //
-    //});
-
-    $rootScope.$on('$stateChangeStart', stateChangeStart); // Listen for state change
+    $rootScope.$on('$stateChangeStart', stateChangeStart);
+    $rootScope.$on('$stateChangeSuccess', stateChangeSuccess);
 
     /**
+     * Listen for state change start. Update the title. redirect based on logged in and public routes.
+     *
      * @memberof AppCtrl
      *
      * @param {Object} event - the event object
@@ -60,6 +51,30 @@
 
           $state.go('main.cabinet');
         }
+      }
+    }
+
+    /**
+     * Listen for state change success
+     *
+     * @memberof AppCtrl
+     *
+     * @param {Object} event - the event object
+     * @param {Object} newState - the new state object
+     */
+    function stateChangeSuccess(event, newState) {
+      var interval;
+
+      console.log(newState);
+
+      if(!newState.noScroll) {
+        interval = setInterval(function () {
+          if (document.readyState === 'complete') {
+            window.scrollTo(0, 0);
+
+            clearInterval(interval);
+          }
+        });
       }
     }
   }
