@@ -313,9 +313,6 @@
 
       getDetails();
 
-
-     // userObj = data;
-
       $state.go('main.cabinet', {}, {reload: true});
     }
   }

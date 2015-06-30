@@ -10,20 +10,19 @@ module.exports = function (app) {
       db            = require('../db'),
       md5           = require('MD5');
 
-  //DC Created with: CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT, "nickName" TEXT, "gravatarHash" TEXT, "pregnant" BOOLEAN);
-  //Drugs table Created with: CREATE TABLE "drugs" ("db_id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "name" TEXT, "id" TEXT);
 
+  //FIXME: Comments on all these functions
 
 //Session Storage
   app.use(session({
     store            : new FileStore({
       path: './server/auth/sessions'  //Might want to move this somewhere else or use MemoryStore
     }),
-    secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //change this for PROD
+    secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //FIXME: change this for PROD, but not actually hashing password
     resave           : true,
     saveUninitialized: true,
     cookie           : {
-      maxAge: null
+      maxAge: null //FIXME: set this and coordinate killing cookie in front-end (30 minutes)
     }
   }));
 
@@ -59,7 +58,6 @@ module.exports = function (app) {
     });
   });
 
-  //Login Route
   app.post('/user/login', passport.authenticate('local'), function (req, res) {
     res.status(200).send(req.body.username);
   });
@@ -71,22 +69,22 @@ module.exports = function (app) {
     });
   });
 
-  //delete drug function
 
-  //New User Route
   app.post('/user/create', function (req, res) {
     checkUserExists(req.body.username).then(function () {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
           db.run('INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?, ?)',
-            req.body.username, hash,
-            salt, req.body.firstName, md5(req.body.username.toLowerCase()));
+            req.body.username,
+            hash,
+            salt,
+            req.body.firstName,
+            md5(req.body.username.toLowerCase()));
           res.status(201).send('User ' + req.body.username + ' Created');
-          //TODO: login after this
         });
       });
-    }, function (row) {
-      console.error('Duplicate User', row);
+    }, function () {
+      //TODO: More verbose error handling
       res.status(400).send();
     });
 
@@ -94,7 +92,7 @@ module.exports = function (app) {
 
   /**
    * Checks to see if the username already exists in the database.
-   * @param id
+   * @param username
    * @returns promise
    */
   function checkUserExists(username) {
@@ -123,6 +121,7 @@ module.exports = function (app) {
     if (req.isAuthenticated()) {
       return next();
     }
+    //TODO: More verbose error handling
     res.status(401).send();
   }
 

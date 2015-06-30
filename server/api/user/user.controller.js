@@ -1,9 +1,7 @@
 'use strict';
 
 
-var db     = require('../../db');
-
-
+var db   = require('../../db');
 var user = {};
 
 /**
@@ -23,7 +21,7 @@ user.getDetails = function (req, res) {
     } else {
       userObj.uid        = req.params.uid;
       userObj.data       = row;
-      userObj.data.email = req.params.uid;
+      userObj.data.email = row.username;
       delete userObj.data.password;
       delete userObj.data.salt;
       db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
@@ -32,7 +30,6 @@ user.getDetails = function (req, res) {
         } else {
           userObj.data.drugs = rows;
           res.send(userObj);
-
         }
       });
     }
@@ -69,10 +66,6 @@ user.setDetails = function (req, res) {
  * @param req
  * @param res
  */
-//user.getCabinetDrugs = function (req, res) {
-//  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
-//};
-
 user.getCabinetDrugs = function (req, res) {
   db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
     if (err) {
@@ -116,7 +109,7 @@ user.deleteCabinetDrug = function (req, res) {
     if (err) {
       res.status(500).send(err);
     } else {
-      res.status(201).send('deleted: ' + row);
+      res.status(200).send('deleted: ' + row);
     }
   });
 };
