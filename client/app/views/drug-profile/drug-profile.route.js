@@ -11,7 +11,7 @@
           templateUrl : 'app/views/drug-profile/drug-profile.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
-          title       : 'Drug profile',
+          title       : 'Drug Details',
           headerState : 'loggedIn'
         })
         .state('main.search.drugProfile', {
@@ -19,7 +19,7 @@
           templateUrl : 'app/views/drug-profile/drug-profile-search.view.html',
           controller  : 'DrugProfileCtrl',
           controllerAs: 'drugProfile',
-          title       : 'Drug profile',
+          title       : 'Drug Details',
           buttonData  : {
             display: true,
             open   : true,

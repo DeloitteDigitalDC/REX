@@ -11,7 +11,7 @@
           templateUrl : 'app/views/drug-profile/warnings/warnings.view.html',
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
-          title       : 'Warnings',
+          title       : 'Drug Details - Warnings',
           headerState : 'loggedIn',
           noScroll    : true
         })
@@ -20,7 +20,7 @@
           templateUrl : 'app/views/drug-profile/warnings/warnings.view.html',
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
-          title       : 'Warnings',
+          title       : 'Drug Details - Warnings',
           headerState : 'loggedIn',
           noScroll    : true,
           buttonData  : {
