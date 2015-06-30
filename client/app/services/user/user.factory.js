@@ -26,7 +26,6 @@
 
   function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies  = ['uid'],
         userObj  = {};
 
     //TODO: IF 401, DELETE COOKIE AND REDIRECT TO LANDING PAGE
@@ -342,9 +341,7 @@
 
       expireDate.setDate(expireDate.getDate() + 1);
 
-      _.forEach(cookies, function (cookie) {
-        $cookies.put(cookie, data, {expires: expireDate});
-      });
+      $cookies.put('uid', data, {expires: expireDate});
 
       getDetails();
 

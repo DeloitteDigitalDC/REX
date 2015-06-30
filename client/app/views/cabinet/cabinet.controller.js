@@ -16,21 +16,11 @@
 
   function CabinetCtrl(drug, util, user, $state) {
     var vm = this;
+    var recalls;
 
     vm.search = search;
 
-    var recalls;
-
     init();
-
-    /**
-     * go to the search page
-     *
-     * @memberof CabinetCtrl
-     */
-    function search() {
-      $state.go('main.search.searchResults');
-    }
 
     /**
      * @memberof CabinetCtrl
@@ -42,6 +32,16 @@
     }
 
     /**
+     * go to the search page
+     *
+     * @memberof CabinetCtrl
+     */
+    function search() {
+      $state.go('main.search.searchResults');
+    }
+
+
+    /**
      * @memberof CabinetCtrl
      *
      * @description create string and query for recalls
@@ -51,8 +51,9 @@
     function _queryRecalls() {
       var query = util.createBasicQry(vm.drugs);
 
-      drug.enforce({search: query, limit: 100}).success(function (res) {
-        recalls = res.results;
+      drug.enforce({search: query, limit: 100}).then(function (res) {
+        recalls = res.results || res.data.results;
+
         _compareRecalls();
       });
     }
@@ -66,6 +67,7 @@
       _.forEach(vm.drugs, function (drug) {
         if (drug) {
           _.forEach(recalls, function (recall) {
+            console.log(recall);
 
             if (recall.openfda.brand_name) {
               if ((recall.openfda.brand_name[0]).toUpperCase() === (drug.name).toUpperCase()) {
