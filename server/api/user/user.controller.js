@@ -15,7 +15,7 @@ var user = {};
 user.getDetails = function (req, res) {
   var userObj = {data: {}};
 
-  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid, function (err, row) {
+  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid.toLowerCase(), function (err, row) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -45,7 +45,7 @@ user.getDetails = function (req, res) {
  */
 user.setDetails = function (req, res) {
 
-  db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid, function (err) {
+  db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid.toLowerCase(), function (err) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -64,7 +64,7 @@ user.setDetails = function (req, res) {
  * @param res
  */
 user.getCabinetDrugs = function (req, res) {
-  db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+  db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid.toLowerCase(), function (err, rows) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -82,7 +82,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?,?)',[req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
+  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?,?)',[req.body.id, req.params.uid.toLowerCase(), req.body.name, req.body.expirationDate], function (err) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -100,7 +100,7 @@ user.addCabinetDrug = function (req, res) {
  * @param res
  */
 user.editCabinetDrug = function (req, res) {
-  db.run('UPDATE drugs WHERE drugs.id = ? SET expirationDate = ?',[req.params.id, req.body.expirationDate], function (err) {
+  db.run('UPDATE drugs WHERE drugs.id = ? AND drugs.username = ? SET expirationDate = ?',[req.params.id,  req.params.uid.toLowerCase(), req.body.expirationDate], function (err) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -118,7 +118,7 @@ user.editCabinetDrug = function (req, res) {
  * @param res
  */
 user.deleteCabinetDrug = function (req, res) {
-  db.run('delete from drugs where drugs.id = ? ', req.params.drugId, function (err, row) {
+  db.run('delete from drugs where drugs.id = ? AND drugs.username = ?', req.params.drugId, req.params.uid.toLowerCase(), function (err, row) {
     if (err) {
       res.status(500).send(err);
     } else {

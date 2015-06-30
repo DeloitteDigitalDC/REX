@@ -35,5 +35,7 @@ module.exports = {
   // the location of the front end application
   appDir: __dirname + '/../client',
 
-  port: process.env.PORT || settings.PORT || 3000
+  port: process.env.PORT || settings.PORT || 3000,
+
+  sqliteLocation: process.env.SQLITELOCATION || settings.SQLITELOCATION || __dirname + '/db/database.sqlite3'
 };
