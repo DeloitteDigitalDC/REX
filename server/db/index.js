@@ -2,10 +2,11 @@
 
 //FIXME: SQL injection security
 var sqlite3 = require('sqlite3'),
-    db      = new sqlite3.Database(__dirname + '/database.sqlite3');
+    db      = new sqlite3.Database(__dirname + '/database.sqlite3', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, function(err) { console.log(err); });
 
 db.run('select * from users', function(err){
   if(err){
+    console.log(err);
     db.run('CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT, "nickName" TEXT, "gravatarHash" TEXT, "pregnant" BOOLEAN)');
   }
 });
