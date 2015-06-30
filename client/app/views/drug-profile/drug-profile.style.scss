@@ -9,28 +9,24 @@
   
   .display-alert {
     .card-fade {
-      padding-top: 150px;
+      padding-top: 40px;
     }
 
     .drug-alert {
-      color: $scarlet;
+      background: $scarlet;
+      border-top-right-radius: $card-border-radius;
+      border-top-left-radius: $card-border-radius;
+      color: #fff;
       display: block;
+      padding: 8px 12px;
       position: absolute;
       z-index: 1;
-      top: -10px;
-      left: 40px;
-      right: 40px;
-
-      h3 {
-        font-size: 1.3em;
-        margin-top: 0;
-      }
-
-      p {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
+      top: -54px;
+      left: 15px;
+      right: 15px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
   }
 

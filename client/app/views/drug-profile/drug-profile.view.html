@@ -12,15 +12,9 @@
   </app-section>
 
   <app-section class="bg-pills" ng-class="{'display-alert': drugProfile.displayAlert}">
-    <section class="drug-alert">
-      <span class="icon-ic-pregnancy pull-left"></span>
-
-      <div class="">
-        <h3 class="bold">Pregnancy or Breastfeeding Warning</h3>
-
-        <p>{{ drugProfile.drugData.pregnancy_or_breast_feeding ? drugProfile.drugData.pregnancy_or_breast_feeding[0] : 'No data available.' }}</p>
-      </div>
-    </section>
+    <a ui-sref="main.drugProfile.pregnancy({name : drugName})" class="drug-alert">
+      {{ drugProfile.drugData.pregnancy_or_breast_feeding ? drugProfile.drugData.pregnancy_or_breast_feeding[0] : 'No data available.' }}
+    </a>
 
     <card-fade class="overlap clearfix">
       <div ui-view></div>
