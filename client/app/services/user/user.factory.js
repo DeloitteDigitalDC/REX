@@ -40,7 +40,8 @@
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
       addDrug          : addDrug,
-      deleteCabinetDrug: deleteCabinetDrug
+      deleteCabinetDrug: deleteCabinetDrug,
+      editDrug         : editDrug
     };
 
     /**
@@ -60,8 +61,8 @@
         _authenticate(data);
       });
 
-      promise.error(function(data, status) {
-        if(status === 401) {
+      promise.error(function (data, status) {
+        if (status === 401) {
           notify.showAlert('Incorrect password', 'danger');
         }
         $rootScope.loading = false;
@@ -78,7 +79,7 @@
     function logout() {
       var logoutPromise = $http.get('/user/logout');
 
-      logoutPromise.success(function(){
+      logoutPromise.success(function () {
         _.forEach(cookies, function (cookie) {
           $cookies.remove(cookie);
         });
@@ -104,8 +105,8 @@
         login(username, password);
       });
 
-      promise.error(function(data, status) {
-        if(status === 400) {
+      promise.error(function (data, status) {
+        if (status === 400) {
           notify.showAlert('Username already exists', 'danger');
 
           $rootScope.loading = false;
@@ -172,7 +173,6 @@
      * @memberof user
      */
     function getCabinetDrugs() {
-
       userObj = userObj || {};
 
       userObj.drugs = userObj.drugs || [];
@@ -210,13 +210,47 @@
     function addDrug(drug, cb) {
       $rootScope.loading = true;
 
-      var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+      var promise   = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
       console.info(userObj);
       userObj.drugs = userObj.drugs || [];
 
       promise.success(function () {
         userObj.drugs.push(drug);
 
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+      });
+
+      promise.error(function () {
+        $rootScope.loading = false;
+
+        notify.showAlert('Error adding drug', 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     *
+     * @return {IHttpPromise<T>|*|{}}
+     */
+    function editDrug(drug, cb) {
+      $rootScope.loading = true;
+
+      var promise   = $http.patch('/user/' + $cookies.get('uid') + '/cabinet/' + drug.id, drug);
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
+
+      promise.success(function () {
         $rootScope.loading = false;
 
         if (cb) {
@@ -251,7 +285,7 @@
       userObj.drugs = userObj.drugs || {};
 
       promise.success(function () {
-        _.remove(userObj.drugs, function(drug){
+        _.remove(userObj.drugs, function (drug) {
           return drug.id === drugId;
         });
 

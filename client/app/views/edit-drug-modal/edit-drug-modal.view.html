@@ -1,0 +1,50 @@
+<md-dialog class="rex-modal add-drug-modal">
+  <md-dialog-content>
+    <h2>Edit</h2>
+
+    <form name="AddDrug.drugForm" ng-submit="AddDrug.submit()" novalidate>
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Expiration Date</h4>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-md-6">
+          <label for="expirationMonth" class="sr-only">Month</label>
+          <select class="form-control"
+                  id="expirationMonth"
+                  type="date"
+                  ng-options="item as item.label for item in AddDrug.expiration.months track by item.id"
+                  ng-model="AddDrug.expirationMonth"
+                  placeholder="month">
+
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="expirationYear" class="sr-only">Year</label>
+          <select class="form-control"
+                  id="expirationYear"
+                  ng-options="item as item.name for item in AddDrug.expiration.years track by item.id"
+                  placeholder="year"
+                  ng-model="AddDrug.expirationYear"
+                  type="text">
+
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="rex-button">Save</button>
+
+        <br><br>
+
+        <button type="submit" class="rex-button danger">Delete</button>
+
+        <br><br>
+
+        <a href="#" class="pull-right bold" ng-click="EditDrug.cancel()">Cancel</a>
+      </div>
+    </form>
+  </md-dialog-content>
+</md-dialog>

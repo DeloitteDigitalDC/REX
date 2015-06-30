@@ -29,7 +29,7 @@
 
     vm.addCabinetDrug = addCabinetDrug;
     vm.checkCabinet = checkCabinet;
-    vm.removeCabinetDrug = removeCabinetDrug;
+    vm.editCabinetDrug = editCabinetDrug;
 
     init();
 
@@ -83,14 +83,8 @@
      *
      * @return {*}
      */
-    function removeCabinetDrug(evt) {
-      var modal = modals.removeDrug(evt);
-
-      modal.then(function () {
-        removeDrug();
-
-        $state.go('main.cabinet');
-      });
+    function editCabinetDrug(evt) {
+      var modal = modals.editDrug(evt);
 
       return modal;
     }
@@ -106,17 +100,6 @@
       user.addCabinetDrug(evt, drug, function () {
         checkCabinet();
       });
-    }
-
-    /**
-     * Remove a drug from your drug cabinet
-     *
-     * @memberof DrugProfileCtrl
-     */
-    function removeDrug() {
-       user.deleteCabinetDrug(vm.id, function (){
-         checkCabinet();
-       });
     }
 
     /**

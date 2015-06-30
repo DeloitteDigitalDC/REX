@@ -74,6 +74,7 @@ user.getCabinetDrugs = function (req, res) {
 };
 
 /**
+ * Add a drug to the users drug cabinet
  *
  * @memberof user.controller
  *
@@ -86,6 +87,24 @@ user.addCabinetDrug = function (req, res) {
       res.status(500).send(err);
     } else {
       res.status(201).send('Drug ' + req.body.name + ' Created');
+    }
+  });
+};
+
+/**
+ * Update an existing drug in the cabinet
+ *
+ * @memberof user.controller
+ *
+ * @param req
+ * @param res
+ */
+user.editCabinetDrug = function (req, res) {
+  db.run('UPDATE drugs WHERE drugs.id = ? SET expirationDate = ?',[req.params.id, req.body.expirationDate], function (err) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send('Drug ' + req.body.name + ' Updated');
     }
   });
 };
