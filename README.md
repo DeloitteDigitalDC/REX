@@ -7,19 +7,14 @@ Install [NodeJs](https://nodejs.org/)
 
 Install Bower ```npm install -g bower```
 
-### Set Up Firebase
-Create an account [here](http://www.firebase.com)
+REX uses a SQlLite database which which is built with npm's internal version of node-gyp, and thus your system must meet [node-gyp's requirements](https://github.com/TooTallNate/node-gyp#installation).
 
-Create an app and open it.
-
-On the left hand side click "Security & Rules".
-
-Copy the contents of server/firebase_rules.json into the rules field.
-
-On the left hand side click "Login & Auth".
-
-Select the "Email & Password" Tab and select the "Enable Email & Password Authentication" checkbox
-
+For example:
+  * On Unix:
+    * `python` (`v2.7` recommended, `v3.x.x` is __*not*__ supported)
+    * `make`
+    * A proper C/C++ compiler toolchain, like [GCC](https://gcc.gnu.org)
+    
 ### Installation
 
 Clone the repo
