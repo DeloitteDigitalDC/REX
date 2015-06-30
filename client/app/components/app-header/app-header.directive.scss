@@ -20,6 +20,7 @@ app-header {
     width: 60px;
     border: solid 4px white;
     right: 0;
+    background-clip: padding-box;
 
     &.ng-enter,
     &.ng-leave.ng-leave-active {
