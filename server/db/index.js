@@ -6,7 +6,6 @@ var sqlite3 = require('sqlite3'),
 
 db.run('select * from users', function(err){
   if(err){
-    console.log(err);
     db.run('CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "username" TEXT, "password" TEXT, "salt" TEXT, "nickName" TEXT, "gravatarHash" TEXT, "pregnant" BOOLEAN)');
   }
 });

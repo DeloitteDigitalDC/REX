@@ -27,34 +27,21 @@ angular
 
     $urlRouterProvider.otherwise('/'); // redirect to root if state is not found
 
+    $httpProvider.interceptors.push(function ($q, $location, $cookies) {
+      return {
+        response     : function (response) {
+          if (response.status === 401) {
+          }
+          return response;
+        },
+        responseError: function (rejection) {
+          if (rejection.status === 401) {
+            $cookies.remove('uid');
 
-  });
-
-
-(function () {
-  angular
-    .module('rex')
-    .factory('authHttpResponseInterceptor', authHttpResponseInterceptor)
-    .config(function ($httpProvider) {
-      $httpProvider.interceptors.push('authHttpResponseInterceptor');
+            $location.path('/');
+          }
+          return $q.reject(rejection);
+        }
+      };
     });
-
-  function authHttpResponseInterceptor($q, $location, $cookies) {
-    return {
-      response     : function (response) {
-        if (response.status === 401) {
-          console.log('Response 401');
-        }
-        return response;
-      },
-      responseError: function (rejection) {
-        if (rejection.status === 401) {
-          console.log('Response Error 401', rejection);
-          $cookies.remove('uid');
-          $location.path('/');
-        }
-        return $q.reject(rejection);
-      }
-    };
-  }
-})();
+  });

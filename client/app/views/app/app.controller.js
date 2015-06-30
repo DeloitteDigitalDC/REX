@@ -65,8 +65,6 @@
     function stateChangeSuccess(event, newState) {
       var interval;
 
-      console.log(newState);
-
       if(!newState.noScroll) {
         interval = setInterval(function () {
           if (document.readyState === 'complete') {
