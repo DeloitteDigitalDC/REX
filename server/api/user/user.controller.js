@@ -15,18 +15,16 @@ var user = {};
 user.getDetails = function (req, res) {
   var userObj = {data: {}};
 
-  db.get('SELECT * FROM users WHERE username = ?', req.params.uid, function (err, row) {
+  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid, function (err, row) {
     if (err) {
-      res.send(err);
+      res.status(500).send(err);
     } else {
       userObj.uid        = req.params.uid;
       userObj.data       = row;
       userObj.data.email = row.username;
-      delete userObj.data.password;
-      delete userObj.data.salt;
       db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
         if (err) {
-          res.send(err);
+          res.status(500).send(err);
         } else {
           userObj.data.drugs = rows;
           res.send(userObj);
@@ -54,7 +52,6 @@ user.setDetails = function (req, res) {
       res.send('updated user');
     }
   });
-
 };
 
 
@@ -70,13 +67,10 @@ user.getCabinetDrugs = function (req, res) {
   db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
     if (err) {
       res.status(500).send(err);
-
     } else {
       res.send(rows);
-
     }
   });
-
 };
 
 /**
@@ -87,7 +81,7 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?, ?)', [req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
+  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?,?)',[req.body.id, req.params.uid, req.body.name, req.body.expirationDate], function (err) {
     if (err) {
       res.status(500).send(err);
     } else {
@@ -115,4 +109,3 @@ user.deleteCabinetDrug = function (req, res) {
 };
 
 module.exports = user;
-
