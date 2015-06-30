@@ -12,3 +12,4 @@ doc/server
 npm-debug.log
 server/settings.json
 server/auth/sessions
+server/db/database.sqllite3
