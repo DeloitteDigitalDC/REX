@@ -30,7 +30,7 @@ describe('Controller: AppCtrl', function () {
 
     $rootScope.$digest();
 
-    expect(AppCtrl.title).toBe('Login');
+    expect(AppCtrl.title).toBe('Sign In');
   });
 
   it('should go to cabinet and new home page', inject(function() {
