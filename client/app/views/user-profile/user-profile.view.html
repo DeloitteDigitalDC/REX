@@ -13,12 +13,11 @@
         <h2>{{UserProfile.userDetails.nickName}}</h2>
 
         <p>{{UserProfile.userDetails.email}}</p>
-
-        <p>
-          <md-checkbox class="md-primary" ng-model="UserProfile.userDetails.pregnant" aria-label="pregnancy" ng-change="UserProfile.updateUser()">
-            Someone in my household is pregnant, breast feeding or may become pregnant.
-          </md-checkbox>
-        </p>
+        
+        <div class="row">
+          <div class="col-xs-2 col-md-1 text-center"><input id="preg" type="checkbox" ng-model="UserProfile.userDetails.pregnant" aria-label="pregnancy" ng-change="UserProfile.updateUser()"></div>
+          <div class="col-xs-10 col-md-11 text-left"><label for="preg">Someone in my household is pregnant, breast feeding or may become pregnant.</label></div>
+        </div>
 
         <md-button class="md-raised md-warn" ng-click="UserProfile.logout()">Logout</md-button>
       </div>
