@@ -14,10 +14,8 @@
     .module('rex')
     .controller('MainCtrl', MainCtrl);
 
-  function MainCtrl(isActive, userDetails) {
+  function MainCtrl(userDetails) {
     var vm = this;
-
-    vm.isActive = isActive;
 
     vm.user = userDetails;
   }

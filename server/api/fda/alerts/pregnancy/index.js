@@ -18,7 +18,7 @@ module.exports = function (data, threshold) {
       keys   = ['pregnant', 'Pregnant', 'pregnancy', 'Pregnancy', 'Breast Feeding', 'breast feeding'],
       string;
 
-  if (data.pregnancy_or_breast_feeding[0] || data.pregnancy[0]) {
+  if (data.pregnancy_or_breast_feeding || data.pregnancy) {
 
     fields.forEach(function (field) {
 
