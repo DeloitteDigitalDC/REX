@@ -1,17 +1,25 @@
 .search-input{
   position: relative;
+
   .rex-input{
     margin: 20px 0;
+    padding-right: 75px;
   }
-  button.search-icon{
-    width: 55px;
-    height: 55px;
-    position: absolute;
-    right: 20px;
-    top: 26px;
-    background-color: transparent;
-    border: 0;
-    @extend .ic-searchbtn-55px;
+
+  .search-field {
+    position: relative;
+
+
+    button.search-icon{
+      width: 55px;
+      height: 55px;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      background-color: transparent;
+      border: 0;
+      @extend .ic-searchbtn-55px;
+    }
   }
 
   .loader{

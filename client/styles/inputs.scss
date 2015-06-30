@@ -30,6 +30,7 @@ input.ng-invalid-pattern {
   border-radius: 6px;
   font-size: 1.2em;
   border: solid 1px $lightGray ;
+
 }
 
 .rex-input {
@@ -49,6 +50,7 @@ input.ng-invalid-pattern {
   color: #fff;
   width: 100%;
   font-weight: 700;
+  text-transform: uppercase;
 
   &.ng-click-active {
     background-color: $darkTeal;

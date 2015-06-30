@@ -11,7 +11,7 @@
           templateUrl : 'app/views/search/search-results/search-results.view.html',
           controller  : 'SearchResultsCtrl',
           controllerAs: 'searchResults',
-          title       : 'Search results',
+          title       : 'Search',
           buttonData  : {
             display: true,
             open   : true,

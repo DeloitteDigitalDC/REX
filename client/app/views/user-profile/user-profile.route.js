@@ -11,7 +11,7 @@
           templateUrl : 'app/views/user-profile/user-profile.view.html',
           controller  : 'UserProfileCtrl',
           controllerAs: 'UserProfile',
-          title       : 'User profile'
+          title       : 'My Profile'
         });
     });
 
