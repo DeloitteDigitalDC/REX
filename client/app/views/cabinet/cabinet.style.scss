@@ -40,6 +40,10 @@
   .cabinet {
     h2 {
       font-size: 2em;
+      //Make room for add drug button at really small sizes.
+      &.button-pad {
+        padding-right: 60px;
+      }
     }
 
     input.form-control {
