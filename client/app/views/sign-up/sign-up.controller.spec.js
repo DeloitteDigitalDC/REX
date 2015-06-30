@@ -12,30 +12,33 @@ describe('Controller:SignUpCtrl', function () {
   beforeEach(inject(function ($injector) {
     $httpBackend = $injector.get('$httpBackend');
     SignUpCtrl   = $injector.get('$controller')('SignUpCtrl');
+
+    $httpBackend.whenPOST('/user/create').respond(201);
+
+    $httpBackend.whenPOST('/user/login').respond(200, 'foo@username.com');
+
+    $httpBackend.whenGET('/user/foo@username.com/details/').respond(200, {
+      data: {
+        nickName: 'Danny',
+        drugs: [{
+          name: 'Advil'
+        }]
+      }
+    });
   }));
 
   it('hits signUp endpoint', function () {
-    //$httpBackend.whenPOST('/user/create').respond(200, {
-    //  data: {
-    //    nickName: 'Danny'
-    //  }
-    //});
-    //
-    //SignUpCtrl.signUp('user@mail.com', 'helloWOrld@1', 'name');
-    //
-    //$httpBackend.flush();
+    SignUpCtrl.signUp();
+
+    $httpBackend.flush();
   });
 
   it('should show an error message', function () {
-    //$httpBackend.whenPOST('/user/create').respond(200, {
-    //  data: {
-    //    nickName: 'Danny'
-    //  }
-    //});
-    //
-    //SignUpCtrl.signUp('user@mail.com', 'helloWOrld@1');
-    //
-    //$httpBackend.flush();
+    SignUpCtrl.signUpForm.$invalid = true;
+
+    SignUpCtrl.signUp();
+
+    $httpBackend.flush();
   });
 
 });
