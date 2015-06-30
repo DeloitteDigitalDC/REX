@@ -12,4 +12,4 @@ doc/server
 npm-debug.log
 server/settings.json
 server/auth/sessions/*.json
-server/db/database.sqllite3
+server/db/database.sqlite3
