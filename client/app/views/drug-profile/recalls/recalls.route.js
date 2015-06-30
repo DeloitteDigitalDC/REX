@@ -11,7 +11,7 @@
           templateUrl : 'app/views/drug-profile/recalls/recalls.view.html',
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
-          title       : 'Recalls',
+          title       : 'Drug Details - Recalls',
           headerState : 'loggedIn',
           noScroll    : true
         })
@@ -20,7 +20,7 @@
           templateUrl : 'app/views/drug-profile/recalls/recalls.view.html',
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
-          title       : 'Recalls',
+          title       : 'Drug Details - Recalls',
           noScroll    : true,
           buttonData  : {
             display: true,

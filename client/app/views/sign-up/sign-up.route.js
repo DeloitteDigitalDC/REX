@@ -11,7 +11,7 @@
           templateUrl   : 'app/views/sign-up/sign-up.view.html',
           controller    : 'SignUpCtrl',
           controllerAs  : 'signUp',
-          title         : 'Sign up',
+          title         : 'Sign Up',
           public        : true
         });
     });
