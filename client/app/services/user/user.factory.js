@@ -79,9 +79,11 @@
       var logoutPromise = $http.get('/user/logout');
 
       logoutPromise.success(function () {
-        _.forEach(cookies, function (cookie) {
-          $cookies.remove(cookie);
-        });
+        $cookies.remove('uid');
+        $cookies.remove('connect.sid');
+
+        userObj = {};
+
         $state.go('main.home', {}, {reload: true});
       });
     }
@@ -133,6 +135,7 @@
         deferred = $q.defer();
 
         deferred.resolve(userObj);
+
         return deferred.promise;
       }
       else {

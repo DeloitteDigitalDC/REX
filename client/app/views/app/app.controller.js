@@ -14,7 +14,7 @@
     .module('rex')
     .controller('AppCtrl', AppCtrl);
 
-  function AppCtrl($rootScope, $cookies, $state, $mdDialog) {
+  function AppCtrl($rootScope, $cookies, $state, $mdDialog, user) {
     var vm = this;
 
     vm.title = 'REX'; // Default Title
@@ -42,7 +42,7 @@
         if (!$cookies.get('uid')) {
           event.preventDefault();
 
-          $state.go('main.home');
+          user.logout();
         }
       }
       else {
