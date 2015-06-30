@@ -19,6 +19,8 @@ describe('Controller: AppCtrl', function () {
     $httpBackend.whenGET('/user/simpleLogin:1/details/').respond(200, {
       nickName: 'Foo'
     });
+
+    $httpBackend.whenGET('/user/logout').respond(200);
   }));
 
   it('should display REX as default title', function () {
