@@ -23,7 +23,6 @@
     };
 
     /**
-     *
      * @memberof notify
      *
      * @description Shows a notification at the top of the screen
@@ -34,6 +33,7 @@
      */
     function showAlert(message, type, timeout) {
       $rootScope.alert = {};
+
       //Clear any existing counters
       $timeout.cancel(timeoutPromise);
 
@@ -53,7 +53,6 @@
     }
 
     /**
-     *
      * @memberof notify
      *
      * @description Shows a notification at the top of the screen
