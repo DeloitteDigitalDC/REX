@@ -31,7 +31,7 @@ module.exports = function (app) {
   app.use(passport.session());
 
   passport.use(new LocalStrategy(function (username, password, done) {
-    db.get('SELECT id, username, password FROM users WHERE username = ?', username, function (err, row) {
+    db.get('SELECT id, username, password FROM users WHERE username = ?', username.toLowerCase(), function (err, row) {
       if (!row) {
         return done(null, false, {message: 'User not found.'});
       }
@@ -75,7 +75,7 @@ module.exports = function (app) {
       bcrypt.genSalt(10, function (err, salt) {
         bcrypt.hash(req.body.password, salt, function (err, hash) {
           db.run('INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?, ?)',
-            req.body.username,
+            req.body.username.toLowerCase(),
             hash,
             salt,
             req.body.firstName,
