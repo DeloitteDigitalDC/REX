@@ -326,7 +326,7 @@
         $rootScope.loading = false;
       }
       else {
-        _userLoggedIn(data);
+        _userLoggedIn(data.toLowerCase());
 
         $rootScope.loading = false;
       }
