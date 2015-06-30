@@ -32,17 +32,6 @@ module.exports = {
     return key;
   })(),
 
-  // the firebase instance to use
-  firebase:(function() {
-    var fb = process.env.FIREBASE || settings.FIREBASE;
-
-    if(!fb) {
-      throw new Error(chalk.bgRed(chalk.black(' No Firebase has been defined. Go to firebase.com and create a free account. ')));
-    }
-
-    return fb;
-  })(),
-
   // the location of the front end application
   appDir: __dirname + '/../client',
 
