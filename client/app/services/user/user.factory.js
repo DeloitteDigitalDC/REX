@@ -26,8 +26,10 @@
 
   function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies  = ['uid', 'token'],
+        cookies  = ['uid'],
         userObj  = {};
+
+    //TODO: IF 401, DELETE COOKIE AND REDIRECT TO LANDING PAGE
 
     return {
       login            : login,
@@ -58,6 +60,13 @@
         _authenticate(data);
       });
 
+      promise.error(function(data, status) {
+        if(status === 401) {
+          notify.showAlert('Incorrect password', 'danger');
+        }
+        $rootScope.loading = false;
+      });
+
       return promise;
     }
 
@@ -67,11 +76,14 @@
      * @memberof user
      */
     function logout() {
-      _.forEach(cookies, function (cookie) {
-        $cookies.remove(cookie);
-      });
+      var logoutPromise = $http.get('/user/logout');
 
-      $state.go('main.home', {}, {reload: true});
+      logoutPromise.success(function(){
+        _.forEach(cookies, function (cookie) {
+          $cookies.remove(cookie);
+        });
+        $state.go('main.home', {}, {reload: true});
+      });
     }
 
     /**
@@ -88,8 +100,15 @@
 
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
-      promise.success(function (data) {
-        _authenticate(data);
+      promise.success(function () {
+        login(username, password);
+      });
+
+      promise.error(function(data, status) {
+        if(status === 400) {
+          notify.showAlert('Username already exists', 'danger');
+          $rootScope.loading = false;
+        }
       });
 
       return promise;
@@ -113,14 +132,13 @@
         deferred = $q.defer();
 
         deferred.resolve(userObj);
-
         return deferred.promise;
       }
       else {
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj.data = data;
+          userObj = data.data;
         });
 
         return deferred;
@@ -140,8 +158,8 @@
     function setDetails(details) {
       var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
 
-      deferred.success(function (data) {
-        _.extend(userObj.data, data); // attach the new data to the userObj
+      deferred.success(function () {
+        _.extend(userObj.pregnant, details.pregnant); // attach the new data to the userObj
       });
 
       return deferred;
@@ -153,11 +171,12 @@
      * @memberof user
      */
     function getCabinetDrugs() {
+
       userObj = userObj || {};
 
-      userObj.data = userObj.data || {};
+      userObj.drugs = userObj.drugs || [];
 
-      return userObj.data.drugs;
+      return userObj.drugs;
     }
 
     /**
@@ -191,11 +210,11 @@
       $rootScope.loading = true;
 
       var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
-
-      userObj.data.drugs = userObj.data.drugs || [];
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
 
       promise.success(function () {
-        userObj.data.drugs.push(drug);
+        userObj.drugs.push(drug);
 
         $rootScope.loading = false;
 
@@ -228,11 +247,11 @@
 
       var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
 
-      userObj.data.drugs = userObj.data.drugs || {};
+      userObj.drugs = userObj.drugs || {};
 
       promise.success(function () {
-        _.remove(userObj.data.drugs, function(drug){
-          return drug.fbKey === drugId;
+        _.remove(userObj.drugs, function(drug){
+          return drug.id === drugId;
         });
 
         if (cb) {
@@ -289,10 +308,10 @@
       expireDate.setDate(expireDate.getDate() + 1);
 
       _.forEach(cookies, function (cookie) {
-        $cookies.put(cookie, data[cookie], {expires: expireDate});
+        $cookies.put(cookie, data, {expires: expireDate});
       });
 
-      userObj = data;
+      getDetails();
 
       $state.go('main.cabinet', {}, {reload: true});
     }

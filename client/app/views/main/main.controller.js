@@ -17,7 +17,7 @@
   function MainCtrl(userDetails) {
     var vm = this;
 
-    vm.user = userDetails;
+    vm.user = userDetails.data;
   }
 
 })();

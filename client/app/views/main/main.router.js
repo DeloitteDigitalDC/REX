@@ -14,7 +14,7 @@
           title       : 'Main',
           resolve     : {
             userDetails: function (user, $cookies, $q) {
-              if (!$cookies.get('token')) {
+              if (!$cookies.get('uid')) {
                 var deferred = $q.defer();
 
                 deferred.resolve({});

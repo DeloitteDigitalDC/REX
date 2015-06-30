@@ -19,7 +19,6 @@
 
     vm.drugName = $stateParams.name;
     vm.isSearch = $state.includes('main.search.**');
-    vm.cabinetId = $stateParams.cabinetId || 0;
     vm.id = $stateParams.id || 0;
     vm.inCabinet = false;
     vm.fieldsLoaded = false;
@@ -53,10 +52,8 @@
         var opts = {
           search: searchKey + vm.id  + '"',
           limit: 25,
-          alerts: user.data.pregnant ? 'pregnancy' : null
+          alerts: user.data.data.pregnant ? 'pregnancy' : null
         };
-
-        console.log(opts);
 
         drug.labels(opts, vm.id).then(function (res) {
           vm.drugData = res.data.results[0];
@@ -66,7 +63,7 @@
           }
 
           try {
-            vm.displayAlert = (vm.drugData.alerts.pregnancy && user.data.pregnant);
+            vm.displayAlert = (vm.drugData.alerts.pregnancy && user.data.data.pregnant);
           }
           catch(e) {
             vm.displayAlert = false;
@@ -117,7 +114,7 @@
      * @memberof DrugProfileCtrl
      */
     function removeDrug() {
-       user.deleteCabinetDrug(vm.cabinetId, function (){
+       user.deleteCabinetDrug(vm.id, function (){
          checkCabinet();
        });
     }

@@ -8,13 +8,17 @@
  * @description
  * Endpoint for interacting with fda open data api
  */
-var router = require('express').Router(),
-    ctrl   = require('./fda.controller');
 
-router.get('/:type/event', ctrl.getEvent);
 
-router.get('/:type/label', ctrl.getLabel);
+module.exports = function(auth) {
+  var router = require('express').Router(),
+      ctrl   = require('./fda.controller');
 
-router.get('/:type/enforcement', ctrl.getEnforcement);
+  router.get('/:type/event', auth.ensureAuthenticated,  ctrl.getEvent);
 
-module.exports = router;
+  router.get('/:type/label', auth.ensureAuthenticated, ctrl.getLabel);
+
+  router.get('/:type/enforcement', auth.ensureAuthenticated, ctrl.getEnforcement);
+
+  return router;
+};

@@ -42,10 +42,10 @@
        */
       function goToDetails() {
         if (scope.drug.recalled) {
-          $state.go('main.drugProfile.recalls', {name: scope.drug.name, cabinetId: scope.drug.fbKey, id : id});
+          $state.go('main.drugProfile.recalls', {name: scope.drug.name, id : id});
         }
         else {
-          $state.go('main.drugProfile.uses', {name: scope.drug.name, cabinetId: scope.drug.fbKey, id : id});
+          $state.go('main.drugProfile.uses', {name: scope.drug.name, id : id});
         }
       }
 

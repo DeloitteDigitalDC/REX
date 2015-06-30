@@ -8,19 +8,19 @@
  * @description
  * Exposes user endpoints such as logging in and creating
  */
-var router = require('express').Router(),
-    ctrl   = require('./user.controller');
 
-// account
-router.get('/:uid/details/', ctrl.getDetails);
-router.patch('/:uid/details/', ctrl.setDetails);
-router.post('/login', ctrl.login);
-router.post('/create', ctrl.createUser);
 
-// drug cabinet
-router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);
-router.post('/:uid/cabinet/', ctrl.addCabinetDrug);
-router.delete('/:uid/cabinet/:drugId', ctrl.deleteCabinetDrug);
+module.exports = function(auth) {
+  var router = require('express').Router(),
+      ctrl   = require('./user.controller');
 
-module.exports = router;
+
+  router.get('/:uid/details/', auth.ensureAuthenticated, ctrl.getDetails);
+  router.get('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.getCabinetDrugs);
+  router.post('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.addCabinetDrug);
+  router.delete('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.deleteCabinetDrug);
+  router.patch('/:uid/details/', auth.ensureAuthenticated, ctrl.setDetails);
+
+  return router;
+};
 
