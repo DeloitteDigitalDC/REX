@@ -1,7 +1,7 @@
 .drug-tabs {
   div {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 15px;
   }
   a {
     font-weight: 500;
@@ -15,11 +15,5 @@
   .active a {
     color: $darkTeal;
     text-decoration: underline;
-  }
-}
-
-@media #{$lessThanSmall} {
-  .drug-tabs {
-    margin-left: 15px;
   }
 }
