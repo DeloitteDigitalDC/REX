@@ -56,15 +56,15 @@
      */
     function checkForStopWords(name) {
       var words = _.words(name);
-      var str   = '';
+      var str = '';
 
       _.forEach(words, function (word) {
         if (word.toUpperCase() !== 'AND') {
-          str += word;
+          str = str + ' ' + word ;
         }
       });
 
-      return str;
+      return _.trim(str);
     }
 
 
