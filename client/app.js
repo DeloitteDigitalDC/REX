@@ -37,8 +37,6 @@ angular
         responseError: function (rejection) {
           if (rejection.status === 401) {
             $cookies.remove('uid');
-
-            $location.path('/');
           }
           return $q.reject(rejection);
         }

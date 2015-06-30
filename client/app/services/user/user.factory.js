@@ -338,9 +338,7 @@
      * @private
      */
     function _userLoggedIn(data) {
-      var expireDate = new Date();
-
-      expireDate.setDate(expireDate.getDate() + 1);
+      var expireDate = moment().add(30, 'minutes').toDate();
 
       _.forEach(cookies, function (cookie) {
         $cookies.put(cookie, data, {expires: expireDate});
