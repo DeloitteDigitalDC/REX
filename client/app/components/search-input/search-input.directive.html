@@ -5,11 +5,11 @@
     <div class="search-field">
       <label for="searchDrugName" class="sr-only">Search by drug name</label>
 
-      <input id="searchDrugName" class="form-control rex-input" ng-model="search.searchTerms" placeholder="Search by Brand Name">
+      <input role="search" autofocus tabindex="1" id="searchDrugName" class="form-control rex-input" ng-model="search.searchTerms" placeholder="Search by Brand Name">
 
-      <button type="submit" class="search-icon"></button>
+      <button type="submit" class="search-icon" tabindex="-1"></button>
     </div>
   </form>
 
-  <div class="loader" ng-show="true"></div>
+  <div class="loader" ng-show="showLoader" role="progressbar"></div>
 </section>
