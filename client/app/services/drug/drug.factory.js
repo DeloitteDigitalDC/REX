@@ -55,7 +55,8 @@
     function labels(qs, drugName) {
       if (drugName === cachedDrugName) {
         labelPromise = _returnCachedLabel();
-      } else {
+      }
+      else {
         labelPromise = _returnHttpPromise(qs, drugName);
       }
 

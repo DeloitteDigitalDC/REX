@@ -42,9 +42,9 @@
 
 
     /**
-     * @memberof CabinetCtrl
+     * create string and query for recalls
      *
-     * @description create string and query for recalls
+     * @memberof CabinetCtrl
      *
      * @private
      */
@@ -67,8 +67,6 @@
       _.forEach(vm.drugs, function (drug) {
         if (drug) {
           _.forEach(recalls, function (recall) {
-            console.log(recall);
-
             if (recall.openfda.brand_name) {
               if ((recall.openfda.brand_name[0]).toUpperCase() === (drug.name).toUpperCase()) {
                 drug.recalled = true;

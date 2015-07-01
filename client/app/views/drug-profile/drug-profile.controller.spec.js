@@ -11,6 +11,7 @@ describe('Controller:DrugProfileCtrl', function () {
   beforeEach(inject(function ($injector) {
     DrugProfileCtrl = $injector.get('$controller')('DrugProfileCtrl');
   }));
+
   //nothing really to test in this controller
   it('condition of test', function () {
 
