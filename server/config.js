@@ -6,12 +6,13 @@
  * @description
  * constants to be used all over the application
  */
-var chalk = require('chalk');
+var chalk = require('chalk'),
+    path = require('path'),
+    settings;
 
-var settings;
 
 try {
-  settings = require('./settings.json');
+  settings = require(path.resolve(__dirname,'settings.json'));
 }
 catch(e) {
   settings = {};
@@ -37,5 +38,5 @@ module.exports = {
 
   port: process.env.PORT || settings.PORT || 3000,
 
-  sqliteLocation: process.env.SQLITELOCATION || settings.SQLITELOCATION || __dirname + '/db/database.sqlite3'
+  sqliteLocation: process.env.SQLITELOCATION || settings.SQLITELOCATION || path.resolve(__dirname, 'db','database.sqlite3')
 };
