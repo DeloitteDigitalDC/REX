@@ -7,18 +7,7 @@ Install [NodeJs](https://nodejs.org/)
 
 Install Bower ```npm install -g bower```
 
-### Set Up Firebase
-Create an account [here](http://www.firebase.com)
-
-Create an app and open it.
-
-On the left hand side click "Security & Rules".
-
-Copy the contents of server/firebase_rules.json into the rules field.
-
-On the left hand side click "Login & Auth".
-
-Select the "Email & Password" Tab and select the "Enable Email & Password Authentication" checkbox
+REX uses a SQlLite database which is built with npm's internal version of node-gyp, and thus your system must meet [node-gyp's requirements](https://github.com/TooTallNate/node-gyp#installation).
 
 ### Installation
 
@@ -44,11 +33,11 @@ The first way is to use Environment Variables.
 
 The second way is to add a "settings.json" file to /server/settings.json.
 
-Property      | Description                   | Example
-------------- | ----------------------------- | ----------------------------------------------
-FIREBASE      | the link to your firebase app | https://your-firebase-app-name.firebaseio.com/
-FDA_KEY       | your open fda key             | ajljfakshfus83j29342l34s0d9f09sdf
-PORT          | the server port               | 3000
+Property       | Description       | Example                                    |  Default
+-------------  | ----------------- | ------------------------------------------ | ----------------------------
+SQLITELOCATION | SQLITE db to use  | /user/my-sqlite-location/database.sqlite3 | <project-name>/server/db/database.sqlite3
+FDA_KEY        | your open fda key | ajljfakshfus83j29342l34s0d9f09sdf          | None
+PORT           | the server port   | 8888                                       | 3000
 
 
 ### Commands
@@ -78,7 +67,11 @@ npm run test-server // just server side tests
 This will create a folder called /dist which will contain server/ and client/.
 
 ```
-npm run build
+npm run build // Run the build
+```
+
+```
+npm run build-full // Run the build, the unit tests, generates test reports, generates docs
 ```
 
 To start the server for production navigate to the dist folder and run ```node ./server/app-server.js```
