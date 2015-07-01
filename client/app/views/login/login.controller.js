@@ -31,9 +31,14 @@
     function login() {
       vm.loading = true;
 
-      user.login(vm.userInfo.username, vm.userInfo.password).success(function() {
-        vm.loading = false;
-      });
+      user
+        .login(vm.userInfo.username, vm.userInfo.password)
+        .success(function() {
+          vm.loading = false;
+        })
+        .error(function() {
+          vm.loading = false;
+        });
     }
   }
 

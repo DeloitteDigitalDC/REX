@@ -20,7 +20,7 @@
     vm.signUpForm = {};
     vm.userInfo   = {};
     vm.showError  = false;
-    vm.loading = false;
+    vm.loading    = false;
 
     vm.signUp = signUp;
 
@@ -36,9 +36,14 @@
       else {
         vm.loading = true;
 
-        user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName).success(function() {
-          vm.loading = false;
-        });
+        user
+          .createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName)
+          .success(function () {
+            vm.loading = false;
+          })
+          .error(function () {
+            vm.loading = false;
+          });
       }
     }
   }
