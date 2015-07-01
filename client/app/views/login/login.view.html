@@ -12,17 +12,15 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="username">Username</label>
 
-          <input
-            autofocus
-            class="form-control"
-            id="username"
-            ng-model="LoginCtrl.userInfo.username"
-            placeholder="Email"
-            required
-            rex-input
-            tabindex="1"
-            type="email"
-            >
+          <input autofocus
+                 class="form-control rex-input"
+                 id="username"
+                 ng-model="LoginCtrl.userInfo.username"
+                 placeholder="Email"
+                 required
+                 rex-input
+                 tabindex="1"
+                 type="email">
         </div>
       </div>
 
@@ -30,31 +28,31 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="inputPassword">Password</label>
 
-          <input
-            class="form-control"
-            id="inputPassword"
-            ng-model="LoginCtrl.userInfo.password"
-            placeholder="Password"
-            required
-            rex-input
-            tabindex="2"
-            type="password"
-            >
+          <input class="form-control rex-input"
+                 id="inputPassword"
+                 ng-model="LoginCtrl.userInfo.password"
+                 placeholder="Password"
+                 required
+                 rex-input
+                 tabindex="2"
+                 type="password">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
-          <button tabindex="3" type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In</button>
+          <button tabindex="3" type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In
+          </button>
         </div>
 
         <!--<div class="col-sm-3 text-right">-->
-          <!--<a href="#" class="text-teal forgot">Forgot Password</a>-->
+        <!--<a href="#" class="text-teal forgot">Forgot Password</a>-->
         <!--</div>-->
       </div>
 
       <div class="row text-right sign-up">
-        <div class="col-sm-offset-3 col-sm-6">Don't have an account yet? <a ui-sref="main.signUp" class="text-teal bolder">Sign up</a></div>
+        <div class="col-sm-offset-3 col-sm-6">Don't have an account yet? <a ui-sref="main.signUp"
+                                                                            class="text-teal bolder">Sign up</a></div>
       </div>
     </form>
   </app-section>

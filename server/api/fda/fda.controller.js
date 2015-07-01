@@ -6,6 +6,7 @@
 
 var request = require('request'),
     config  = require('../../config'),
+    utils   = require('../../utils'),
     fdaUrl  = config.fdaUrl,
     apiKey  = config.fdaKey;
 
@@ -34,16 +35,7 @@ fda.getEvent = function getEvent(req, res) {
   };
 
   request(fdaUrl + params.type + '/event.json', opts, function (err, response, body) {
-    var data;
-
-    try {
-      data = JSON.parse(body);
-    }
-    catch (e) {
-      data = body;
-    }
-
-    res.send(data);
+    res.send(utils.confirmJSON(body));
   });
 };
 
@@ -61,10 +53,10 @@ fda.getEvent = function getEvent(req, res) {
 fda.getLabel = function getLabel(req, res) {
   var qs     = req.query,
       params = req.params,
-      flags = [];
+      flags  = [];
 
-  qs.search = decodeURI(qs.search);
-  qs.alerts = qs.alerts || '';
+  qs.search  = decodeURI(qs.search);
+  qs.alerts  = qs.alerts || '';
   qs.api_key = qs.api_key || apiKey;
 
   var opts = {
@@ -78,21 +70,15 @@ fda.getLabel = function getLabel(req, res) {
 
   // Make the request for the label information
   request(fdaUrl + params.type + '/label.json', opts, function (err, response, body) {
-    var data;
+    var data = utils.confirmJSON(body);
 
-    // Make sure that the data coming back is JSON
-    try {
-      data = JSON.parse(body);
-    }
-    catch (e) {
-      data = body;
-    }
-
+    // See if any alerts need to be checked
     flags.forEach(function (flag) {
       try {
         require('./alerts/' + flag)(data.results);
       }
-      catch(e) {}
+      catch (e) {
+      }
     });
 
     res.send(data);
@@ -124,16 +110,7 @@ fda.getEnforcement = function getEnforcement(req, res) {
   };
 
   request(fdaUrl + params.type + '/enforcement.json', opts, function (err, response, body) {
-    var data;
-
-    try {
-      data = JSON.parse(body);
-    }
-    catch (e) {
-      data = body;
-    }
-
-    res.send(data);
+    res.send(utils.confirmJSON(body));
   });
 };
 
