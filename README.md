@@ -67,7 +67,11 @@ npm run test-server // just server side tests
 This will create a folder called /dist which will contain server/ and client/.
 
 ```
-npm run build
+npm run build // Run the build
+```
+
+```
+npm run build-full // Run the build, the unit tests, generates test reports, generates docs
 ```
 
 To start the server for production navigate to the dist folder and run ```node ./server/app-server.js```
