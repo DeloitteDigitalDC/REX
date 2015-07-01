@@ -13,6 +13,10 @@ describe('directive:search-input', function () {
     scope = $injector.get('$rootScope').$new();
     $state = $injector.get('$state');
     $httpBackend = $injector.get('$httpBackend');
+
+    $httpBackend.whenGET('/fda/drug/label/?limit=100&search=(openfda.brand_name:%22Advil%22)').respond(200, {
+
+    });
   }));
 
   // compile the element to be tested
@@ -27,5 +31,9 @@ describe('directive:search-input', function () {
     elScope.search.searchTerms = 'Advil';
 
     elScope.searchByName();
+
+    $httpBackend.flush();
+
+    expect(elScope.noResults).toBe(true);
   }));
 });

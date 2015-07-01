@@ -43,7 +43,6 @@ module.exports = function (data, threshold) {
 
   }
 
-
   data.alerts = data.alerts || {};
 
   data.alerts.pregnancy =  alerts >= threshold;
