@@ -6,7 +6,11 @@
  * @name drugTabs
  *
  * @description
- * directive for rex
+ * drug tabs for the drug profile
+ *
+ * @property {String} drugName - name of the current drug
+ *
+ * @example <drug-tabs drugName="'Advil'"></drug-tabs>
  */
 (function () {
 

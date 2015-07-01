@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * @namespace fda.controller
+ */
+
 var request = require('request'),
     config  = require('../../config'),
     fdaUrl  = config.fdaUrl,
@@ -8,13 +12,15 @@ var request = require('request'),
 var fda = {};
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
- * @param {Object} res - the response object
+ * @param {Object} res - the response objects
  *
- * @description
- * Get event data for and of the fda categories
+ * @example
+ * router.get('/:type/event', auth.ensureAuthenticated,  ctrl.getEvent);
  */
 fda.getEvent = function getEvent(req, res) {
   var qs     = req.query,
@@ -42,13 +48,15 @@ fda.getEvent = function getEvent(req, res) {
 };
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
  * @param {Object} res - the response object
  *
- * @description
- * Get label information from open FDA data. Dedupe fda data for cleaner results
+ * @example
+ * router.get('/:type/label', auth.ensureAuthenticated,  ctrl.getLabel);
  */
 fda.getLabel = function getLabel(req, res) {
   var qs     = req.query,
@@ -92,13 +100,15 @@ fda.getLabel = function getLabel(req, res) {
 };
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
  * @param {Object} res - the response object
  *
- * @description
- * Get event data for and of the fda categories
+ * @example
+ * router.get('/:type/enforcement', auth.ensureAuthenticated,  ctrl.getEnforcement);
  */
 fda.getEnforcement = function getEnforcement(req, res) {
   var qs     = req.query,

@@ -7,9 +7,12 @@
  *
  * @description
  * Endpoint for interacting with fda open data api
+ *
+ * @example
+ * GET /fda/drug/event
+ *
+ * @see fda.controller
  */
-
-
 module.exports = function(auth) {
   var router = require('express').Router(),
       ctrl   = require('./fda.controller');

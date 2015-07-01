@@ -6,7 +6,11 @@
  * @name drugCard
  *
  * @description
- * directive for rex
+ * component for creating a drug card that appears in the cabinet view
+ *
+ * @property {Object} drug - the drug object to be used for creation
+ *
+ * @example <drug-card drug="Cabinet.drugDetails"></drug-card>
  */
 (function () {
 
@@ -19,8 +23,7 @@
       restrict   : 'E',
       templateUrl: 'app/components/drug-card/drug-card.directive.html',
       scope      : {
-        drug: '=',
-        key : '='
+        drug: '='
       },
       link       : link
     };

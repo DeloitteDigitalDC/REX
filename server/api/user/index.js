@@ -6,10 +6,13 @@
  * @memberof router
  *
  * @description
- * Exposes user endpoints such as logging in and creating
+ * Endpoint for interacting with fda open data api
+ *
+ * @example
+ * GET /user/me@mail.com/cabinet/
+ *
+ * @see fda.controller
  */
-
-
 module.exports = function(auth) {
   var router = require('express').Router(),
       ctrl   = require('./user.controller');

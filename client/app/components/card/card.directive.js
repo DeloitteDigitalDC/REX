@@ -6,7 +6,9 @@
  * @name card
  *
  * @description
- * directive for rex
+ * A card component
+ *
+ * @example <card>My Card Content</card>
  */
 (function () {
 
@@ -19,12 +21,8 @@
       restrict   : 'EA',
       templateUrl: 'app/components/card/card.directive.html',
       scope      : {},
-      transclude : true,
-      link       : link
+      transclude : true
     };
-
-    function link() {
-    }
   }
 
 })();

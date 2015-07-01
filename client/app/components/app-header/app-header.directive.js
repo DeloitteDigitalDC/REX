@@ -6,7 +6,12 @@
  * @name appHeader
  *
  * @description
- * directive for rex
+ * The main header for the application
+ *
+ * @property {Object} user - the currently logged in user
+ * @property {Object} headerOptions - options object for the header, set by the view state
+ *
+ * @example <app-header user="main.user" headerOptions="main.headerOptions"></app-header>
  */
 (function () {
 

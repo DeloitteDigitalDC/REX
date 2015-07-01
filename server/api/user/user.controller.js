@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * @namespace user.controller
+ */
 
 var db   = require('../../db');
 var user = {};

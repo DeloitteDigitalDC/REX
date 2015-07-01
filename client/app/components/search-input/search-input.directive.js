@@ -6,7 +6,12 @@
  * @name searchInput
  *
  * @description
- * directive for rex
+ * Drug search input
+ *
+ * @property {Array} searchResults - the results of the search
+ * @property {Boolean} noResults - returns true if no results are found
+ *
+ * @example <search-input searchResults="view.results" noResults="view.noResults"></search-input>
  */
 (function () {
 

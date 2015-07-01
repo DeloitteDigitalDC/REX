@@ -6,7 +6,9 @@
  * @name appSection
  *
  * @description
- * directive for rex
+ * A "section" of the application
+ *
+ * @example <app-section>My Section Content</app-section>
  */
 (function() {
 

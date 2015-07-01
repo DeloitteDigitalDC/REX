@@ -6,7 +6,7 @@
  * @name HomeCtrl
  *
  * @description
- * Controller for rex
+ * The home landing page controller
  */
 (function() {
 

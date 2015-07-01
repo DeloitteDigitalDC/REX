@@ -6,7 +6,9 @@
  * @name cardFade
  *
  * @description
- * directive for rex
+ * a card component that fades towards the bottom
+ *
+ * @example <card-fade>My Card Content</card-fade>
  */
 (function() {
 

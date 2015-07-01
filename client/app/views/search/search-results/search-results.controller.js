@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:SearchResults
+ * @name SearchResults
  *
  * @description
  * Controller for rex
