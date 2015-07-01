@@ -38,26 +38,27 @@
 
 @media #{$lessThanSmall} {
   .app-root[ui-view].ng-enter, [ui-view].ng-leave {
-    transition:all .3s ease-in-out;
+    transition:transform .3s linear;
     width: 100%;
     height: 100%;
     position: absolute;
+    transform:translateX(0);
   }
 
   .app-root[ui-view].ng-enter {
     opacity: 1;
     z-index: 1;
-    left: -100%;
+    transform:translateX(-100%);
   }
 
   .app-root[ui-view].ng-enter-active {
     opacity: 1;
-    transform:translateX(100%);
+    transform:translateX(0);
   }
 
   .app-root[ui-view].ng-leave {
     opacity: 1;
-    left: 0;
+    transform:translateX(0);
     display: block;
     z-index: 2;
   }

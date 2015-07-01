@@ -17,12 +17,14 @@
   function rexAutofocus($timeout) {
     return {
       restrict: 'A',
-      link    : function (scope, element) {
-        $timeout(function () {
-          element[0].focus();
-        });
-      }
+      link    : link
     };
+
+    function link(scope, element) {
+      $timeout(function () {
+        element[0].focus();
+      });
+    }
   }
 
 })();

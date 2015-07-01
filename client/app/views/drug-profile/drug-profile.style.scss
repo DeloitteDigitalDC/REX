@@ -112,14 +112,18 @@
     .card {
       padding: 20px;
     }
-
-    .drug-alert {
-      top: 0;
-    }
-
+    
     .rex-button {
       width: 100%;
       margin-bottom: 15px;
+    }
+  }
+}
+
+@media #{$lessThanTablet} {
+  .drug-profile {
+    .drug-alert {
+      top: 0;
     }
   }
 }
