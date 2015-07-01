@@ -11,3 +11,5 @@ var createPath = function (name) {
 tests.forEach(function (test) {
   require(createPath(test));
 });
+
+require('../utils/utils.spec.js');

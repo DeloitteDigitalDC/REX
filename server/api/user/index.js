@@ -18,12 +18,9 @@ module.exports = function(auth) {
       ctrl   = require('./user.controller');
 
   router.get('/:uid/details/', auth.ensureAuthenticated, ctrl.getDetails);
-
   router.get('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.getCabinetDrugs);
   router.post('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.addCabinetDrug);
   router.delete('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.deleteCabinetDrug);
-  router.patch('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.editCabinetDrug);
-
   router.patch('/:uid/details/', auth.ensureAuthenticated, ctrl.setDetails);
 
   return router;

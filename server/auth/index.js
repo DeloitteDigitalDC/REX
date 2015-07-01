@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * @namespace auth
+ *
+ * @param {Object} app - the main app
+ */
+
 module.exports = function (app) {
   var session       = require('express-session'),
       FileStore     = require('session-file-store')(session),
@@ -13,7 +19,7 @@ module.exports = function (app) {
 
   //FIXME: Comments on all these functions
 
-//Session Storage
+  //Session Storage
   app.use(session({
     store            : new FileStore({
       path: './server/auth/sessions'  //Might want to move this somewhere else or use MemoryStore
@@ -22,13 +28,13 @@ module.exports = function (app) {
     resave           : true,
     saveUninitialized: true,
     cookie           : {
-      maxAge: 1800000,
-      secure: false,
+      maxAge  : 1800000,
+      secure  : false,
       httpOnly: false
     }
   }));
 
-//Authentication
+  //Authentication
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -37,10 +43,12 @@ module.exports = function (app) {
       if (!row) {
         return done(null, false, {message: 'User not found.'});
       }
+
       bcrypt.compare(password, row.password, function (err, res) {
         if (res) {
           return done(null, row);
-        } else {
+        }
+        else {
           return done(null, false, {message: 'Incorrect password.'});
         }
       });
@@ -94,11 +102,16 @@ module.exports = function (app) {
 
   /**
    * Checks to see if the username already exists in the database.
+   *
+   * @memberof auth
+   *
    * @param username
+   *
    * @returns promise
    */
   function checkUserExists(username) {
     var usercheckPromise = $q.defer();
+
     db.get('SELECT id, username FROM users WHERE username = ?', username, function (err, row) {
       if (err) {
         console.error(err);
@@ -109,20 +122,26 @@ module.exports = function (app) {
         usercheckPromise.resolve();
       }
     });
+
     return usercheckPromise.promise;
   }
 
   /**
    * Simple Route middleware to cehck for authentication
+   *
+   * @memberof auth
+   *
    * @param req
    * @param res
    * @param next
+   *
    * @returns {*}
    */
   function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
+
     //TODO: More verbose error handling
     res.status(401).send();
   }

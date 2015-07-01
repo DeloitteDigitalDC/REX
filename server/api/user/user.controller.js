@@ -95,24 +95,6 @@ user.addCabinetDrug = function (req, res) {
 };
 
 /**
- * Update an existing drug in the cabinet
- *
- * @memberof user.controller
- *
- * @param req
- * @param res
- */
-user.editCabinetDrug = function (req, res) {
-  db.run('UPDATE drugs WHERE drugs.id = ? AND drugs.username = ? SET expirationDate = ?',[req.params.id,  req.params.uid.toLowerCase(), req.body.expirationDate], function (err) {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.status(200).send('Drug ' + req.body.name + ' Updated');
-    }
-  });
-};
-
-/**
  * add drug to your cabinet
  *
  * @memberof user.controller
