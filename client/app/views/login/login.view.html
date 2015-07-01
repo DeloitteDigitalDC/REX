@@ -12,7 +12,17 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="username">Username</label>
 
-          <input type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username" required>
+          <input
+            autofocus
+            class="form-control"
+            id="username"
+            ng-model="LoginCtrl.userInfo.username"
+            placeholder="Email"
+            required
+            rex-input
+            tabindex="1"
+            type="email"
+            >
         </div>
       </div>
 
@@ -20,13 +30,22 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="inputPassword">Password</label>
 
-          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password" required>
+          <input
+            class="form-control"
+            id="inputPassword"
+            ng-model="LoginCtrl.userInfo.password"
+            placeholder="Password"
+            required
+            rex-input
+            tabindex="2"
+            type="password"
+            >
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
-          <button type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In</button>
+          <button tabindex="3" type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In</button>
         </div>
 
         <!--<div class="col-sm-3 text-right">-->
