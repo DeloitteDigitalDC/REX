@@ -1,6 +1,8 @@
 {
   "name": "rex",
-  "version": "0.0.0",
+  "version": "0.1.1",
+  "license": "MIT",
+  "repository": "https://github.com/DeloitteDigitalDC/REX",
   "devDependencies": {
     "angular-jsdoc": "~0.3.0",
     "grunt": "^0.4.5",
