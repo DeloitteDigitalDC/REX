@@ -18,6 +18,7 @@
     var vm = this;
 
     vm.userInfo = {};
+    vm.loading = false;
 
     vm.login = login;
 
@@ -28,7 +29,11 @@
      * call user service to authenticate user
      */
     function login() {
-      user.login(vm.userInfo.username, vm.userInfo.password);
+      vm.loading = true;
+
+      user.login(vm.userInfo.username, vm.userInfo.password).success(function() {
+        vm.loading = false;
+      });
     }
   }
 

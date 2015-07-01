@@ -20,6 +20,7 @@
     vm.signUpForm = {};
     vm.userInfo   = {};
     vm.showError  = false;
+    vm.loading = false;
 
     vm.signUp = signUp;
 
@@ -33,7 +34,11 @@
         vm.showError = true;
       }
       else {
-        user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName);
+        vm.loading = true;
+
+        user.createUser(vm.userInfo.username, vm.userInfo.password, vm.userInfo.firstName).success(function() {
+          vm.loading = false;
+        });
       }
     }
   }

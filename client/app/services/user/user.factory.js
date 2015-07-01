@@ -28,8 +28,6 @@
     var messages = CONST.messages,
         userObj  = {};
 
-    //TODO: IF 401, DELETE COOKIE AND REDIRECT TO LANDING PAGE
-
     return {
       login            : login,
       logout           : logout,
@@ -52,8 +50,6 @@
      * @param {String} password - the password
      */
     function login(username, password) {
-      $rootScope.loading = true;
-
       var promise = $http.post('/user/login', {username: username, password: password});
 
       promise.success(function (data) {
@@ -62,9 +58,8 @@
 
       promise.error(function (data, status) {
         if (status === 401) {
-          notify.showAlert('Incorrect password', 'danger');
+          notify.showAlert('Incorrect username or password', 'danger');
         }
-        $rootScope.loading = false;
       });
 
       return promise;
@@ -98,8 +93,6 @@
      * @memberof user
      */
     function createUser(username, password, firstName) {
-      $rootScope.loading = true;
-
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
       promise.success(function () {
@@ -109,8 +102,6 @@
       promise.error(function (data, status) {
         if (status === 400) {
           notify.showAlert('Username already exists', 'danger');
-
-          $rootScope.loading = false;
         }
       });
 
