@@ -1,9 +1,6 @@
-REX
-=================
+### REX Install Instructions
 
-### Install Instructions
-
-Install [Instructions](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
+[Install Instructions Here](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
 # GSA/18F Agile Delivery Services – Deloitte Digital Response
 
