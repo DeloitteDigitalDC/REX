@@ -48,7 +48,7 @@ Agile development means delivering early and often. Our engineering approach was
 
 Our technical architect, DevOps engineer, and frontend web developers kicked off Sprint 0 as soon as we got underway.  Our team spun up the source repository, created the app scaffolding and set up the build pipeline [(as seen here)](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-DevOps.pdf).
 
-During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and automation [(seen here)](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance), and all tests were run as an integral part of our build pipeline.  Our entire application stacked leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
+During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and automation [(seen here)](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance), and all tests were run as an integral part of our build pipeline.  Our entire application stack leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
 
 ## 4. Deploy
 

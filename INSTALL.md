@@ -6,7 +6,7 @@ REX - Install Instructions
 Install [NodeJs](https://nodejs.org/)
 
 
-Install Bower ```npm install -g bower``` (if you have permission errors on OSX, ```sudo !!```
+Install Bower ```npm install -g bower``` (if you have permission errors on OSX, ```sudo !!```)
 
 REX uses a SQlLite database which is built with npm's internal version of node-gyp, and thus your system must meet [node-gyp's requirements](https://github.com/TooTallNate/node-gyp#installation).
 
