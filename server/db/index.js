@@ -2,7 +2,7 @@
 
 var sqlite3 = require('sqlite3'),
     config  = require('../config'),
-    db      = new sqlite3.Database(config.sqliteLocation, function(err) { if(err) console.log(config.sqliteLocation, err); });
+    db      = new sqlite3.Database(config.sqliteLocation, function(err) { if(err) { console.log(config.sqliteLocation, err);} });
 
 // Create the users table if it doesn't exist
 db.run('select * from users', function(err){
