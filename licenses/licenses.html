@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="angular.min.js"></script>
+  <script src="licenses.js"></script>
+    <meta charset="UTF-8">
+    <title>Licenses</title>
+  <style>
+    a{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body ng-app="license" ng-controller="MainCtrl as main">
+
+<div class="container">
+  <h1>Licenses</h1>
+  <div class="row">
+    <div class="col-sm-2"><h4 ng-click="main.switchOrder()"><a>licenses</a></h4></div>
+    <div class="col-sm-5"><h4>licenseFile</h4></div>
+    <div class="col-sm-2"><h4>myKey</h4></div>
+    <div class="col-sm-3"><h4>repository</h4></div>
+  </div>
+  <div ng-repeat="item in main.licensesList | orderBy : main.order">
+  <div class="row" >
+    <div class="col-sm-2">{{item.licenses}}</div>
+    <div class="col-sm-5">{{item.licenseFile}}</div>
+    <div class="col-sm-2">{{item.myKey}}</div>
+    <div class="col-sm-3">{{item.repository}}</div>
+  </div>
+    <hr>
+  </div>
+</div>
+
+</body>
+</html>
