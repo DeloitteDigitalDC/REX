@@ -5,9 +5,12 @@ REX - Install Instructions
 
 Install [NodeJs](https://nodejs.org/)
 
-Install Bower ```npm install -g bower```
+
+Install Bower ```npm install -g bower``` (if you have permission errors on OSX, ```sudo !!```
 
 REX uses a SQlLite database which is built with npm's internal version of node-gyp, and thus your system must meet [node-gyp's requirements](https://github.com/TooTallNate/node-gyp#installation).
+
+Issues installing any of the above? Check out info on [installing node via packages] (https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager). 
 
 ### Installation
 
@@ -32,6 +35,8 @@ The app can be configured in two ways.
 The first way is to use Environment Variables.
 
 The second way is to add a "settings.json" file to /server/settings.json.
+
+Of the three properties below, the only item that is required to be configured is FDA_KEY. 
 
 Property       | Description       | Example                                    |  Default
 -------------  | ----------------- | ------------------------------------------ | ----------------------------
