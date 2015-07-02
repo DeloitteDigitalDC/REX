@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app/services/user/user.factory.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/angular-blueprint.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app/services/user/user.factory.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+
+/**
+ * @ngdoc factory
+ *
+ * @name user
+ *
+ * @description
+ * Factory for managing users.
+ */
+
+/**
+ * @typedef {Object} Drug
+ *
+ * A drug in the user cabinet
+ *
+ * @property {String} name - the name of the drug
+ * @property {String} [notes] - notes to be added with the drug
+ * @property {Date} [expirationDate] - the expiration date of the drug
+ */
+(function () {
+
+  angular
+    .module('rex')
+    .factory('user', user);
+
+  function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
+    var messages = CONST.messages,
+        userObj  = {};
+
+    return {
+      login            : login,
+      logout           : logout,
+      createUser       : createUser,
+      getDetails       : getDetails,
+      setDetails       : setDetails,
+      getCabinetDrugs  : getCabinetDrugs,
+      addCabinetDrug   : addCabinetDrug,
+      addDrug          : addDrug,
+      deleteCabinetDrug: deleteCabinetDrug,
+      editDrug         : editDrug
+    };
+
+    /**
+     * logs in a user
+     *
+     * @memberof user
+     *
+     * @param {String} username - the username
+     * @param {String} password - the password
+     */
+    function login(username, password) {
+      var promise = $http.post('/user/login', {username: username, password: password});
+
+      promise.success(function (data) {
+        _authenticate(data);
+      });
+
+      promise.error(function (data, status) {
+        if (status === 401) {
+          notify.showAlert('Incorrect username or password', 'danger');
+        }
+      });
+
+      return promise;
+    }
+
+    /**
+     * Log the user out by removing the login cookies from browser
+     *
+     * @memberof user
+     */
+    function logout() {
+      var logoutPromise = $http.get('/user/logout');
+
+      logoutPromise.success(function () {
+        $cookies.remove('uid');
+        $cookies.remove('connect.sid');
+
+        userObj = {};
+
+        $state.go('main.home', {}, {reload: true});
+      });
+    }
+
+    /**
+     * Create a new user.
+     *
+     * @param {String} username
+     * @param {String} password
+     * @param {String} firstName
+     *
+     * @memberof user
+     */
+    function createUser(username, password, firstName) {
+      var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
+
+      promise.success(function () {
+        login(username, password);
+      });
+
+      promise.error(function (data, status) {
+        if (status === 400) {
+          notify.showAlert('Username already exists', 'danger');
+        }
+      });
+
+      return promise;
+    }
+
+    /**
+     * returns the use details of the given uid.
+     * Will either return the user details stored in memory or fetch from the server.
+     *
+     * @memberof user
+     *
+     * @example
+     * user.getDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function getDetails() {
+      var deferred;
+
+      if (userObj.data) {
+        deferred = $q.defer();
+
+        deferred.resolve(userObj);
+
+        return deferred.promise;
+      }
+      else {
+        deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
+
+        deferred.success(function (data) {
+          userObj = data.data;
+        });
+
+        return deferred;
+      }
+    }
+
+    /**
+     * set details for a given user
+     *
+     * @memberof user
+     *
+     * @example
+     * user.setDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function setDetails(details) {
+      var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
+
+      deferred.success(function () {
+        _.extend(userObj.pregnant, details.pregnant); // attach the new data to the userObj
+      });
+
+      return deferred;
+    }
+
+    /**
+     * return just the drug data from the cached user object.
+     *
+     * @memberof user
+     */
+    function getCabinetDrugs() {
+      userObj = userObj || {};
+
+      userObj.drugs = userObj.drugs || [];
+
+      return userObj.drugs;
+    }
+
+    /**
+     * Add a drug to your drug cabinet. Launches a modal.
+     *
+     * @memberof user
+     *
+     * @param {Object} evt - the click event
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     */
+    function addCabinetDrug(evt, drug, cb) {
+      var modal = modals.addDrug(evt, drug);
+
+      modal.then(function (data) {
+        addDrug(data, cb);
+      });
+
+      return modal;
+    }
+
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     *
+     * @return {IHttpPromise&lt;T>|*|{}}
+     */
+    function addDrug(drug, cb) {
+      $rootScope.loading = true;
+
+      var promise   = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
+
+      promise.success(function () {
+        userObj.drugs.push(drug);
+
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+      });
+
+      promise.error(function () {
+        $rootScope.loading = false;
+
+        notify.showAlert('Error adding drug', 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     *
+     * @return {IHttpPromise&lt;T>|*|{}}
+     */
+    function editDrug(drug, cb) {
+      $rootScope.loading = true;
+
+      var promise   = $http.patch('/user/' + $cookies.get('uid') + '/cabinet/' + drug.id, drug);
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
+
+      promise.success(function () {
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+      });
+
+      promise.error(function () {
+        $rootScope.loading = false;
+
+        notify.showAlert('Error adding drug', 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * Delete a drug from your drug cabinet.
+     *
+     * @memberof user
+     *
+     * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
+     * @param {Function} [cb] - callback function
+     */
+    function deleteCabinetDrug(drugId, cb) {
+      $rootScope.loading = true;
+
+      var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
+
+      userObj.drugs = userObj.drugs || {};
+
+      promise.success(function () {
+        _.remove(userObj.drugs, function (drug) {
+          return drug.id === drugId;
+        });
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully removed from you cabinet', 'success');
+
+        $rootScope.loading = false;
+      });
+
+      promise.error(function () {
+        notify.showAlert('Error deleting drug', 'danger');
+
+        $rootScope.loading = false;
+      });
+
+      return promise;
+    }
+
+    /**
+     * Authenticate the user with the browser.
+     * Displays the correct alert message and sets loadings to false.
+     *
+     * @memberof user
+     *
+     * @param {Object} data - the data returned from the login call.
+     *
+     * @private
+     */
+    function _authenticate(data) {
+      if (data.code) {
+        notify.showAlert(messages[data.code], 'danger');
+
+        $rootScope.loading = false;
+      }
+      else {
+        _userLoggedIn(data.toLowerCase());
+
+        $rootScope.loading = false;
+      }
+    }
+
+    /**
+     * Sets the cookies for the authenticated user.
+     *
+     * @memberof {Object} user - the user object returned from the login call.
+     *
+     * @private
+     */
+    function _userLoggedIn(data) {
+      var expireDate = moment().add(30, 'minutes').toDate();
+
+      $cookies.put('uid', data, {expires: expireDate});
+
+      getDetails();
+
+      $state.go('main.cabinet', {}, {reload: true});
+    }
+  }
+
+})();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Modules</h3><ul><li><a href="module-rex.html">rex</a></li></ul><h3>controller</h3><ul><li><a href="AddDrugModalCtrl.html">AddDrugModalCtrl</a></li><li><a href="AppCtrl.html">AppCtrl</a></li><li><a href="CabinetCtrl.html">CabinetCtrl</a></li><li><a href="DrugProfileCtrl.html">DrugProfileCtrl</a></li><li><a href="HomeCtrl.html">HomeCtrl</a></li><li><a href="LoginCtrl.html">LoginCtrl</a></li><li><a href="MainCtrl.html">MainCtrl</a></li><li><a href="PregnancyCtrl.html">PregnancyCtrl</a></li><li><a href="RecallsCtrl.html">RecallsCtrl</a></li><li><a href="RemoveDrugModal.html">RemoveDrugModal</a></li><li><a href="Search.html">Search</a></li><li><a href="SearchResults.html">SearchResults</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="UserProfileCtrl.html">UserProfileCtrl</a></li><li><a href="UsesCtrl.html">UsesCtrl</a></li><li><a href="WarningsCtrl.html">WarningsCtrl</a></li></ul><h3>directive</h3><ul><li><a href="appFooter.html">appFooter</a></li><li><a href="appHeader.html">appHeader</a></li><li><a href="appSection.html">appSection</a></li><li><a href="backButton.html">backButton</a></li><li><a href="card.html">card</a></li><li><a href="cardFade.html">cardFade</a></li><li><a href="drugCard.html">drugCard</a></li><li><a href="drugTabs.html">drugTabs</a></li><li><a href="plusButton.html">plusButton</a></li><li><a href="rexgAutofocus.html">rexgAutofocus</a></li><li><a href="searchInput.html">searchInput</a></li><li><a href="userIcon.html">userIcon</a></li></ul><h3>constant</h3><ul><li><a href="CONST.html">CONST</a></li></ul><h3>factory</h3><ul><li><a href="drugs.html">drugs</a></li><li><a href="modals.html">modals</a></li><li><a href="notify.html">notify</a></li><li><a href="user.html">user</a></li><li><a href="util.html">util</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> 
+    using <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template </a> 
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+<script>
+  // scroll to the current document navigation
+  var href=window.location.href.match(/\/([^\/]+$)/)[1];
+  if (currentNav = document.querySelector("nav a[href='"+href+"']"))
+    currentNav.scrollIntoView(true);
+  // scroll to the top of the document
+  if (window.location.hash == "")
+    document.querySelector("body").scrollIntoView(true);
+  // adjust the width of main section by navigation width
+  var navWidth = document.querySelector('nav').getBoundingClientRect().width;
+  var mainWidth = document.querySelector('#main').getBoundingClientRect().width;
+  document.querySelector('#main').style.width = (mainWidth - navWidth)+'px';
+</script>
+</body>
+</html>

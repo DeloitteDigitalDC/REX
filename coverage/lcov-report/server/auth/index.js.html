@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for server/auth/index.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">server/auth/index.js</span></h1>
+    <h2>
+        Statements: <span class="metric">34.04% <small>(16 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">8.33% <small>(1 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">11.11% <small>(2 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">34.04% <small>(16 / 47)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">server/auth/</a> &#187; index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+module.exports = function (app) {
+  var session       = require('express-session'),
+      FileStore     = require('session-file-store')(session),
+      passport      = require('passport'),
+      LocalStrategy = require('passport-local').Strategy,
+      bcrypt        = require('bcrypt'),
+      $q            = require('q'),
+      db            = require('../db'),
+      md5           = require('MD5');
+&nbsp;
+&nbsp;
+  //FIXME: Comments on all these functions
+&nbsp;
+//Session Storage
+  app.use(session({
+    store            : new FileStore({
+      path: './server/auth/sessions'  //Might want to move this somewhere else or use MemoryStore
+    }),
+    secret           : 'f14b78ecf1cc7e0979d4fd757d7bb68ec27b2a86', //FIXME: change this for PROD, but not actually hashing password
+    resave           : true,
+    saveUninitialized: true,
+    cookie           : {
+      maxAge: 1800000,
+      secure: false,
+      httpOnly: false
+    }
+  }));
+&nbsp;
+//Authentication
+  app.use(passport.initialize());
+  app.use(passport.session());
+&nbsp;
+  passport.use(new LocalStrategy(<span class="fstat-no" title="function not covered" >function (username, password, done) {</span>
+<span class="cstat-no" title="statement not covered" >    db.get('SELECT id, username, password FROM users WHERE username = ?', username.toLowerCase(), <span class="fstat-no" title="function not covered" >function (err, row) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (!row) {</span>
+<span class="cstat-no" title="statement not covered" >        return done(null, false, {message: 'User not found.'});</span>
+      }
+<span class="cstat-no" title="statement not covered" >      bcrypt.compare(password, row.password, <span class="fstat-no" title="function not covered" >function (err, res) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (res) {</span>
+<span class="cstat-no" title="statement not covered" >          return done(null, row);</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          return done(null, false, {message: 'Incorrect password.'});</span>
+        }
+      });
+    });
+  }));
+&nbsp;
+  passport.serializeUser(<span class="fstat-no" title="function not covered" >function (user, done) {</span>
+<span class="cstat-no" title="statement not covered" >    return done(null, user.id);</span>
+  });
+&nbsp;
+  passport.deserializeUser(<span class="fstat-no" title="function not covered" >function (id, done) {</span>
+<span class="cstat-no" title="statement not covered" >    db.get('SELECT id, username FROM users WHERE id = ?', id, <span class="fstat-no" title="function not covered" >function (err, row) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (!row) {</span>
+<span class="cstat-no" title="statement not covered" >        return done(null, false);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      return done(null, row);</span>
+    });
+  });
+&nbsp;
+  app.post('/user/login', passport.authenticate('local'), <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    res.status(200).send(req.body.username);</span>
+  });
+&nbsp;
+  app.get('/user/logout', <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    req.session.destroy(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      res.clearCookie('connect.sid', {path: '/'});</span>
+<span class="cstat-no" title="statement not covered" >      res.redirect('/');</span>
+    });
+  });
+&nbsp;
+&nbsp;
+  app.post('/user/create', <span class="fstat-no" title="function not covered" >function (req, res) {</span>
+<span class="cstat-no" title="statement not covered" >    checkUserExists(req.body.username).then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >      bcrypt.genSalt(10, <span class="fstat-no" title="function not covered" >function (err, salt) {</span></span>
+<span class="cstat-no" title="statement not covered" >        bcrypt.hash(req.body.password, salt, <span class="fstat-no" title="function not covered" >function (err, hash) {</span></span>
+<span class="cstat-no" title="statement not covered" >          db.run('INSERT INTO users (username, password, salt, nickName, gravatarHash) VALUES(?, ?, ?, ?, ?)',</span>
+            req.body.username.toLowerCase(),
+            hash,
+            salt,
+            req.body.firstName,
+            md5(req.body.username.toLowerCase()));
+<span class="cstat-no" title="statement not covered" >          res.status(201).send('User ' + req.body.username + ' Created');</span>
+        });
+      });
+    }, <span class="fstat-no" title="function not covered" >function () {</span>
+      //TODO: More verbose error handling
+<span class="cstat-no" title="statement not covered" >      res.status(400).send();</span>
+    });
+&nbsp;
+  });
+&nbsp;
+  /**
+   * Checks to see if the username already exists in the database.
+   * @param username
+   * @returns promise
+   */
+<span class="fstat-no" title="function not covered" >  function checkUserExists(username) {</span>
+<span class="cstat-no" title="statement not covered" >    var usercheckPromise = $q.defer();</span>
+<span class="cstat-no" title="statement not covered" >    db.get('SELECT id, username FROM users WHERE username = ?', username, <span class="fstat-no" title="function not covered" >function (err, row) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (err) {</span>
+<span class="cstat-no" title="statement not covered" >        console.error(err);</span>
+      }
+<span class="cstat-no" title="statement not covered" >      if (row) {</span>
+<span class="cstat-no" title="statement not covered" >        usercheckPromise.reject(row);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        usercheckPromise.resolve();</span>
+      }
+    });
+<span class="cstat-no" title="statement not covered" >    return usercheckPromise.promise;</span>
+  }
+&nbsp;
+  /**
+   * Simple Route middleware to cehck for authentication
+   * @param req
+   * @param res
+   * @param next
+   * @returns {*}
+   */
+  function ensureAuthenticated(req, res, next) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (req.isAuthenticated()) {
+<span class="cstat-no" title="statement not covered" >      return next();</span>
+    }
+    //TODO: More verbose error handling
+    res.status(401).send();
+  }
+&nbsp;
+  return {
+    passport           : passport,
+    ensureAuthenticated: ensureAuthenticated
+  };
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jul 01 2015 10:33:52 GMT-0400 (EDT)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
