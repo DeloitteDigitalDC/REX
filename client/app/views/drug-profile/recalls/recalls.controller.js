@@ -67,6 +67,7 @@
      */
     function _dateFormatter(badDate) {
       var formattedDate = moment(badDate, 'YYYYMMDD');
+
       return formattedDate.toDate();
     }
 

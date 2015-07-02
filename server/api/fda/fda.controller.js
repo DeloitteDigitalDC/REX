@@ -1,20 +1,27 @@
 'use strict';
 
+/**
+ * @namespace fda.controller
+ */
+
 var request = require('request'),
     config  = require('../../config'),
+    utils   = require('../../utils'),
     fdaUrl  = config.fdaUrl,
     apiKey  = config.fdaKey;
 
 var fda = {};
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
- * @param {Object} res - the response object
+ * @param {Object} res - the response objects
  *
- * @description
- * Get event data for and of the fda categories
+ * @example
+ * router.get('/:type/event', auth.ensureAuthenticated,  ctrl.getEvent);
  */
 fda.getEvent = function getEvent(req, res) {
   var qs     = req.query,
@@ -28,34 +35,28 @@ fda.getEvent = function getEvent(req, res) {
   };
 
   request(fdaUrl + params.type + '/event.json', opts, function (err, response, body) {
-    var data;
-
-    try {
-      data = JSON.parse(body);
-    }
-    catch(e) {
-      data = body;
-    }
-
-    res.send(data);
+    res.send(utils.confirmJSON(body));
   });
 };
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
  * @param {Object} res - the response object
  *
- * @description
- * Get label information from open FDA data. Dedupe fda data for cleaner results
+ * @example
+ * router.get('/:type/label', auth.ensureAuthenticated,  ctrl.getLabel);
  */
 fda.getLabel = function getLabel(req, res) {
   var qs     = req.query,
-      params = req.params;
+      params = req.params,
+      flags  = [];
 
-  qs.search = decodeURI(qs.search);
-
+  qs.search  = decodeURI(qs.search);
+  qs.alerts  = qs.alerts || '';
   qs.api_key = qs.api_key || apiKey;
 
   var opts = {
@@ -63,61 +64,37 @@ fda.getLabel = function getLabel(req, res) {
     keepAlive: true
   };
 
+  flags = opts.qs.alerts.split(':');
+
+  delete opts.qs.alerts;
+
   // Make the request for the label information
   request(fdaUrl + params.type + '/label.json', opts, function (err, response, body) {
-    var data, length, uniqueNames = [], uniqueResults = [], currentResult, currentName;
+    var data = utils.confirmJSON(body);
 
-    // Make sure that the data coming back is JSON
-    try {
-      data = JSON.parse(body);
-    }
-    catch(e) {
-      data = body;
-    }
-
-    // Make sure a undefined does break the length
-    try {
-      length = data.results.length;
-    }
-    catch(e) {
-      length = 0;
-    }
-
-    // Dedupe the
-    (function unique(i) {
-      if(i < length) {
-        currentResult = data.results[i];
-
-        try {
-          currentName = currentResult.openfda.brand_name[0];
-        }
-        catch(e) {
-          currentName = null;
-        }
-
-        if(currentName && uniqueNames.indexOf(currentName) < 0) {
-          uniqueNames.push(currentName);
-          uniqueResults.push(currentResult);
-        }
-
-        unique(++i);
+    // See if any alerts need to be checked
+    flags.forEach(function (flag) {
+      try {
+        require('./alerts/' + flag)(data.results);
       }
-    })(0);
-
-    data.results = uniqueResults;
+      catch (e) {
+      }
+    });
 
     res.send(data);
   });
 };
 
 /**
+ * Get event data for and of the fda categories
+ *
  * @memberof fda.controller
  *
  * @param {Object} req - the request object
  * @param {Object} res - the response object
  *
- * @description
- * Get event data for and of the fda categories
+ * @example
+ * router.get('/:type/enforcement', auth.ensureAuthenticated,  ctrl.getEnforcement);
  */
 fda.getEnforcement = function getEnforcement(req, res) {
   var qs     = req.query,
@@ -133,16 +110,7 @@ fda.getEnforcement = function getEnforcement(req, res) {
   };
 
   request(fdaUrl + params.type + '/enforcement.json', opts, function (err, response, body) {
-    var data;
-
-    try {
-      data = JSON.parse(body);
-    }
-    catch(e) {
-      data = body;
-    }
-
-    res.send(data);
+    res.send(utils.confirmJSON(body));
   });
 };
 

@@ -10,12 +10,17 @@ describe('Controller:RemoveDrugModalCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($injector) {
     RemoveDrugModalCtrl = $injector.get('$controller')('RemoveDrugModalCtrl', {
-      $modalInstance: {}
+      $mdDialog: {
+        hide: function() {},
+        cancel: function() {}
+      }
     });
   }));
 
-  it('condition of test', function () {
+  it('should submit or cancel without error', function () {
+    RemoveDrugModalCtrl.submitDrugForm();
 
+    RemoveDrugModalCtrl.cancel();
   });
 
 });

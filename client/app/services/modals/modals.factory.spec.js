@@ -12,8 +12,20 @@ describe('factory:modals', function () {
     modals = $injector.get('modals');
   }));
 
-  it('condition of test', function () {
+  it('should display the add drug modal', function () {
+    modals.addDrug(null, {
+      name: 'Advil'
+    })
+  });
 
+  it('should display the edit drug modal', function () {
+    modals.editDrug(null, {
+      name: 'Advil'
+    })
+  });
+
+  it('should display the remove drug modal', function () {
+    modals.removeDrug(null)
   });
 
 });

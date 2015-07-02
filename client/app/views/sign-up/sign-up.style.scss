@@ -1,11 +1,25 @@
 @media #{$lessThanTablet} {
-  .sign-up  form {
+  .sign-up form {
     .have-account {
       display: block;
       text-align: center;
-      margin-top : 15px;
-      a, div{
+      margin-top: 15px;
+
+      a, div {
         display: inline-block;
+      }
+    }
+  }
+
+  .sign-up {
+    .loader {
+      position: absolute;
+      top: 0;
+      right: -50px;
+
+      &::after {
+        height: 55px;
+        width: 55px;
       }
     }
   }

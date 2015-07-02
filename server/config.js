@@ -6,12 +6,13 @@
  * @description
  * constants to be used all over the application
  */
-var chalk = require('chalk');
+var chalk = require('chalk'),
+    path = require('path'),
+    settings;
 
-var settings;
 
 try {
-  settings = require('./settings.json');
+  settings = require(path.resolve(__dirname,'settings.json'));
 }
 catch(e) {
   settings = {};
@@ -32,19 +33,10 @@ module.exports = {
     return key;
   })(),
 
-  // the firebase instance to use
-  firebase:(function() {
-    var fb = process.env.FIREBASE || settings.FIREBASE;
-
-    if(!fb) {
-      throw new Error(chalk.bgRed(chalk.black(' No Firebase has been defined. Go to firebase.com and create a free account. ')));
-    }
-
-    return fb;
-  })(),
-
   // the location of the front end application
   appDir: __dirname + '/../client',
 
-  port: process.env.PORT || settings.PORT || 3000
+  port: process.env.PORT || settings.PORT || 3000,
+
+  sqliteLocation: process.env.SQLITELOCATION || settings.SQLITELOCATION || path.resolve(__dirname, 'db','database.sqlite3')
 };

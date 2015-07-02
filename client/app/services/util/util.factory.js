@@ -16,18 +16,18 @@
 
   function util() {
     return {
-      createBasicQry: createBasicQry,
+      createBasicQry       : createBasicQry,
       createSingleSearchQry: createSingleSearchQry
     };
 
     /**
-     * Create string for drug query.  Intended for use when you are doing a search on all drugs in your cabinet (or future features that use lists of drugs)
+     * Create string for drug query.
+     * Intended for use when you are doing a search on all drugs in your cabinet (or future features that use lists of drugs)
      *
      * @memberof util
      *
      * @param {Object} drugs - list of drugs
      *
-     * create string for drug query
      */
     function createBasicQry(drugs) {
       var string = 'openfda.brand_name:';
@@ -35,14 +35,36 @@
       for (var drug in drugs) {
         if (drugs.hasOwnProperty(drug)) {
           if (drugs[drug]) {
-            string = string + encodeURIComponent(drugs[drug].name) + '+';
+            var qryReadyDrug = checkForStopWords(drugs[drug].name);
+            string           = string + encodeURIComponent(qryReadyDrug) + '+';
           }
         }
       }
       _.trimRight(string, '+');
-      string = '(' + string + ')';
+      string = '(' + string + ')'; //+AND+status:Ongoing';
 
       return string;
+    }
+
+    /**
+     * Remove stop words that break FDA API query
+     *
+     * @memberof util
+     *
+     * @param {String} name - drug name
+     *
+     */
+    function checkForStopWords(name) {
+      var words = _.words(name);
+      var str = '';
+
+      _.forEach(words, function (word) {
+        if (word.toUpperCase() !== 'AND') {
+          str = str + ' ' + word ;
+        }
+      });
+
+      return _.trim(str);
     }
 
 
@@ -56,10 +78,7 @@
      * @returns {String}
      */
     function createSingleSearchQry(searchTerms) {
-
-      var qry = '(' + 'openfda.brand_name:"' +searchTerms+ '")';
-
-      return qry;
+      return '(' + 'openfda.brand_name:"' + searchTerms + '")';
     }
   }
 

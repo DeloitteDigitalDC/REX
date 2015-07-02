@@ -6,7 +6,9 @@
  * @name backButton
  *
  * @description
- * directive for rex
+ * back button to be used in the drug profile
+ *
+ * @example <back-button></back-button>
  */
 (function() {
 
@@ -18,19 +20,26 @@
     return {
       restrict: 'EA',
       templateUrl: 'app/components/back-button/back-button.directive.html',
-      scope: {
-      },
+      scope: {},
       link: link
     };
 
-    function link($scope) {
-      $scope.goBack = function(){
+    function link(scope) {
+      scope.goBack = goBack;
+
+      /**
+       * Go back based on the current state
+       *
+       * @memberof backButton
+       */
+      function goBack(){
         if ($state.includes('main.search.**')) {
           $state.go('main.search.searchResults');
-        } else {
+        }
+        else {
           $state.go('main.cabinet');
         }
-      };
+      }
     }
   }
 

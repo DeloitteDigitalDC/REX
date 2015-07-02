@@ -1,17 +1,17 @@
 <div class="drug-tabs">
-  <div ui-sref-active-eq="active">
+  <div tabindex="100" ui-sref-active="active" class="active">
     <a ng-if="!inSearch" ui-sref="main.drugProfile.uses({name : drugName})">Uses</a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.uses({name : drugName})">Uses</a>
   </div>
-  <div ui-sref-active-eq="active">
+  <div tabindex="101" ui-sref-active="active">
     <a ng-if="!inSearch" ui-sref="main.drugProfile.warnings({name : drugName})">Warnings</a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.warnings({name : drugName})">Warnings</a>
   </div>
-  <div ui-sref-active-eq="active">
+  <div tabindex="102" ui-sref-active="active">
     <a ng-if="!inSearch" ui-sref="main.drugProfile.recalls({name : drugName})">Recalls</a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.recalls({name : drugName})">Recalls</a>
   </div>
-  <div ui-sref-active-eq="active">
+  <div tabindex="103" ui-sref-active="active">
     <a ng-if="!inSearch" ui-sref="main.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
     <a ng-if="inSearch" ui-sref="main.search.drugProfile.pregnancy({name : drugName})">Pregnancy <span class="hidden-xs" >& Breastfeeding</span></a>
   </div>

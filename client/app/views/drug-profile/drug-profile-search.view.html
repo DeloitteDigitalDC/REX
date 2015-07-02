@@ -1,0 +1,37 @@
+<section class="drug-profile profile-shared search-results">
+
+  <app-section class="bg-pills" ng-class="{'display-alert': drugProfile.displayAlert}">
+    <back-button></back-button>
+
+    <card class="clearfix">
+      <section class="card-section">
+
+        <div class="cabinet-buttons" ng-class="{'in-cabinet': drugProfile.inCabinet}">
+          <a ui-sref="main.search.drugProfile.pregnancy({name : drugProfile.drugName})" class="drug-alert">
+            {{ drugProfile.drugData.pregnancy_or_breast_feeding ? drugProfile.drugData.pregnancy_or_breast_feeding[0] : 'No data available.' }}
+          </a>
+
+          <button tabindex="2" class="rex-button pull-right add" ng-click="drugProfile.addCabinetDrug($event)">
+            ADD TO MY CABINET
+          </button>
+
+          <button class="rex-button pull-right in" disabled>IN CABINET</button>
+        </div>
+
+        <h1>{{drugProfile.drugName}}</h1>
+
+        <drug-tabs drug-name="drugProfile.drugName"></drug-tabs>
+
+      </section>
+      <hr>
+      <section class="card-section">
+        <div ui-view></div>
+      </section>
+    </card>
+
+    <div class="clearfix"></div>
+
+    <br>
+
+  </app-section>
+</section>

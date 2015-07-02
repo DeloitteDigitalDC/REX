@@ -1,7 +1,9 @@
+md-dialog {
+  min-width: 300px;
+}
+
 .rex-modal {
-  .rex-modal-body,
-  .rex-modal-header,
-  .rex-modal-footer {
-    padding: 15px;
+  .form-group:last-child {
+    margin-bottom: 0;
   }
 }

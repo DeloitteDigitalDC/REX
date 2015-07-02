@@ -11,16 +11,18 @@
           templateUrl : 'app/views/drug-profile/warnings/warnings.view.html',
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
-          title       : 'Warnings',
-          headerState : 'loggedIn'
+          title       : 'Drug Details - Warnings',
+          headerState : 'loggedIn',
+          noScroll    : true
         })
         .state('main.search.drugProfile.warnings', {
           url         : '/warnings',
           templateUrl : 'app/views/drug-profile/warnings/warnings.view.html',
           controller  : 'WarningsCtrl',
           controllerAs: 'warnings',
-          title       : 'Warnings',
+          title       : 'Drug Details - Warnings',
           headerState : 'loggedIn',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,

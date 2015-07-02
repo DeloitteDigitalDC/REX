@@ -14,7 +14,7 @@
           title       : 'Main',
           resolve     : {
             userDetails: function (user, $cookies, $q) {
-              if (!$cookies.get('token')) {
+              if (!$cookies.get('uid')) {
                 var deferred = $q.defer();
 
                 deferred.resolve({});
@@ -22,7 +22,7 @@
                 return deferred.promise;
               }
               else {
-                return user.details();
+                return user.getDetails();
               }
             }
           }

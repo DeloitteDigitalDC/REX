@@ -16,21 +16,11 @@
 
   function CabinetCtrl(drug, util, user, $state) {
     var vm = this;
+    var recalls;
 
     vm.search = search;
 
-    var recalls;
-
     init();
-
-    /**
-     * go to the search page
-     *
-     * @memberof CabinetCtrl
-     */
-    function search() {
-      $state.go('main.search');
-    }
 
     /**
      * @memberof CabinetCtrl
@@ -42,20 +32,27 @@
     }
 
     /**
-     * @memberof CabinetCtrl
+     * go to the search page
      *
-     * @description create string and query for recalls
+     * @memberof CabinetCtrl
+     */
+    function search() {
+      $state.go('main.search.searchResults');
+    }
+
+
+    /**
+     * create string and query for recalls
+     *
+     * @memberof CabinetCtrl
      *
      * @private
      */
     function _queryRecalls() {
       var query = util.createBasicQry(vm.drugs);
 
-      //TODO: add status:ongoing -- this isnt working with our API right now
-      // var searchTerm = '(' + _.trimRight(query, '+') +')+AND+status:Ongoing';
-
-      drug.enforce({search: query, limit: 100}).success(function (res) {
-        recalls = res.results;
+      drug.enforce({search: query, limit: 100}).then(function (res) {
+        recalls = res.results || res.data.results;
 
         _compareRecalls();
       });
@@ -70,7 +67,6 @@
       _.forEach(vm.drugs, function (drug) {
         if (drug) {
           _.forEach(recalls, function (recall) {
-
             if (recall.openfda.brand_name) {
               if ((recall.openfda.brand_name[0]).toUpperCase() === (drug.name).toUpperCase()) {
                 drug.recalled = true;

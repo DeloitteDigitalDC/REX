@@ -9,17 +9,22 @@ describe('Controller:LoginCtrl', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($injector ) {
     $httpBackend = $injector.get('$httpBackend');
-    LoginCtrl = $injector.get('$controller')('LoginCtrl');
-  }));
+    LoginCtrl   = $injector.get('$controller')('LoginCtrl');
 
-  it('hits login enpoint', function () {
-    $httpBackend.whenPOST('/user/login').respond(200, {
+    $httpBackend.whenPOST('/user/login').respond(200, 'foo@username.com');
+
+    $httpBackend.whenGET('/user/foo@username.com/details/').respond(200, {
       data: {
-        nickName: 'Foo'
+        nickName: 'Danny',
+        drugs: [{
+          name: 'Advil'
+        }]
       }
     });
+  }));
 
-    LoginCtrl.login('user@mail.com', 'helloWOrld@1');
+  it('hits login endpoint', function () {
+    LoginCtrl.login();
 
     $httpBackend.flush();
   });

@@ -2,13 +2,13 @@
 
 .home {
   .bg-image {
-    .app-section{
+    .app-section {
       background-color: rgba(0, 0, 0, 0.6);
       padding: 50px 20px 10px 20px;
     }
 
-    app-section{
-      padding:0;
+    app-section {
+      padding: 0;
       color: white;
     }
     hr {
@@ -16,11 +16,11 @@
     }
   }
 
-  .bg-lighter-gray {
+  .bg-lighter-gray, .bg-pills {
     padding: 80px 20px;
   }
 
-  p.margin-bottom{
+  p.margin-bottom {
     margin-bottom: 40px;
   }
 
@@ -31,19 +31,49 @@
   .card {
     margin: 20px auto;
     height: 240px;
-      p{
+    border: 0px;
+    position: relative;
+    h4{
+      font-weight: 400;
+      font-size: 1.2em;
+    }
+    p {
       margin-top: 20px;
     }
-    .rex-button{
-      width: 60%;
-      float: right;
-      margin-top: 20px;
+    hr{
+      margin-left: 0;
+      margin-top: 15px;
+      border-color: $lighterGray;
+    }
+    .rex-button {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      left:0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      text-align: right;
+      font-weight: 400;
+
+      &.gray-button{
+        background-color: $medGray;
+        border-color: $medGray;
+
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: $gray;
+          border-color: $gray;
+        }
+
+      }
     }
   }
 }
+
 @media #{$lessThanBigScreen} {
   .home {
-    .card{
+    .card {
       height: 260px;
 
     }
@@ -52,18 +82,16 @@
 
 @media #{$lessThanDesktop} {
   .home {
-    .card{
+    .card {
       height: 320px;
-      .rex-button {
-        width: 100%;
-      }
+
     }
   }
 }
 
 @media #{$lessThanTablet} {
   .home {
-    .card{
+    .card {
       height: 230px;
     }
   }
@@ -71,15 +99,12 @@
 
 @media #{$lessThanSmall} {
   .home {
-    .card{
+    .card {
       height: 240px;
 
-      .rex-button {
-        width: 100%;
-      }
     }
 
-    .bg-lighter-gray {
+    .bg-lighter-gray, .bg-pills {
       padding: 35px 0;
     }
   }

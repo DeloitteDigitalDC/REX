@@ -11,15 +11,17 @@
           templateUrl : 'app/views/drug-profile/recalls/recalls.view.html',
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
-          title       : 'Recalls',
-          headerState : 'loggedIn'
+          title       : 'Drug Details - Recalls',
+          headerState : 'loggedIn',
+          noScroll    : true
         })
         .state('main.search.drugProfile.recalls', {
           url         : '/recalls',
           templateUrl : 'app/views/drug-profile/recalls/recalls.view.html',
           controller  : 'RecallsCtrl',
           controllerAs: 'recalls',
-          title       : 'Recalls',
+          title       : 'Drug Details - Recalls',
+          noScroll    : true,
           buttonData  : {
             display: true,
             open   : true,

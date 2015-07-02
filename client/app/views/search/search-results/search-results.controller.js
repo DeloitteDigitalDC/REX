@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:SearchResults
+ * @name SearchResults
  *
  * @description
  * Controller for rex
@@ -14,11 +14,7 @@
     .module('rex')
     .controller('SearchResultsCtrl', SearchResultsCtrl);
 
-  function SearchResultsCtrl() {
-    var vm = this;
-
-    vm.awesomeThings = ['Yeoman', 'Angular', 'Bower', 'Grunt'];
-  }
+  function SearchResultsCtrl() { }
 
 })();
 

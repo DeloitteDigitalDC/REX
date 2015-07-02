@@ -6,7 +6,12 @@
  * @name searchInput
  *
  * @description
- * directive for rex
+ * Drug search input
+ *
+ * @property {Array} searchResults - the results of the search
+ * @property {Boolean} noResults - returns true if no results are found
+ *
+ * @example <search-input searchResults="view.results" noResults="view.noResults"></search-input>
  */
 (function () {
 
@@ -56,7 +61,7 @@
         var drugSearch = drug.labelsSearch({search: query, limit: 100});
 
         drugSearch.success(function (res) {
-          scope.searchResults = res.results;
+          scope.searchResults = res.results || [];
 
           if (scope.searchResults.length === 0) {
             scope.noResults = true;

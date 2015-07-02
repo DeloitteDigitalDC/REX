@@ -9,5 +9,10 @@ var createPath = function (name) {
 };
 
 tests.forEach(function (test) {
-  require(createPath(test));
+  try {
+    require(createPath(test));
+  }
+  catch(e) {}
 });
+
+require('../utils/utils.spec.js');

@@ -11,11 +11,11 @@
           templateUrl : 'app/views/cabinet/cabinet.view.html',
           controller  : 'CabinetCtrl',
           controllerAs: 'cabinet',
-          title       : 'Cabinet',
+          title       : 'Drug Cabinet',
           buttonData  : {
             display: true,
             open   : false,
-            link   : 'main.search'
+            link   : 'main.search.searchResults'
           }
         });
     });

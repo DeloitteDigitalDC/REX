@@ -26,18 +26,19 @@
 
   function user($http, $state, modals, notify, CONST, $cookies, $q, $rootScope) {
     var messages = CONST.messages,
-        cookies  = ['uid', 'token'],
         userObj  = {};
 
     return {
       login            : login,
       logout           : logout,
       createUser       : createUser,
-      details          : details,
+      getDetails       : getDetails,
+      setDetails       : setDetails,
       getCabinetDrugs  : getCabinetDrugs,
       addCabinetDrug   : addCabinetDrug,
       addDrug          : addDrug,
-      deleteCabinetDrug: deleteCabinetDrug
+      deleteCabinetDrug: deleteCabinetDrug,
+      editDrug         : editDrug
     };
 
     /**
@@ -49,12 +50,16 @@
      * @param {String} password - the password
      */
     function login(username, password) {
-      $rootScope.loading = true;
-
       var promise = $http.post('/user/login', {username: username, password: password});
 
       promise.success(function (data) {
         _authenticate(data);
+      });
+
+      promise.error(function (data, status) {
+        if (status === 401) {
+          notify.showAlert('Incorrect username or password', 'danger');
+        }
       });
 
       return promise;
@@ -66,11 +71,16 @@
      * @memberof user
      */
     function logout() {
-      _.forEach(cookies, function (cookie) {
-        $cookies.remove(cookie);
-      });
+      var logoutPromise = $http.get('/user/logout');
 
-      $state.go('main.home', {}, {reload: true});
+      logoutPromise.success(function () {
+        $cookies.remove('uid');
+        $cookies.remove('connect.sid');
+
+        userObj = {};
+
+        $state.go('main.home', {}, {reload: true});
+      });
     }
 
     /**
@@ -83,12 +93,16 @@
      * @memberof user
      */
     function createUser(username, password, firstName) {
-      $rootScope.loading = true;
-
       var promise = $http.post('/user/create', {username: username, password: password, firstName: firstName});
 
-      promise.success(function (data) {
-        _authenticate(data);
+      promise.success(function () {
+        login(username, password);
+      });
+
+      promise.error(function (data, status) {
+        if (status === 400) {
+          notify.showAlert('Username already exists', 'danger');
+        }
       });
 
       return promise;
@@ -101,11 +115,11 @@
      * @memberof user
      *
      * @example
-     * user.details().then(function (data) {
+     * user.getDetails().then(function (data) {
      *   console.log(data);
      * })
      */
-    function details() {
+    function getDetails() {
       var deferred;
 
       if (userObj.data) {
@@ -119,7 +133,7 @@
         deferred = $http.get('/user/' + $cookies.get('uid') + '/details/');
 
         deferred.success(function (data) {
-          userObj.data = data;
+          userObj = data.data;
         });
 
         return deferred;
@@ -127,7 +141,26 @@
     }
 
     /**
+     * set details for a given user
      *
+     * @memberof user
+     *
+     * @example
+     * user.setDetails().then(function (data) {
+     *   console.log(data);
+     * })
+     */
+    function setDetails(details) {
+      var deferred = $http.patch('/user/' + $cookies.get('uid') + '/details/', details);
+
+      deferred.success(function () {
+        _.extend(userObj.pregnant, details.pregnant); // attach the new data to the userObj
+      });
+
+      return deferred;
+    }
+
+    /**
      * return just the drug data from the cached user object.
      *
      * @memberof user
@@ -135,11 +168,9 @@
     function getCabinetDrugs() {
       userObj = userObj || {};
 
-      userObj.data = userObj.data || {};
+      userObj.drugs = userObj.drugs || [];
 
-      console.log(userObj);
-
-      return userObj.data.drugs;
+      return userObj.drugs;
     }
 
     /**
@@ -147,11 +178,12 @@
      *
      * @memberof user
      *
+     * @param {Object} evt - the click event
      * @param {Drug} drug - the drug to add to your cabinet
      * @param {Function} [cb] - optional callback
      */
-    function addCabinetDrug(drug, cb) {
-      var modal = modals.addDrug(drug).result;
+    function addCabinetDrug(evt, drug, cb) {
+      var modal = modals.addDrug(evt, drug);
 
       modal.then(function (data) {
         addDrug(data, cb);
@@ -171,12 +203,12 @@
     function addDrug(drug, cb) {
       $rootScope.loading = true;
 
-      var promise = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+      var promise   = $http.post('/user/' + $cookies.get('uid') + '/cabinet', drug);
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
 
-      userObj.data.drugs = userObj.data.drugs || {};
-
-      promise.success(function (res) {
-        userObj.data.drugs[res.name] = drug;
+      promise.success(function () {
+        userObj.drugs.push(drug);
 
         $rootScope.loading = false;
 
@@ -188,6 +220,42 @@
       });
 
       promise.error(function () {
+        $rootScope.loading = false;
+
+        notify.showAlert('Error adding drug', 'danger');
+      });
+
+      return promise;
+    }
+
+    /**
+     * Saves the drug to the user's cabinet
+     *
+     * @param {Drug} drug - the drug to add to your cabinet
+     * @param {Function} [cb] - optional callback
+     *
+     * @return {IHttpPromise<T>|*|{}}
+     */
+    function editDrug(drug, cb) {
+      $rootScope.loading = true;
+
+      var promise   = $http.patch('/user/' + $cookies.get('uid') + '/cabinet/' + drug.id, drug);
+      console.info(userObj);
+      userObj.drugs = userObj.drugs || [];
+
+      promise.success(function () {
+        $rootScope.loading = false;
+
+        if (cb) {
+          cb();
+        }
+
+        notify.showAlert('Drug successfully added to you cabinet', 'success');
+      });
+
+      promise.error(function () {
+        $rootScope.loading = false;
+
         notify.showAlert('Error adding drug', 'danger');
       });
 
@@ -201,20 +269,22 @@
      *
      * @param {Object} drugId - the firebaseID of the drug to delete from your cabinet
      * @param {Function} [cb] - callback function
-     *
-     * @todo remove $rootScope loading and do something not on the $rootScope
      */
     function deleteCabinetDrug(drugId, cb) {
       $rootScope.loading = true;
 
       var promise = $http.delete('/user/' + $cookies.get('uid') + '/cabinet/' + drugId);
 
-      userObj.data.drugs = userObj.data.drugs || {};
+      userObj.drugs = userObj.drugs || {};
 
       promise.success(function () {
-        delete userObj.data.drugs[drugId];
+        _.remove(userObj.drugs, function (drug) {
+          return drug.id === drugId;
+        });
 
-        if(cb) { cb(); }
+        if (cb) {
+          cb();
+        }
 
         notify.showAlert('Drug successfully removed from you cabinet', 'success');
 
@@ -247,7 +317,7 @@
         $rootScope.loading = false;
       }
       else {
-        _userLoggedIn(data);
+        _userLoggedIn(data.toLowerCase());
 
         $rootScope.loading = false;
       }
@@ -261,15 +331,11 @@
      * @private
      */
     function _userLoggedIn(data) {
-      var expireDate = new Date();
+      var expireDate = moment().add(30, 'minutes').toDate();
 
-      expireDate.setDate(expireDate.getDate() + 1);
+      $cookies.put('uid', data, {expires: expireDate});
 
-      _.forEach(cookies, function (cookie) {
-        $cookies.put(cookie, data[cookie], {expires: expireDate});
-      });
-
-      userObj = data;
+      getDetails();
 
       $state.go('main.cabinet', {}, {reload: true});
     }

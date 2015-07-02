@@ -1,11 +1,10 @@
 <div class="login access-shared">
   <app-section class="text-center bg-white">
-    <h3>What's in your medicine cabinet?</h3>
-    <h2 class="boldest text-teal">Ask Rex.</h2>
+    <h2 class="boldest text-teal">Sign In</h2>
     <hr class="thickest">
   </app-section>
 
-  <app-section class="bg-lighter-gray">
+  <app-section class="bg-pills">
     <alert type="warning" ng-if="LoginCtrl.userInfo.username.$invalid">Username required</alert>
 
     <form class="form" name="LoginCtrl.userInfo" ng-submit="LoginCtrl.login()" novalidate>
@@ -13,7 +12,15 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="username">Username</label>
 
-          <input type="text" class="form-control rex-input" id="username" placeholder="Email" ng-model="LoginCtrl.userInfo.username" required>
+          <input autofocus
+                 class="form-control rex-input"
+                 id="username"
+                 ng-model="LoginCtrl.userInfo.username"
+                 placeholder="Email"
+                 required
+                 tabindex="1"
+                 ng-disabled="LoginCtrl.loading"
+                 type="email">
         </div>
       </div>
 
@@ -21,18 +28,27 @@
         <div class="col-sm-offset-3 col-sm-6">
           <label class="sr-only" for="inputPassword">Password</label>
 
-          <input type="password" class="form-control rex-input" id="inputPassword" placeholder="Password" ng-model="LoginCtrl.userInfo.password" required>
+          <input class="form-control rex-input"
+                 id="inputPassword"
+                 ng-model="LoginCtrl.userInfo.password"
+                 placeholder="Password"
+                 required
+                 tabindex="2"
+                 ng-disabled="LoginCtrl.loading"
+                 type="password">
         </div>
       </div>
 
       <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
-          <button type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$invalid">Sign In</button>
+          <button tabindex="3" type="submit" class="btn rex-button" ng-disabled="LoginCtrl.userInfo.$dirty && LoginCtrl.userInfo.$invalid">Sign In</button>
+
+          <div class="loader" ng-if="LoginCtrl.loading"></div>
         </div>
 
-        <div class="col-sm-3 text-right">
-          <a href="#" class="text-teal forgot">Forgot Password</a>
-        </div>
+        <!--<div class="col-sm-3 text-right">-->
+        <!--<a href="#" class="text-teal forgot">Forgot Password</a>-->
+        <!--</div>-->
       </div>
 
       <div class="row text-right sign-up">

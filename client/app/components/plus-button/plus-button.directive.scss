@@ -1,12 +1,12 @@
-$plus-button-cross-size: 12px;
+$plus-button-cross-size: 32%;
 
 .plus-button {
   transition: transform .2s;
   transform: rotate(0deg);
 
   background-color: $scarlet;
-  height: 48px;
-  width: 48px;
+  height: 54px;
+  width: 54px;
   border-radius: 50%;
   border-width: 0;
   position: relative;
@@ -37,5 +37,9 @@ $plus-button-cross-size: 12px;
 
   &.open {
     transform: rotate(45deg);
+  }
+
+  &.ng-click-active {
+    background: $scarlet - 20;
   }
 }

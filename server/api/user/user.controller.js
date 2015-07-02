@@ -1,46 +1,11 @@
 'use strict';
 
-var fb      = require('../../firebase'),
-    request = require('request'),
-    config  = require('../../config'),
-    md5     = require('MD5'),
-    url     = config.firebase;
-
-var user = {};
-
 /**
- * @memberof user.controller
- *
- * @description
- * login through firebase
+ * @namespace user.controller
  */
-user.login = function (req, res) {
-  var opts = {
-    email   : req.body.username,
-    password: req.body.password
-  };
 
-  fb.login(opts, __success, __error);
-
-  function __success(auth) {
-    request(url + 'users/' + auth.uid + '/.json?auth=' + auth.token, function (err, reslt, body) {
-      try {
-        auth.data = JSON.parse(body);
-      }
-      catch (e) {
-        auth.data = body;
-      }
-
-      auth.success = 'LOGGED_IN';
-
-      res.send(auth);
-    });
-  }
-
-  function __error(err) {
-    res.send(err);
-  }
-};
+var db   = require('../../db');
+var user = {};
 
 /**
  * get the details for the authenticated used;
@@ -51,83 +16,47 @@ user.login = function (req, res) {
  * @param res
  */
 user.getDetails = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '.json?auth=' + req.cookies.token).pipe(res);
+  var userObj = {data: {}};
+
+  db.get('SELECT id, username, nickName, gravatarHash, pregnant FROM users WHERE username = ?', req.params.uid.toLowerCase(), function (err, row) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      userObj.uid        = req.params.uid;
+      userObj.data       = row;
+      userObj.data.email = row.username;
+      db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid, function (err, rows) {
+        if (err) {
+          res.status(500).send(err);
+        } else {
+          userObj.data.drugs = rows;
+          res.send(userObj);
+        }
+      });
+    }
+  });
 };
 
+
 /**
+ * set the details for the authenticated used;
  *
  * @memberof user.controller
  *
  * @param req
  * @param res
- *
- * @description
- * reset a password
  */
-user.resetPassword = function (req, res) {
-  //{
-  //  email: "bobtony@firebase.com",
-  //  oldPassword: "correcthorsebatterystaple",
-  //  newPassword: "shinynewpassword"
-  //}
+user.setDetails = function (req, res) {
 
-  fb.ref.changePassword(req.body, __changedResponse);
-
-  function __changedResponse(err) {
+  db.run('UPDATE USERS SET PREGNANT = ? WHERE USERNAME = ?', req.body.pregnant, req.params.uid.toLowerCase(), function (err) {
     if (err) {
-      res.send(err, 'Error changing password');
-    }
-
-    res.send('Password has been updated!');
-  }
-};
-
-/**
- * @name createUser
- *
- * @memberof user.controller
- *
- * @description
- * create a new user
- */
-user.createUser = function (req, res) {
-  var data = req.body;
-
-  var user = {
-    email   : data.username,
-    password: data.password
-  };
-
-  var details = {
-    nickName    : data.firstName,
-    email       : data.username,
-    gravatarHash: md5(data.username.toLowerCase())
-  };
-
-  // create user
-  fb.ref.createUser(user, function (err, userData) {
-    if (err) {
-      return res.send(err);
-    }
-
-    // if creation is successful log the use in
-    fb.login(user, __success, __error);
-
-    // on successful login update the current users data in the users collection
-    function __success(authData) {
-      request.put(config.firebase + '/users/' + userData.uid + '.json?auth=' + authData.token, {json: details}, function (err, data, body) {
-        authData.success = 'USER_CREATED';
-        authData.data    = body;
-
-        res.send(authData);
-      });
-    }
-
-    function __error(error) {
-      res.send(error);
+      res.status(500).send(err);
+    } else {
+      res.send('updated user');
     }
   });
 };
+
 
 /**
  * get cabinet drugs
@@ -138,10 +67,17 @@ user.createUser = function (req, res) {
  * @param res
  */
 user.getCabinetDrugs = function (req, res) {
-  request(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token).pipe(res);
+  db.all('SELECT * FROM drugs WHERE username = ?', req.params.uid.toLowerCase(), function (err, rows) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.send(rows);
+    }
+  });
 };
 
 /**
+ * Add a drug to the users drug cabinet
  *
  * @memberof user.controller
  *
@@ -149,7 +85,13 @@ user.getCabinetDrugs = function (req, res) {
  * @param res
  */
 user.addCabinetDrug = function (req, res) {
-  request.post(config.firebase + '/users/' + req.params.uid + '/drugs/.json?auth=' + req.cookies.token, {json: req.body}).pipe(res);
+  db.run('INSERT INTO drugs (id, username, name, expirationDate) VALUES (?,?,?,?)',[req.body.id, req.params.uid.toLowerCase(), req.body.name, req.body.expirationDate], function (err) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(201).send('Drug ' + req.body.name + ' Created');
+    }
+  });
 };
 
 /**
@@ -161,10 +103,13 @@ user.addCabinetDrug = function (req, res) {
  * @param res
  */
 user.deleteCabinetDrug = function (req, res) {
-
-  request.del(config.firebase + '/users/' + req.params.uid + '/drugs/'+ req.params.drugId +'.json?auth=' + req.cookies.token).pipe(res);
-
-
+  db.run('delete from drugs where drugs.id = ? AND drugs.username = ?', req.params.drugId, req.params.uid.toLowerCase(), function (err, row) {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send('deleted: ' + row);
+    }
+  });
 };
 
 module.exports = user;

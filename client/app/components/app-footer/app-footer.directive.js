@@ -6,7 +6,9 @@
  * @name appFooter
  *
  * @description
- * directive for rex
+ * main footer of the application
+ *
+ * @example <app-footer></app-footer>
  */
 (function() {
 

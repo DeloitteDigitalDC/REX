@@ -6,21 +6,23 @@
  * @memberof router
  *
  * @description
- * Exposes user endpoints such as logging in and creating
+ * Endpoint for interacting with fda open data api
+ *
+ * @example
+ * GET /user/me@mail.com/cabinet/
+ *
+ * @see fda.controller
  */
-var router = require('express').Router(),
-    ctrl   = require('./user.controller');
+module.exports = function(auth) {
+  var router = require('express').Router(),
+      ctrl   = require('./user.controller');
 
-// account
-router.get('/:uid/details/', ctrl.getDetails);
-router.put('/:email/password/reset', ctrl.resetPassword);
-router.post('/login', ctrl.login);
-router.post('/create', ctrl.createUser);
+  router.get('/:uid/details/', auth.ensureAuthenticated, ctrl.getDetails);
+  router.get('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.getCabinetDrugs);
+  router.post('/:uid/cabinet/', auth.ensureAuthenticated, ctrl.addCabinetDrug);
+  router.delete('/:uid/cabinet/:drugId', auth.ensureAuthenticated, ctrl.deleteCabinetDrug);
+  router.patch('/:uid/details/', auth.ensureAuthenticated, ctrl.setDetails);
 
-// drug cabinet
-router.get('/:uid/cabinet/', ctrl.getCabinetDrugs);
-router.post('/:uid/cabinet/', ctrl.addCabinetDrug);
-router.delete('/:uid/cabinet/:drugId', ctrl.deleteCabinetDrug);
-
-module.exports = router;
+  return router;
+};
 

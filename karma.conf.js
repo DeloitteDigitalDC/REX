@@ -27,7 +27,8 @@ module.exports = function (config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/fastclick/lib/fastclick.js',
       'bower_components/lodash/lodash.js',
-      'bower_components/angular-bootstrap/ui-bootstrap.js',
+      'bower_components/angular-material/angular-material.min.js',
+      'bower_components/moment/moment.js',
       'client/*.html',
       'client/*.js',
       'client/app/{views,components}/**/*.{js,html}',
@@ -38,7 +39,7 @@ module.exports = function (config) {
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9002,
 
     browsers: ['PhantomJS'],
 

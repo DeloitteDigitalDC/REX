@@ -4,15 +4,39 @@ button {
   outline: none;
 }
 
+input[type="text"] {
+  height: auto;
+}
+
+input[type="date"] {
+  min-width: 250px;
+}
+
+input[type="date"]:before {
+  content: 'Expiration Date' !important;
+  color: #aaa;
+  margin-right: 0.5em;
+}
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+  content: "";
+}
+
+input.ng-invalid-pattern {
+  border: solid 1px red;
+}
+
 .rex-input, .rex-button {
-  border-radius: 45px;
+  border-radius: 6px;
   font-size: 1.2em;
-  border: solid 3px $lightGray;
+  border: solid 1px $lightGray ;
+
 }
 
 .rex-input {
   padding: 18px 30px;
   height: auto;
+  font-weight: 300;
 
   &::-webkit-input-placeholder {
     color: $placeholderColor;
@@ -21,28 +45,34 @@ button {
 
 .rex-button {
   padding: 10px;
-  background-color: #fff;
+  background-color: $teal;
   border: solid 4px $teal;
-  color: $teal;
+  color: #fff;
   width: 100%;
   font-weight: 700;
+  text-transform: uppercase;
+
+  &.ng-click-active {
+    background-color: $darkTeal;
+  }
 
   &:disabled {
     border-color: $gray;
-    color: $gray;
+    background-color: $gray;
+    color: #fff;
     cursor: not-allowed;
   }
 
   &:disabled:hover {
-    background: none;
-    color: $gray;
+    background: $gray;
+    border-color: $gray;
   }
 
   &:hover,
-  &:focus,
   &:active {
     color: white;
-    background-color: $teal;
+    background-color: $darkTeal;
+    border-color: $darkTeal;
   }
 
   &.danger {

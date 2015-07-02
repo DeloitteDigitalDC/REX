@@ -25,6 +25,7 @@
       labelsSearch: labelsSearch
     };
 
+    /* istanbul ignore next */
     /**
      * Query the
      *
@@ -41,6 +42,7 @@
       return $http.get(path.event, {params: qs});
     }
 
+    /* istanbul ignore next */
     /**
      * @memberof drugs
      *
@@ -53,7 +55,8 @@
     function labels(qs, drugName) {
       if (drugName === cachedDrugName) {
         labelPromise = _returnCachedLabel();
-      } else {
+      }
+      else {
         labelPromise = _returnHttpPromise(qs, drugName);
       }
 
