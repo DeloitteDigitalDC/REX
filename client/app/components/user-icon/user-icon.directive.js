@@ -6,7 +6,12 @@
  * @name userIcon
  *
  * @description
- * directive for rex
+ * User icon for header and user profile.
+ *
+ * @property {String} hash - gravatar hash
+ * @property {String} hash - gravatar hash
+ *
+ * @example <user-icon hash="jdiueuye893hjkfnjfijr" size="40"></user-icon>
  */
 (function() {
 
@@ -21,12 +26,8 @@
       scope: {
         hash: '=',
         size: '@'
-      },
-      link: link
+      }
     };
-
-    function link() {
-    }
   }
 
 })();

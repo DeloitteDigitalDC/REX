@@ -6,7 +6,12 @@
  * @name appHeader
  *
  * @description
- * directive for rex
+ * The main header for the application
+ *
+ * @property {Object} user - the currently logged in user
+ * @property {Object} headerOptions - options object for the header, set by the view state
+ *
+ * @example <app-header user="main.user" headerOptions="main.headerOptions"></app-header>
  */
 (function () {
 
@@ -26,20 +31,22 @@
     };
 
     function link(scope) {
-      scope.goHome = goHome;
+      scope.homeRoute = homeRoute();
       scope.goTo = goTo;
 
       /**
+       *
        * If the user is logged in take them to the cabinet else go to the home page.
        *
        * @memberof appHeader
+       * @returns {String} route name for use in ui-sref directive
        */
-      function goHome() {
-        if(scope.user.data) {
-          $state.go('main.cabinet');
+      function homeRoute() {
+        if(typeof(scope.user) !== 'undefined' && scope.user.data) {
+          return 'main.cabinet';
         }
         else {
-          $state.go('main.home');
+          return 'main.home';
         }
       }
 

@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:RemoveDrugModal
+ * @name RemoveDrugModal
  *
  * @description
  * Controller for rex

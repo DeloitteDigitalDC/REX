@@ -35,11 +35,9 @@ describe('directive:app-header', function () {
 
     var elScope = element.isolateScope();
 
-    elScope.goHome();
-
     scope.$apply();
 
-    expect($state.current.name).toBe('main.home');
+    expect(elScope.homeRoute).toBe('main.home');
   }));
 
   // compile the element to be tested
@@ -50,11 +48,9 @@ describe('directive:app-header', function () {
 
     var elScope = element.isolateScope();
 
-    elScope.goHome();
-
     scope.$apply();
 
-    expect($state.current.name).toBe('main.cabinet');
+    expect(elScope.homeRoute).toBe('main.cabinet');
   }));
 
   it('goes to the specified link', inject(function ($compile) {

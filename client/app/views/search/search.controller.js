@@ -3,7 +3,7 @@
 /**
  * @ngdoc controller
  *
- * @name rex.controller:Search
+ * @name Search
  *
  * @description
  * Controller for rex
@@ -19,7 +19,6 @@
 
     vm.results = [];
     vm.noResults = false;
-
   }
 
 })();

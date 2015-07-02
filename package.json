@@ -1,6 +1,8 @@
 {
   "name": "rex",
-  "version": "0.0.0",
+  "version": "0.1.1",
+  "license": "MIT",
+  "repository": "https://github.com/DeloitteDigitalDC/REX",
   "devDependencies": {
     "angular-jsdoc": "~0.3.0",
     "grunt": "^0.4.5",
@@ -45,14 +47,17 @@
     "node": ">=0.12.2"
   },
   "scripts": {
-    "start": "node node_modules/grunt-cli/bin/grunt build",
+    "build": "node node_modules/grunt-cli/bin/grunt build",
+    "build-full": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
+
     "server": "node node_modules/grunt-cli/bin/grunt serve",
-    "build": "node node_modules/grunt-cli/bin/grunt && npm run test-server",
     "docs": "node node_modules/grunt-cli/bin/grunt jsdoc",
     "linter": "node node_modules/grunt-cli/bin/grunt jshint",
+
     "test": "npm run test-client && npm run test-server",
     "test-client": "node node_modules/grunt-cli/bin/grunt test",
     "test-server": "node node_modules/istanbul/lib/cli.js cover  -x \"server/**/**/*.spec.js\" node_modules/mocha/bin/_mocha -- server/tests/unit.js",
+
     "controller": "yo angular-blueprint:controller",
     "factory": "yo angular-blueprint:factory",
     "service": "yo angular-blueprint:service",

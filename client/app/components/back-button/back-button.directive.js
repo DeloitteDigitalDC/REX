@@ -6,7 +6,9 @@
  * @name backButton
  *
  * @description
- * directive for rex
+ * back button to be used in the drug profile
+ *
+ * @example <back-button></back-button>
  */
 (function() {
 
@@ -18,8 +20,7 @@
     return {
       restrict: 'EA',
       templateUrl: 'app/components/back-button/back-button.directive.html',
-      scope: {
-      },
+      scope: {},
       link: link
     };
 

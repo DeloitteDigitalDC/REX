@@ -6,7 +6,8 @@
  * @description
  * The main router. Include all routes here
  *
- * @type {config|exports|module.exports}
+ * @example
+ * require('./router')(app, auth)
  */
 var config = require('./config');
 

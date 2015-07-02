@@ -1,7 +1,10 @@
 <div class="loader" ng-show="!recalls.fieldsLoaded"></div>
+
 <div class="recalls" ng-show="recalls.fieldsLoaded">
   <h3>Related Recalls</h3>
+
   <div ng-if="!recalls.recallData">No recall data available.</div>
+
   <section ng-repeat="recall in recalls.recallData">
     <h4><a ng-click="recall.expanded = !recall.expanded">{{recall.openfda.brand_name[0]}}</a></h4>
 

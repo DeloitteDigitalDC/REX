@@ -3,7 +3,7 @@
     <back-button></back-button>
 
     <div class="cabinet-buttons">
-      <button class="rex-button pull-right remove" ng-click="drugProfile.removeCabinetDrug($event, { name: drugProfile.drugName })">REMOVE FROM CABINET</button>
+      <button tabindex="110" class="rex-button pull-right remove" ng-click="drugProfile.removeCabinetDrug($event, { name: drugProfile.drugName })">REMOVE FROM CABINET</button>
     </div>
 
     <h1>{{drugProfile.drugName}}</h1>
@@ -20,8 +20,7 @@
       <div ui-view></div>
     </card-fade>
 
-    <div class="clearfix">
-    </div>
+    <div class="clearfix"></div>
 
     <br>
 

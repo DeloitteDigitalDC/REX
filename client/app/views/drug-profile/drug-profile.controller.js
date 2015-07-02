@@ -37,7 +37,6 @@
      * @memberof DrugProfileCtrl
      */
     function init() {
-      checkCabinet();
       _getDrugData();
     }
 
@@ -70,6 +69,8 @@
           }
 
           vm.fieldsLoaded = true;
+
+          checkCabinet();
         });
       });
     }
@@ -132,7 +133,7 @@
       vm.inCabinet = false;
 
       _.forEach(cabinetDrugs, function(drug) {
-        if(drug.name === vm.drugName) {
+        if(drug.id === vm.drugData.id) {
           vm.inCabinet = true;
         }
       });
