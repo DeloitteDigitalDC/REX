@@ -1,11 +1,10 @@
 # REX by Deloitte Digital
 
-[Install Instructions Here](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
+[Install instructions here.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
-[Access the prototype](http://askrex.io/)
+[Access the prototype.](http://askrex.io/)
 
-[View the video](https://vimeo.com/132462802)
-[Lower quality version of the video located in the repository here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4)
+[View the video.](https://vimeo.com/132462802) (A lower quality version of the video located in the repository [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4))
 
 
 ## GSA/18F Agile Delivery Services – Deloitte Digital Response
