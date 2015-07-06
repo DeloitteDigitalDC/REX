@@ -1,8 +1,14 @@
-### REX Install Instructions
+# REX by Deloitte Digital
 
 [Install Instructions Here](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
-# GSA/18F Agile Delivery Services – Deloitte Digital Response
+[Access the prototype](http://askrex.io/)
+
+[View the video](https://vimeo.com/132462802)
+[Lower quality version of the video located in the repository here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4)
+
+
+## GSA/18F Agile Delivery Services – Deloitte Digital Response
 
 At Deloitte Digital, we have a core belief that great design doesn’t just happen. Ideas alone are common. It takes discipline, research, and relentlessly talented and creative minds to make insights into something tangible that we can build, test, and iterate. In this section, we will describe our approach towards building the prototype for the GSA Agile Delivery Services BPA.
 
