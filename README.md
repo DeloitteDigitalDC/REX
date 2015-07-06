@@ -1,6 +1,6 @@
 # REX by Deloitte Digital
 
-[Install instructions here.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
+[Install REX locally.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
 [Access the prototype.](http://askrex.io/)
 
