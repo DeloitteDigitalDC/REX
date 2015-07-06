@@ -6,7 +6,7 @@
 
 At Deloitte Digital, we have a core belief that great design doesn’t just happen. Ideas alone are common. It takes discipline, research, and relentlessly talented and creative minds to make insights into something tangible that we can build, test, and iterate. In this section, we will describe our approach towards building the prototype for the GSA Agile Delivery Services BPA.
 
-This approach helped the White House. It assisted TOMs going global. It helped Intel be more agile.
+This approach helped the White House. It assisted [TOMs](http://www.deloittedigital.com/work/case_study/toms) going global. It helped [Intel](http://www.deloittedigital.com/work/case_study/intel) be more agile.
 
 We take the team thing seriously. Our experienced, cross-disciplinary teams act as one team building one product.
 
@@ -26,7 +26,7 @@ Taking a project from concept to completion requires a flexible approach enablin
 
 ## 1. Discovery
 
-With us, it’s all about the user. Discovery is about learning as much as we can, as fast as we can about the available data, users, their problems, expectations, and pain points. We utilized human-centered design tools and techniques, which include ethnographic research, rapid prototyping, and personas.  
+With us, it’s all about the user. Discovery is about learning as much as we can, as fast as we can about the available data, users, their problems, expectations, and pain points. We utilized human-centered design tools and techniques, which include ethnographic research, rapid prototyping, and personas.
 
 After we reviewed the open.fda.gov APIs, our interaction designer, visual designer, and business analyst engaged with three distinct focus groups of 3-4 potential users. Those interactions provided us with ethnographic data (e.g., demographics, tasks, needs, goals, tools, and pain points). Using this cross-disciplinary approach, we acquired an understanding of different user perspectives to design superior experiences.
 
@@ -40,16 +40,24 @@ Our interaction designer, technical architect, business analyst, visual designer
 
 Armed with these tools, our interaction designer created initial wireframes in Omnigraffle. The wireframes were moved into concept validation and usability testing after approval. Bringing in different users was essential, as they were able to provide fresh perspectives to drive a second iteration.
 
-While the initial wireframes were being developed, our visual designer created a product [style guide](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/design/ReX-Styleguide-V3.pdf) for product manager approval and the development of visual compositions in Adobe Creative Suite. Following approval, our interaction designer promoted a round of usability testing, resulting in the final visuals.
+While the initial wireframes were being developed, our visual designer created a product [style guide](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/design/ReX-Styleguide-V3.pdf) for product manager approval and the development of visual compositions in Adobe Creative Suite. Following approval, our interaction designer conducted a round of usability testing, resulting in feedback that was used to update our designs. We performed multiple rounds of usability testing on our wireframes, visual compositions, and our web prototype. Notes from our usability testing can be seen [here](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance).  Two examples of iterations made to our product are explained below:
+
+1. In the [first version of the wireframes](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ux/ReX-Wireframes-v1.pdf), we provided users with a slide out sidebar navigation which users found redundant and confusing.  Based on this feedback, we [revised the design](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ux/ReX-Wireframes-v2.pdf) whereby the sidebar navigation was removed and we implemented intuitive icon driven navigation (e.g. logo, profile).  We verified that this change improved the application flow by asking users questions like, How would you navigate back to your Drug Cabinet? during usability testing with a paper prototype from design comps.  We completed the verification process during another round of usability testing with a live version of the app where users successfully completed the tasks related to navigating the application.
+
+2. In early iterations, we provided the capability for users to compare two drugs in their virtual cabinet ([shown here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/design/ReX-Comps-v1.pdf)).  During usability testing, users questioned the purpose of the comparison feature given the data we were able to capture from the API. Based on the results of our testing, we determined that this feature would not add value to the product and we decided to remove this feature (link to visual comp v2). This was removed entirely from the design before a single line of code was written for this feature.
 
 ## 3. Develop
 
 Agile development means delivering early and often. Our engineering approach was to get a minimum viable product (MVP) as quickly as possible so we could test the product with users and iterate based upon their feedback.
 
-Our technical architect, DevOps engineer, and frontend web developers kicked off Sprint 0 as soon as we got underway.  Our team spun up the source repository, created the app scaffolding and set up the build pipeline [(as seen here)](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-DevOps.pdf).
+Our technical architect, DevOps engineer, and frontend web developers kicked off Sprint 0 as soon as we got underway.  Our team spun up the source repository, created the app scaffolding and set up the build pipeline [(as seen here)](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-DevOps.pdf).  Our build pipeline is designed and built from the ground up to maximize the speed with which we can build and ship a feature while also adhering to QA and configuration management processes that are so critical to building a quality product.
 
-During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and automation [(seen here)](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance), and all tests were run as an integral part of our build pipeline.  Our entire application stack leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
+During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and automation [(seen here)](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance), and all tests were run as an integral part of our build pipeline.  Our entire application stacked leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
 
 ## 4. Deploy
 
-When we deployed, we worked to avoid mistakes as much as possible. Fully utilizing container-based deployment, we reduced the risk of errors. When all unit and end-to-end testing was completed and the product manager gave his final approval, we deployed our product to http://askrex.io and uploaded to GitHub for review per the Request for quotation instructions. In our production environment, we were able to continuously monitor the application to ensure that it was performing as expected.
+When we ship we work to avoid mistakes as much as possible.  That’s why we deploy using an automated process with containerized deployments, maximizing our deployment speed while reducing the risk of environment inconsistencies.  Our CI server monitors the code repository for changes made to the production branch (/master) and – after a successful compile and test run – builds the production container and ships it to our production environment.  We’re built to handle all kinds of infrastructure environments, but for this request we use Amazon Web Services virtual server instances for all of our deployment environments – dev/test/prod as well as monitoring and CI.
+
+It’s not the end of the story when we ship the app.  We use a continuous monitoring tool (Nagios) to monitor system status and environment health (e.g. system load, disk usage, current users, current load, etc.), and the environment is set up to notify us when one of the key metrics moves outside normal operating ranges.
+
+When we deployed, we worked to avoid mistakes as much as possible. Fully utilizing container-based deployment, we reduced the risk of errors. When all unit and end-to-end testing was completed and the product manager gave his final approval, we deployed our product to http://askrex.io and uploaded to GitHub for review per the Request for Quotation instructions. In our production environment, we were able to continuously monitor the application to ensure that it was performing as expected.
