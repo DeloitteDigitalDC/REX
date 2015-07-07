@@ -1,4 +1,6 @@
 # REX by Deloitte Digital
+<img style="display:inline-block;float:right;">[Deloitte Digital Logo](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/DD_RGB_white-black_png.jpg) </img>
+
 
 [Install REX locally.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
@@ -61,7 +63,7 @@ Agile development means delivering early and often. Our engineering approach was
 
 Our technical architect, DevOps engineer, and frontend web developers kicked off Sprint 0 as soon as we got underway.  Our team spun up the source repository, created the app scaffolding and set up the build pipeline ([as seen here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-DevOps.pdf)).  Our build pipeline was designed and built from the ground up to maximize the speed with which we can build and ship a feature while also adhering to QA and configuration management processes that are so critical to building a quality product.
 
-During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and test automation ([seen here](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance)).  All of the tests were run as an integral part of our build pipeline.  In addition to functional testing, our team also performed [accessibility testing](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance/accessability).  Our entire [application stack](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-App.pdf) leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
+During our sprints the frontend web developers implemented and constructed unit tests for the identified user stories and delivery manager coordinated the creation of functional tests and test automation ([seen here](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance)).  All of the tests were run as an integral part of our build pipeline.  In addition to functional testing, our team also performed [accessibility testing](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/quality-assurance/accessability).  Our entire [application stack](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-App.png) leverages free and/or open source technologies like Angular and Node, and we used containerized deployment techniques using Docker to package our application and associated dependencies.
 
 ## 4. Deploy
 
@@ -73,5 +75,3 @@ When all unit and end-to-end testing was completed and the product manager gave 
 
 When we create and deliver a product, it’s more than just working hard days and long hours. It’s a labor of passion and love for us, where each member of our team is committed to putting out the best that they can. To see a little bit of what our process looks like in action, make sure to check out the [video](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4) we put together and some of the [pictures](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/media) we captured along the way.
 
-
-![Deloitte Digital Logo](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/DD_RGB_white-black_png.jpg) 
