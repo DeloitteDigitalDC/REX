@@ -1,6 +1,6 @@
 # REX Tips - Quickly see the feature set of the application
 
-We recognize that not everyone viewing our application will be able to spend time customizing their REX instances, so we have outlined two examples of ways to see features you may have otherwise missed. 
+We realize that not everyone viewing our application will be able to spend time customizing their REX instances, so we have outlined two examples of ways to see features you may have otherwise missed. 
 
 ### Recalled drug alerts
 If a drug in your cabinet has been recalled, it will be highlighted.  
