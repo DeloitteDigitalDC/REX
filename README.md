@@ -1,4 +1,6 @@
-# ![Deloitte Digital Logo](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/DD_RGB_white-black_png.jpg) REX by Deloitte Digital
+![Deloitte Digital Logo](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/DD_RGB_white-black_lg_png.jpg) 
+
+# REX by Deloitte Digital
 
 [Install REX locally.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
