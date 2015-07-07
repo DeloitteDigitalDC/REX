@@ -5,7 +5,7 @@ We realize that not everyone viewing our application will be able to spend time 
 ### Recalled drug alerts
 If a drug in your cabinet has been recalled, it will be highlighted.  
 
-Example drug with a recall: Niacin. 
+Example drug with a recall: **Niacin**. 
 
 ![Cabinet](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/screenshots/cabinet.png)
 
@@ -16,7 +16,7 @@ In your user profile, select "Someone in my household is pregnant, breast feedin
 
 ![Select Pregnant](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/screenshots/select-pregnancy.png)
 
-Example drug with alerts: Advil.
+Example drug with alerts: **Advil**.
 
 ![Advil](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/screenshots/pregnancy-alert.png)
 
