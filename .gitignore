@@ -7,6 +7,5 @@ bower_components
 .DS_Store
 ._.DS_Store
 npm-debug.log
-server/settings.json
 server/auth/sessions/*.json
 server/db/database.sqlite3
