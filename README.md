@@ -15,7 +15,7 @@ This approach helped the White House. It assisted [TOMs](http://www.deloittedig
 
 We take the team thing seriously. Our experienced, cross-disciplinary teams act as one team building one product.
 
-That said, meet our diverse prototype team:
+That said, meet our diverse [prototype team](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-OrgChart.pdf):
 * Kevin, Product manager
 * Aaron, Technical architect
 * Bassel, Interaction designer
@@ -38,7 +38,7 @@ After we reviewed the open.fda.gov APIs, our interaction designer, visual design
 Based on our discoveries, we created personas to target the distinct user profiles for our prototype. Our efforts resulted in [two personas](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ux/ReX-Personas-Final.pdf) and the decision to focus on a desktop product responsive to mobile platforms.
 
 During discovery, we also conducted our sprint planning, set up our initial backlog of user stories, and prioritization. We initially planned a one-week sprint. As our sprint was running, our team created new user stories based on user feedback and usability testing.
-When the first RFQ submission extension was announced, we scoped a second sprint, and groomed our backlog to prioritize any potential future sprints. This current, prioritized backlog was exported from Jira, and can be viewed [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-Backlog.png).
+When the first RFQ submission extension was announced, we scoped a second sprint, and groomed our backlog to prioritize any potential future sprints. This current, prioritized backlog was exported from Jira, and can be viewed [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-Backlog.png) and the completed user stories from both sprints can be viewed [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/Rex-StoryExport.xlsx).
 
 
 ## 2. Design
