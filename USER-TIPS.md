@@ -5,7 +5,7 @@ We realize that not everyone viewing our application will be able to spend time 
 ### Recalled drug alerts
 If a drug in your cabinet has been recalled, it will be highlighted.  
 
-Example suggestion: Niacin. 
+Example drug with a recall: Niacin. 
 
 ![Cabinet](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/screenshots/cabinet.png)
 

@@ -2,7 +2,7 @@
 
 [Install REX locally.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
-[Access the prototype.](http://askrex.io/) (View [tips](https://github.com/DeloitteDigitalDC/REX/blob/master/Tips.md) to quickly see features of the application)
+[Access the prototype.](http://askrex.io/) (View [tips](https://github.com/DeloitteDigitalDC/REX/blob/master/USER-TIPS.md) to quickly see features of the application)
 
 [View the video.](https://vimeo.com/132462802) (A lower resolution version of the video is located in the repository [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4))
 
@@ -69,7 +69,7 @@ When we ship we work to minimize mistakes.  That’s why we deploy using an auto
 
 Just because the app is shipped doesn't mean we're finished. We used a continuous monitoring tool (Nagios) to monitor system status and environment health (e.g. system load, disk usage, current users, current load, etc.), and the environment is set up to notify us when one of the key metrics moves outside normal operating ranges.
 
-When all unit and end-to-end testing was completed and the product manager gave his final approval, we deployed our product to http://askrex.io and uploaded to GitHub for review per the Request for Quotation instructions. In our production environment, we were able to continuously monitor the application to ensure that it was performing as expected.  In addition to uploading [installation instructions](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md), we have also added [tips](https://github.com/DeloitteDigitalDC/REX/blob/master/Tips.md) to view some of features of the application.
+When all unit and end-to-end testing was completed and the product manager gave his final approval, we deployed our product to http://askrex.io and uploaded to GitHub for review per the Request for Quotation instructions. In our production environment, we were able to continuously monitor the application to ensure that it was performing as expected.  In addition to uploading [installation instructions](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md), we have also added [tips](https://github.com/DeloitteDigitalDC/REX/blob/master/USER-TIPS.md) to view some of features of the application.
 
 When we create and deliver a product, it’s more than just working hard days and long hours. It’s a labor of passion and love for us, where each member of our team is committed to putting out the best that they can. To see a little bit of what our process looks like in action, make sure to check out the [video](https://vimeo.com/132462802) we put together and some of the [pictures](https://github.com/DeloitteDigitalDC/REX/tree/master/evidence/media) we captured along the way.
 
