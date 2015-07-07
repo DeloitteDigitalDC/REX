@@ -2,7 +2,7 @@
 
 [Install REX locally.](https://github.com/DeloitteDigitalDC/REX/blob/master/INSTALL.md)
 
-[Access the prototype.](http://askrex.io/)
+[Access the prototype.](http://askrex.io/) Don't have a lot of time to poke around? View [tips](https://github.com/DeloitteDigitalDC/REX/blob/master/Tips.md) to quickly see the feature set of the application.
 
 [View the video.](https://vimeo.com/132462802) (A lower resolution version of the video is located in the repository [here](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/media/18F-Proposal-720p.mp4))
 
