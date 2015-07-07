@@ -29,11 +29,11 @@ rm -rf .git
 
 ### Configure App
 
-The app can be configured in two ways. 
+The app can be configured in two ways: 
 
-The first way is to use Environment Variables.
+1. Use Environment Variables.
 
-The second way is to modify /server/settings.json.
+2. Modify /server/settings.json.
 
 Of the three properties below, the only item that is required to be configured is FDA_KEY. 
 
