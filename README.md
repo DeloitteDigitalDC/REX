@@ -11,8 +11,6 @@
 
 At Deloitte Digital, we have a core belief that great design doesn’t just happen. Ideas alone are common. It takes discipline, research, and relentlessly talented and creative minds to make insights into something tangible that we can build, test, and iterate on. In this section, we will describe our approach towards building the prototype for the GSA Agile Delivery Services BPA.
 
-This approach helped the White House. It assisted [TOMs](http://www.deloittedigital.com/work/case_study/toms) going global. It helped [Intel](http://www.deloittedigital.com/work/case_study/intel) be more agile.
-
 We take the team thing seriously. Our experienced, cross-disciplinary teams act as one team building one product.
 
 That said, meet our diverse [prototype team](https://github.com/DeloitteDigitalDC/REX/blob/master/evidence/ReX-OrgChart.pdf):
